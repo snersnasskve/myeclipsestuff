@@ -1,0 +1,22 @@
+package com.kve.chorerota.notification;
+
+import com.kve.chorerota.R;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class CancelNotificationActivity extends NotificationActivity {
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+	
+
+		tvNotifyDescript.setText("You have CANCELLED the notification");
+	}
+
+
+}

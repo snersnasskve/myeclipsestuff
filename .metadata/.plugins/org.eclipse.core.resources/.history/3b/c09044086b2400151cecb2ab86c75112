@@ -1,0 +1,10 @@
+package com.kve.chorerota.alarm;
+
+public class ChoreAlarm {
+
+	public ChoreAlarm()
+	{
+
+	}
+
+}

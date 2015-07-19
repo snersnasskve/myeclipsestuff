@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Xmas Card List</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="first_name">Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="home_address">Home Address</string>
+    <string name="area_code">Area Code</string>
+    <string name="country">Country</string>
+    <string name="contacts_title">Friends and Family</string>
+    <string name="add_button">Add</string>
+    <string name="save_data">Save</string>
+    <string name="edit_contact">Edit Contact</string>
+    <string name="edit_button">Edit</string>
+    <string name="delete_button">Delete</string>
+    <string name="xmas_received">Xmas Rec.</string>
+    <string name="xmas_sent">Xmas Sent</string>
+    <string name="xmas_email_only">Xmas Email</string>
+    <string name="last_sent">Last Sent</string>
+    <string name="navigate">Nav</string>
+    <string name="favourite">Favourite</string>
+    <string name="go_back">Return</string>
+    <!-- menu -->
+    <string name="favourites">Favourites</string>
+    <string name="all_contacts">All Contacts</string>
+    <string name="xmas_card_not_sent">Xmas card not sent</string>
+    <string name="received">Receieved something</string>
+    <string name="africa">African</string>
+    <string name="down_under">From Down Under</string>
+    <string name="america">American</string>
+    <string name="europe">European</string>
+    <string name="region">Region</string>
+    <string name="manage_regions">Manage Regions</string>
+    <string name="all">All</string>
+    <string name="favourites_only">Fav. Only</string>
+    <string name="sent">Sent</string>
+    <string name="not_sent">Not Sent</string>
+    <string name="gt_month">> 1 month</string>
+    <string name="gt_year">> 1 year</string>
+
+    <!-- prefs -->
+    <string name="preferences">Filter Preferences</string>
+
+</resources>

@@ -1,0 +1,78 @@
+package com.kve.xmascardlist;
+
+
+import java.util.HashMap;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+public class EditContact extends Activity {
+	String contactId;
+	EditText etaFirstName;
+	EditText etaEmailAddress;
+	EditText etaAddress;
+	EditText etaAreaCode;
+	EditText etaCountry;
+	EditText etaXRecYears;
+	CheckBox cbaXSent;
+	CheckBox cbaXEmail;
+	EditText etaLastSent;
+	
+	DBTools dbTools = new DBTools(EditContact.this);
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.edit_contact);
+		
+		etaFirstName	= (EditText) findViewById(R.id.etaFirstName);
+		etaEmailAddress	= (EditText) findViewById(R.id.etaEmailAddress);
+		etaAddress		= (EditText) findViewById(R.id.etaAddress);
+		etaAreaCode		= (EditText) findViewById(R.id.etaAreaCode);
+		etaCountry		= (EditText) findViewById(R.id.etaCountry);
+		etaXRecYears	= (EditText) findViewById(R.id.etaXRecYears);
+		cbaXSent		= (CheckBox) findViewById(R.id.cbaXSent);
+		cbaXEmail		= (CheckBox) findViewById(R.id.cbaXEmail);
+		etaLastSent		= (EditText) findViewById(R.id.etaLastSent);
+		
+		Intent recIntent = getIntent();
+		contactId = recIntent.getExtras().getString("contactId");
+		
+		HashMap<String, Object> contacts = dbTools.getContact(contactId);
+		String anyString = (String)contacts.get("firstName");
+		etaFirstName.setText((String)contacts.get("firstName"));
+	}
+	
+	public void editContact(View view)
+	{
+		HashMap<String, Object> queryValuesMap = new HashMap<String, Object>();
+		queryValuesMap.put("contactId",	contactId);
+		queryValuesMap.put("firstName",	etaFirstName.	getText().toString());
+		queryValuesMap.put("lastName", 	"");
+		queryValuesMap.put("phone", 	"");
+		queryValuesMap.put("email", 	etaEmailAddress.getText().toString());
+		queryValuesMap.put("address", 	etaAddress.		getText().toString());
+		queryValuesMap.put("areaCode", 	etaAreaCode.	getText().toString());
+		queryValuesMap.put("country", 	etaCountry.		getText().toString());
+		queryValuesMap.put("xmasRec", 	etaXRecYears.	getText().toString());
+		queryValuesMap.put("xmasSent", 	(cbaXSent.isChecked() ? 1 : 0));
+		queryValuesMap.put("xmasEmail", (cbaXSent.isChecked() ? 1 : 0));
+		queryValuesMap.put("lastSent",	etaLastSent.	getText().toString());
+		
+		dbTools.updateContact(queryValuesMap);
+		this.callMailActivity(view);
+	
+	}
+
+	private void callMailActivity(View view) {
+		Intent replyIntent = new Intent(getApplication(), XmasCardMain.class);
+		startActivity(replyIntent);
+		
+	}
+
+}

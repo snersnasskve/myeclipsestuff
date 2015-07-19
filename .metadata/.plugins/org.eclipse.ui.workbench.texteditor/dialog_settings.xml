@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="Suppress" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="suppress&quot;&quot;&quot;"/>
+			<item value="suppress&quot;&quot;"/>
+			<item value="suppress"/>
+			<item value="supress"/>
+			<item value="getchores"/>
+			<item value="contact"/>
+			<item value="contactValues"/>
+			<item value="madapter"/>
+		</list>
+		<list key="replacehistory">
+			<item value="choreValues"/>
+			<item value="ChoreRecord"/>
+			<item value="choreMap"/>
+			<item value="choreArray"/>
+			<item value="reqDismissal"/>
+			<item value="req_dismissal"/>
+			<item value="toNotify"/>
+			<item value="to_notify"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="263" key="DIALOG_WIDTH"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+		<item value="282" key="DIALOG_HEIGHT"/>
+		<item value="-7" key="DIALOG_X_ORIGIN"/>
+		<item value="712" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

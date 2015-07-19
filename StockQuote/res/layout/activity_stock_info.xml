@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvSqName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvSqYearLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:text="@string/year_low" />
+
+        <TextView
+            android:id="@+id/tvSqYearHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/year_high" 
+              android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_weight="1" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvSqDaysLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/days_low"  
+              android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tvSqDaysHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/days_high" 
+              android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_weight="1" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvSqLastPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_price" 
+                android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvSqChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_colon" 
+                android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_weight="1" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvSqDailyRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+              android:paddingTop="@dimen/activity_horizontal_margin"
+            android:text="@string/daily_price_range" />
+
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Series40</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_height">Height</string>
+    <string name="btn_width">Width</string>
+    <string name="btn_calc">Calculate</string>
+    <string name="btn_enter">Enter</string>
+    <string name="display_name">Display Name</string>
+    <string name="enter_name">Enter your Name</string>
+    <string name="save">Save</string>
+    <string name="go_to_settngs">Go to Settings</string>
+    <string name="go_to_store">Go to Store</string>
+    <string name="file_name">File Name</string>
+    <string name="journal_entry">Journal Entry</string>
+    <string name="parsing_data">Parsing Data</string>
+    <string name="settings">Settings</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="reading_data">Reading Data</string>
+    <string name="load">Load</string>
+    <string name="save_to_sd">Save To SD</string>
+    <string name="save_stuff_to_sd">Save stuff to the SD:</string>
+    <string name="save_picture">Save a Picture</string>
+    <string name="save_sound">Save a Sound</string>
+
+</resources>

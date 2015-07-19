@@ -1,0 +1,9 @@
+1418732626130	Move compilation unit
+1418732682356	Move compilation unit
+1418732690162	Move compilation unit
+1418732730245	Delete element
+1418733340379	Copy file
+1418969774699	Extract method 'formatIntensityText'
+1418970028761	Extract method 'setGraphColours'
+1418971437717	Extract method 'drawPrecipGraph'
+1418971464559	Extract method 'drawProbabilityGraph'

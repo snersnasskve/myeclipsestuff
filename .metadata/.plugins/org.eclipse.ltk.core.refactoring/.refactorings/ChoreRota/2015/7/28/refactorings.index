@@ -1,0 +1,4 @@
+1436158333205	Extract method 'setupNotiStrings'
+1436158520552	Extract method 'setupNotiPendingIntents'
+1436159107839	Extracts string 'null' into R.string.what_to_do
+1436160402176	Rename resource 'ResetNotficationActivity.java'

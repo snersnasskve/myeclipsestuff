@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/b0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parsing_data"
+        android:textStyle="bold" 
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/b1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textStyle="bold"  
+        android:onClick="onClick"/>
+
+   <Button
+        android:id="@+id/b2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/internal_storage"
+        android:textStyle="bold" />
+   
+   <Button
+        android:id="@+id/b3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/reading_data"
+        android:textStyle="bold" />
+
+   <Button
+       android:id="@+id/b4"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:onClick="onClick"
+       android:text="@string/save_to_sd"
+       android:textStyle="bold" />
+
+</LinearLayout>

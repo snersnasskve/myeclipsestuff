@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:text="What's up brigers" android:layout_gravity="center" />
+	
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="195dp" >
+ 
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+	<Button
+	    android:id="@+id/tutorial5"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/tutorial5"
+	    android:textStyle="bold" />
+
+	<Button
+	    android:id="@+id/tutorial1"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/tutorial1"
+	    android:textStyle="bold" />
+	
+		<Button
+	    android:id="@+id/tutorial4"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/tutorial4"
+	    android:textStyle="bold" />
+
+	
+	<Button
+	    android:id="@+id/tutorial6"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/tutorial6"
+	    android:textStyle="bold" />
+	
+	<Button
+	    android:id="@+id/tutorial2"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/tutorial2"
+	    android:textStyle="bold" />
+
+	<Button
+	    android:id="@+id/tutorial3"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/tutorial3"
+	    android:textStyle="bold" />
+
+	
+	<Button android:id="@+id/button7" android:layout_width="221dp"
+		android:layout_height="wrap_content" android:text="@string/main_button1"
+		 android:textStyle="bold"  android:layout_gravity="center" />
+
+	<Button
+	    android:id="@+id/button8"
+	    android:layout_width="221dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/main_button_2"
+	    android:textStyle="bold" />
+
+	<Button android:id="@+id/button9" android:layout_width="221dp"
+		android:layout_height="wrap_content" android:text="@string/main_button1"
+		 android:textStyle="bold"  android:layout_gravity="center" />
+	<Button android:id="@+id/button10" android:layout_width="221dp"
+		android:layout_height="wrap_content" android:text="@string/main_button1"
+		 android:textStyle="bold"  android:layout_gravity="center" />
+	<Button android:id="@+id/button11" android:layout_width="221dp"
+		android:layout_height="wrap_content" android:text="@string/main_button1"
+		 android:textStyle="bold"  android:layout_gravity="center" />
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>

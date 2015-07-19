@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+       <TextView
+           android:id="@+id/tvCurrentlyTitle"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="#000"
+           android:gravity="center_vertical"
+           android:text="@string/currently"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:textColor="#FFFFFF"
+           android:textSize="30sp" />
+
+       <ImageView
+           android:id="@+id/ivCurIcon"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginBottom="10dp"
+           android:layout_marginTop="10dp"
+           android:src="@drawable/ic_launcher"
+           android:scaleType="fitCenter" />
+
+       <TableLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="5dp" >
+
+           <TableRow
+               android:id="@+id/tableRowCur1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur1"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/headline" 
+                   android:layout_weight="1"/>
+
+               <TextView
+                   android:id="@+id/tvCurSummary"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:hint="@string/summary_hint"
+                   android:layout_weight="2"/>
+
+           </TableRow>
+
+              <TableRow
+               android:id="@+id/tableRowCur2"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur2"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="@string/precip_intensity" />
+
+               <TextView
+                   android:id="@+id/tvCurPrecipIntensity"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="2"
+                   android:hint="@string/precip_intensity_hint" />
+
+           </TableRow>
+
+          <TableRow
+               android:id="@+id/tableRowCur3"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur3"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="@string/precip_probability" />
+
+               <TextView
+                   android:id="@+id/tvCurPrecipProbability"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="2"
+                   android:hint="@string/precip_probability_hint" />
+
+           </TableRow>
+
+          <TableRow
+               android:id="@+id/tableRowCur4"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur4"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="@string/temperature" />
+
+               <TextView
+                   android:id="@+id/tvCurTemperature"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="2"
+                   android:hint="@string/temperature_hint" />
+
+           </TableRow>
+    <TableRow
+               android:id="@+id/tableRowCur5"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur5"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="@string/wind" />
+
+               <TextView
+                   android:id="@+id/tvCurWind"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="2"
+                   android:hint="@string/wind_hint" />
+
+           </TableRow>
+  
+       <TableRow
+               android:id="@+id/tableRowCur6"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur6"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="@string/time_til_sunset" />
+
+               <TextView
+                   android:id="@+id/tvCurTimeTilSunset"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="2"
+                   android:hint="@string/time_til_sunset_hint" />
+
+           </TableRow>
+     <TableRow
+               android:id="@+id/tableRowCur7"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewCur7"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="@string/time_til_precip" />
+
+               <TextView
+                   android:id="@+id/tvCurTimeTilPrecip"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="2"
+                   android:hint="@string/time_til_precip_hint" />
+
+           </TableRow>
+       </TableLayout>
+
+       <HorizontalScrollView
+           android:id="@+id/hsvCurActivityIcons"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:layout_gravity="center"
+           android:layout_marginBottom="5dp" >
+
+           <LinearLayout
+               android:id="@+id/llCurIcontainer"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:layout_gravity="center_horizontal"
+               android:orientation="horizontal" >
+             <!-- 
+         
+                     <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/icon_gallery" />
+
+               <include
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                layout="@layout/xml_row_full_image_view" />
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                layout="@layout/xml_row_full_image_view" />
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                layout="@layout/xml_row_full_image_view" />
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                layout="@layout/xml_row_full_image_view" />
+                 -->
+           </LinearLayout>
+       </HorizontalScrollView>
+
+       <TextView
+           android:id="@+id/textView2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"
+           android:layout_marginTop="20dp"
+           android:text="@string/acknowledge1"
+           android:textAppearance="?android:attr/textAppearanceSmall" />
+
+         <TextView
+             android:id="@+id/textView3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:text="@string/acknowledge2"
+             android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+         <Button
+             android:id="@+id/btnCurDetails"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="bottom"
+             android:layout_marginTop="20dp"
+             android:background="#000"
+             android:gravity="center_vertical|center_horizontal"
+             android:onClick="displayMinutely"
+             android:text="@string/details"
+             android:textColor="#FFFFFF"
+             android:textStyle="bold" />
+
+</LinearLayout>

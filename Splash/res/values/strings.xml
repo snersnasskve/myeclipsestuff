@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Splash</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tutorial1">Tutorial 1</string>
+    <string name="tutorial2">Tutorial 2</string>
+    <string name="rb_normal">Normal</string>
+    <string name="rb_left">Left</string>
+    <string name="rb_italic">Italic</string>
+    <string name="rb_centre">Centre</string>
+    <string name="rb_bold">Bold</string>
+    <string name="rb_right">Right</string>
+    <string name="tv_generate">Type in some text and press the button below.</string>
+    <string name="gravity">Gravity</string>
+    <string name="style">Style</string>
+    <string name="btn_generate">Generate</string>
+    <string name="text_hint">Type any text in here</string>
+    <string name="about_text">This is the wonderful and exciting world of Splash</string>
+    <string name="main_button1">Button 1</string>
+    <string name="main_button_2">Button 2</string>
+    <string name="tutorial3">Tutorial 3</string>
+    <string name="img_to_back">Set background to Image</string>
+    <string name="tutorial4">Drawing the Ball</string>
+    <string name="tutorial5">Surface View Example</string>
+    <string name="tutorial6">Video Splash</string>
+    <string name="basic_series">The Basic Series</string>
+    
+</resources>

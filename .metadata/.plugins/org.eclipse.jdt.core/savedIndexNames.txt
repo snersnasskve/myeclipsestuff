@@ -1,0 +1,16 @@
+INDEX VERSION 1.126+/Users/admin/Playing ML/Eclipse2/.metadata/.plugins/org.eclipse.jdt.core
+3332288654.index
+1270315800.index
+208439981.index
+2153937428.index
+4265134362.index
+894998732.index
+3213481450.index
+3629793196.index
+1273249996.index
+838099975.index
+4169428055.index
+1540816927.index
+2826160371.index
+4194162353.index
+3562524584.index

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:fadingEdge="horizontal"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+    <EditText
+        android:id="@+id/aboutText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/text_hint" >
+
+      <requestFocus />
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100" >
+
+        <TextView
+            android:id="@+id/tvStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="50"
+            android:gravity="left|center"
+            android:text="@string/style"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGravity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:gravity="left|center"
+            android:text="@string/gravity"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <RadioGroup
+            android:id="@+id/rgStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/rbNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rb_normal" />
+
+            <RadioButton
+                android:id="@+id/rbItalic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rb_italic" />
+
+            <RadioButton
+                android:id="@+id/rbBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rb_bold" />
+        </RadioGroup>
+
+  <RadioGroup
+      android:id="@+id/rgGravity"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="vertical" >
+        
+        <RadioButton
+            android:id="@+id/rbLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rb_left" />
+      
+        <RadioButton
+            android:id="@+id/rbCentre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rb_centre" />
+
+        <RadioButton
+            android:id="@+id/rbRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rb_right" />
+                </RadioGroup>
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvChange"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="50"
+        android:gravity="center"
+        android:text="@string/tv_generate"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_generate"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

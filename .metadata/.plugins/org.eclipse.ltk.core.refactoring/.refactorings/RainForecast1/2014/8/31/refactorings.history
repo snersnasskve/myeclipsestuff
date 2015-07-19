@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;horizontalScrollView1&apos; in &apos;com.kve.rainforecast1.R.id&apos; to &apos;hsvCurActivityIcons&apos;&#x0A;- Original project: &apos;RainForecast1&apos;&#x0A;- Original element: &apos;com.kve.rainforecast1.R.id.horizontalScrollView1&apos;&#x0A;- Renamed element: &apos;com.kve.rainforecast1.R.id.hsvCurActivityIcons&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="true" description="Rename field &apos;horizontalScrollView1&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/gen&lt;com.kve.rainforecast1{R.java[R[id^horizontalScrollView1" name="hsvCurActivityIcons" references="true" setter="false" stamp="1406960799445" textual="false" version="1.0"/>
+</session>

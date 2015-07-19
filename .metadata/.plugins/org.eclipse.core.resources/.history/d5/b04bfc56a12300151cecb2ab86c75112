@@ -1,0 +1,12 @@
+package com.kve.chorerota.notification;
+
+
+public class ResetNotificationActivity extends NotificationActivity {
+	
+	protected void processNotification()
+	{
+		tvNotifyDescript.setText("You have RESET the notification");
+	}
+
+
+}

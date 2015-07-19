@@ -1,0 +1,20 @@
+package com.kve.chorerota.notification;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.kve.chorerota.R;
+
+
+public class SnoozeNotificationActivity extends NotificationActivity {
+	
+	
+	
+	protected void processNotification()
+	{
+		tvNotifyDescript.setText("You have SNOOZED the notification");
+	}
+
+
+}

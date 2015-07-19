@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;DBTools.java&apos; to &apos;MapManager/src/com.kve.mapmanager&apos;&#x0A;- Original project: &apos;XmasCardList&apos;&#x0A;- Destination element: &apos;MapManager/src/com.kve.mapmanager&apos;&#x0A;- Original element: &apos;com.kve.xmascardlist.DBTools.java&apos;" description="Copy compilation unit" destination="=MapManager/src&lt;com.kve.mapmanager" element1="/src&lt;com.kve.xmascardlist{DBTools.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1411454407882" units="1" version="1.0"/>
+</session>

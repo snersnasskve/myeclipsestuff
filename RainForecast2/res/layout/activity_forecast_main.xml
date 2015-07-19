@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.rainforecast2.ForecastMainActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:gravity="center"
+        android:text="@string/weather_summary"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <TableLayout
+        android:id="@+id/TableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/component_padding"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/action_row_height" >
+
+            <EditText
+                android:id="@+id/etLocationPlaceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:ems="10"
+                android:hint="@string/place_name"
+                android:inputType="textCapWords|textMultiLine" >
+
+                <requestFocus />
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/ibAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/right_arrow"
+                android:contentDescription="@string/get_the_weather"
+                android:onClick="forecastForAddress"
+                android:src="@drawable/right_arrow" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/action_row_height" >
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="@string/latitude_longitude"
+                android:padding="5dp" />
+
+            <ImageButton
+                android:id="@+id/ibLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/right_arrow"
+                android:contentDescription="@string/get_the_weather"
+                android:onClick="forecastForLocation" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/action_row_height" >
+
+            <Spinner
+                android:id="@+id/spFavourites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:prompt="@string/use_menu_add_favourite" />
+
+            <ImageButton
+                android:id="@+id/ibFavourites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/right_arrow"
+                android:contentDescription="@string/get_the_weather"
+                android:onClick="forecastForFavourite"
+                android:src="@drawable/right_arrow" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/action_row_height"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_info" />
+        </TableRow>
+
+  
+        <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_row_height"
+        android:layout_marginLeft="22dp"
+        android:paddingTop="@dimen/action_row_height"
+          android:paddingBottom="@dimen/action_row_height"
+       >
+
+        <ProgressBar
+            android:id="@+id/pbReadWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:fitsSystemWindows="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:longClickable="false"
+            android:visibility="invisible" />
+
+    </TableRow>
+          </TableLayout>
+
+  
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#000"
+        android:gravity="center_vertical|center_horizontal"
+        android:onClick="refreshScreen"
+        android:paddingTop="@dimen/component_padding"
+        android:text="@string/get_local_weather"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kve.chorerota"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".ChoreMainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+            <activity
+            android:name="com.kve.chorerota.ChoreAdd"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.chorerota.CHOREADD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name="com.kve.chorerota.ChoreEdit"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.chorerota.CHOREEDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name="com.kve.chorerota.notification.NotificationReceiver"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.chorerota.notification.NOTIFICATIONRECEIVER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- NOTIFICATION RECEIVERS -->
+                <activity
+            android:name="com.kve.chorerota.notification.ResetNotfication"
+            android:label="@string/app_name" 
+       android:parentActivityName="com.kve.chorerota.notification.NotificationActivity">
+                    <intent-filter>
+                <action android:name="com.kve.chorerota.notification.RESETNOTIFICATINO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name="com.kve.chorerota.notification.SnoozeNotification"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.chorerota.notification.SNOOZENOTIFICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name="com.kve.chorerota.notification.CancelNotification"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.chorerota.notification.CANCELNOTIFICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name="com.kve.chorerota.notification.NotificationActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.chorerota.notification.NOTIFICATIONACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+ 
+        
+        
+                </application>
+
+</manifest>

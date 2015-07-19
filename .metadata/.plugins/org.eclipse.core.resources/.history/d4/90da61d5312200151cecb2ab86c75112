@@ -1,0 +1,5 @@
+package com.kve.chorerota.notification;
+
+public class NotificationReceiver extends Activity {
+
+}

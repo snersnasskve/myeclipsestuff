@@ -1,0 +1,15 @@
+1433912068926	Delete element
+1433912903405	Extracts string 'null' into R.string.chore_name
+1433913107809	Extracts string 'null' into R.string.due
+1433913291974	Extracts string 'null' into R.string.chore_date
+1433914050845	Extracts string 'null' into R.string.time
+1433914102405	Extracts string 'null' into R.string.unit
+1434087112792	Extracts string 'null' into R.string.frequency
+1434087265799	Extracts string 'null' into R.string.number
+1434087805728	Extracts string 'null' into R.string.date_last_done
+1434088214637	Extracts string 'null' into R.string.chore_time
+1434089025227	Extracts string 'null' into R.string.notify_when_due
+1434089086696	Rename field 'checkBox1'
+1434089190870	Extracts string 'null' into R.string.requires_dismissal
+1434213886448	Extracts string 'null' into R.string.save
+1434228219221	Extract local variable 'arrayList'

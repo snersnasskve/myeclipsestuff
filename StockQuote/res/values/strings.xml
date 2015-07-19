@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">Get Stock Quotes</string>
+    <string name="action_settings">Settings</string>
+    <string name="enter_symbol">Enter Symbol</string>
+    <string name="enter">Enter</string>
+    <string name="stock_symbols_and_quotes">Stock Symbols and Quotes</string>
+    <string name="change">Change</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_stock_symbol">Enter a Stock Symbol</string>
+    <string name="invalid_stock_symbol">Invalid Stock Symbol</string>
+    <string name="delete_all_symbols">Delete All Symbols</string>
+    <string name="are_you_sure">Are You Sure?</string>
+    <string name="quote">Quote</string>
+    <string name="web">Web</string>
+    <string name="yahoo_stock_url">http://uk.finance.yahoo.com/q?s=</string>
+    <string name="company_name">Company Name</string>
+    <string name="year_low">Year Low:</string>
+    <string name="year_high">Year High:</string>
+    <string name="days_low">Days Low:</string>
+    <string name="days_high">Days High:</string>
+    <string name="stock_info_activity">StockInfoActivity</string>
+    <string name="last_price">Last Price:</string>
+    <string name="change_colon">Change:</string>
+    <string name="daily_price_range">Daily Price Range:</string>
+</resources>

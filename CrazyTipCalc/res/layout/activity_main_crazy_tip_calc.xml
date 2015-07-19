@@ -1,0 +1,222 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainCrazyTipCalc" >
+
+    <TextView
+        android:id="@+id/tvBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/bill_text_view" />
+
+    <EditText
+        android:id="@+id/etBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvBill"
+        android:layout_alignBottom="@+id/tvBill"
+        android:layout_toLeftOf="@+id/tvTip"
+        android:ems="5"
+        android:hint="@string/bill_edit_text"
+        android:inputType="numberDecimal"
+        android:text="@string/bill_edit_text" />
+
+    <EditText
+        android:id="@+id/etTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvTip"
+        android:layout_alignBottom="@+id/tvTip"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:ems="4"
+        android:inputType="numberDecimal"
+        android:text="@string/tip_edit_text" />
+
+    <TextView
+        android:id="@+id/tvTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etBill"
+        android:layout_alignBottom="@+id/etBill"
+        android:layout_marginRight="14dp"
+        android:layout_toLeftOf="@+id/etTip"
+        android:text="@string/tip_text_view" />
+
+    <TextView
+        android:id="@+id/tvFinalBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tvTip"
+        android:layout_below="@+id/etBill"
+        android:layout_marginTop="23dp"
+        android:text="@string/final_text_view" />
+
+    <EditText
+        android:id="@+id/etFinalBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvFinalBill"
+        android:layout_toRightOf="@+id/tvTip"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="@string/final_bill_edit_text" >
+
+        <requestFocus />
+    </EditText>
+
+    <SeekBar
+        android:id="@+id/sbTip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/etBill"
+        android:layout_below="@+id/tvFinalBill"
+        android:layout_marginTop="22dp"
+        android:progress="15" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvBill"
+        android:layout_below="@+id/tvFinalBill"
+        android:text="@string/change_tip_text_view" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sbTip"
+        android:layout_below="@+id/sbTip"
+        android:layout_marginTop="15dp"
+        android:text="@string/intro_text_view" />
+
+    <CheckBox
+        android:id="@+id/cbFriendly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:text="@string/intro_friendly_text_view" />
+
+    <CheckBox
+        android:id="@+id/cbOpinion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cbFriendly"
+        android:layout_alignBottom="@+id/cbFriendly"
+        android:layout_toRightOf="@+id/tvTip"
+        android:text="@string/intro_opinion_text_view" />
+
+    <CheckBox
+        android:id="@+id/cbSpecials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cbOpinion"
+        android:layout_alignBottom="@+id/cbOpinion"
+        android:layout_centerHorizontal="true"
+        android:text="@string/intro_specials_text_view" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:text="@string/available_text_view" />
+
+    <RadioGroup
+        android:id="@+id/rgAvailability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rbAvailableBad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bad_radio_button" />
+
+        <RadioButton
+            android:id="@+id/rbAvailableOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/ok_radio_button" />
+
+        <RadioButton
+            android:id="@+id/rbAvailableGood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/good_radio_button" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spProblemSolving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/rgAvailability"
+        android:layout_alignRight="@+id/etTip"
+        android:layout_below="@+id/rgAvailability"
+        android:layout_marginTop="22dp"
+        android:entries="@array/problem_solving" />
+
+    <TextView
+        android:id="@+id/tvTimeWaiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/sbTip"
+        android:layout_below="@+id/spProblemSolving"
+        android:text="@string/time_waiting_text_view" />
+
+    <Chronometer
+        android:id="@+id/chTimeWaiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvTimeWaiting"
+        android:layout_toRightOf="@+id/tvTimeWaiting"
+        android:text="Chronometer" />
+
+    <Button
+        android:id="@+id/btnStart"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/cbFriendly"
+        android:layout_below="@+id/chTimeWaiting"
+        android:layout_marginTop="14dp"
+        android:text="@string/start_chronometer_button" />
+
+    <Button
+        android:id="@+id/btnPause"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnStart"
+        android:layout_alignBottom="@+id/btnStart"
+        android:layout_alignRight="@+id/cbSpecials"
+        android:text="@string/pause_chronometer_button" />
+
+    <Button
+        android:id="@+id/btnReset"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnPause"
+        android:layout_alignBottom="@+id/btnPause"
+        android:layout_alignRight="@+id/cbOpinion"
+        android:text="@string/reset_chronometer_button" />
+
+</RelativeLayout>

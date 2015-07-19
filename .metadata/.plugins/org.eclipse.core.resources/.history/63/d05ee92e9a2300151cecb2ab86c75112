@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Chore Rota</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="chore_name">Chore Name</string>
+    <string name="due">Due:</string>
+    <string name="delete">Delete</string>
+    <string name="chore_date">Chore Date</string>
+    <string name="time">Time</string>
+    <string name="unit">Unit</string>
+   <string name="footer_text">Add Chore</string>
+   <string name="frequency">Frequency:</string>
+   <string name="number">No.</string>
+   <string name="date_last_done">Date Last Done / Start Date</string>
+   <string name="chore_time">Chore Time</string>
+   <string name="notify_when_due">Notify When Due</string>
+   <string name="requires_dismissal">Need to acknowledge notification</string>
+   <string name="save">Save</string>
+   <string name="freq">Freq:</string>
+   <string name="reset">Reset</string>
+   <string name="notification_received">Notification Acknowledged</string>
+      <string name="chore_notification">Chore Notification</string>
+      <string name="notification_before_chore">You need to </string>
+     <string name="notification_after_chore"> today.\nSwipe down for more&#8230;</string>
+  
+</resources>

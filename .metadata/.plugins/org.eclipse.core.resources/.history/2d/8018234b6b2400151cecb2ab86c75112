@@ -1,0 +1,17 @@
+package com.kve.chorerota.alarm;
+
+import java.util.Date;
+
+public class ChoreAlarm {
+
+	public ChoreAlarm()
+	{
+
+	}
+	
+	public void setAlarm(PendingIntent pendingIntent, Date schedTime, Context context)
+	{
+		
+	}
+
+}

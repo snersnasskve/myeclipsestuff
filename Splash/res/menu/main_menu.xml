@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menuSweet" android:alphabeticShortcut="s" android:title="Open Sweet Page"></item>
+    <item android:id="@+id/menuToast" android:title="Open Toast Page" android:alphabeticShortcut="t"></item>
+    
+
+</menu>

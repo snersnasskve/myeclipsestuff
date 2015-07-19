@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/etFileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/file_name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/etJournalEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.77"
+        android:ems="10"
+        android:hint="@string/journal_entry" />
+
+    <Button
+        android:id="@+id/btnSaveStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.07"
+        android:text="@string/save"
+        android:textStyle="bold" />
+
+</LinearLayout>

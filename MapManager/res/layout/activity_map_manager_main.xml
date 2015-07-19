@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.kve.mapmanager.MapManagerMain" >
+
+    <EditText
+        android:id="@+id/etAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/address_hint"
+        android:inputType="textCapWords"
+        >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnShowMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/show_map"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+          <ImageButton
+              android:id="@+id/ibPrevious"
+              android:layout_width="89dp"
+              android:layout_height="64dp"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginTop="20dp"
+              android:maxHeight="20dp"
+              android:scaleType="fitXY"
+              android:src="@drawable/up_arrow" 
+  	
+
+            />
+
+       <ImageButton
+           android:id="@+id/ibNext"
+           android:layout_width="89dp"
+           android:layout_height="64dp"
+           android:layout_gravity="center_horizontal"
+           android:scaleType="fitXY"
+           android:src="@drawable/down_arrow"
+              />
+    
+    <FrameLayout
+        android:id="@+id/flFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+          
+    </FrameLayout>
+
+</LinearLayout>

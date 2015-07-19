@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kve.series40"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black" >
+       <activity
+            android:name="com.kve.series40.S40Menu"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.series40.S40Menu" />
+              <action android:name="android.intent.action.MAIN" />
+                
+                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.series40.Reading"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.series40.READING" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.series40.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                   <action android:name="com.kve.series40.ST" />
+           <category android:name="android.intent.category.DEFAULT" />
+ 
+             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.series40.Numbers"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.series40.NUMBERS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+     <activity
+            android:name="com.kve.series40.Settings"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.series40.SETTINGS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+     <activity
+            android:name="com.kve.series40.InternalStorage"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.series40.INTERNALSTORAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+     
+       <activity
+            android:name="com.kve.series40.SaveToSD"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.series40.SAVETOSD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+     
+     </application>
+
+</manifest>

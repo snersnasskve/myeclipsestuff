@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" >
+    
+       <TextView
+        android:id="@+id/tvContactId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       android:visibility="gone"  >
+        
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvContactName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_5dp"
+        android:textColor="#444444"
+        android:textSize="30sp"
+        android:textStyle="normal" />
+    
+
+</TableRow>

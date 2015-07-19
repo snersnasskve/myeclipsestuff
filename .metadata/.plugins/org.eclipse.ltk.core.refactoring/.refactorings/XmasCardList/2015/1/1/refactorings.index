@@ -1,0 +1,10 @@
+1420182119721	Extracts string 'null' into R.string.preferences
+1420183719048	Extracts string 'null' into R.string.all
+1420184273734	Extracts string 'null' into R.string.favourites_only
+1420184297529	Extracts string 'null' into R.string.sent
+1420184317209	Extracts string 'null' into R.string.not_sent
+1420185140896	Extracts string 'null' into R.string.gt_month
+1420185165918	Extracts string 'null' into R.string.gt_year
+1420219524569	Delete element
+1420220184874	Delete element
+1420263271099	Extract method 'showContacts'
