@@ -3,6 +3,7 @@ package com.kve.chorerota;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import com.kve.chorerota.alarm.*;
 import com.kve.chorerota.data.ChoreRecord;
 import com.kve.chorerota.notification.ChoreNotification;
 
@@ -57,8 +58,11 @@ public class ChoreEdit extends ChoreDetailActivity {
 		ChoreMainActivity.database.updateChore(editValuesMap);		
 		
 		//	Launch notification
-ChoreNotification choreNotification = new ChoreNotification();
-choreNotification.getChoreNotification(etName.getText().toString(), choreId, this);
+//ChoreNotification choreNotification = new ChoreNotification();
+//choreNotification.getChoreNotification(etName.getText().toString(), choreId, this);
+		ChoreAlarmReceiver alarm = new ChoreAlarmReceiver();
+alarm.setOnetimeTimer(ChoreEdit.this);
+
 		returnToMain();
 	}
 	
