@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvAgeDescript"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="@string/birthday_this_year"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:textStyle="bold" />
+
+    <DatePicker
+        android:id="@+id/dpBirthDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="@string/birth_year"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/etBirthYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:ems="10"
+                 android:inputType="numberPassword"
+    >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnCalculate1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="@string/calculate"
+        android:textStyle="bold"
+        android:onClick="calculateAge" />
+
+ </LinearLayout>
