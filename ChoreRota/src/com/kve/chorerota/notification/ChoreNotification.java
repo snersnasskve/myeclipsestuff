@@ -1,7 +1,10 @@
 package com.kve.chorerota.notification;
 
+import java.util.Calendar;
+
 import com.kve.chorerota.ChoreMainActivity;
 import com.kve.chorerota.R;
+import com.kve.chorerota.alarm.*;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -32,7 +35,19 @@ public class ChoreNotification {
 	{
 
 	}
+	
+	public void scheduleChore(String choreName, long choreId, Calendar schedTime, Context context)
+	{
+		Intent alarmIntent = new Intent(context, ChoreAlarmReceiver.class);
+		alarmIntent.putExtra("choreId", choreId);
+		alarmIntent.putExtra("choreName", choreName);
+		PendingIntent alarmPending = PendingIntent.getActivity(context, 0, alarmIntent, 0);
 
+		ChoreAlarm alarm = new ChoreAlarm();
+		alarm.setAlarm(alarmPending, schedTime, context);
+	}
+	
+	
 	public void getChoreNotification(String choreName, long choreId, Context context)
 	{
 		NotificationManager notificationManager = (NotificationManager) 

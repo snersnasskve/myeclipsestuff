@@ -62,7 +62,7 @@ import android.widget.TextView;
 			holder.baseDate.setText(curr.getBaseDateString());
 			holder.baseTime.setText(curr.getBaseTimeString());
 			holder.freqNo.setText(curr.getFreqNo().toString());
-			holder.freqUnits.setText(curr.getFreqUnits());
+			holder.freqUnits.setText(curr.getFreqUnits().getUnitName());
 
 	
 			return newView;

@@ -1,7 +1,14 @@
 package com.kve.chorerota;
 
+//	So you now have all your alarms and notifications in a tangle.
+
+//	Please sort them out sharpish
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 import com.kve.chorerota.data.*;
@@ -20,22 +27,23 @@ import android.widget.Toast;
 
 public class ChoreMainActivity extends ListActivity {
 
-	private ChoreViewAdapter mAdapter;
+	private static ChoreViewAdapter mAdapter;
 
     final static int ADD_REQUEST_CODE 	= 0;
     final static int EDIT_REQUEST_CODE 	= 1;
     
-	public static DBTools 		database; 
 
+	static public ArrayList <String> 	freqUnitsList;
+	static public Map <String, FrequencyUnit> freqUnitsMap;
+
+	static Chores mChores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-             
-        database = new DBTools(ChoreMainActivity.this);
-        
-        //	Read database for chores
+        mChores = new Chores(getApplicationContext());    
+       
         //	Add chores to list
         ListView choresListView = getListView();
 
@@ -60,6 +68,8 @@ public class ChoreMainActivity extends ListActivity {
        mAdapter = new ChoreViewAdapter(getApplicationContext());
        setListAdapter(mAdapter);
 
+       setUpFrequencyValues();
+       
        resetChoreListView();
         //	From here we need to ....
         //	Add a new chore
@@ -79,11 +89,12 @@ public class ChoreMainActivity extends ListActivity {
     	editIntent.putExtra("choreId", 		selectedChore.getChoreId());
     	editIntent.putExtra("choreName", 	selectedChore.getChoreName());
     	editIntent.putExtra("freqNo", 		selectedChore.getFreqNo());
-    	editIntent.putExtra("freqUnits", 	selectedChore.getFreqUnits());
+    	editIntent.putExtra("freqUnits", 	selectedChore.getFreqUnits().getUnitName());
     	editIntent.putExtra("baseDate", 	selectedChore.getBaseDateString());
     	editIntent.putExtra("baseTime", 	selectedChore.getBaseTimeString());
     	editIntent.putExtra("notify", 		(selectedChore.isToNotify()) ? 1 : 0);
     	editIntent.putExtra("reqDismissal", (selectedChore.isReqDismissal()) ? 1 : 0);
+      	editIntent.putExtra("position", 	position);
 
  		 startActivityForResult(editIntent, EDIT_REQUEST_CODE);
 
@@ -103,21 +114,10 @@ public class ChoreMainActivity extends ListActivity {
 
     private void resetChoreListView() {
     	mAdapter.removeAllViews();	
-    	ArrayList<HashMap<String, Object>> chores  = database.getChores();
+    	ArrayList<ChoreRecord> chores  = mChores.getChores();
     	//	loop through chores and add to adapter
-    	for (HashMap<String, Object> choreValues : chores)
+    	for (ChoreRecord choreRec : chores)
     	{
-
-        		ChoreRecord choreRec = new ChoreRecord(
-    				(Long) choreValues.get("choreId"), 
-    				(String) choreValues.get("choreName"),
-    				(String) choreValues.get("baseDate"),
-    				(String) choreValues.get("baseTime"),
-    				(Float ) choreValues.get("timeNo"),
-    				(String) choreValues.get("timeUnit"),
-    				((Integer)choreValues.get("toNotify") == 1) ? true : false,
-    						((Integer)choreValues.get("reqDismissal")== 1) ? true : false);
-
     		mAdapter.add(choreRec);
     	}
     }
@@ -150,5 +150,19 @@ public class ChoreMainActivity extends ListActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    private void setUpFrequencyValues()
+    {	
+    	String 	tempUnits[]		= getResources().getStringArray(R.array.freq_units);
+    	List<String> tempList 	=  Arrays.asList(tempUnits);
+    	freqUnitsList			=  new ArrayList <String> (tempList);
+
+    	freqUnitsMap = new HashMap<String, FrequencyUnit>();
+    	for (String unitInst : freqUnitsList)
+    	{
+    		FrequencyUnit thisUnit = new FrequencyUnit(unitInst);
+    		freqUnitsMap.put(unitInst, thisUnit);
+    	}
     }
 }

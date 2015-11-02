@@ -1,12 +1,15 @@
 package com.kve.chorerota;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import com.kve.chorerota.alarm.*;
 import com.kve.chorerota.data.ChoreRecord;
 import com.kve.chorerota.notification.ChoreNotification;
 
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
@@ -15,7 +18,9 @@ public class ChoreEdit extends ChoreDetailActivity {
 	
 	
 	protected void showChoreData(Intent recIntent) {
-		choreId				= recIntent.getExtras().getLong  ("choreId");
+		choreId				= recIntent.getExtras().getInt  ("choreId");
+		viewPosition		=  recIntent.getExtras().getInt  ("postion");
+
 		String choreName 	= recIntent.getExtras().getString("choreName");
 		Float  freqNo 	 	= recIntent.getExtras().getFloat ("freqNo");
 		String freqUnits 	= recIntent.getExtras().getString("freqUnits");
@@ -32,17 +37,16 @@ public class ChoreEdit extends ChoreDetailActivity {
 		cbNotify.setChecked(notify);
 		cbReqDismissal.setChecked(reqDismissal);
 		
-		spUnits.setSelection(freqUnitsList.indexOf(freqUnits));
+		spUnits.setSelection(ChoreMainActivity.freqUnitsList.indexOf(freqUnits));
 	}
 
 	
 	public void saveChore (View v)
 	{
 		//	Make a new chore
-		HashMap<String, Object> editValuesMap = packDataForDb();
+		//HashMap<String, Object> editValuesMap = packDataForDb();
 
-		ChoreMainActivity.database.updateChore(editValuesMap);		
-
+		updateChore();
 		returnToMain();
 	}
 	
@@ -54,14 +58,21 @@ public class ChoreEdit extends ChoreDetailActivity {
 		tvBaseTime.setText(ChoreRecord.getTimeString(Calendar.getInstance().getTime()));
 
 		//	update database
-		HashMap<String, Object> editValuesMap = packDataForDb();
-		ChoreMainActivity.database.updateChore(editValuesMap);		
+		//HashMap<String, Object> editValuesMap = packDataForDb();
+		//ChoreMainActivity.database.updateChore(editValuesMap);		
+		updateChore();
+		
+		scheduleChore();
 		
 		//	Launch notification
 //ChoreNotification choreNotification = new ChoreNotification();
 //choreNotification.getChoreNotification(etName.getText().toString(), choreId, this);
-		ChoreAlarmReceiver alarm = new ChoreAlarmReceiver();
-alarm.setOnetimeTimer(ChoreEdit.this);
+		ChoreNotification notification = new ChoreNotification();
+		notification.scheduleChore(etName.getText().toString(),
+				choreId,
+				selectedChore.getDateNextDue(),
+				getApplicationContext());
+//alarm.setOnetimeTimer(getApplicationContext());
 
 		returnToMain();
 	}
@@ -71,7 +82,8 @@ alarm.setOnetimeTimer(ChoreEdit.this);
 	{
 		//	Remove from database
 		//	Remove from adapter
-		ChoreMainActivity.database.deleteChore((int)choreId);		
+		//ChoreMainActivity.database.deleteChore((int)choreId);		
+		ChoreMainActivity.mChores.deleteChore(choreId);
 
 		returnToMain();
 	}

@@ -1,20 +1,27 @@
 package com.kve.chorerota.data;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class ChoreRecord {
 
-	private long		choreId;
-	private String 	choreName;
-	private Date	baseDate;
-	private Date	baseTime;
-	private Float	freqNo;
-	private String	freqUnits;
-	private boolean	toNotify;
-	private boolean	reqDismissal;
+	private int				choreId;
+	private String 			choreName;
+	private Date			baseDate;
+	private Date			baseTime;
+	private Float			freqNo;
+	private FrequencyUnit	freqUnits;
+	private boolean			toNotify;
+	private boolean			reqDismissal;
+	
+	private boolean useTimeValue = false;
+	
+	static String[] timeBasedFreqs = {"Hour", "Minute", "Second"};
 	
 	static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
 	static SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
@@ -26,7 +33,7 @@ public class ChoreRecord {
 		this.baseDate 	= new Date();
 		this.baseTime 	= new Date();
 		this.freqNo 	= 1.0f;
-		this.freqUnits 	= "Day";
+		this.freqUnits 	= new FrequencyUnit("day");
 		this.toNotify 	= true;
 		this.reqDismissal = true;
 	
@@ -41,13 +48,13 @@ public class ChoreRecord {
 		this.baseDate 	= baseDate;
 		this.baseTime 	= baseTime;
 		this.freqNo 	= freqNo;
-		this.freqUnits 	= freqUnits;
+		this.freqUnits 	= new FrequencyUnit(freqUnits);
 		this.toNotify 	= toNotify;
 		this.reqDismissal = reqDismissal;
 	}
 
 	
-	public ChoreRecord(long choreId, String choreName, String baseDateString,
+	public ChoreRecord(int choreId, String choreName, String baseDateString,
 			String baseTimeString, Float freqNo, String freqUnits, boolean toNotify,
 			boolean reqDismissal) {
 		super();
@@ -56,12 +63,35 @@ public class ChoreRecord {
 		this.baseDate 	= getDateFromString(baseDateString);
 		this.baseTime 	= getTimeFromString(baseTimeString);;
 		this.freqNo 	= freqNo;
-		this.freqUnits 	= freqUnits;
+		this.freqUnits 	= new FrequencyUnit(freqUnits);
 		this.toNotify 	= toNotify;
 		this.reqDismissal = reqDismissal;
 	}
 
-	public long getChoreId() {
+	
+	public Calendar getDateNextDue()
+	{
+		Date today = new Date();
+		
+		Calendar cal = Calendar.getInstance();
+		if (this.getFreqUnits().getIsTimeUnit())
+		{
+		cal.setTime(this.getBaseTime());
+		}
+		else
+		{
+		cal.setTime(this.getBaseDate());
+		}
+		
+		//	It totally makes sense to cast to long, as we're not dealing in fractions of seconds
+		int delaySeconds = (int) (getFreqUnits().getNoOfSeconds() * getFreqNo());
+		
+		cal.add(Calendar.SECOND, delaySeconds);
+		
+		return cal;
+	}
+
+	public int getChoreId() {
 		return choreId;
 	}
 
@@ -89,7 +119,7 @@ public class ChoreRecord {
 		return freqNo;
 	}
 
-	public String getFreqUnits() {
+	public FrequencyUnit getFreqUnits() {
 		return freqUnits;
 	}
 
@@ -122,7 +152,7 @@ public class ChoreRecord {
 	}
 
 	public void setFreqUnits(String freqUnits) {
-		this.freqUnits = freqUnits;
+		this.freqUnits = new FrequencyUnit(freqUnits);
 	}
 
 	public void setToNotify(boolean toNotify) {
@@ -132,6 +162,7 @@ public class ChoreRecord {
 	public void setReqDismissal(boolean reqDismissal) {
 		this.reqDismissal = reqDismissal;
 	}
+	
 
 	////////////////////////////////////////////////
 	//		Date and Time stuff
@@ -170,6 +201,7 @@ public class ChoreRecord {
 		}
 		return time;
 	}
-
+	
+	
 
 }

@@ -1,8 +1,8 @@
 package com.kve.chorerota.alarm;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -21,13 +21,8 @@ public class ChoreAlarmReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		PowerManager powerManager = 
-				(PowerManager) context.getSystemService(Context.POWER_SERVICE);
-		PowerManager.WakeLock wakeLock = 
-				powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, CHORE_TAG);
-
-		//	Acquire the lock
-		wakeLock.acquire();
+	//	Acquire the lock
+	//	wakeLock.acquire();
 		
 		//	You can do the processing here
 		Bundle extras = intent.getExtras();
@@ -39,14 +34,14 @@ public class ChoreAlarmReceiver extends BroadcastReceiver {
 			message.append("One tme tmer : ");
 		}
 		
-		Format formatter = new SimpleDateFormat("hh:mm:ss");
+		DateFormat formatter = DateFormat.getDateInstance(DateFormat.SHORT, Locale.UK);
 		message.append(formatter.format(new Date()));
 		
 		Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 		
 		
 		//	Release the lock
-		wakeLock.release();
+	//	wakeLock.release();
 		
 	}
 
@@ -54,11 +49,11 @@ public class ChoreAlarmReceiver extends BroadcastReceiver {
 	public void setOnetimeTimer(Context context)
 	{
 		AlarmManager am = 
-				(AlarmManager) context.getSystemService(context.ALARM_SERVICE);
+				(AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, ChoreAlarmReceiver.class);
 		intent.putExtra(ONE_TIME, Boolean.TRUE);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-		am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+		am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 20000, pendingIntent);
 		
 	}
 }

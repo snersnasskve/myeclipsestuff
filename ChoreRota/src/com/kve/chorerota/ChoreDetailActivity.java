@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -42,11 +43,11 @@ public class ChoreDetailActivity extends Activity implements OnClickListener {
 	Button			btnReset;
 	Button			btnDelete;
 	
-
-	ArrayList <String> 	freqUnitsList;
+	
 
 	//	Keep choreId safe ... -1 means there isn't one
-	long 			choreId = -1;
+	int 			choreId = -1;
+	int 			viewPosition;
 
 
 
@@ -68,11 +69,7 @@ public class ChoreDetailActivity extends Activity implements OnClickListener {
 		btnReset			= (Button) 	 findViewById(R.id.btnReset);
 			btnDelete		= (Button)   findViewById(R.id.btnDelete);
 
-		String 	tempUnits[]		= getResources().getStringArray(R.array.freq_units);
-		List<String> tempList 	=  Arrays.asList(tempUnits);
-		freqUnitsList			=  new ArrayList <String> (tempList);
-
-		//	If we received an intent, check it for data, if theres data then display it
+			//	If we received an intent, check it for data, if theres data then display it
 		Intent recIntent = getIntent();
 		showChoreData(recIntent);
 
@@ -104,7 +101,7 @@ public class ChoreDetailActivity extends Activity implements OnClickListener {
 		// check its the save button and save
 	}
 
-	void deleteChore (View v)
+	protected void deleteChore (View v)
 	{
 		//	Head back gracefully 
 		//	Only applicable to Edit page
@@ -113,27 +110,52 @@ public class ChoreDetailActivity extends Activity implements OnClickListener {
 	protected HashMap<String, Object> packDataForDb()
 	{
 		Float freq = Float.parseFloat(etNo.getText().toString());
-		
-	HashMap<String, Object> queryValuesMap = new HashMap<String, Object>();
-	queryValuesMap.put("choreId",		"" + choreId);
-	queryValuesMap.put("choreName",		etName.			getText().toString());
-	queryValuesMap.put("baseDate",		tvBaseDate.		getText().toString());
-	queryValuesMap.put("baseTime",		tvBaseTime.		getText().toString());
-	queryValuesMap.put("timeNo",		freq);
-	String testVal = freqUnitsList.get((int) spUnits.getSelectedItemId());
-	queryValuesMap.put("timeUnit",		freqUnitsList.get((int) spUnits.getSelectedItemId()));
-	queryValuesMap.put("toNotify",		(cbNotify.		isChecked() ? 1 : 0));
-	queryValuesMap.put("reqDismissal",	(cbReqDismissal.isChecked() ? 1 : 0));
-	return queryValuesMap;
+
+		HashMap<String, Object> queryValuesMap = new HashMap<String, Object>();
+		queryValuesMap.put("choreId",		"" + choreId);
+		queryValuesMap.put("choreName",		etName.			getText().toString());
+		queryValuesMap.put("baseDate",		tvBaseDate.		getText().toString());
+		queryValuesMap.put("baseTime",		tvBaseTime.		getText().toString());
+		queryValuesMap.put("timeNo",		freq);
+		queryValuesMap.put("timeUnit",		ChoreMainActivity.freqUnitsList.get((int) spUnits.getSelectedItemId()));
+		queryValuesMap.put("toNotify",		(cbNotify.		isChecked() ? 1 : 0));
+		queryValuesMap.put("reqDismissal",	(cbReqDismissal.isChecked() ? 1 : 0));
+		return queryValuesMap;
 	}
 
-void returnToMain()
-{
-	Intent resultIntent = new Intent();
-	resultIntent.putExtra("tbc", "");	//	I need to know whether to refresh the screen or not
-setResult(RESULT_OK, resultIntent);
-finish();
-}
+	protected void updateChore()
+	{
+		Float freq = Float.parseFloat(etNo.getText().toString());
+
+		ChoreMainActivity.mChores.updateChore(
+				choreId, 
+				etName.			getText().toString(), 
+				tvBaseDate.		getText().toString(),
+				tvBaseTime.		getText().toString(),
+				freq, 
+				ChoreMainActivity.freqUnitsList.get((int) spUnits.getSelectedItemId()),
+				(cbNotify.		isChecked() ? 1 : 0), 
+				(cbReqDismissal.isChecked() ? 1 : 0));		
+
+	}
+	
+	
+	protected void scheduleChore()
+	{
+		ChoreMainActivity.mChores.scheduleChore(choreId);
+	}
+	
+	
+	
+	protected void returnToMain()
+	{
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra("tbc", "");	//	I need to know whether to refresh the screen or not
+		setResult(RESULT_OK, resultIntent);
+		finish();
+	}
+	
+	
 	////////////////////////////////////////////////
 	//		Date and Time stuff
 	////////////////////////////////////////////////

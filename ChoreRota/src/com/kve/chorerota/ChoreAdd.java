@@ -19,6 +19,8 @@ public class ChoreAdd extends ChoreDetailActivity {
 	private void setDefaultValues() {
 		// TODO Auto-generated method stub
 		choreId				= -1;
+		viewPosition		= -1;
+		
 		String baseDate	 	= ChoreRecord.getDateString(Calendar.getInstance().getTime());
 		String baseTime 	= ChoreRecord.getTimeString(Calendar.getInstance().getTime());
 		boolean notify 		 = true;
@@ -30,7 +32,7 @@ public class ChoreAdd extends ChoreDetailActivity {
 		cbNotify.setChecked(notify);
 		cbReqDismissal.setChecked(reqDismissal);
 		
-		spUnits.setSelection(freqUnitsList.indexOf("Days"));
+		spUnits.setSelection(ChoreMainActivity.freqUnitsList.indexOf("Days"));
 		
 		btnReset.setVisibility(View.GONE);
 		btnDelete.setVisibility(View.GONE);
