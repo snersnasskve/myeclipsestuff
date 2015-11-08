@@ -13,4 +13,14 @@
        <item >Australia</item>
      </string-array>
     
+     <string-array name="Africa">
+       <item >Zimbabwe</item>
+       <item >South Africa</item>
+     </string-array>
+   
+    <string-array name="DownUnder">
+       <item >New Zealand</item>
+       <item >Australia</item>
+     </string-array>
+     
 </resources>

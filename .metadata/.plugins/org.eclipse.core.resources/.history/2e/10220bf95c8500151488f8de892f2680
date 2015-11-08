@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+            android:stretchColumns="1"
+      android:shrinkColumns="1"
+    >
+
+       <TableRow
+        android:id="@+id/tableRowTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000" >
+
+        <TextView
+            android:id="@+id/tvTitleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_5dp"
+            android:text="@string/add_contact"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+    </TableRow>
+    
+       	<TableRow
+        android:id="@+id/tableRowFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name" 
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"/>
+
+        <EditText
+            android:id="@+id/etFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textCapSentences"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:padding="@dimen/padding_5dp" >
+			<requestFocus />
+        </EditText>
+        </TableRow>
+       
+       	    <TableRow
+        android:id="@+id/tableRowEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_address" 
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"/>
+
+        <EditText
+            android:id="@+id/etEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/padding_5dp" >
+        </EditText>
+
+    </TableRow>   
+    <TableRow
+        android:id="@+id/tableRowAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_address" 
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"/>
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:padding="@dimen/padding_5dp" 
+            android:inputType="textCapWords">
+           
+        </EditText>
+
+       </TableRow>   
+      
+<TableRow
+        android:id="@+id/tableRowAreaCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvAreaCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/area_code" 
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"/>
+
+        <EditText
+            android:id="@+id/etAreaCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:padding="@dimen/padding_5dp"
+                        android:inputType="textCapCharacters"
+             >
+        </EditText>
+
+       </TableRow>  <TableRow
+        android:id="@+id/tableRowCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvaCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/country" 
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"
+            />
+
+        <AutoCompleteTextView
+            android:id="@+id/actvCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	        android:ems="10"
+            android:padding="@dimen/padding_5dp"
+			android:completionThreshold="1"  
+			android:inputType="textCapWords"
+			android:completionHintView="@+id/list_item" >
+
+        </AutoCompleteTextView>
+
+       </TableRow>  
+    
+    	      <TableRow
+        android:id="@+id/tableRowLastSent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvLastSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_sent" 
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"/>
+
+        <EditText
+            android:id="@+id/etLastSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text|date"
+            android:padding="@dimen/padding_5dp" >
+        </EditText>
+
+       </TableRow>   
+    	 
+       <TableRow
+        android:id="@+id/tableRowRecYears"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvXRecYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"
+            android:text="@string/xmas_received" />
+
+        <EditText
+            android:id="@+id/etXRecYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:padding="@dimen/padding_5dp" >
+        </EditText>
+
+             </TableRow>  
+  		 <TableRow
+        android:id="@+id/tableRowXSent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvXSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"
+            android:text="@string/xmas_sent" />
+
+        <CheckBox
+            android:id="@+id/cbXSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+    </TableRow>
+    	 <TableRow
+        android:id="@+id/tableRowXType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvXType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"
+            android:text="@string/xmas_email_only" />
+
+        <CheckBox
+            android:id="@+id/cbXEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+    </TableRow>
+
+        	      <TableRow
+        android:id="@+id/tableRowFave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_5dp"
+            android:text="@string/favourite" />
+
+         <CheckBox
+            android:id="@+id/cbFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+       </TableRow>  
+       
+        	      <!-- Make both buttons rows gone and both can be shown at will -->
+    	      
+       	      	 <TableRow
+    	     android:id="@+id/tableRowAddButtons"
+    	     android:layout_width="match_parent"
+    	     android:layout_height="wrap_content"
+			 android:visibility="gone"
+>
+
+    	     <Button
+    	         android:id="@+id/btnAddSave"
+    	         android:layout_width="wrap_content"
+    	         android:layout_height="wrap_content"
+    	         android:text="@string/save_data" 
+         	     android:layout_weight="1"
+  	    	     />
+
+    	 </TableRow>
+        	
+       	      	 	 <TableRow
+    	     android:id="@+id/tableRowEditButtons"
+    	     android:layout_width="match_parent"
+    	     android:layout_height="wrap_content" 
+ 			 android:visibility="gone"
+    	     >
+
+   	     <Button
+    	         android:id="@+id/btnNav"
+    	         android:layout_width="0dip"
+    	         android:layout_height="wrap_content"
+    	         android:layout_weight="1"
+    	         android:text="@string/navigate" 
+    	          />
+    	     <Button
+    	         android:id="@+id/btnEdit"
+    	         android:layout_width="0dip"
+    	         android:layout_height="wrap_content"
+    	         android:layout_weight="1"
+    	         android:text="@string/save_data" 
+    	         />
+
+  	     <Button
+    	         android:id="@+id/btnDelete"
+    	         android:layout_width="0dip"
+    	         android:layout_height="wrap_content"
+    	         android:text="@string/delete_button" 
+         	     android:layout_weight="1"
+         	     />
+  	     
+       
+    	 </TableRow>
+</TableLayout>

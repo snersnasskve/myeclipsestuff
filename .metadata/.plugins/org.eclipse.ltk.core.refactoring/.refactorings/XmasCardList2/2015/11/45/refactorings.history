@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;XmasCardList2/src/com/kve/xmascardlist&apos; to &apos;xmascardlist2&apos;" description="Rename resource &apos;xmascardlist&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/kve/xmascardlist" name="xmascardlist2" stamp="1446900069144" updateReferences="true"/>
+</session>

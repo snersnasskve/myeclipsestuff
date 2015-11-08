@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="regions">
+       <item >All</item>
+       <item >Africa</item>
+       <item >Europe</item>
+       <item >Down Under</item>
+       <item >UK</item>
+       <item >New Zealand</item>
+       <item >Zimbabwe</item>
+       <item >South Africa</item>
+       <item >USA</item>
+       <item >Australia</item>
+     </string-array>
+    
+     <string-array name="Africa">
+       <item >New Zealand</item>
+       <item >Zimbabwe</item>
+       <item >South Africa</item>
+      </string-array>
+    
+</resources>

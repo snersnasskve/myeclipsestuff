@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.zip.Inflater"/>
-<fullyQualifiedTypeName name="course.labs.todomanager.R.id"/>
-<fullyQualifiedTypeName name="android.widget.RadioGroup"/>
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.R.layout"/>
 <fullyQualifiedTypeName name="android.app.ActionBar"/>
@@ -30,10 +27,8 @@
 <fullyQualifiedTypeName name="android.widget.Spinner"/>
 <fullyQualifiedTypeName name="android.widget.CheckBox"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.kve.chorerota.R.id"/>
 <fullyQualifiedTypeName name="com.kve.chorerota.R.array"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.util.Locale"/>
@@ -60,4 +55,9 @@
 <fullyQualifiedTypeName name="com.kve.chorerota.data.ChoreRecord"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="android.app.PendingIntent"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.kve.xmascardlist.R.array"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="android.text.TextUtils"/>
+<fullyQualifiedTypeName name="com.kve.xmascardlist2.FilterPrefs.XmasSentType"/>
 </qualifiedTypeNameHistroy>

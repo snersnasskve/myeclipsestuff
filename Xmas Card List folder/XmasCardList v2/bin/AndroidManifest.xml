@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kve.xmascardlist"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="com.kve.xmascardlist2"
+    android:versionCode="2"
+    android:versionName="2.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -23,28 +23,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.kve.xmascardlist.AddContact"
+            android:name=".AddContact"
             android:label="@string/add_contact" >
             <intent-filter>
-                <action android:name="com.kve.xmascardlist.ADDCONTACT" />
+                <action android:name=".ADDCONTACT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
                 <activity
-            android:name="com.kve.xmascardlist.EditContact"
+            android:name=".EditContact"
             android:label="@string/edit_contact" >
             <intent-filter>
-                <action android:name="com.kve.xmascardlist.EDITCONTACT" />
+                <action android:name=".EDITCONTACT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
                  <activity
-            android:name="com.kve.xmascardlist.PreferencesActivity"
+            android:name=".PreferencesActivity"
             android:label="@string/preferences" >
             <intent-filter>
-                <action android:name="com.kve.xmascardlist.PREFERENCESACTIVITY" />
+                <action android:name=".PREFERENCESACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
