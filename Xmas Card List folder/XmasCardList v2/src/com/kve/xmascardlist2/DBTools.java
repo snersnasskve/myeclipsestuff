@@ -17,6 +17,10 @@ import android.util.Log;
 public class DBTools extends SQLiteOpenHelper {
 
 	private SQLiteDatabase mWritable;
+	
+	private static String kCONTACT_ID_MAP = "contactId";
+	private static String kFIRSTNAME_MAP = "firstName";
+	private static String kXMASSENT_MAP = "xmasSent";
 
 	public DBTools(Context appContext) {
 		super(appContext, "xmascardlist.db", null, 4);
@@ -50,7 +54,7 @@ public class DBTools extends SQLiteOpenHelper {
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		values.put("first_name", 	(String) contactValues.get("firstName"));
+		values.put("first_name", 	(String) contactValues.get(kFIRSTNAME_MAP));
 		values.put("last_name", 	(String) contactValues.get("lastName"));
 		values.put("phone_number", 	(String) contactValues.get("phone"));
 		values.put("email_address",	(String) contactValues.get("email"));
@@ -58,7 +62,7 @@ public class DBTools extends SQLiteOpenHelper {
 		values.put("area_code", 	(String) contactValues.get("areaCode"));
 		values.put("country", 		(String) contactValues.get("country"));
 		values.put("xmas_rec", 		(String) contactValues.get("xmasRec"));
-		values.put("xmas_sent", 	(Integer)contactValues.get("xmasSent"));
+		values.put("xmas_sent", 	(Integer)contactValues.get(kXMASSENT_MAP));
 		values.put("xmas_email", 	(Integer)contactValues.get("xmasEmail"));
 		values.put("last_sent", 	(String) contactValues.get("lastSent"));
 		values.put("favourite", 	(Integer)contactValues.get("favourite"));
@@ -79,7 +83,7 @@ public class DBTools extends SQLiteOpenHelper {
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		values.put("first_name", 	(String) contactValues.get("firstName"));
+		values.put("first_name", 	(String) contactValues.get(kFIRSTNAME_MAP));
 		values.put("last_name", 	(String) contactValues.get("lastName"));
 		values.put("phone_number", 	(String) contactValues.get("phone"));
 		values.put("email_address",	(String) contactValues.get("email"));
@@ -87,7 +91,7 @@ public class DBTools extends SQLiteOpenHelper {
 		values.put("area_code", 	(String) contactValues.get("areaCode"));
 		values.put("country", 		(String) contactValues.get("country"));
 		values.put("xmas_rec", 		(String)contactValues.get("xmasRec"));
-		values.put("xmas_sent", 	(Integer)contactValues.get("xmasSent"));
+		values.put("xmas_sent", 	(Integer)contactValues.get(kXMASSENT_MAP));
 		values.put("xmas_email", 	(Integer)contactValues.get("xmasEmail"));
 		values.put("last_sent", 	(String) contactValues.get("lastSent"));
 		values.put("favourite", 	(Integer)contactValues.get("favourite"));
@@ -100,7 +104,7 @@ public class DBTools extends SQLiteOpenHelper {
 			values.put("kids", 	(String) contactValues.get("kids"));
 		}
 		return db.update("contacts", values, 
-				"contact_id = ?", new String[] {(String)contactValues.get("contactId")});
+				"contact_id = ?", new String[] {(String)contactValues.get(kCONTACT_ID_MAP)});
 
 	}
 
@@ -123,8 +127,8 @@ public class DBTools extends SQLiteOpenHelper {
 		Cursor cursor = db.rawQuery(selectQuery, params);
 		
 		if (cursor.moveToFirst()){
-			contactMap.put("contactId", cursor.getLong(0));
-			contactMap.put("firstName", cursor.getString(1));
+			contactMap.put(kCONTACT_ID_MAP, cursor.getLong(0));
+			contactMap.put(kFIRSTNAME_MAP, cursor.getString(1));
 			contactMap.put("lastName", 	cursor.getString(2));
 			contactMap.put("phone", 	cursor.getString(3));
 			contactMap.put("email", 	cursor.getString(4));
@@ -132,7 +136,7 @@ public class DBTools extends SQLiteOpenHelper {
 			contactMap.put("areaCode", 	cursor.getString(6));
 			contactMap.put("country", 	cursor.getString(7));
 			contactMap.put("xmasRec", 	cursor.getString(8));
-			contactMap.put("xmasSent", 	cursor.getInt(9));
+			contactMap.put(kXMASSENT_MAP, 	cursor.getInt(9));
 			contactMap.put("xmasEmail",	cursor.getInt(10));
 			contactMap.put("lastSent",	cursor.getString(11));
 			contactMap.put("favourite",	cursor.getInt(12));
@@ -157,8 +161,8 @@ public class DBTools extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()){
 			do {
 				HashMap<String, Object> contactMap = new HashMap<String, Object>();
-				contactMap.put("contactId",	cursor.getLong(0));
-				contactMap.put("firstName",	cursor.getString(1));
+				contactMap.put(kCONTACT_ID_MAP,	cursor.getLong(0));
+				contactMap.put(kFIRSTNAME_MAP,	cursor.getString(1));
 				contactMap.put("lastName", 	cursor.getString(2));
 				contactMap.put("phone", 	cursor.getString(3));
 				contactMap.put("email", 	cursor.getString(4));
@@ -166,7 +170,7 @@ public class DBTools extends SQLiteOpenHelper {
 				contactMap.put("areaCode", 	cursor.getString(6));
 				contactMap.put("country", 	cursor.getString(7));
 				contactMap.put("xmasRec", 	cursor.getString(8));
-				contactMap.put("xmasSent", 	cursor.getInt(9));
+				contactMap.put(kXMASSENT_MAP, 	cursor.getInt(9));
 				contactMap.put("xmasEmail",	cursor.getInt(10));
 				contactMap.put("lastSent",	cursor.getString(11));
 				contactMap.put("favourite",	cursor.getInt(12));
@@ -194,8 +198,8 @@ public class DBTools extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()){
 			do {
 				HashMap<String, Object> contactMap = new HashMap<String, Object>();
-				contactMap.put("contactId",	cursor.getLong(0));
-				contactMap.put("firstName",	cursor.getString(1));
+				contactMap.put(kCONTACT_ID_MAP,	cursor.getLong(0));
+				contactMap.put(kFIRSTNAME_MAP,	cursor.getString(1));
 				contactMap.put("lastName", 	cursor.getString(2));
 				contactMap.put("phone", 	cursor.getString(3));
 				contactMap.put("email", 	cursor.getString(4));
@@ -203,7 +207,7 @@ public class DBTools extends SQLiteOpenHelper {
 				contactMap.put("areaCode", 	cursor.getString(6));
 				contactMap.put("country", 	cursor.getString(7));
 				contactMap.put("xmasRec", 	cursor.getString(8));
-				contactMap.put("xmasSent", 	cursor.getInt(9));
+				contactMap.put(kXMASSENT_MAP, 	cursor.getInt(9));
 				contactMap.put("xmasEmail",	cursor.getInt(10));
 				contactMap.put("lastSent",	cursor.getString(11));
 				contactMap.put("favourite",	cursor.getInt(12));
@@ -271,6 +275,16 @@ public class DBTools extends SQLiteOpenHelper {
 		return whereClause;
 	}
 	
+	public void markAllXmasNotSent()
+	{
+		 ArrayList<HashMap<String, Object>> contacts = this.getContacts();
+		 for  (HashMap<String, Object>  contactMap : contacts)
+		 {
+				contactMap.put(kXMASSENT_MAP, 0);
+				contactMap.put(kCONTACT_ID_MAP, (contactMap.get(kCONTACT_ID_MAP)).toString() );
+				updateContact(contactMap);
+		 }
+	}
 	/*
 	//	From my friend stack overflow
 //	Access methods

@@ -141,16 +141,15 @@
     </TableRow>
           </TableLayout>
 
-  
     <Button
         android:id="@+id/btnAlertUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#000"
+        android:background="#303030"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="refreshScreen"
         android:paddingTop="@dimen/component_padding"
+        android:paddingBottom="@dimen/component_padding"
         android:text="@string/get_local_weather"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />

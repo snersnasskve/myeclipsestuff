@@ -122,6 +122,7 @@ public class WeatherData {
 		return minutesTilSunset;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String getTimeTilSunsetString()
 	{
 		String timeTilSunsetString = weatherHelper.formatTime(getTimeTilSunset());
@@ -129,6 +130,7 @@ public class WeatherData {
 		return timeTilSunsetString;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public boolean isDayTime()
 	{
 		boolean dayTime = true;
@@ -163,7 +165,7 @@ public class WeatherData {
 	{
 		long minutesTilPrecip = -1;
 		
-		Float minPrecip = 0.002f;
+		Float minPrecip = 0.001f;
 		if (toIgnoreLightPrecip){
 			minPrecip = 0.017f;
 		}
@@ -214,6 +216,7 @@ public class WeatherData {
 		return minutesTilPrecip;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String timeTilPrecipString(boolean toIgnoreLightPrecip)
 	{
 		String timeTilString = "None forecast";
@@ -232,6 +235,7 @@ public class WeatherData {
 
 	
 	//	tiemKeyWord: "daily", "hourly", "minutely", "currently"
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public boolean dataContainsWeatherword(String weatherWord, String timeKeyWord)
 	{
 		boolean wordFound = false;
@@ -277,6 +281,7 @@ public class WeatherData {
 		return wordFound;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String timeTilPrecipTypeString(String precipType)
 	{
 		long timeTil = -1;
@@ -333,11 +338,13 @@ public class WeatherData {
 
 
 	//	Getters
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public CurrentlyData getCurrently()
 	{
 		return currently;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ArrayList <IntervalData> getMinutelyData()
 	{
 		if (null == minutely)
@@ -351,11 +358,13 @@ public class WeatherData {
 	}
 
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Minutely getMinutely()
 	{
 		return minutely;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ArrayList <IntervalData> getHourlyData()
 	{
 		if (null == hourly)
@@ -368,19 +377,29 @@ public class WeatherData {
 		}
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Hourly getHourly()
 	{
 		return hourly;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Alert getAlerts()
 	{
 		return alert;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ArrayList <AlertData> getAlertsData()
 	{
-		return alert.getAlertData();
+		if (null == alert)
+		{
+			return null;
+		}
+		else
+		{
+			return alert.getAlertData();
+		}
 	}
 
 }

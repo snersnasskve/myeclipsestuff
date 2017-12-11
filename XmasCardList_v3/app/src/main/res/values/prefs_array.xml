@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="last_sent">
+        <item >&gt; 1 month</item>
+        <item >&gt; 1 year</item>
+        <item >All</item>
+    </string-array>
+    <string-array name="xmas_sent">
+        <item >Sent</item>
+        <item >Not Sent</item>
+        <item >All</item>
+    </string-array>
+    <string-array name="favourites">
+        <item >Faves only</item>
+        <item >All</item>
+    </string-array>
+
+</resources>

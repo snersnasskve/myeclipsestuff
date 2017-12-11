@@ -118,6 +118,12 @@ protected void onResume() {
 			prefsChanged = true;
 	    
 		}
+		else if  (id ==  R.id.mnu_mark_all_unsent)
+		{
+			 dbTools.markAllXmasNotSent();
+			 prefsChanged = true;
+	    
+		}
 		return super.onOptionsItemSelected(item);
 	}
 	

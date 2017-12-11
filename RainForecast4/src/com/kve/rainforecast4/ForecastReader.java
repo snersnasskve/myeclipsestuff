@@ -19,13 +19,13 @@ import com.kve.rainforecast4.data.WeatherData;
 
 public class ForecastReader {
 	/*
-	 * https://api.forecast.io/forecast/a9e65eeef8627d4f2cb554e39234ee6f/37.8267,-122.423
+	 * https://api.darksky.net/forecast/a9e65eeef8627d4f2cb554e39234ee6f/37.8267,-122.4233
 	 *	https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE
 	 *	https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE,TIME
 	 *	My own private api key - a9e65eeef8627d4f2cb554e39234ee6f
 	 */
 
-	private static String forecastUrlTemplate = "https://api.forecast.io/forecast/a9e65eeef8627d4f2cb554e39234ee6f/LATITUDE,LONGITUDE";
+	private static String forecastUrlTemplate = "https://api.darksky.net/forecast/a9e65eeef8627d4f2cb554e39234ee6f/LATITUDE,LONGITUDE";
 
 
 	//private String jsonData;

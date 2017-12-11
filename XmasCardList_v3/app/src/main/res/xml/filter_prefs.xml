@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:entryValues="@array/regions" android:key="region" android:entries="@array/regions" android:title="Region:" android:summary="Filter for Region..."/>
+    <ListPreference android:entryValues="@array/last_sent" android:key="last_sent" android:entries="@array/last_sent" android:title="Last Sent" android:summary="Last Sent to contact more than..."/>
+    <EditTextPreference android:summary="Xmas text contains this word / number" android:key="xmas_received" android:title="Xmas Recieved"/>
+    <ListPreference android:entryValues="@array/xmas_sent" android:key="xmas_sent" android:entries="@array/xmas_sent" android:title="Xmas Sent" android:summary="Christmas card sent this year..."/>
+    <ListPreference android:entryValues="@array/favourites" android:key="favourites" android:entries="@array/favourites" android:title="Favourites" android:summary="Favourites only or all..."/>
+
+
+</PreferenceScreen>

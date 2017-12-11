@@ -11,13 +11,17 @@ public class WeatherHelper {
 	private static final DecimalFormat tempFormat = new DecimalFormat("0.0");
 	Double beaufortScaleUppers[] = {1.0, 3.0, 7.0, 12.0, 17.0, 24.0, 30.0, 38.0, 46.0, 54.0, 63.0, 73.0};
 
-	String[] knownWeatherWords = {"Snow", "snow", "Rain", "rain", "Drizzle", "drizzle", 
+	String[] knownWeatherWords = {"Snow", "snow", "Rain", "rain", "Drizzl", "drizzl", 
 			"Flurry", "flurry", "Hail", "hail", "Storm", "storm"};
+	String[] knownRainWords = { "Rain", "rain", "Drizzl", "drizzl"};
+	String[] knownSnowWords = {"Flurry", "flurry", "Hail", "hail", "Storm", "storm"};
+
 	
 	public WeatherHelper() {
 		
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public int periodWhenValueExceededPrecipIntensity(ArrayList<IntervalData> intervalData, double minValue)
 	{
 		int periodFound = -1;
@@ -37,6 +41,7 @@ public class WeatherHelper {
 		return periodFound;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public boolean dataContainsKeyword(ArrayList<IntervalData> intervalData, String keyword)
 	{
 		boolean wordFound = false;
@@ -54,6 +59,7 @@ public class WeatherHelper {
 		return wordFound;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public int intervalCounterForKeyword(ArrayList<IntervalData> intervalData, String keyword)
 	{
 		boolean wordFound = false;
@@ -145,6 +151,20 @@ public class WeatherHelper {
 			if (anyString.contains(knownWeatherWords[wCounter]))
 			{
 				foundWords.add((knownWeatherWords[wCounter].toLowerCase(Locale.ENGLISH)));
+			}
+		}
+		for (int wCounter = 0 ; wCounter < knownRainWords.length ; wCounter++)
+		{
+			if (anyString.contains(knownRainWords[wCounter]))
+			{
+				foundWords.add("rain");
+			}
+		}
+		for (int wCounter = 0 ; wCounter < knownSnowWords.length ; wCounter++)
+		{
+			if (anyString.contains(knownSnowWords[wCounter]))
+			{
+				foundWords.add("snow");
 			}
 		}
 		return foundWords;

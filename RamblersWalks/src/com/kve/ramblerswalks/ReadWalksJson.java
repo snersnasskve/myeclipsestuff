@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
+import android.widget.Toast;
 
 public class ReadWalksJson {
 	public ReadWalksJson()
@@ -85,6 +86,9 @@ public class ReadWalksJson {
 	
 	private void populateWalks(String jsonData)
 	{
+		if (null != jsonData)
+		{
+
 		JSONObject jsonObj;
 		try {
 			jsonObj = new JSONObject(jsonData);
@@ -108,7 +112,7 @@ public class ReadWalksJson {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		}
 
 	}
 

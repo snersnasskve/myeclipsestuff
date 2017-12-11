@@ -174,6 +174,9 @@ public class ForecastLocation {
 	//////crashing here
 	public void locationFromPlace(String locationName, Context context)
 	{
+		//	I don't understand why it only errors when not plugged in
+		//	http://stackoverflow.com/questions/15711499/get-latitude-and-longitude-with-geocoder-and-android-google-maps-api-v2
+		//	Uses do in background, but has extra stuff so not doing it today
 		this.setValidLocation(false);
 		Geocoder myLocation = new Geocoder(context);
 		int maxResults = 1;

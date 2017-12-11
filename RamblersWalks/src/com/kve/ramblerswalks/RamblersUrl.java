@@ -67,6 +67,7 @@ public class RamblersUrl {
 		return url;
 	}
 
+	//	New find : ER = Yeast Yorkshire and Derwent = experiment with it
 	//	Beverley = ER01
 	//	Ryedale = ER04
 	//	East Yorkshire and Derwent = ER06
@@ -87,6 +88,7 @@ public class RamblersUrl {
 		if (area.startsWith("YO") || area.startsWith("HU"))
 		{
 			 groupsArea =  "groups=ER01,ER02,ER03,ER04,ER05,ER06,ER07,ER08,ER09&,LI04,LI07&";
+			// groupsArea =  "groups=NN01,NN02,NN03,NN04,NN05,NN06,NN07,NN08,NN09,NN10,NN11&";
 		}
 		return groupsArea;
 	}

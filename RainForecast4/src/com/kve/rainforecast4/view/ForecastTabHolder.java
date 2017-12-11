@@ -2,7 +2,9 @@ package com.kve.rainforecast4.view;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.support.v4.app.Fragment;
@@ -19,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.kve.rainforecast4.*;
+import com.kve.rainforecast4.data.AlertData;
+import com.kve.rainforecast4.data.IntervalData;
 import com.kve.rainforecast4.weatherview.*;
 
 public class ForecastTabHolder extends FragmentActivity {
@@ -31,12 +35,32 @@ public class ForecastTabHolder extends FragmentActivity {
 
     //viewpager to display pages
     ViewPager mViewPager;
+	ArrayList<String> fragMap = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forecast_pager);
         
+        //	Here in oncreate we have to build a hash of pages 
+        //	containing page number, page heading, fragment name
+        
+        fragMap.add("Dashboard");
+        fragMap.add("Details");
+		    ArrayList<IntervalData> minutely = ForecastMainActivity.weatherData.getMinutelyData();
+	    if (!minutely.isEmpty()){
+	        fragMap.add("Minutely");
+	    }
+  	    ArrayList<IntervalData> hourly = ForecastMainActivity.weatherData.getHourlyData();
+	    if (!hourly.isEmpty()){
+	        fragMap.add("Hourly");
+
+	    }
+  		ArrayList <AlertData> alerts = ForecastMainActivity.weatherData.getAlertsData();
+	    if (!(null == alerts || alerts.isEmpty())){
+	        fragMap.add("Alerts");
+	    }
+
  
         // Create the adapter that will return a fragment for each of the five
         // primary sections of the app.
@@ -97,26 +121,27 @@ public class ForecastTabHolder extends FragmentActivity {
 
         	Fragment fragment = pageMap.get(position);
 
+       	  	String pageName = fragMap.get(position);
 
         	if (null == fragment)
         	{
-        		if (0 == position)
+        		if (pageName == "Dashboard")
         		{
         			fragment = new WeatherDashboardFrag();
         		}
-        		else if (1 == position)
+        		else if (pageName == "Details")
         		{
         			fragment = new WeatherCurrentFrag();
         		}
-        		else if (2 == position)
+        		else if (pageName == "Minutely")
         		{
         			fragment = new MinutelyPrecipFrag();
         		}
-        		else if (3 == position)
+        		else if (pageName == "Hourly")
         		{
         			fragment = new HourlyPrecipFrag();
         		}
-        		else if (4 == position)
+        		else if (pageName == "Alerts")
         		{
         			fragment = new WeatherAlertFrag();
         		}
@@ -135,24 +160,13 @@ public class ForecastTabHolder extends FragmentActivity {
         @Override
         public int getCount() {
         	// Show 5 total pages.
-        	return 5;
+        	return fragMap.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-        	switch (position) {
-            case 0:
-                return "Dashboard";
-            case 1:
-                return "Details";
-            case 2:
-                return "Minutely";
-            case 3:
-                return "Hourly";
-            case 4:
-                return "Alerts";
-            }
-            return null;
+        	return fragMap.get(position);
+
         }
     }
 

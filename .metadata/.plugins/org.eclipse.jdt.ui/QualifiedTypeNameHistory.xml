@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="com.kve.chorerota.R.id"/>
 <fullyQualifiedTypeName name="com.kve.chorerota.R.array"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.util.Locale"/>
 <fullyQualifiedTypeName name="android.app.DialogFragment"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="android.text.TextUtils"/>
 <fullyQualifiedTypeName name="com.kve.xmascardlist2.FilterPrefs.XmasSentType"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

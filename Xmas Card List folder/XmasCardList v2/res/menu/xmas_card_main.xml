@@ -8,7 +8,11 @@
         android:id="@+id/mnu_preferences"
         android:orderInCategory="100"
         android:title="@string/preferences"
-       />
+       android:visible="true" android:checkable="true"/>
+    <item android:id="@+id/mnu_mark_all_unsent" 
+        android:orderInCategory="100" 
+        android:visible="true" android:checkable="true"
+         android:title="@string/mark_all_unsent"/>
     
 
 </menu>

@@ -139,6 +139,8 @@ public class ForecastMainActivity extends Activity  {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add_favourite) {
+		   	tvStatus.setText("Reading coordinates...");		
+
         	boolean success = getLocationFromAddress();
         	if (success)
         	{
@@ -241,6 +243,7 @@ public class ForecastMainActivity extends Activity  {
 
 	public void forecastForAddress(View view)
 	{
+	   	tvStatus.setText("Reading forecast...");		
 		if (etLocationPlaceName.getText().toString().length() > 3)
 		{
 			boolean locFound = getLocationFromAddress();
@@ -257,7 +260,8 @@ public class ForecastMainActivity extends Activity  {
 
 	public void forecastForLocation(View view)
 	{
-		etLocationPlaceName.setText("");
+	   	tvStatus.setText("Reading forecast...");		
+	   	etLocationPlaceName.setText("");
 		Toast.makeText(getApplicationContext(), "Show forecast for this location", 
 				Toast.LENGTH_SHORT).show();
 		Log.i(TAG, "forecastForLocation - Leaving main thread");
@@ -269,10 +273,11 @@ public class ForecastMainActivity extends Activity  {
 	{
 		if (favouriteLocation != null)
 		{
-		Toast.makeText(getApplicationContext(), "Show forecast for this preset", 
-				Toast.LENGTH_SHORT).show();
-		Log.i(TAG, "forecastForFavourite - Leaving main thread");
-		getWeatherData(favouriteLocation.getLatitude(), favouriteLocation.getLongitude());
+			tvStatus.setText("Reading forecast...");		
+			Toast.makeText(getApplicationContext(), "Show forecast for this preset", 
+					Toast.LENGTH_SHORT).show();
+			Log.i(TAG, "forecastForFavourite - Leaving main thread");
+			getWeatherData(favouriteLocation.getLatitude(), favouriteLocation.getLongitude());
 		}
 	}
 
@@ -281,13 +286,20 @@ public class ForecastMainActivity extends Activity  {
 		//readLocationFromPhone();
 		Toast.makeText(getApplicationContext(), "Re-read loaction and show forecast for this location", 
 				Toast.LENGTH_SHORT).show();
-		if (null != currentLocation)
+		tvStatus.setText("Reading location...");		
+		readLocationFromPhone();
+
+    	if (null != currentLocation)
 		{
+		   	tvStatus.setText("Looking up coordinates...");		
+
 			Log.i(TAG, "refreshScreen - Leaving main thread");
 			getWeatherData(currentLocation.getLatitude(), currentLocation.getLongitude());
 		}
 		else
 		{
+    		readLocationFromPhone();
+
 		   	tvStatus.setText("Location not found. Please enable GPS.");		
 			Toast.makeText(getApplicationContext(), "Location not found. Please enable GPS.", 
 					Toast.LENGTH_SHORT).show();

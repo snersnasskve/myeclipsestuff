@@ -119,7 +119,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:padding="@dimen/padding_5dp"
-                        android:inputType="textCapCharacters"
+            android:inputType="textCapCharacters"
              >
         </EditText>
 
