@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">About Skania</string>
+    <string name="skania">Skania</string>
+    <string name="yellow_star">Yellow Star</string>
+
+    <string name="skania_bio_string">Skania was born in June 2016.
+
+
+
+  Skania\'s parent was a 3D printer of questionable gender.
+    Intitially Skania was only able to travel in straight lines, but she quickly learnt to
+        manoeuvre backwards and forwards, left and right.
+    In 2017 she acquired a sonar for distance sensing. Sadly this only gives a single figure
+        between 0 and 50.
+    The million dollar question is, assuming someone tells you there is an obstacle 40 in front
+        of you, what is the correct course of action.
+    Of course there is no answer.\n\n
+
+    So Skania is will always turn right if the number is less than 50 and more than 10.
+        When the number goes below 10, she assumes she is turning the wrong way and goes left.
+    The consequence of this is that when her battery starts going flat, she starts driving in
+        anti-clockwise circles.\n\n
+
+    Skania is very well travelled. She went to South Africa as a babe in bits.
+        Few people there had seen 3D printing, so she was able to show off without
+        being able to do anything.
+    The following year she went to New Zealand.
+        There she was able to educate people that robots were not necessarily little dudes that walked around the patio saying "meep meep"
+    And in 2018 she went to Ivrea in Italy. This was very exciting as Ivrea is the birthplace
+        of Arduino and Skania\'s brain is an Arduino Uno.\n\n
+
+    Skania has proved her worth by tootling around the kitchen floor trailing a wet wipe behind her.
+        This is a modest beginning to what we hope will be a very useful robot.\n\n
+ Good for you Skania.</string>
+    <string name="nickname">Give Skania a nickname?</string>
+    <string name="done">Done</string>
+</resources>

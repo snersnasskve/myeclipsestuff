@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Kotlin01</string>
+    <string name="fredrfred_erg">more sense </string>
+    <string name="toast">Toast</string>
+    <string name="count">Count</string>
+    <string name="random">Random</string>
+    <string name="random_intro">Here is a rondom number between 0 and %1d.</string>
+</resources>

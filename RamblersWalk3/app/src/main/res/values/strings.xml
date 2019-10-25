@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Ramblers Walks 3</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="postcode">Postcode / Place</string>
+    <string name="from">From</string>
+    <string name="to">To:</string>
+    <string name="choose_days">Choose Days</string>
+    <string name="weekdays">Week Days</string>
+    <string name="distance">Distance</string>
+    <string name="miles">Miles</string>
+    <string name="submit">Submit</string>
+    <string name="date">"Date"</string>
+    <string name="dash">"6 – 10"</string>
+    <string name="find_walks">Find Walks Near Me</string>
+    <string name="no_walks_found_title">Search Failed</string>
+    <string name="no_walks_found_message">No walks found on these days.</string>
+    <string name="ok">OK</string>
+
+    <string name="more">More</string>
+    <string name="less">Less</string>
+
+    <string name="weekends">Week Ends</string>
+    <string name="evenings">Eve- nings</string>
+    <string name="all">All</string>
+    <string name="every_day">Every\nDay</string>
+    <string name="today">Today</string>
+    <string name="this_week">This\nWeek</string>
+    <string name="pick_days">Pick\nDays</string>
+    <string name="search">Search</string>
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+
+    <string-array name="month_list">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string name="go_to_walk">Go to Walk Page</string>
+    <string name="blank">" "</string>
+    <string name="title_activity_walk_summary">WalkSummary</string>
+    <string name="select_groups">Choose your groups</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ramblers_group">Ramblers Group/s</string>
+
+</resources>

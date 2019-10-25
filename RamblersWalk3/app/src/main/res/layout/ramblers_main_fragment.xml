@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ramblersmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ramblersmain.RamblersMainFragment">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Post Code -->
+
+        <TextView
+            android:id="@+id/tvGroupHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="@string/ramblers_group" />
+
+        <LinearLayout
+            android:id="@+id/llGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGroupHeader"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="@string/ramblers_group"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium">
+
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/ibGroups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:contentDescription="@string/ramblers_group"
+        android:src="@drawable/search" />
+
+</LinearLayout>
+        <!--android:onClick="selectLocation"-->
+
+<!-- Weekdays -->
+
+        <TextView
+            android:id="@+id/tvWeekDaysHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llGroup"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="@string/weekdays" />
+
+        <LinearLayout
+            android:id="@+id/llWeekdays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvWeekDaysHeader"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvWeekDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:layout_weight="5"
+                android:baselineAligned="false"
+                android:hint="@string/weekdays"
+                android:maxLines="@integer/two"
+                android:text="@string/weekdays"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+            <ImageButton
+                android:id="@+id/ibWeekdays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:baselineAligned="false"
+                android:contentDescription="@string/search"
+                 android:src="@drawable/search" />
+         </LinearLayout>
+        <!--         android:onClick="selectWeekdays"-->
+
+        <!-- Start and End Dates -->
+
+        <RelativeLayout
+            android:id="@+id/rlDates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llWeekdays"
+            android:layout_alignLeft="@+id/llGroup"
+            android:layout_alignStart="@+id/llGroup"
+            android:layout_marginTop="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/tvFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/etStartDay"
+                android:layout_alignBottom="@+id/etStartDay"
+                android:text="@string/from" />
+
+            <EditText
+                android:id="@+id/etStartDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@id/tvFrom"
+                android:width="@dimen/number_width"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="@string/date"
+                android:inputType="number"
+                android:maxWidth="@dimen/number_width"
+                android:maxLines="@integer/one" />
+
+            <Spinner
+                android:id="@+id/spStartMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignBottom="@+id/etStartDay"
+                android:layout_toRightOf="@+id/etStartDay"
+                android:gravity="right" />
+
+            <TextView
+                android:id="@+id/tvTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/etEndDay"
+                android:layout_alignLeft="@+id/tvFrom"
+                android:layout_alignBottom="@+id/etEndDay"
+                android:text="@string/to" />
+
+            <EditText
+                android:id="@+id/etEndDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etStartDay"
+                android:layout_alignLeft="@id/etStartDay"
+                android:layout_toRightOf="@+id/tvTo"
+                android:width="@dimen/number_width"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="@string/date"
+                android:inputType="number"
+                android:maxWidth="@dimen/number_width"
+                android:maxLines="@integer/one"></EditText>
+
+            <Spinner
+                android:id="@+id/spEndMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignLeft="@+id/spStartMonth"
+                android:layout_alignRight="@+id/spStartMonth"
+                android:layout_alignBottom="@+id/etEndDay"
+                android:gravity="right" />
+        </RelativeLayout>
+
+        <!-- Distance -->
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlDates"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="@string/distance" />
+
+        <LinearLayout
+            android:id="@+id/llDistance"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDistance"
+            android:layout_alignLeft="@+id/tvDistance"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibLowerMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/less"
+                android:longClickable="true"
+                android:src="@drawable/minus" />
+
+            <ImageButton
+                android:id="@+id/ibLowerPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/more"
+                android:longClickable="true"
+                android:src="@drawable/plus" />
+
+            <TextView
+                android:id="@+id/tvDistanceNumbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center|clip_horizontal"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="@dimen/number_width"
+                android:text="@string/dash"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageButton
+                android:id="@+id/ibHigherMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/less"
+                android:longClickable="true"
+                android:src="@drawable/minus" />
+
+            <ImageButton
+                android:id="@+id/ibHigherPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/more"
+                android:longClickable="true"
+                android:src="@drawable/plus" />
+        </LinearLayout>
+
+
+        <GridLayout
+            android:id="@+id/glWeekdays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llDistance"
+            android:alignmentMode="alignMargins"
+            android:columnCount="3"
+            android:columnOrderPreserved="false"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <Button
+                android:id="@+id/btnWeekends"
+                android:layout_width="@dimen/small_button_width"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_gravity="left"
+                android:maxWidth="@dimen/small_button_width"
+                android:text="@string/weekends"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSearchWeekdays"
+                android:layout_width="@dimen/small_button_width"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_gravity="left"
+                android:maxWidth="@dimen/small_button_width"
+                android:text="@string/weekdays"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnEvenings"
+                android:layout_width="@dimen/small_button_width"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_gravity="left"
+                android:maxWidth="@dimen/small_button_width"
+                android:text="@string/evenings"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnEveryDay"
+                android:layout_width="@dimen/small_button_width"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_gravity="left"
+                android:maxWidth="@dimen/small_button_width"
+                android:text="@string/every_day"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnThisWeek"
+                android:layout_width="@dimen/small_button_width"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_gravity="left"
+                android:maxWidth="@dimen/small_button_width"
+                android:text="@string/this_week"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnPickDays"
+                android:layout_width="@dimen/small_button_width"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_gravity="left"
+                android:maxWidth="@dimen/small_button_width"
+                android:text="@string/pick_days"
+                android:textStyle="bold" />
+        </GridLayout>
+
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

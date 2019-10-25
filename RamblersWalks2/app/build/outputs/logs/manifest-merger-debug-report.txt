@@ -4,8 +4,8 @@ ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\a
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:2:1-45:12
-MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\bb369bb069d7f675d42d47e471314982\AndroidManifest.xml:15:1-18:12
-MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\0823421ed5271795013500dfa3d3df44\AndroidManifest.xml:15:1-18:12
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\927949c13e09eed36d0cd12ac72ad72c\AndroidManifest.xml:15:1-18:12
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\29c8e249d9aa9c47853a9257ac3ae4ba\AndroidManifest.xml:15:1-18:12
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:2:1-45:12
@@ -29,10 +29,10 @@ ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\a
 		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:8:22-64
 application
 ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:10:5-42:19
-MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\bb369bb069d7f675d42d47e471314982\AndroidManifest.xml:17:5-19
-MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\bb369bb069d7f675d42d47e471314982\AndroidManifest.xml:17:5-19
-MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\0823421ed5271795013500dfa3d3df44\AndroidManifest.xml:17:5-19
-MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\0823421ed5271795013500dfa3d3df44\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\927949c13e09eed36d0cd12ac72ad72c\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\927949c13e09eed36d0cd12ac72ad72c\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\29c8e249d9aa9c47853a9257ac3ae4ba\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\29c8e249d9aa9c47853a9257ac3ae4ba\AndroidManifest.xml:17:5-19
 	android:label
 		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml:13:9-41
 	android:icon
@@ -89,10 +89,10 @@ uses-sdk
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml
-MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\bb369bb069d7f675d42d47e471314982\AndroidManifest.xml:16:5-42
-MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\bb369bb069d7f675d42d47e471314982\AndroidManifest.xml:16:5-42
-MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\0823421ed5271795013500dfa3d3df44\AndroidManifest.xml:16:5-42
-MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\0823421ed5271795013500dfa3d3df44\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\927949c13e09eed36d0cd12ac72ad72c\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\appcompat-v7-20.0.0.aar\927949c13e09eed36d0cd12ac72ad72c\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\29c8e249d9aa9c47853a9257ac3ae4ba\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-1\files-1.1\support-v4-20.0.0.aar\29c8e249d9aa9c47853a9257ac3ae4ba\AndroidManifest.xml:16:5-42
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RamblersWalks2\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
