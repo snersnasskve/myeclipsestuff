@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.sners.aboutskania.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.doneButton.setOnClickListener {
@@ -26,10 +26,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun addNickname(view: View)
     {
-
-        binding.nicknameText.text = binding.nicknameEdit.text
-        binding.nicknameEdit.visibility = View.GONE
-        binding.nicknameText.visibility = View.VISIBLE
+        binding.apply {
+            nicknameText.text = nicknameEdit.text
+            invalidateAll() //  To force refresh
+            nicknameEdit.visibility = View.GONE
+            nicknameText.visibility = View.VISIBLE
+            doneButton.visibility = View.GONE
+        }
 
 
     }
