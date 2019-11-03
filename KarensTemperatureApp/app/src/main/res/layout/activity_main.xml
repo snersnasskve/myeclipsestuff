@@ -61,6 +61,7 @@
             android:layout_weight="1"
             android:alpha="0.5"
             android:background="@mipmap/celcius_icon_foreground"
+            android:onClick="buttonClicked"
             android:scaleType="fitCenter"
             android:textSize="48sp"
             android:visibility="visible" />
@@ -76,6 +77,7 @@
             android:alpha="0.5"
             android:background="@mipmap/fahrenheit_icon_foreground"
             android:fontFamily="@font/ultra"
+            android:onClick="buttonClicked"
             android:scaleType="fitCenter"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="48sp"
