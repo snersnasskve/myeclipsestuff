@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Van Temperature</string>
+    <string name="deg_c">° C</string>
+    <string name="deg_f">° F</string>
+    <string name="enter_temp">Enter temperature</string>
 </resources>

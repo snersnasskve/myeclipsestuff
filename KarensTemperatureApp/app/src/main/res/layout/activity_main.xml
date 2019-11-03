@@ -1,19 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="450dp"
+        android:layout_height="727dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.8"
+        android:contentDescription="@string/thermometer_image"
+        android:scaleType="fitEnd"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16000003"
+        app:srcCompat="@mipmap/thermometer_3" />
+
+    <EditText
+        android:id="@+id/edit_temperature"
+        style="@android:style/Widget.Material.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/enter_temp"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="@+id/buttons"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/edit_temperature">
+
+        <Button
+            android:id="@+id/celcius_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="30dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="48dp"
+
+            android:layout_marginEnd="12dp"
+
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@mipmap/celcius_icon_foreground"
+            android:scaleType="fitCenter"
+            android:textSize="48sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/fahrenheit_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="30dp"
+            android:layout_height="60dp"
+
+            android:layout_marginEnd="48dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@mipmap/fahrenheit_icon_foreground"
+            android:fontFamily="@font/ultra"
+            android:scaleType="fitCenter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="48sp"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/label_temperature"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:text="placeholder"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttons"
+        app:layout_constraintVertical_bias="0.233"
+        tools:layout_editor_absoluteX="24dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

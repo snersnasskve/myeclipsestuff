@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WalksScratchPad</string>
+    <string name="location_label">Location</string>
+    <string name="not_yet_set">Not yet set</string>
+    <string name="date_range">Date range:</string>
+    <string name="distance_range">Distance range:</string>
 </resources>

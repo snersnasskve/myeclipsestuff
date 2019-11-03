@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Karens Temperature App</string>
+    <string name="deg_c">° C</string>
+    <string name="def_f">° F</string>
+    <string name="enter_temp">Enter temperature</string>
+    <string name="thermometer_image">Thermometer Image</string>
 </resources>
