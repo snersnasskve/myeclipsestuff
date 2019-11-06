@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RamblersWalks4</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="walk_finder">Walk Finder</string>
+    <string name="wolds_view">Wolds view near Cranswick</string>
 </resources>

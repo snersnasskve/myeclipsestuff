@@ -20,15 +20,18 @@ class MainActivity : AppCompatActivity() {
     {
         val celciusButton = findViewById<Button>(R.id.celcius_button)
         val fahrButton = findViewById<Button>(R.id.fahrenheit_button)
-        var cAlpha = 0.5f
-        var fAlpha = 0.5f
+        val tempToConvert = findViewById<EditText>(R.id.edit_temperature)
+        val resultLabel = this.findViewById<TextView>(R.id.label_temperature)
+
+        var cAlpha = 0.4f
+        var fAlpha = 0.4f
         if (view.id == R.id.celcius_button) {
             cAlpha = 1.0f
-            this.convertToCelsius()
+            resultLabel.text = this.convertToFahrenheit(tempToConvert.text.toString())
         }
         else if (view.id == R.id.fahrenheit_button) {
             fAlpha = 1.0f
-            this.convertToFahrenheit()
+            resultLabel.text = this.convertToCelsius(tempToConvert.text.toString())
         }
 
         celciusButton.alpha = cAlpha
@@ -37,24 +40,26 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-  private fun convertToCelsius()
+  private fun convertToCelsius(fahrStringValue: String) : String
     {
-        val textEdit = this.findViewById<EditText>(R.id.edit_temperature)
-        val fahrValue = textEdit.text.toString().toFloat()
-        val celValue = (fahrValue - 32 / 1.8)
-        val resultText = this.findViewById<TextView>(R.id.label_temperature)
-        resultText.text = "$celValue deg C"
-
+        var resultString = ""
+        if (fahrStringValue != "") {
+            val fahrValue = fahrStringValue.toFloat()
+            val celValue = (fahrValue - 32) / 1.8
+            resultString = "%.1f ° C".format(celValue)
+        }
+        return resultString
     }
 
-    private fun convertToFahrenheit()
+    private fun convertToFahrenheit(celStringValue: String) : String
     {
-        val textEdit = this.findViewById<EditText>(R.id.edit_temperature)
-        val celsiusValue = textEdit.text.toString().toFloat()
-        val fahrValue = (celsiusValue * 1.8) + 32
-        val resultText = this.findViewById<TextView>(R.id.label_temperature)
-        resultText.text = "$fahrValue deg F"
-
+        var resultString = ""
+        if (celStringValue != "") {
+            val celsiusValue = celStringValue.toFloat()
+            val fahrValue = (celsiusValue * 1.8) + 32
+            resultString =  "%.1f ° F".format(fahrValue)
+        }
+        return resultString
     }
 }
 
