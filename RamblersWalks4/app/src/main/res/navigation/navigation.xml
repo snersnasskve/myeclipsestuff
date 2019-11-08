@@ -5,11 +5,5 @@
     app:startDestination="@+id/titleFragment">
 
 
-<fragment
-        android:id="@+id/titleFragment"
-        android:name="com.sners.ramblerswalks4.TitleFragment"
-        android:label="@string/walk_finder"
-        tools:layout="@layout/fragment_title">
 
-    </fragment>
 </navigation>
