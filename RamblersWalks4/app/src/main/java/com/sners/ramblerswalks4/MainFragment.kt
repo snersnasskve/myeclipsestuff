@@ -41,6 +41,19 @@ class MainFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_groupsFragment)
         }
 
+        val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
+        distanceButton?.setOnClickListener {
+            //  All fragments and activities have access to navigation
+            Timber.i("Distance button preseed called from karen")
+            Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_distanceFragment)
+        }
+
+        val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
+        daysButton?.setOnClickListener {
+            //  All fragments and activities have access to navigation
+            Timber.i("Days button preseed called from karen")
+            Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_daysFragment)
+        }
 
         return view
 }
