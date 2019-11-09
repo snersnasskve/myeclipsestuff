@@ -1,12 +1,12 @@
 package com.sners.ramblerswalks4
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.Navigation
 import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,8 +33,17 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         Timber.i("onCreateView called from karen")
 
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
+        var view = inflater.inflate(R.layout.fragment_main, container, false)
+        val groupButton = view?.findViewById<Button>(R.id.manage_groups_button)
+        groupButton?.setOnClickListener {
+            //  All fragments and activities have access to navigation
+            Timber.i("Group button preseed called from karen")
+            Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_groupsFragment)
+        }
+
+
+        return view
+}
 
 
 }

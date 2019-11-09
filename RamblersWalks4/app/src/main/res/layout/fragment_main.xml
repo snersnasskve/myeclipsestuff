@@ -29,7 +29,7 @@
             style="@style/body_style" />
 
         <Button
-            android:id="@+id/manage_groups"
+            android:id="@+id/manage_groups_button"
             style="@style/button_style"
             android:text="@string/manage_groups"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/manage_groups" />
+            app:layout_constraintTop_toBottomOf="@id/manage_groups_button" />
 
         <TextView
             android:id="@+id/distance_label"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/distanceTitle" />
 
         <Button
-            android:id="@+id/manage_distance"
+            android:id="@+id/manage_distance_button"
             style="@style/button_style"
             android:text="@string/manage_distance"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/manage_distance" />
+            app:layout_constraintTop_toBottomOf="@id/manage_distance_button" />
 
         <TextView
             android:id="@+id/days_label"
@@ -81,7 +81,7 @@
             app:layout_constraintTop_toBottomOf="@+id/daysTitle" />
 
         <Button
-            android:id="@+id/manage_days"
+            android:id="@+id/manage_days_button"
             style="@style/button_style"
             android:text="@string/manage_days"
             app:layout_constraintEnd_toEndOf="parent"
