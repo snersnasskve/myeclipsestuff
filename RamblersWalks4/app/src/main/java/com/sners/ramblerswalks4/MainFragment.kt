@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,21 +39,22 @@ class MainFragment : Fragment() {
         groupButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
-            Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_groupsFragment)
+            //  Using a kotlin extension function - on of the dependencies
+            view.findNavController().navigate(R.id.action_mainFragment4_to_groupsFragment)
         }
 
         val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
         distanceButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
-            Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_distanceFragment)
+            view.findNavController().navigate(R.id.action_mainFragment4_to_distanceFragment)
         }
 
         val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
         daysButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
-            Navigation.findNavController(it).navigate(R.id.action_mainFragment4_to_daysFragment)
+            view.findNavController().navigate(R.id.action_mainFragment4_to_daysFragment)
         }
 
         return view
