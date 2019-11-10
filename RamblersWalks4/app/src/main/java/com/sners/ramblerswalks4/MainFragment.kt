@@ -39,8 +39,12 @@ class MainFragment : Fragment() {
         groupButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
-            //  Using a kotlin extension function - on of the dependencies
+            //  Using a kotlin extension function - on of the dependencies - just tell view to sort it
             view.findNavController().navigate(R.id.action_mainFragment4_to_groupsFragment)
+            //  Go direct to Navigation to create the on click listener and manage it
+            //  The navigation thing doesn't work. This will be because I have missed a dependency somewhere
+            //  Works just as well without
+           // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_groupsFragment)
         }
 
         val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
@@ -48,6 +52,7 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
             view.findNavController().navigate(R.id.action_mainFragment4_to_distanceFragment)
+           // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_distanceFragment)
         }
 
         val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
@@ -55,6 +60,7 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
             view.findNavController().navigate(R.id.action_mainFragment4_to_daysFragment)
+           // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_daysFragment)
         }
 
         return view
