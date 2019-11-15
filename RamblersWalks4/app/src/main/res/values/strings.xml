@@ -14,4 +14,5 @@
     <string name="days">Days</string>
     <string name="any_day">Any Day</string>
     <string name="manage_days">Manage Days</string>
+    <string name="minumum_miles">Minimum Miles</string>
 </resources>

@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+//import androidx.navigation.Navigation
+//import androidx.navigation.findNavController
+import com.sners.ramblerswalks4.Controller.SearchManager
 import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class MainFragment : Fragment() {
 
-
+    private lateinit var search: SearchManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,37 +35,51 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         Timber.i("onCreateView called from karen")
 
+        //  Setup search controller - make it become a lifecycle observer
+        //      Then it will automatically know when stuff happens and it needs to save data
+        this.search = SearchManager(this.lifecycle)
+
+        var view = addButtonListeners(inflater, container)
+
+        return view
+}
+
+    //--------------------------------------------------------------------
+    private fun addButtonListeners(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): View? {
         var view = inflater.inflate(R.layout.fragment_main, container, false)
         val groupButton = view?.findViewById<Button>(R.id.manage_groups_button)
         groupButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
+
             //  Using a kotlin extension function - on of the dependencies - just tell view to sort it
-            view.findNavController().navigate(R.id.action_mainFragment4_to_groupsFragment)
+           // view.findNavController().navigate(R.id.action_mainFragment4_to_groupsFragment)
             //  Go direct to Navigation to create the on click listener and manage it
             //  The navigation thing doesn't work. This will be because I have missed a dependency somewhere
             //  Works just as well without
-           // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_groupsFragment)
+            // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_groupsFragment)
         }
 
         val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
         distanceButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
-            view.findNavController().navigate(R.id.action_mainFragment4_to_distanceFragment)
-           // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_distanceFragment)
+           // view.findNavController().navigate(R.id.action_mainFragment4_to_distanceFragment)
+            // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_distanceFragment)
         }
 
         val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
         daysButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
-            view.findNavController().navigate(R.id.action_mainFragment4_to_daysFragment)
-           // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_daysFragment)
+           // view.findNavController().navigate(R.id.action_mainFragment4_to_daysFragment)
+            // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_daysFragment)
         }
-
         return view
-}
+    }
 
 
 }
