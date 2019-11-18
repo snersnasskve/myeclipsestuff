@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.view.OneShotPreDrawListener.add
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 //import androidx.navigation.Navigation
 //import androidx.navigation.findNavController
 import com.sners.ramblerswalks4.Controller.SearchManager
@@ -15,6 +18,8 @@ import timber.log.Timber
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+
 
 /**
  * A simple [Fragment] subclass.
@@ -27,6 +32,14 @@ private const val ARG_PARAM2 = "param2"
 class MainFragment : Fragment() {
 
     private lateinit var search: SearchManager
+
+    //  https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
+    //  It is not clear where this function should go
+//    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+//        val fragmentTransaction = beginTransaction()
+//        fragmentTransaction.func()
+//        fragmentTransaction.commit()
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,13 +68,18 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
 
+//            val ft = fragmentManager!!.beginTransaction()
+//            ft.replace(R.layout.fragment_groups, GroupsFragment(), "GroupsFragmentTag")
+//            ft.commit()
+
             //  Using a kotlin extension function - on of the dependencies - just tell view to sort it
            // view.findNavController().navigate(R.id.action_mainFragment4_to_groupsFragment)
             //  Go direct to Navigation to create the on click listener and manage it
             //  The navigation thing doesn't work. This will be because I have missed a dependency somewhere
             //  Works just as well without
             // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_groupsFragment)
-        }
+            val frag=GroupsFragment.newInstance()
+            (activity as MainActivity).replaceFragment(frag,MainFragment.TAG)        }
 
         val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
         distanceButton?.setOnClickListener {
@@ -81,5 +99,10 @@ class MainFragment : Fragment() {
         return view
     }
 
+    companion object {
+        val TAG = MainFragment::class.java.simpleName
+        @JvmStatic
+        fun newInstance() = MainFragment()
+    }
 
 }

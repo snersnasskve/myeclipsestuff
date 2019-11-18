@@ -21,4 +21,10 @@ class GroupsFragment : Fragment() {
     }
 
 
+//https://stackoverflow.com/questions/53973556/forward-one-fragment-to-another-fragment-in-kotlin
+companion object {
+    val TAG = GroupsFragment::class.java.simpleName
+    @JvmStatic
+    fun newInstance() = GroupsFragment()
+}
 }

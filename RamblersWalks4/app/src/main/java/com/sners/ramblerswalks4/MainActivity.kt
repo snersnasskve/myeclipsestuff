@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import timber.log.Timber
 
 //import com.sners.ramblerswalks4.databinding
@@ -63,5 +66,11 @@ class MainActivity : AppCompatActivity() {
         //  Happens once at the very end
         Timber.i("onDestroy called from karen")
 
+    }
+
+
+    fun replaceFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFragment, fragment, tag).addToBackStack("").commit()
     }
 }
