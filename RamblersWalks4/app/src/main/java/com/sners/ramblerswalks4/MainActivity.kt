@@ -24,8 +24,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //  Happens once at the beginning
         setContentView(R.layout.activity_main)
-        //val binding = DataBindingUtil.setContentView<>(this, R.layout.activity_main)
-       // val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commitNow()
+        }
         Timber.i("onCreate called from karen")
     }
 
@@ -69,8 +72,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun replaceFragment(fragment: Fragment, tag: String) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.mainFragment, fragment, tag).addToBackStack("").commit()
-    }
+
 }

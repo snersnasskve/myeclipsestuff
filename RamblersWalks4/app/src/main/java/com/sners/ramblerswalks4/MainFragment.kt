@@ -31,6 +31,10 @@ private const val ARG_PARAM2 = "param2"
  */
 class MainFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = MainFragment()
+    }
+
     private lateinit var search: SearchManager
 
     //  https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
@@ -52,17 +56,15 @@ class MainFragment : Fragment() {
         //      Then it will automatically know when stuff happens and it needs to save data
         this.search = SearchManager(this.lifecycle)
 
-        var view = addButtonListeners(inflater, container)
+        var view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        addButtonListeners(view)
 
         return view
 }
 
     //--------------------------------------------------------------------
-    private fun addButtonListeners(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): View? {
-        var view = inflater.inflate(R.layout.fragment_main, container, false)
+    private fun addButtonListeners(view: View?) {
         val groupButton = view?.findViewById<Button>(R.id.manage_groups_button)
         groupButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
@@ -78,8 +80,9 @@ class MainFragment : Fragment() {
             //  The navigation thing doesn't work. This will be because I have missed a dependency somewhere
             //  Works just as well without
             // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_groupsFragment)
-            val frag=GroupsFragment.newInstance()
-            (activity as MainActivity).replaceFragment(frag,MainFragment.TAG)        }
+//            val frag=GroupsFragment.newInstance()
+//            (activity as MainActivity).replaceFragment(frag,MainFragment.TAG)
+}
 
         val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
         distanceButton?.setOnClickListener {
@@ -93,16 +96,11 @@ class MainFragment : Fragment() {
         daysButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
-           // view.findNavController().navigate(R.id.action_mainFragment4_to_daysFragment)
+            // view.findNavController().navigate(R.id.action_mainFragment4_to_daysFragment)
             // Navigation.createNavigateOnClickListener(R.id.action_mainFragment4_to_daysFragment)
         }
-        return view
     }
 
-    companion object {
-        val TAG = MainFragment::class.java.simpleName
-        @JvmStatic
-        fun newInstance() = MainFragment()
-    }
+
 
 }

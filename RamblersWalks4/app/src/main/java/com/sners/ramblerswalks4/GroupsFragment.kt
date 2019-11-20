@@ -12,6 +12,10 @@ import android.view.ViewGroup
  */
 class GroupsFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = GroupsFragment()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,9 +26,9 @@ class GroupsFragment : Fragment() {
 
 
 //https://stackoverflow.com/questions/53973556/forward-one-fragment-to-another-fragment-in-kotlin
-companion object {
-    val TAG = GroupsFragment::class.java.simpleName
-    @JvmStatic
-    fun newInstance() = GroupsFragment()
-}
+//companion object {
+//    val TAG = GroupsFragment::class.java.simpleName
+//    @JvmStatic
+//    fun newInstance() = GroupsFragment()
+//}
 }

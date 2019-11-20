@@ -12,6 +12,10 @@ import android.view.ViewGroup
  */
 class DaysFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = DaysFragment()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

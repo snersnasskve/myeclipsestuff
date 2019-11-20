@@ -12,6 +12,10 @@ import android.view.ViewGroup
  */
 class DistanceFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = DistanceFragment()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
