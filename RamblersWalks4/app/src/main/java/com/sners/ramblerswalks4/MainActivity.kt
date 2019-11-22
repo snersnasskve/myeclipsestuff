@@ -7,10 +7,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.sners.ramblerswalks4.Controller.SearchManager
 import timber.log.Timber
 
 //import com.sners.ramblerswalks4.databinding
 
+const val MEMORYKEY = "mykey"
 
 // To add Timber
 /*
@@ -20,16 +22,38 @@ import timber.log.Timber
  */
 class MainActivity : AppCompatActivity() {
 
+    lateinit var searchManager : SearchManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //  Happens once at the beginning
+        this.searchManager = SearchManager(this.lifecycle)
+
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
+        else
+        {
+            val myint = savedInstanceState.getInt(MEMORYKEY)
+            print(myint)
+        }
         Timber.i("onCreate called from karen")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Timber.i("onSaveInstanceState called from karen")
+        outState.putInt(MEMORYKEY, 15)
+
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Timber.i("onRestoreInstanceState called from karen")
+
     }
 
     override fun onResume() {
