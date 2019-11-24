@@ -37,6 +37,8 @@ class MainFragment : Fragment() {
     private lateinit var search: SearchManager
     private lateinit var viewModel : RamblersViewModel
 
+    var daysSelected = "None"
+
     //  https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
     //  It is not clear where this function should go
 //    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {

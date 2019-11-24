@@ -108,8 +108,11 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
             //  All fragments and activities have access to navigation
             Timber.i("Days back button preseed called from karen")
 
+            var mainFragment = MainFragment.newInstance()
+            //  Of course this stomps over any other fields so need to figure
+            mainFragment.daysSelected = viewModel.description()
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, MainFragment.newInstance())
+            ft.replace(R.id.container, mainFragment)
             ft.commitNow()
         }
         return view
