@@ -1,4 +1,4 @@
-package com.sners.ramblerswalks4.Data
+package com.sners.ramblerswalks4.data
 
 class SearchData {
 

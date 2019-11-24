@@ -1,24 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     tools:context=".DaysFragment"
+    >
+
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
 
         android:orientation="vertical">
 
-        <TextView
+
+
+        <CheckBox
+            android:id="@+id/monday_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:text="@string/monday" />
+    <CheckBox
+        android:id="@+id/tuesday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tuesday" />
+    <CheckBox
+        android:id="@+id/wednesday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wednesday" />
+    <CheckBox
+        android:id="@+id/thursday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/thursday" />
+    <CheckBox
+        android:id="@+id/friday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/friday" />
 
+    <CheckBox
+        android:id="@+id/saturday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/saturday" />
+    <CheckBox
+        android:id="@+id/sunday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sunday" />
+    <CheckBox
+        android:id="@+id/weekdays_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/weekdays" />
+        <CheckBox
+            android:id="@+id/weekdends_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekends" />
+        <CheckBox
+        android:id="@+id/everyday_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/everyday" />
         <Button
             android:id="@+id/days_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back" />
     </LinearLayout>
+</ScrollView>
 

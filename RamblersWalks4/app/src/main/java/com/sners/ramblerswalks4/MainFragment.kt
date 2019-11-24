@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.view.OneShotPreDrawListener.add
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProviders
 //import androidx.navigation.Navigation
 //import androidx.navigation.findNavController
-import com.sners.ramblerswalks4.Controller.SearchManager
+import com.sners.ramblerswalks4.controller.SearchManager
+import com.sners.ramblerswalks4.data.RamblersViewModel
 import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +35,7 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var search: SearchManager
+    private lateinit var viewModel : RamblersViewModel
 
     //  https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
     //  It is not clear where this function should go
@@ -45,6 +45,7 @@ class MainFragment : Fragment() {
 //        fragmentTransaction.commit()
 //    }
 
+    //--------------------------------------------------------------------
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,6 +56,9 @@ class MainFragment : Fragment() {
         //  Setup search controller - make it become a lifecycle observer
         //      Then it will automatically know when stuff happens and it needs to save data
         this.search = SearchManager(this.lifecycle)
+
+        //  Add the ViewModel for this fragment
+        viewModel = ViewModelProviders.of(this).get(RamblersViewModel::class.java)
 
         var view = inflater.inflate(R.layout.fragment_main, container, false)
 

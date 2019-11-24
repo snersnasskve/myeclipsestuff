@@ -1,9 +1,9 @@
-package com.sners.ramblerswalks4.Controller
+package com.sners.ramblerswalks4.controller
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.sners.ramblerswalks4.Data.SearchData
+import com.sners.ramblerswalks4.data.SearchData
 import timber.log.Timber
 
 class SearchManager(lifecycle: Lifecycle)  : LifecycleObserver{

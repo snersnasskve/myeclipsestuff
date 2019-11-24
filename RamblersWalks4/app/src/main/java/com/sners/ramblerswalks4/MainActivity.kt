@@ -3,11 +3,7 @@ package com.sners.ramblerswalks4
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.sners.ramblerswalks4.Controller.SearchManager
+import com.sners.ramblerswalks4.controller.SearchManager
 import timber.log.Timber
 
 //import com.sners.ramblerswalks4.databinding

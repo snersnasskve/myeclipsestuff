@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.ViewModelProviders
+import com.sners.ramblerswalks4.data.DistanceViewModel
 import timber.log.Timber
 
 /**
@@ -18,10 +20,16 @@ class DistanceFragment : Fragment() {
         fun newInstance() = DistanceFragment()
     }
 
+    private lateinit var viewModel : DistanceViewModel
+    //--------------------------------------------------------------------
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //  Add the ViewModel for this fragment
+        viewModel = ViewModelProviders.of(this).get(DistanceViewModel::class.java)
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_distance, container, false)
 
