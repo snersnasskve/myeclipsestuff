@@ -28,8 +28,9 @@
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
+                app:layout_collapseMode="none"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -49,6 +50,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/item_detail_container"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

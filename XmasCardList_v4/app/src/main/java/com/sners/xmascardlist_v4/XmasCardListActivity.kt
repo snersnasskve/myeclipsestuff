@@ -39,7 +39,7 @@ class XmasCardListActivity : AppCompatActivity() {
         toolbar.title = title
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Add a new contact", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
