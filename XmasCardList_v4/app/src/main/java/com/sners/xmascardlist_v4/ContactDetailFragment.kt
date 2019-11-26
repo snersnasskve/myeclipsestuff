@@ -11,11 +11,11 @@ import kotlinx.android.synthetic.main.item_detail.view.*
 
 /**
  * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [ItemListActivity]
- * in two-pane mode (on tablets) or a [ItemDetailActivity]
+ * This fragment is either contained in a [XmasCardListActivity]
+ * in two-pane mode (on tablets) or a [ContactDetailActivity]
  * on handsets.
  */
-class ItemDetailFragment : Fragment() {
+class ContactDetailFragment : Fragment() {
 
     /**
      * The dummy content this fragment is presenting.
