@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.sners.xmascardlist_v4.controller.ContactController
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
@@ -15,8 +16,11 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
  */
 class ContactDetailActivity : AppCompatActivity() {
 
+    public var contactController: ContactController? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        contactController = ContactController()
         setContentView(R.layout.activity_item_detail)
         setSupportActionBar(detail_toolbar)
 
@@ -49,6 +53,7 @@ class ContactDetailActivity : AppCompatActivity() {
                 }
             }
 
+            fragment.contactController = contactController
             supportFragmentManager.beginTransaction()
                 .add(R.id.item_detail_container, fragment)
                 .commit()

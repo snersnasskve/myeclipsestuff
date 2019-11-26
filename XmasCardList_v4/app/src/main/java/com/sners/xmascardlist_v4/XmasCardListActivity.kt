@@ -9,8 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.sners.xmascardlist_v4.controller.ContactController
+import com.sners.xmascardlist_v4.data.Contact
 
-import com.sners.xmascardlist_v4.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.item_list.*
  * item details side-by-side using two vertical panes.
  */
 class XmasCardListActivity : AppCompatActivity() {
+
+    var contactController = ContactController()
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -55,12 +58,13 @@ class XmasCardListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, twoPane)
+
+        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, contactController.contacts, twoPane)
     }
 
     class SimpleItemRecyclerViewAdapter(
         private val parentActivity: XmasCardListActivity,
-        private val values: List<DummyContent.DummyItem>,
+        private val values: List<Contact>,
         private val twoPane: Boolean
     ) :
         RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -69,13 +73,14 @@ class XmasCardListActivity : AppCompatActivity() {
 
         init {
             onClickListener = View.OnClickListener { v ->
-                val item = v.tag as DummyContent.DummyItem
+                val item = v.tag as Contact
                 if (twoPane) {
                     val fragment = ContactDetailFragment().apply {
                         arguments = Bundle().apply {
-                            putString(ContactDetailFragment.ARG_ITEM_ID, item.id)
+                            putString(ContactDetailFragment.ARG_ITEM_ID, item.id.toString())
                         }
                     }
+                    fragment.contactController = parentActivity.contactController
                     parentActivity.supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.item_detail_container, fragment)
@@ -97,8 +102,8 @@ class XmasCardListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
-            holder.idView.text = item.id
-            holder.contentView.text = item.content
+            holder.idView.text = item.id.toString()
+            holder.contentView.text = item.firstName
 
             with(holder.itemView) {
                 tag = item
