@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 //import androidx.navigation.Navigation
 //import androidx.navigation.findNavController
@@ -37,7 +38,17 @@ class MainFragment : Fragment() {
     private lateinit var search: SearchManager
     private lateinit var viewModel : RamblersViewModel
 
-    var daysSelected = "None"
+    var daysSelected : String = "None"
+//    get()
+//    {
+//        var temp = search.daysViewModel?.daysDescription
+//        if (null == temp) {
+//            return "Any day"
+//        } else
+//        {
+//            return temp!!
+//        }
+//    }
 
     //  https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
     //  It is not clear where this function should go
@@ -65,6 +76,8 @@ class MainFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_main, container, false)
 
         addButtonListeners(view)
+
+        view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
 
         return view
 }

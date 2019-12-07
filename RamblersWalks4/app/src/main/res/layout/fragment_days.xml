@@ -2,82 +2,141 @@
 
 
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".DaysFragment"
     android:weightSum="1"
+    android:baselineAligned="false"
     >
 
 
-
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:id="@+id/daysLinearLayoutLeft"
+        android:layout_width="0dp"
 
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
 
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/daysLinearLayoutRight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <CheckBox
             android:id="@+id/monday_checkbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/monday" />
-    <CheckBox
-        android:id="@+id/tuesday_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tuesday" />
-    <CheckBox
-        android:id="@+id/wednesday_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/wednesday" />
-    <CheckBox
-        android:id="@+id/thursday_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/thursday" />
-    <CheckBox
-        android:id="@+id/friday_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/friday" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/monday"
+            style="@style/body_style"/>
 
-    <CheckBox
-        android:id="@+id/saturday_checkbox"
-        android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/tuesday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/tuesday"
+            style="@style/body_style"/>
+
+        <CheckBox
+            android:id="@+id/wednesday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/wednesday"
+            style="@style/body_style"/>
+
+        <CheckBox
+            android:id="@+id/thursday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/thursday"
+            style="@style/body_style"/>
+
+        <CheckBox
+            android:id="@+id/friday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/friday"
+            style="@style/body_style"/>
+
+        <CheckBox
+            android:id="@+id/saturday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/saturday"
+            style="@style/body_style"/>
+
+        <CheckBox
+            android:id="@+id/sunday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/sunday"
+            style="@style/body_style"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/daysLinearLayoutRight"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/saturday" />
-    <CheckBox
-        android:id="@+id/sunday_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sunday" />
-    <CheckBox
-        android:id="@+id/weekdays_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/weekdays" />
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/daysLinearLayoutLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <CheckBox
+            android:id="@+id/weekdays_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/weekdays"
+            style="@style/body_style"/>
+
         <CheckBox
             android:id="@+id/weekdends_checkbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/weekends" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/weekends"
+            style="@style/body_style"/>
+
         <CheckBox
-        android:id="@+id/everyday_checkbox"
+            android:id="@+id/everyday_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/everyday"
+            style="@style/body_style"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/days_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/everyday" />
-        <Button
-            android:id="@+id/days_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/back" />
-    </LinearLayout>
-</LinearLayout>
+        android:layout_weight="1"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daysLinearLayoutLeft"
+        app:layout_constraintVertical_bias="0.2"
+            style="@style/button_style"
+/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

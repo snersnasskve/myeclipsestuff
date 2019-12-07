@@ -50,6 +50,44 @@ class DaysViewModel : ViewModel() {
     val everyday : LiveData<Boolean>
         get() = _everyday
 
+    val daysDescription : String
+        get() {
+            var desc = "None"
+            var selectedDays = ArrayList<String>()
+            if(monday.value!!)
+            {
+                selectedDays.add(DayName.MONDAY.day)
+            }
+            if(tuesday.value!!)
+            {
+                selectedDays.add(DayName.TUESDAY.day)
+            }
+            if(wednesday.value!!)
+            {
+                selectedDays.add(DayName.WEDNESDAY.day)
+            }
+            if(thursday.value!!)
+            {
+                selectedDays.add(DayName.THURSDAY.day)
+            }
+            if(friday.value!!)
+            {
+                selectedDays.add(DayName.FRIDAY.day)
+            }
+            if(saturday.value!!)
+            {
+                selectedDays.add(DayName.SATURDAY.day)
+            }
+            if(sunday.value!!)
+            {
+                selectedDays.add(DayName.SUNDAY.day)
+            }
+            if (selectedDays.count() > 0) {
+                desc = selectedDays.joinToString(separator = ", ")
+            }
+            return desc
+        }
+
     enum class DayName(val day: String) {
         MONDAY("Monday"),
         TUESDAY("Tuesday"),
@@ -122,37 +160,44 @@ class DaysViewModel : ViewModel() {
     fun description(): String
     {
         var desc = "None"
-        var selectedDays = ArrayList<String>()
-       if(monday.value!!)
-       {
-           selectedDays.add(DayName.MONDAY.day)
-       }
-        if(tuesday.value!!)
+        if (everyday.value!! || ((weekdays.value!! && weekend.value!!) ))
         {
-            selectedDays.add(DayName.TUESDAY.day)
+            desc = "Every Day"
         }
-        if(wednesday.value!!)
-    {
-        selectedDays.add(DayName.WEDNESDAY.day)
-    }
-        if(thursday.value!!)
-    {
-        selectedDays.add(DayName.THURSDAY.day)
-    }
-        if(friday.value!!)
-    {
-        selectedDays.add(DayName.FRIDAY.day)
-    }
-        if(saturday.value!!)
-    {
-        selectedDays.add(DayName.SATURDAY.day)
-    }
-        if(sunday.value!!)
-    {
-        selectedDays.add(DayName.SUNDAY.day)
-    }
-        if (selectedDays.count() > 0) {
-            desc = selectedDays.joinToString(separator = ", ")
+        else if (weekdays.value!!)
+        {
+            desc = "Weekdays"
+        }
+        else if (weekend.value!!)
+        {
+            desc = "Weekends"
+        }
+        else {
+            var selectedDays = ArrayList<String>()
+            if (monday.value!!) {
+                selectedDays.add(DayName.MONDAY.day)
+            }
+            if (tuesday.value!!) {
+                selectedDays.add(DayName.TUESDAY.day)
+            }
+            if (wednesday.value!!) {
+                selectedDays.add(DayName.WEDNESDAY.day)
+            }
+            if (thursday.value!!) {
+                selectedDays.add(DayName.THURSDAY.day)
+            }
+            if (friday.value!!) {
+                selectedDays.add(DayName.FRIDAY.day)
+            }
+            if (saturday.value!!) {
+                selectedDays.add(DayName.SATURDAY.day)
+            }
+            if (sunday.value!!) {
+                selectedDays.add(DayName.SUNDAY.day)
+            }
+            if (selectedDays.count() > 0) {
+                desc = selectedDays.joinToString(separator = ", ")
+            }
         }
         return desc
     }

@@ -31,9 +31,14 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
     lateinit var weekends_checkbox : CheckBox
     lateinit var everyday_checkbox : CheckBox
 
+    var description = "Any Day"
 
     companion object {
         fun newInstance() = DaysFragment()
+
+        var daysDescription = "None"
+
+
     }
 
     private lateinit var viewModel : DaysViewModel
@@ -101,7 +106,6 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
             everyday_checkbox.isChecked = newValue
         })
 
-        //this.updateValues()
 
         val backButton = view?.findViewById<Button>(R.id.days_back_button)
         backButton?.setOnClickListener {
@@ -109,8 +113,12 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
             Timber.i("Days back button preseed called from karen")
 
             var mainFragment = MainFragment.newInstance()
+            mainFragment.daysSelected = daysDescription
             //  Of course this stomps over any other fields so need to figure
-            mainFragment.daysSelected = viewModel.description()
+            //mainFragment.daysSelected = viewModel.description()
+
+            //  Add to stored memory
+
             val ft = fragmentManager!!.beginTransaction()
             ft.replace(R.id.container, mainFragment)
             ft.commitNow()
@@ -122,7 +130,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
         Timber.i("tickbox changed from karen")
         val tickedName = buttonView?.text
         viewModel.tickBoxChanged(tickedName as String, isChecked)
-        //this.updateValues()
+        daysDescription = viewModel.daysDescription
     }
 
 

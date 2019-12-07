@@ -3,11 +3,18 @@ package com.sners.ramblerswalks4.controller
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.sners.ramblerswalks4.data.DaysViewModel
+import com.sners.ramblerswalks4.data.DistanceViewModel
+import com.sners.ramblerswalks4.data.GroupsViewModel
 import com.sners.ramblerswalks4.data.SearchData
 import timber.log.Timber
 
 class SearchManager(lifecycle: Lifecycle)  : LifecycleObserver{
     val searchData = SearchData()
+
+    val daysViewModel : DaysViewModel? = null
+    val distanceViewModel : DistanceViewModel? = null
+    val groupsViewModel : GroupsViewModel? = null
 
     init {
         // Add this as a lifecycle Observer, which allows for the class to react to changes in this
