@@ -77,7 +77,7 @@ class XmasCardListActivity : AppCompatActivity() {
                 if (twoPane) {
                     val fragment = ContactDetailFragment().apply {
                         arguments = Bundle().apply {
-                            putString(ContactDetailFragment.ARG_ITEM_ID, item.id.toString())
+                            putString(ContactDetailFragment.ARG_ITEM_ID, item.contactId.toString())
                         }
                     }
                     fragment.contactController = parentActivity.contactController
@@ -87,7 +87,7 @@ class XmasCardListActivity : AppCompatActivity() {
                         .commit()
                 } else {
                     val intent = Intent(v.context, ContactDetailActivity::class.java).apply {
-                        putExtra(ContactDetailFragment.ARG_ITEM_ID, item.id)
+                        putExtra(ContactDetailFragment.ARG_ITEM_ID, item.contactId)
                     }
                     v.context.startActivity(intent)
                 }
@@ -102,8 +102,8 @@ class XmasCardListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
-            holder.idView.text = item.id.toString()
-            holder.contentView.text = item.firstName
+            holder.idView.text = item.contactId.toString()
+            holder.contentView.text = item.firstName.value
 
             with(holder.itemView) {
                 tag = item
