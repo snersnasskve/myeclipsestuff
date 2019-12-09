@@ -44,11 +44,12 @@ class ContactDetailActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
+            val contactId = intent.getIntExtra(ContactDetailFragment.ARG_ITEM_ID, -99)
             val fragment = ContactDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(
+                    putInt(
                         ContactDetailFragment.ARG_ITEM_ID,
-                        intent.getStringExtra(ContactDetailFragment.ARG_ITEM_ID)
+                        contactId
                     )
                 }
             }

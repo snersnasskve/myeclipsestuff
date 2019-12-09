@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentFactory
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModelProviders
 import com.sners.xmascardlist_v4.controller.ContactController
 import com.sners.xmascardlist_v4.data.Contact
 import com.sners.xmascardlist_v4.data.ContactViewModelFactory
@@ -22,8 +23,9 @@ import kotlinx.android.synthetic.main.item_detail.view.*
 class ContactDetailFragment : Fragment() , LifecycleObserver{
 
     public var contactController: ContactController? = null
-    private lateinit var contact : Contact
+    private lateinit var contactViewModel : Contact
     private  lateinit var viewModelFractory: ContactViewModelFactory
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +40,12 @@ class ContactDetailFragment : Fragment() , LifecycleObserver{
 //                    contact = contactController!!.contactMap[it.getString(ARG_ITEM_ID)]
 //                }
 
-                viewModelFractory = ContactViewModelFactory(it.getString(ARG_ITEM_ID).toInt())
+                //  She suggested this should go in onCreateView().  Not sure the benefits / otherwise
+                val contactId = it.getInt(ARG_ITEM_ID)
+                viewModelFractory = ContactViewModelFactory(contactId)
 
-               // activity?.toolbar_layout?.title = contact?.firstName!!.value
+                contactViewModel = ViewModelProviders.of(this, viewModelFractory).get(Contact::class.java)
+                //activity?.toolbar_layout?.title = contact?.firstName!!.value
             }
         }
     }
@@ -52,7 +57,8 @@ class ContactDetailFragment : Fragment() , LifecycleObserver{
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
         // Show the dummy content as text in a TextView.
-        contact?.let {
+
+        contactViewModel?.let {
             rootView.item_detail.text = it.firstName.value
         }
 

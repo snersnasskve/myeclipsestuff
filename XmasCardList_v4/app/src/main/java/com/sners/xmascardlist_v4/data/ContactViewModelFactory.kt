@@ -15,3 +15,4 @@ class ContactViewModelFactory(private val contactId: Int) : ViewModelProvider.Fa
         throw IllegalArgumentException("Unknown ViewModel Class")
     }
 }
+
