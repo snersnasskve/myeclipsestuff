@@ -45,5 +45,6 @@
     <!-- prefs -->
     <string name="preferences">Filter Preferences</string>
     <string name="mark_all_unsent">Mark All Not Sent</string>
+    <string name="add_new_contact">Add a new contact</string>
 
 </resources>

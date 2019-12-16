@@ -53,10 +53,9 @@ class ContactDetailActivity : AppCompatActivity() {
                     )
                 }
             }
-
             fragment.contactController = contactController
             supportFragmentManager.beginTransaction()
-                .add(R.id.item_detail_container, fragment)
+                .add(R.id.contact_detail_container, fragment)
                 .commit()
         }
     }

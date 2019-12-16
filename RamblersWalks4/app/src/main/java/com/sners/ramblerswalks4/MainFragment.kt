@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 //import androidx.navigation.findNavController
 import com.sners.ramblerswalks4.controller.SearchManager
 import com.sners.ramblerswalks4.data.RamblersViewModel
+import kotlinx.android.synthetic.main.fragment_main.*
 import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match
@@ -77,9 +78,11 @@ class MainFragment : Fragment() {
 
         addButtonListeners(view)
 
-        view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
+        //view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
+        //  Don't need find by id unless you want to do something specific with it - apparently
+        days_label.text =  this.daysSelected
 
-        return view
+            return view
 }
 
     //--------------------------------------------------------------------

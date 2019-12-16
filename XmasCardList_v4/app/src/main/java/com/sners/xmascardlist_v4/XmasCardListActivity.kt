@@ -42,11 +42,11 @@ class XmasCardListActivity : AppCompatActivity() {
         toolbar.title = title
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Add a new contact", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, getString(R.string.add_new_contact), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
-        if (item_detail_container != null) {
+        if (contact_detail_container != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -59,15 +59,15 @@ class XmasCardListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
 
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, contactController.contacts, twoPane)
+        recyclerView.adapter = XmasCardItemRecyclerViewAdapter(this, contactController.contacts, twoPane)
     }
 
-    class SimpleItemRecyclerViewAdapter(
+    class XmasCardItemRecyclerViewAdapter(
         private val parentActivity: XmasCardListActivity,
         private val values: List<Contact>,
         private val twoPane: Boolean
     ) :
-        RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
+        RecyclerView.Adapter<XmasCardItemRecyclerViewAdapter.ViewHolder>() {
 
         private val onClickListener: View.OnClickListener
 
@@ -77,13 +77,13 @@ class XmasCardListActivity : AppCompatActivity() {
                 if (twoPane) {
                     val fragment = ContactDetailFragment().apply {
                         arguments = Bundle().apply {
-                            putString(ContactDetailFragment.ARG_ITEM_ID, item.contactId.toString())
+                            putInt(ContactDetailFragment.ARG_ITEM_ID, item.contactId)
                         }
                     }
                     fragment.contactController = parentActivity.contactController
                     parentActivity.supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.item_detail_container, fragment)
+                        .replace(R.id.contact_detail_container, fragment)
                         .commit()
                 } else {
                     val intent = Intent(v.context, ContactDetailActivity::class.java).apply {
