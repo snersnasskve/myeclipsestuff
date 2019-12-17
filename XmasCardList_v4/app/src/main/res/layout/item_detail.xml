@@ -22,18 +22,6 @@
             android:padding="16dp"
             android:text="@string/first_name"
             android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/tvFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_5dp"
-            android:text="@string/first_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,16 +29,169 @@
             android:id="@+id/etFirstName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
+            android:autofillHints="@string/first_name"
+            android:hint="@string/first_name"
             android:inputType="textPersonName"
             android:padding="@dimen/padding_5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            app:layout_constraintStart_toEndOf="@+id/tvFirstName"
-            app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/first_name"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_detail" />
 
         <requestFocus />
+
+        <EditText
+            android:id="@+id/etEmailAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/email_address"
+            android:ems="10"
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/home_address"
+            android:inputType="textCapWords"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />
+
+        <EditText
+            android:id="@+id/etAreaCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/area_code"
+            android:inputType="textCapCharacters"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etAddress" />
+
+        <AutoCompleteTextView
+            android:id="@+id/actvCountry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"
+
+            android:hint="@string/country"
+            android:inputType="textAutoComplete|textCapWords"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etAreaCode" />
+
+        <EditText
+            android:id="@+id/etKids"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/kids"
+            android:inputType="textCapWords"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actvCountry" />
+
+        <EditText
+            android:id="@+id/etLastSent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/last_sent"
+            android:inputType="text|date"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etKids" />
+
+        <EditText
+            android:id="@+id/tvXRecYears"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+
+            android:hint="@string/xmas_received"
+            android:padding="@dimen/padding_5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLastSent" />
+
+
+        <CheckBox
+            android:id="@+id/cbXSent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/xmas_sent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvXRecYears" />
+
+        <CheckBox
+            android:id="@+id/cbXEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/xmas_email_only"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbXSent" />
+
+        <CheckBox
+            android:id="@+id/cbFavourite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/favourite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbXEmail" />
+
+
+        <Button
+            android:id="@+id/btnNav"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/navigate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbFavourite" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/save_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnDelete"
+            app:layout_constraintTop_toTopOf="@+id/btnDelete" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnNav"
+            app:layout_constraintTop_toTopOf="@+id/btnNav" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
