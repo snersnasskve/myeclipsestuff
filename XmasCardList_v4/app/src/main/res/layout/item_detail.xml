@@ -40,81 +40,69 @@
                 android:id="@+id/etFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="@string/first_name"
+                android:hint="@string/first_name"
                 android:inputType="textPersonName"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmailAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilFirstName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+   <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilEmailAddress">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/home_address"
+                android:inputType="textCapWords"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
 
 
-        <TextView
-            android:id="@+id/tvEmailAddress"
-            android:layout_marginTop="8dp"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/email_address"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilFirstName" />
-        <EditText
-            android:id="@+id/etEmailAddress"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAreaCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/email_address"
-            android:ems="10"
-            android:hint="@string/email_address"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/padding_5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvEmailAddress"
-            app:layout_constraintTop_toBottomOf="@+id/tilFirstName" />
-
-        <TextView
-            android:id="@+id/tvAddress"
-            android:layout_marginTop="8dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_address"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/tilAddress">
 
-        <EditText
-            android:id="@+id/etAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/home_address"
-            android:inputType="textCapWords"
-            android:padding="@dimen/padding_5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvAddress"
-            app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAreaCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/area_code"
+                android:inputType="textCapCharacters"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-        <TextView
-            android:id="@+id/tvAreaCode"
-            android:layout_marginTop="8dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_address"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAddress" />
-
-        <EditText
-            android:id="@+id/etAreaCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/area_code"
-            android:inputType="textCapCharacters"
-            android:padding="@dimen/padding_5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvAreaCode"
-            app:layout_constraintTop_toBottomOf="@+id/etAddress" />
 
         <AutoCompleteTextView
             android:id="@+id/actvCountry"
@@ -127,7 +115,7 @@
             android:padding="@dimen/padding_5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAreaCode" />
+            app:layout_constraintTop_toBottomOf="@+id/tilAreaCode" />
 
         <EditText
             android:id="@+id/etKids"
