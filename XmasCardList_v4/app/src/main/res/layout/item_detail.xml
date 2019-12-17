@@ -14,6 +14,8 @@
         android:layout_height="match_parent">
 
 
+
+
         <TextView
             android:id="@+id/item_detail"
             style="?android:attr/textAppearanceLarge"
@@ -25,21 +27,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/etFirstName"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilFirstName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/first_name"
-            android:hint="@string/first_name"
-            android:inputType="textPersonName"
-            android:padding="@dimen/padding_5dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/item_detail">
 
-        <requestFocus />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/first_name"
+                android:inputType="textPersonName"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+
+
+
+        <TextView
+            android:id="@+id/tvEmailAddress"
+            android:layout_marginTop="8dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilFirstName" />
         <EditText
             android:id="@+id/etEmailAddress"
             android:layout_width="0dp"
@@ -50,8 +67,18 @@
             android:inputType="textEmailAddress"
             android:padding="@dimen/padding_5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvEmailAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tilFirstName" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_marginTop="8dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_address"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
+            app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />
 
         <EditText
             android:id="@+id/etAddress"
@@ -62,8 +89,19 @@
             android:inputType="textCapWords"
             android:padding="@dimen/padding_5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvAddress"
             app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />
+
+
+        <TextView
+            android:id="@+id/tvAreaCode"
+            android:layout_marginTop="8dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etAddress" />
 
         <EditText
             android:id="@+id/etAreaCode"
@@ -75,7 +113,7 @@
             android:inputType="textCapCharacters"
             android:padding="@dimen/padding_5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvAreaCode"
             app:layout_constraintTop_toBottomOf="@+id/etAddress" />
 
         <AutoCompleteTextView
@@ -191,6 +229,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnNav"
             app:layout_constraintTop_toTopOf="@+id/btnNav" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
