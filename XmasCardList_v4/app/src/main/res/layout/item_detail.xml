@@ -14,8 +14,6 @@
         android:layout_height="match_parent">
 
 
-
-
         <TextView
             android:id="@+id/item_detail"
             style="?android:attr/textAppearanceLarge"
@@ -64,7 +62,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-   <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilAddress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -80,10 +78,6 @@
                 android:inputType="textCapWords"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -158,31 +152,34 @@
 
         <CheckBox
             android:id="@+id/cbXSent"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/xmas_sent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cbXEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvXRecYears" />
 
         <CheckBox
             android:id="@+id/cbXEmail"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/xmas_email_only"
+            app:layout_constraintBottom_toBottomOf="@+id/cbXSent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cbXSent" />
+            app:layout_constraintEnd_toStartOf="@+id/cbFavourite"
+            app:layout_constraintStart_toEndOf="@+id/cbXSent"
+            app:layout_constraintTop_toTopOf="@+id/cbXSent" />
+
 
         <CheckBox
             android:id="@+id/cbFavourite"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/favourite"
+            app:layout_constraintBottom_toBottomOf="@+id/cbXEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cbXEmail" />
-
+            app:layout_constraintStart_toEndOf="@+id/cbXEmail"
+            app:layout_constraintTop_toTopOf="@+id/cbXEmail" />
 
         <Button
             android:id="@+id/btnNav"
@@ -217,7 +214,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnNav"
             app:layout_constraintTop_toTopOf="@+id/btnNav" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
