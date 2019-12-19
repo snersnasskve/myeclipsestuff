@@ -78,9 +78,10 @@ class MainFragment : Fragment() {
 
         addButtonListeners(view)
 
-        //view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
+        view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
         //  Don't need find by id unless you want to do something specific with it - apparently
-        days_label.text =  this.daysSelected
+        //  Sorry it just crashes with line below. There must be something else set for this to work
+       // days_label.text =  this.daysSelected
 
             return view
 }
