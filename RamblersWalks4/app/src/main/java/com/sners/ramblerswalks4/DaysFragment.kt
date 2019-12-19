@@ -110,21 +110,12 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
         val backButton = view?.findViewById<Button>(R.id.days_back_button)
         backButton?.setOnClickListener {
             //  All fragments and activities have access to navigation
-            Timber.i("Days back button preseed called from karen")
-
-            var mainFragment = MainFragment.newInstance()
-            mainFragment.daysSelected = daysDescription
-            //  Of course this stomps over any other fields so need to figure
-            //mainFragment.daysSelected = viewModel.description()
-
-            //  Add to stored memory
-
-            val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, mainFragment)
-            ft.commitNow()
+            backButtonPressed()
         }
         return view
     }
+
+
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         Timber.i("tickbox changed from karen")
@@ -133,7 +124,25 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
         daysDescription = viewModel.daysDescription
     }
 
+//    override fun onStop() {
+//        super.onStop()
+//        backButtonPressed()
+//    }
 
+    private fun backButtonPressed() {
+        Timber.i("Days back button preseed called from karen")
+
+        var mainFragment = MainFragment.newInstance()
+        mainFragment.daysSelected = daysDescription
+        //  Of course this stomps over any other fields so need to figure
+        //mainFragment.daysSelected = viewModel.description()
+
+        //  Add to stored memory
+
+        val ft = fragmentManager!!.beginTransaction()
+        ft.replace(R.id.container, mainFragment)
+        ft.commitNow()
+    }
 
 
 }
