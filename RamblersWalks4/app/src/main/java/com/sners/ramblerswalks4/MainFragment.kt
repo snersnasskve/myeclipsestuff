@@ -40,6 +40,7 @@ class MainFragment : Fragment() {
     private lateinit var viewModel : RamblersViewModel
 
     var daysSelected : String = "None"
+    var distanceSelected : String = "None"
 //    get()
 //    {
 //        var temp = search.daysViewModel?.daysDescription

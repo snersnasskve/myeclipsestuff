@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,48 +10,101 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/any_distance"
-            android:textAppearance="@style/body_style" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/any_distance"
+        android:textAppearance="@style/body_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/minimum_distance_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding"
-        android:text="@string/minumum_miles" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/minumum_miles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:textAppearance="@style/body_style"/>
 
-        <SeekBar
-            android:id="@+id/seekBar2"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="10"
-            android:padding="@dimen/padding"
-            android:progress="3" />
+    <TextView
+        android:id="@+id/minimum_distance_value"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
 
-        <TextView
-            android:id="@+id/maximum_distance_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/minumum_miles" />
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/minimum_distance_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/minimum_distance_label"
+        android:textAppearance="@style/body_style"/>
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarMinimum"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:max="10"
+        android:padding="@dimen/padding"
+        android:progress="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minimum_distance_label" />
+
+
+    <SeekBar
+        android:id="@+id/seekBarMaximum"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="10"
         android:padding="@dimen/padding"
-        android:progress="3" />
+        android:progress="3"
+        app:layout_constraintTop_toBottomOf="@+id/maximum_distance_label"
+        tools:layout_editor_absoluteX="16dp" />
 
-    <Button
-        android:id="@+id/distance_back_button"
+
+    <TextView
+        android:id="@+id/maximum_distance_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/minumum_miles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMinimum"
+        android:textAppearance="@style/body_style"/>
 
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/maximum_distance_value"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/maximum_distance_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/maximum_distance_label"
+        app:layout_constraintTop_toTopOf="@+id/maximum_distance_label"
+        android:textAppearance="@style/body_style"/>
+    <Button
+        android:id="@+id/distance_back_button"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMaximum" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

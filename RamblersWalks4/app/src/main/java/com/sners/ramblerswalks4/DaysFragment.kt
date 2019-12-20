@@ -31,7 +31,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
     lateinit var weekends_checkbox : CheckBox
     lateinit var everyday_checkbox : CheckBox
 
-    var description = "Any Day"
+    //var description = "Any Day"
 
     companion object {
         fun newInstance() = DaysFragment()
@@ -124,7 +124,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
         daysDescription = viewModel.daysDescription
     }
 
-//    override fun onStop() {
+//    override fun onBackPressed() {
 //        super.onStop()
 //        backButtonPressed()
 //    }
