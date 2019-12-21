@@ -4,4 +4,6 @@
     <string name="def_f">° F</string>
     <string name="enter_temp">Enter temperature</string>
     <string name="thermometer_image">Thermometer Image</string>
+    <string name="celcius_temp">0 ° C</string>
+    <string name="fahrenheit_temp">32 ° F</string>
 </resources>

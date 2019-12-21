@@ -7,11 +7,86 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/celcius_value"
+        style="@android:style/Widget.Material.EditText"
+        android:layout_width="280dp"
+        android:layout_height="125dp"
+        android:ems="10"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="46sp"
+        app:layout_constraintBottom_toBottomOf="@+id/celcius_button"
+        app:layout_constraintEnd_toStartOf="@+id/celcius_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/celcius_button" />
+
+    <ImageView
+        android:id="@+id/celcius_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="30dp"
+        android:layout_height="60dp"
+android:contentDescription="@string/celcius_temp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:alpha="0.5"
+        android:background="@mipmap/celcius_icon_foreground"
+        android:onClick="buttonClicked"
+        android:scaleType="fitCenter"
+        android:textSize="48sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/celcius_value" />
+
+    <TextView
+        android:id="@+id/fahrenheit_value"
+
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="48sp"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+    app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/fahrenheit_button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fahrenheit_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="30dp"
+        android:layout_height="60dp"
+
+        android:layout_weight="1"
+        android:alpha="0.4"
+        android:background="@mipmap/fahrenheit_icon_foreground"
+        android:fontFamily="@font/ultra"
+        android:onClick="buttonClicked"
+        android:scaleType="fitCenter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+
+        app:layout_constraintTop_toTopOf="@+id/fahrenheit_value"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
         android:alpha="1.0"
         android:contentDescription="@string/thermometer_image"
         android:scaleType="fitCenter"
@@ -19,85 +94,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_temperature"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/fahrenheit_button"
         app:srcCompat="@mipmap/thermometer_3_foreground" />
-
-    <EditText
-        android:id="@+id/edit_temperature"
-        style="@android:style/Widget.Material.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/enter_temp"
-        android:importantForAutofill="no"
-        android:inputType="numberSigned"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="46sp"
-        app:layout_constraintEnd_toEndOf="@+id/buttons"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <LinearLayout
-        android:id="@+id/buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/edit_temperature">
-
-        <Button
-            android:id="@+id/celcius_button"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="30dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="48dp"
-
-            android:layout_marginEnd="12dp"
-
-            android:layout_weight="1"
-            android:alpha="0.5"
-            android:background="@mipmap/celcius_icon_foreground"
-            android:onClick="buttonClicked"
-            android:scaleType="fitCenter"
-            android:textSize="48sp"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/fahrenheit_button"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="30dp"
-            android:layout_height="60dp"
-
-            android:layout_marginEnd="46dp"
-            android:layout_weight="1"
-            android:alpha="0.4"
-            android:background="@mipmap/fahrenheit_icon_foreground"
-            android:fontFamily="@font/ultra"
-            android:onClick="buttonClicked"
-            android:scaleType="fitCenter"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="48sp"
-            tools:visibility="visible" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/label_temperature"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttons"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

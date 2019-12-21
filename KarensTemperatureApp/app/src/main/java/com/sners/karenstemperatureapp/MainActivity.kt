@@ -3,9 +3,7 @@ package com.sners.karenstemperatureapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,24 +16,15 @@ class MainActivity : AppCompatActivity() {
 
     public fun buttonClicked(view : View)
     {
-        val celciusButton = findViewById<Button>(R.id.celcius_button)
-        val fahrButton = findViewById<Button>(R.id.fahrenheit_button)
-        val tempToConvert = findViewById<EditText>(R.id.edit_temperature)
-        val resultLabel = this.findViewById<TextView>(R.id.label_temperature)
+//        val celciusButton = findViewById<Button>(R.id.celcius_button)
+//        val fahrButton = findViewById<Button>(R.id.fahrenheit_button)
+//        val tempToConvert = findViewById<EditText>(R.id.edit_temperature)
+//        val resultLabel = this.findViewById<TextView>(R.id.label_temperature)
 
-        var cAlpha = 0.4f
-        var fAlpha = 0.4f
-        if (view.id == R.id.celcius_button) {
-            cAlpha = 1.0f
-            resultLabel.text = this.convertToFahrenheit(tempToConvert.text.toString())
-        }
-        else if (view.id == R.id.fahrenheit_button) {
-            fAlpha = 1.0f
-            resultLabel.text = this.convertToCelsius(tempToConvert.text.toString())
-        }
 
-        celciusButton.alpha = cAlpha
-        fahrButton.alpha = fAlpha
+
+        //    fahrenheit_value.text = this.convertToFahrenheit(celcius_value.text.toString())
+
 
 
     }
