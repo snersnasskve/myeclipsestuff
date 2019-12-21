@@ -108,7 +108,7 @@
             style="@style/checkbox_style"/>
 
         <CheckBox
-            android:id="@+id/weekdends_checkbox"
+            android:id="@+id/weekends_checkbox"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

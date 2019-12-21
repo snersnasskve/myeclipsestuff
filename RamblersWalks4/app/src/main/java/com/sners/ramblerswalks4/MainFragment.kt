@@ -77,19 +77,25 @@ class MainFragment : Fragment() {
 
         var view = inflater.inflate(R.layout.fragment_main, container, false)
 
-        addButtonListeners(view)
-
-        view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
-        view.findViewById<TextView>(R.id.distance_label).text = this.distanceSelected
-
-
             return view
 }
 
     //--------------------------------------------------------------------
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        addButtonListeners(view)
+       // view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
+       // view.findViewById<TextView>(R.id.distance_label).text = this.distanceSelected
+       // var daysLabel = days_label
+        days_label.text = this.daysSelected
+         distance_label.text = this.distanceSelected
+
+    }
+    //--------------------------------------------------------------------
     private fun addButtonListeners(view: View?) {
-        val groupButton = view?.findViewById<Button>(R.id.manage_groups_button)
-        groupButton?.setOnClickListener {
+        //val groupButton = view?.findViewById<Button>(R.id.manage_groups_button)
+        manage_groups_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
 
@@ -98,8 +104,8 @@ class MainFragment : Fragment() {
             ft.commitNow()
 }
 
-        val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
-        distanceButton?.setOnClickListener {
+       // val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
+        manage_distance_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
             val ft = fragmentManager!!.beginTransaction()
@@ -107,8 +113,8 @@ class MainFragment : Fragment() {
             ft.commitNow()
         }
 
-        val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
-        daysButton?.setOnClickListener {
+       // val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
+        manage_days_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
             val ft = fragmentManager!!.beginTransaction()

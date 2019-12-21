@@ -15,6 +15,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sners.ramblerswalks4.data.DistanceViewModel
+import kotlinx.android.synthetic.main.fragment_distance.*
 import timber.log.Timber
 
 
@@ -28,10 +29,10 @@ class DistanceFragment : Fragment() {
         var distancDescription = "None"
     }
 
-    lateinit var minDistanceSeekBar: SeekBar
-    lateinit var maxDistanceSeekBar: SeekBar
-    lateinit var minDistanceView: TextView
-    lateinit var maxDistanceView: TextView
+//    lateinit var minDistanceSeekBar: SeekBar
+//    lateinit var maxDistanceSeekBar: SeekBar
+//    lateinit var minDistanceView: TextView
+//    lateinit var maxDistanceView: TextView
 
     var minDistanceValue = 0
     var maxDistanceValue = 0
@@ -51,45 +52,30 @@ class DistanceFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_distance, container, false)
 
-        this.minDistanceView = view.findViewById(R.id.minimum_distance_value)
-        this.maxDistanceView = view.findViewById(R.id.maximum_distance_value)
-        this.minDistanceSeekBar = view.findViewById(R.id.seekBarMinimum)
-        this.maxDistanceSeekBar = view.findViewById(R.id.seekBarMaximum)
 
+        return view
+    }
+
+    //--------------------------------------------------------------------
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+//
 
         viewModel.minDistance.observe(this, Observer{newValue ->
-            minDistanceView.text = newValue.toString()
-            minDistanceSeekBar.progress = newValue
+            minimum_distance_value.text = newValue.toString()
+            seekBarMinimum.progress = newValue
         })
         viewModel.maxDistance.observe(this, Observer{newValue ->
-            maxDistanceView.text = newValue.toString()
-            maxDistanceSeekBar.progress = newValue
+            maximum_distance_value.text = newValue.toString()
+            seekBarMaximum.progress = newValue
         })
 
 
-        minDistanceSeekBar.progress = viewModel.minDistance.value!!
-        maxDistanceSeekBar.progress = viewModel.maxDistance.value!!
+        seekBarMinimum.progress = viewModel.minDistance.value!!
+        seekBarMaximum.progress = viewModel.maxDistance.value!!
 
-        minDistanceSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            var progressChangedValue = 0
-            override fun onProgressChanged(
-                seekBar: SeekBar,
-                progress: Int,
-                fromUser: Boolean
-            ) {
-                progressChangedValue = progress
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar) { // TODO Auto-generated method stub
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-                this@DistanceFragment.minDistanceValue = this.progressChangedValue
-
-            }
-        })
-
-        minDistanceSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+        seekBarMinimum.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             var progressChangedValue = 0
             override fun onProgressChanged(
                 seekBar: SeekBar,
@@ -108,7 +94,7 @@ class DistanceFragment : Fragment() {
             }
         })
 
-        maxDistanceSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+        seekBarMaximum.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             var progressChangedValue = 0
             override fun onProgressChanged(
                 seekBar: SeekBar,
@@ -126,13 +112,10 @@ class DistanceFragment : Fragment() {
 
             }
         })
-        val backButton = view?.findViewById<Button>(R.id.distance_back_button)
-        backButton?.setOnClickListener {
+        distance_back_button?.setOnClickListener {
             backButtonPressed()
         }
-        return view
     }
-
     private fun backButtonPressed() {
         Timber.i("Days back button preseed called from karen")
 
