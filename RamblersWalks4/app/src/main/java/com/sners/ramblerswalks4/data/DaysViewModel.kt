@@ -1,11 +1,12 @@
 package com.sners.ramblerswalks4.data
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
 
-class DaysViewModel : ViewModel() {
+class DaysViewModel : ViewModel(), LifecycleObserver {
 
     //  Mutable live data is editable and should only be accessible within the class
     //  Expose a non-mutable LiveData value to external
@@ -114,6 +115,7 @@ class DaysViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        //  Save data -- See App Archictecture with Kotlin (lynda) 1-Handle events with LifecycleObserver
         Timber.i("Days View Model destroyed from karen")
     }
 

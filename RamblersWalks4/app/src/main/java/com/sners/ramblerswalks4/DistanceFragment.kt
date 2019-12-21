@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sners.ramblerswalks4.data.DistanceViewModel
 import timber.log.Timber
@@ -20,7 +21,7 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass.
  */
-class DistanceFragment : Fragment(), LifecycleObserver {
+class DistanceFragment : Fragment() {
 
     companion object {
         fun newInstance() = DistanceFragment()
@@ -29,8 +30,8 @@ class DistanceFragment : Fragment(), LifecycleObserver {
 
     lateinit var minDistanceSeekBar: SeekBar
     lateinit var maxDistanceSeekBar: SeekBar
-    lateinit var minDistance: TextView
-    lateinit var maxDistance: TextView
+    lateinit var minDistanceView: TextView
+    lateinit var maxDistanceView: TextView
 
     var minDistanceValue = 0
     var maxDistanceValue = 0
@@ -50,10 +51,21 @@ class DistanceFragment : Fragment(), LifecycleObserver {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_distance, container, false)
 
-        this.minDistance = view.findViewById(R.id.minimum_distance_value)
-        this.maxDistance = view.findViewById(R.id.maximum_distance_value)
+        this.minDistanceView = view.findViewById(R.id.minimum_distance_value)
+        this.maxDistanceView = view.findViewById(R.id.maximum_distance_value)
         this.minDistanceSeekBar = view.findViewById(R.id.seekBarMinimum)
         this.maxDistanceSeekBar = view.findViewById(R.id.seekBarMaximum)
+
+
+        viewModel.minDistance.observe(this, Observer{newValue ->
+            minDistanceView.text = newValue.toString()
+        })
+        viewModel.maxDistance.observe(this, Observer{newValue ->
+            maxDistanceView.text = newValue.toString()
+        })
+
+        minDistanceSeekBar.progress = viewModel.minDistance.value!!
+        maxDistanceSeekBar.progress = viewModel.maxDistance.value!!
 
         minDistanceSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             var progressChangedValue = 0
@@ -88,7 +100,7 @@ class DistanceFragment : Fragment(), LifecycleObserver {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                this@DistanceFragment.minDistanceValue = this.progressChangedValue
+                this@DistanceFragment.viewModel.sliderChanged("min", this.progressChangedValue)
 
             }
         })
@@ -107,7 +119,7 @@ class DistanceFragment : Fragment(), LifecycleObserver {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                this@DistanceFragment.maxDistanceValue = this.progressChangedValue
+                this@DistanceFragment.viewModel.sliderChanged("max", this.progressChangedValue)
 
             }
         })

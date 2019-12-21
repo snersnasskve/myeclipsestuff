@@ -18,7 +18,7 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass.
  */
-class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, LifecycleObserver {
+class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     lateinit var monday_checkbox : CheckBox
     lateinit var tuesday_checkbox : CheckBox
@@ -124,7 +124,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener, Lifecyc
         daysDescription = viewModel.daysDescription
     }
 
-//    override fun onBackPressed() {
+//    override fun onStop() {
 //        super.onStop()
 //        backButtonPressed()
 //    }
