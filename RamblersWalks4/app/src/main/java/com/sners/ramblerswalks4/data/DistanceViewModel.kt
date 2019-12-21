@@ -29,13 +29,25 @@ class DistanceViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun sliderChanged(name: String, value: Int) {
-        if (name == "min")
-        {
-            _minDistance.value = value
+        when (name) {
+            "min" -> {
+
+                _minDistance.value = if (0 == value) 1 else value
+                if (minDistance.value!! > maxDistance.value!!) {
+                    _maxDistance.value = minDistance.value!!
+                }
+            }
+            "max" -> {
+                _maxDistance.value = if (0 == value) 1 else value
+                if (maxDistance.value!! < minDistance.value!!) {
+                    _minDistance.value = maxDistance.value!!
+                }
+            }
         }
-        else    if (name == "max")
-        {
-            _maxDistance.value = value
-        }
+    }
+
+    fun description() : String
+    {
+        return "${minDistance.value!!} - ${maxDistance.value!!} miles"
     }
 }

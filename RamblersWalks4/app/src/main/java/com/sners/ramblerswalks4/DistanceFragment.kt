@@ -59,10 +59,13 @@ class DistanceFragment : Fragment() {
 
         viewModel.minDistance.observe(this, Observer{newValue ->
             minDistanceView.text = newValue.toString()
+            minDistanceSeekBar.progress = newValue
         })
         viewModel.maxDistance.observe(this, Observer{newValue ->
             maxDistanceView.text = newValue.toString()
+            maxDistanceSeekBar.progress = newValue
         })
+
 
         minDistanceSeekBar.progress = viewModel.minDistance.value!!
         maxDistanceSeekBar.progress = viewModel.maxDistance.value!!
@@ -134,7 +137,7 @@ class DistanceFragment : Fragment() {
         Timber.i("Days back button preseed called from karen")
 
         var mainFragment = MainFragment.newInstance()
-        mainFragment.distanceSelected = distancDescription
+        mainFragment.distanceSelected = viewModel.description()
         //  Of course this stomps over any other fields so need to figure
         //mainFragment.daysSelected = viewModel.description()
 

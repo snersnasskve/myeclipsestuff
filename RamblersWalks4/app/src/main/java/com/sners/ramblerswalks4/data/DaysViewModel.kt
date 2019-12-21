@@ -116,6 +116,7 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
     override fun onCleared() {
         super.onCleared()
         //  Save data -- See App Archictecture with Kotlin (lynda) 1-Handle events with LifecycleObserver
+        //  OK cleared is getting called at the start oops
         Timber.i("Days View Model destroyed from karen")
     }
 
