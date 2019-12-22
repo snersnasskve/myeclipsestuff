@@ -9,16 +9,8 @@
 
     <TextView
         android:id="@+id/celcius_value"
-        style="@android:style/Widget.Material.EditText"
-        android:layout_width="280dp"
-        android:layout_height="125dp"
-        android:ems="10"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="46sp"
+        style="@style/temp_text_style"
+        android:text="@string/celcius_temp"
         app:layout_constraintBottom_toBottomOf="@+id/celcius_button"
         app:layout_constraintEnd_toStartOf="@+id/celcius_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,62 +18,40 @@
 
     <ImageView
         android:id="@+id/celcius_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="30dp"
-        android:layout_height="60dp"
-android:contentDescription="@string/celcius_temp"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:alpha="0.5"
+        style="@style/temp_icon_style"
         android:background="@mipmap/celcius_icon_foreground"
-        android:onClick="buttonClicked"
-        android:scaleType="fitCenter"
-        android:textSize="48sp"
-        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/deg_c"/>
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="25"
+        android:progress="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/celcius_value" />
 
     <TextView
         android:id="@+id/fahrenheit_value"
-
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="48sp"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
-    app:layout_constraintBottom_toTopOf="@+id/imageView"
+        style="@style/temp_text_style"
+        android:text="@string/fahrenheit_temp"
+        app:layout_constraintBottom_toBottomOf="@+id/fahrenheit_button"
         app:layout_constraintEnd_toStartOf="@+id/fahrenheit_button"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fahrenheit_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/fahrenheit_button"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="30dp"
-        android:layout_height="60dp"
-
-        android:layout_weight="1"
-        android:alpha="0.4"
+        style="@style/temp_icon_style"
         android:background="@mipmap/fahrenheit_icon_foreground"
-        android:fontFamily="@font/ultra"
-        android:onClick="buttonClicked"
-        android:scaleType="fitCenter"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar"
-
-        app:layout_constraintTop_toTopOf="@+id/fahrenheit_value"
-        tools:visibility="visible" />
+        android:contentDescription="@string/def_f"/>
 
     <ImageView
         android:id="@+id/imageView"

@@ -9,16 +9,28 @@
     </style>
 
     <style name="temp_text_style" parent="android:Widget.Material.EditText">
-        <item name="android:layout_width">240dp</item>
-        <item name="android:layout_height">83dp</item>
-        <item name="android:layout_marginTop">24dp</item>
-        <item name="android:ems">10</item>
+        <item name="android:layout_width">@dimen/temp_text_width</item>
+        <item name="android:layout_height">@dimen/temp_text_height</item>
+        <item name="android:layout_marginTop">@dimen/wide_padding</item>
         <item name="android:paddingStart">@dimen/wide_padding</item>
         <item name="android:paddingEnd">@dimen/wide_padding</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
         <item name="android:textColor">@android:color/holo_green_dark</item>
-        <item name="android:textSize">46sp</item>
+        <item name="android:textSize">@dimen/temp_text_size</item>
+    </style>
+
+    <style name="temp_icon_style" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">@dimen/temp_icon_width</item>
+        <item name="android:layout_height">@dimen/temp_icon_height</item>
+        <item name="android:contentDescription">@string/celcius_temp</item>
+        <item name="android:layout_marginTop">@dimen/wide_padding</item>
+        <item name="android:alpha">0.5</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:paddingStart">@dimen/wide_padding</item>
+        <item name="android:paddingEnd">@dimen/wide_padding</item>
+
     </style>
 
 </resources>

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="wide_padding">24</dimen>
+    <dimen name="wide_padding">24dp</dimen>
+    <dimen name="temp_text_height">83dp</dimen>
+    <dimen name="temp_text_width">240dp</dimen>
+    <dimen name="temp_icon_height">83dp</dimen>
+    <dimen name="temp_icon_width">83dp</dimen>
+    <dimen name="temp_text_size">48sp</dimen>
+
 </resources>

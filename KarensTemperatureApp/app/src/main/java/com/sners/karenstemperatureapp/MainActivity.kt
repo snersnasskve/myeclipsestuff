@@ -3,52 +3,59 @@ package com.sners.karenstemperatureapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.SeekBar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: TemperatureViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProviders.of(this).get(TemperatureViewModel::class.java)
+
+        val testSyth = celcius_value
+        val testFyth = fahrenheit_value
+
+        viewModel.tempCelcius.observe(this, Observer {
+            celcius_value.text = it
+        })
+
+        viewModel.tempFahrenheit.observe(this, Observer {
+            fahrenheit_value.text = it
+        })
+
+        seekBar.progress = viewModel.sliderTemp.toInt()
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            var progressChangedValue = 0
+            override fun onProgressChanged(
+                seekBar: SeekBar,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                progressChangedValue = progress
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) { // TODO Auto-generated method stub
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                this@MainActivity.viewModel.setTemperature(this.progressChangedValue)
+
+            }
+        })
+
     }
 
 
 
-    public fun buttonClicked(view : View)
-    {
-//        val celciusButton = findViewById<Button>(R.id.celcius_button)
-//        val fahrButton = findViewById<Button>(R.id.fahrenheit_button)
-//        val tempToConvert = findViewById<EditText>(R.id.edit_temperature)
-//        val resultLabel = this.findViewById<TextView>(R.id.label_temperature)
 
 
 
-        //    fahrenheit_value.text = this.convertToFahrenheit(celcius_value.text.toString())
-
-
-
-    }
-
-  private fun convertToCelsius(fahrStringValue: String) : String
-    {
-        var resultString = ""
-        if (fahrStringValue != "") {
-            val fahrValue = fahrStringValue.toFloat()
-            val celValue = (fahrValue - 32) / 1.8
-            resultString = "%.1f ° C".format(celValue)
-        }
-        return resultString
-    }
-
-    private fun convertToFahrenheit(celStringValue: String) : String
-    {
-        var resultString = ""
-        if (celStringValue != "") {
-            val celsiusValue = celStringValue.toFloat()
-            val fahrValue = (celsiusValue * 1.8) + 32
-            resultString =  "%.1f ° F".format(fahrValue)
-        }
-        return resultString
-    }
 }
 

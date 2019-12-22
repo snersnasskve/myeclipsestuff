@@ -6,4 +6,7 @@
     <string name="thermometer_image">Thermometer Image</string>
     <string name="celcius_temp">0 ° C</string>
     <string name="fahrenheit_temp">32 ° F</string>
+    <string name="val_deg_c">%f° C</string>
+    <string name="val_deg_f">%f° F</string>
+
 </resources>
