@@ -15,8 +15,10 @@ class TemperatureViewModel : ViewModel(), LifecycleObserver {
     val tempFahrenheit: LiveData<String>
         get() = _tempFahrenheit
 
-    private var minTemp: Int
+    private var minTemp: Int = 0
     var sliderTemp: Double
+
+    var isCelciusMode = true
 
 
     init {
@@ -37,7 +39,8 @@ class TemperatureViewModel : ViewModel(), LifecycleObserver {
     }
 
     private fun celciusString(celsiusValue: Double) : String {
-        return "${celsiusValue.toInt()} ° C"
+        val rounded = ((celsiusValue * 10).toInt().toDouble())/10.0F
+        return "$rounded ° C"
     }
 
     private fun fahrenheitString(fahrValue: Double) : String {
@@ -46,7 +49,22 @@ class TemperatureViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun setTemperature(newTemp: Int) {
-        sliderTemp = newTemp.toDouble()
-        _tempCelcius.value = celciusString(newTemp.toDouble())
-        _tempFahrenheit.value = fahrenheitString( convertToFahrenheit(newTemp.toDouble()))    }
+        sliderTemp = (newTemp + minTemp).toDouble()
+        if (isCelciusMode) {
+            _tempCelcius.value = celciusString(sliderTemp.toDouble())
+            _tempFahrenheit.value = fahrenheitString(convertToFahrenheit(sliderTemp.toDouble()))
+        } else {
+            _tempCelcius.value = celciusString(convertToCelsius(sliderTemp.toDouble()))
+            _tempFahrenheit.value = fahrenheitString(sliderTemp.toDouble())
+        }
+
+        if (sliderTemp <= minTemp)
+        {
+            minTemp -= 15
+        }
+        else if (sliderTemp >= minTemp + 25)
+        {
+            minTemp += 15
+        }
+    }
 }

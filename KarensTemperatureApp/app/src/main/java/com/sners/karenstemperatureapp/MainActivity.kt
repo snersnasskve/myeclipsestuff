@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(TemperatureViewModel::class.java)
 
-        val testSyth = celcius_value
-        val testFyth = fahrenheit_value
+        celcius_button.alpha = 1.0f
+        fahrenheit_button.alpha = 0.4f
+
 
         viewModel.tempCelcius.observe(this, Observer {
             celcius_value.text = it
@@ -52,8 +53,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    public fun buttonClicked(view : View)
+    {
 
+        var cAlpha = 0.4f
+        var fAlpha = 0.4f
+        if (view.id == R.id.celcius_button) {
+            cAlpha = 1.0f
+            viewModel.isCelciusMode = true
+        }
+        else if (view.id == R.id.fahrenheit_button) {
+            fAlpha = 1.0f
+            viewModel.isCelciusMode = false
 
+        }
+
+        celcius_button.alpha = cAlpha
+        fahrenheit_button.alpha = fAlpha
+        }
 
 
 

@@ -16,10 +16,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/celcius_button" />
 
-    <ImageView
+    <Button
         android:id="@+id/celcius_button"
         style="@style/temp_icon_style"
         android:background="@mipmap/celcius_icon_foreground"
+        android:onClick="buttonClicked"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/deg_c"/>
@@ -45,10 +46,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fahrenheit_button" />
 
-    <ImageView
+    <Button
         android:id="@+id/fahrenheit_button"
         style="@style/temp_icon_style"
         android:background="@mipmap/fahrenheit_icon_foreground"
+        android:onClick="buttonClicked"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar"
         android:contentDescription="@string/def_f"/>
