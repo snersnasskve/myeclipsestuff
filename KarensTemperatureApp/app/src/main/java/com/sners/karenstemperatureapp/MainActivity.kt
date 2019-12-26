@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
             fahrenheit_value.text = it
         })
 
-        seekBar.progress = viewModel.sliderTemp.toInt()
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             var progressChangedValue = 0
@@ -47,32 +46,34 @@ class MainActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
                 this@MainActivity.viewModel.setTemperature(this.progressChangedValue)
-
+                this@MainActivity.setSeekBarProgress()
             }
         })
 
+        setSeekBarProgress()
     }
 
-    public fun buttonClicked(view : View)
-    {
+    ////////////////////////////////////////////////////////////////
+    public fun buttonClicked(view: View) {
 
         var cAlpha = 0.4f
         var fAlpha = 0.4f
         if (view.id == R.id.celcius_button) {
             cAlpha = 1.0f
-            viewModel.isCelciusMode = true
-        }
-        else if (view.id == R.id.fahrenheit_button) {
+            viewModel.setThermometerScale(true)
+        } else if (view.id == R.id.fahrenheit_button) {
             fAlpha = 1.0f
-            viewModel.isCelciusMode = false
-
+            viewModel.setThermometerScale(false)
         }
 
         celcius_button.alpha = cAlpha
         fahrenheit_button.alpha = fAlpha
-        }
+    }
 
-
+fun setSeekBarProgress()
+{
+    seekBar.progress = viewModel.progressTick
+}
 
 }
 
