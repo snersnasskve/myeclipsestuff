@@ -100,8 +100,8 @@ class MainFragment : Fragment() {
             Timber.i("Group button preseed called from karen")
 
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, GroupsFragment.newInstance())
-            ft.commitNow()
+            ft.replace(R.id.container, GroupsFragment.newInstance()).addToBackStack(null)
+            ft.commit()
 }
 
        // val distanceButton = view?.findViewById<Button>(R.id.manage_distance_button)
@@ -109,8 +109,8 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, DistanceFragment.newInstance())
-            ft.commitNow()
+            ft.replace(R.id.container, DistanceFragment.newInstance()).addToBackStack(null)
+            ft.commit()
         }
 
        // val daysButton = view?.findViewById<Button>(R.id.manage_days_button)
@@ -118,8 +118,8 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, DaysFragment.newInstance())
-            ft.commitNow()
+            ft.replace(R.id.container, DaysFragment.newInstance()).addToBackStack(null)
+            ft.commit()
         }
     }
 

@@ -1,11 +1,12 @@
 package com.sners.xmascardlist_v4.data
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
 
-class Contact (contactId : Int): ViewModel() {
+class ContactViewModel (contactId : Int): ViewModel(), LifecycleObserver {
 
     var contactId : Int = 0
 

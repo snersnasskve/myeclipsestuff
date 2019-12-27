@@ -54,7 +54,7 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
     val daysDescription : String
         get() {
             var desc = "None"
-            var selectedDays = ArrayList<String>()
+            val selectedDays = ArrayList<String>()
             if(monday.value!!)
             {
                 selectedDays.add(DayName.MONDAY.day)
@@ -143,7 +143,7 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
 
     }
 
-    fun weekdaysChanged(checked: Boolean)
+    private fun weekdaysChanged(checked: Boolean)
     {
         _weekdays.value = checked
         _monday.value = checked
@@ -176,7 +176,7 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
             desc = "Weekends"
         }
         else {
-            var selectedDays = ArrayList<String>()
+            val selectedDays = ArrayList<String>()
             if (monday.value!!) {
                 selectedDays.add(DayName.MONDAY.day)
             }

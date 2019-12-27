@@ -127,16 +127,17 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private fun backButtonPressed() {
         Timber.i("Days back button preseed called from karen")
 
-        var mainFragment = MainFragment.newInstance()
-        mainFragment.daysSelected = daysDescription
-        //  Of course this stomps over any other fields so need to figure
-        //mainFragment.daysSelected = viewModel.description()
-
-        //  Add to stored memory
-
-        val ft = fragmentManager!!.beginTransaction()
-        ft.replace(R.id.container, mainFragment)
-        ft.commitNow()
+//        var mainFragment = MainFragment.newInstance()
+//        mainFragment.daysSelected = daysDescription
+//        //  Of course this stomps over any other fields so need to figure
+//        //mainFragment.daysSelected = viewModel.description()
+//
+//        //  Add to stored memory
+//
+//        val ft = fragmentManager!!.beginTransaction()
+//        ft.replace(R.id.container, mainFragment)
+//        ft.commitNow()
+        val ft = fragmentManager!!.popBackStackImmediate()
     }
 
 

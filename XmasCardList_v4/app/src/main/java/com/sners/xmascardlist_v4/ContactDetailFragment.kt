@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentFactory
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProviders
 import com.sners.xmascardlist_v4.controller.ContactController
-import com.sners.xmascardlist_v4.data.Contact
+import com.sners.xmascardlist_v4.data.ContactViewModel
 import com.sners.xmascardlist_v4.data.ContactViewModelFactory
-import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
 /**
@@ -23,7 +21,7 @@ import kotlinx.android.synthetic.main.item_detail.view.*
 class ContactDetailFragment : Fragment() , LifecycleObserver{
 
     public var contactController: ContactController? = null
-    private lateinit var contactViewModel : Contact
+    private lateinit var contactViewModel : ContactViewModel
     private  lateinit var viewModelFractory: ContactViewModelFactory
 
 
@@ -44,7 +42,7 @@ class ContactDetailFragment : Fragment() , LifecycleObserver{
                 val contactId = it.getInt(ARG_ITEM_ID)
                 viewModelFractory = ContactViewModelFactory(contactId)
 
-                contactViewModel = ViewModelProviders.of(this, viewModelFractory).get(Contact::class.java)
+                contactViewModel = ViewModelProviders.of(this, viewModelFractory).get(ContactViewModel::class.java)
                 //activity?.toolbar_layout?.title = contact?.firstName!!.value
             }
         }

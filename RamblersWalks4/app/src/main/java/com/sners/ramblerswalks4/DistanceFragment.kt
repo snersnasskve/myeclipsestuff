@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sners.ramblerswalks4.data.DistanceViewModel
@@ -26,18 +22,7 @@ class DistanceFragment : Fragment() {
 
     companion object {
         fun newInstance() = DistanceFragment()
-        var distancDescription = "None"
     }
-
-//    lateinit var minDistanceSeekBar: SeekBar
-//    lateinit var maxDistanceSeekBar: SeekBar
-//    lateinit var minDistanceView: TextView
-//    lateinit var maxDistanceView: TextView
-
-    var minDistanceValue = 0
-    var maxDistanceValue = 0
-
-    var desription = "Any distance"
 
     private lateinit var viewModel : DistanceViewModel
     //--------------------------------------------------------------------
@@ -50,10 +35,9 @@ class DistanceFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(DistanceViewModel::class.java)
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_distance, container, false)
 
 
-        return view
+        return inflater.inflate(R.layout.fragment_distance, container, false)
     }
 
     //--------------------------------------------------------------------
@@ -119,16 +103,18 @@ class DistanceFragment : Fragment() {
     private fun backButtonPressed() {
         Timber.i("Days back button preseed called from karen")
 
-        var mainFragment = MainFragment.newInstance()
-        mainFragment.distanceSelected = viewModel.description()
-        //  Of course this stomps over any other fields so need to figure
-        //mainFragment.daysSelected = viewModel.description()
+//        var mainFragment = MainFragment.newInstance()
+//        mainFragment.distanceSelected = viewModel.description()
+//        //  Of course this stomps over any other fields so need to figure
+//        //mainFragment.daysSelected = viewModel.description()
+//
+//        //  Add to stored memory
+//
+//        val ft = fragmentManager!!.beginTransaction()
+//        ft.replace(R.id.container, mainFragment)
+//        ft.commitNow()
+        fragmentManager!!.popBackStack()
 
-        //  Add to stored memory
-
-        val ft = fragmentManager!!.beginTransaction()
-        ft.replace(R.id.container, mainFragment)
-        ft.commitNow()
     }
 
 

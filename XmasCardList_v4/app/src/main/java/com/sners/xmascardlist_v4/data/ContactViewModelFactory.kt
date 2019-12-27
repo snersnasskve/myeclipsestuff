@@ -9,8 +9,8 @@ import java.lang.IllegalArgumentException
 //  https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)
 class ContactViewModelFactory(private val contactId: Int) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(Contact::class.java)) {
-            return  Contact(contactId) as T
+        if (modelClass.isAssignableFrom(ContactViewModel::class.java)) {
+            return  ContactViewModel(contactId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }
