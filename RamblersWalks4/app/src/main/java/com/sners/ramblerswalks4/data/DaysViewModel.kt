@@ -4,9 +4,13 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sners.ramblerswalks4.DaysFragment
 import timber.log.Timber
 
+typealias DayName = DaysFragment.Companion.DayName
+
 class DaysViewModel : ViewModel(), LifecycleObserver {
+
 
     //  Mutable live data is editable and should only be accessible within the class
     //  Expose a non-mutable LiveData value to external
@@ -89,15 +93,15 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
             return desc
         }
 
-    enum class DayName(val day: String) {
-        MONDAY("Monday"),
-        TUESDAY("Tuesday"),
-        WEDNESDAY("Wednesday"),
-        THURSDAY("Thursday"),
-        FRIDAY("Friday"),
-        SATURDAY("Saturday"),
-        SUNDAY("Sunday")
-    }
+//    enum class DayName(val day: String) {
+//        MONDAY("Monday"),
+//        TUESDAY("Tuesday"),
+//        WEDNESDAY("Wednesday"),
+//        THURSDAY("Thursday"),
+//        FRIDAY("Friday"),
+//        SATURDAY("Saturday"),
+//        SUNDAY("Sunday")
+//    }
 
     init {
         Timber.i("Days View Model created from karen")
@@ -160,48 +164,57 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
         _sunday.value = checked
     }
 
-    fun description(): String
+    fun getDaysArray() : Array<Boolean>
     {
-        var desc = "None"
-        if (everyday.value!! || ((weekdays.value!! && weekend.value!!) ))
-        {
-            desc = "Every Day"
-        }
-        else if (weekdays.value!!)
-        {
-            desc = "Weekdays"
-        }
-        else if (weekend.value!!)
-        {
-            desc = "Weekends"
-        }
-        else {
-            val selectedDays = ArrayList<String>()
-            if (monday.value!!) {
-                selectedDays.add(DayName.MONDAY.day)
-            }
-            if (tuesday.value!!) {
-                selectedDays.add(DayName.TUESDAY.day)
-            }
-            if (wednesday.value!!) {
-                selectedDays.add(DayName.WEDNESDAY.day)
-            }
-            if (thursday.value!!) {
-                selectedDays.add(DayName.THURSDAY.day)
-            }
-            if (friday.value!!) {
-                selectedDays.add(DayName.FRIDAY.day)
-            }
-            if (saturday.value!!) {
-                selectedDays.add(DayName.SATURDAY.day)
-            }
-            if (sunday.value!!) {
-                selectedDays.add(DayName.SUNDAY.day)
-            }
-            if (selectedDays.count() > 0) {
-                desc = selectedDays.joinToString(separator = ", ")
-            }
-        }
-        return desc
+        var daysTicked = arrayOf(monday.value!!, tuesday.value!!, wednesday.value!!,
+            thursday.value!!, friday.value!!, saturday.value!!, sunday.value!!,
+            weekdays.value!!, weekend.value!!, everyday.value!!)
+        return daysTicked
     }
+
+    //  Moved to companions
+//    fun description(): String
+//    {
+//        var desc = "None"
+//        if (everyday.value!! || ((weekdays.value!! && weekend.value!!) ))
+//        {
+//            desc = "Every Day"
+//        }
+//        else if (weekdays.value!!)
+//        {
+//            desc = "Weekdays"
+//        }
+//        else if (weekend.value!!)
+//        {
+//            desc = "Weekends"
+//        }
+//        else {
+//            val selectedDays = ArrayList<String>()
+//            if (monday.value!!) {
+//                selectedDays.add(DayName.MONDAY.day)
+//            }
+//            if (tuesday.value!!) {
+//                selectedDays.add(DayName.TUESDAY.day)
+//            }
+//            if (wednesday.value!!) {
+//                selectedDays.add(DayName.WEDNESDAY.day)
+//            }
+//            if (thursday.value!!) {
+//                selectedDays.add(DayName.THURSDAY.day)
+//            }
+//            if (friday.value!!) {
+//                selectedDays.add(DayName.FRIDAY.day)
+//            }
+//            if (saturday.value!!) {
+//                selectedDays.add(DayName.SATURDAY.day)
+//            }
+//            if (sunday.value!!) {
+//                selectedDays.add(DayName.SUNDAY.day)
+//            }
+//            if (selectedDays.count() > 0) {
+//                desc = selectedDays.joinToString(separator = ", ")
+//            }
+//        }
+//        return desc
+//    }
 }

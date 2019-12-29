@@ -1,24 +1,17 @@
 package com.sners.ramblerswalks4
 
+//import androidx.navigation.Navigation
+//import androidx.navigation.findNavController
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-//import androidx.navigation.Navigation
-//import androidx.navigation.findNavController
 import com.sners.ramblerswalks4.controller.SearchManager
 import com.sners.ramblerswalks4.data.RamblersViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import timber.log.Timber
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 
@@ -34,31 +27,20 @@ class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
+        //  A companion is the Controller part of this class.
+        //  The data model is the data part
+
+        //  newInstance is a singleton
+        //  I now have a problem because view is never supposed to talk direct to data
+        //  But ... ok I suppose there is a clue there
     }
 
     private lateinit var search: SearchManager
     private lateinit var viewModel : RamblersViewModel
 
-    var daysSelected : String = "None"
-    var distanceSelected : String = "None"
-//    get()
-//    {
-//        var temp = search.daysViewModel?.daysDescription
-//        if (null == temp) {
-//            return "Any day"
-//        } else
-//        {
-//            return temp!!
-//        }
-//    }
+    private var daysSelected : String = "None"
+    private var distanceSelected : String = "None"
 
-    //  https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
-    //  It is not clear where this function should go
-//    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
-//        val fragmentTransaction = beginTransaction()
-//        fragmentTransaction.func()
-//        fragmentTransaction.commit()
-//    }
 
     //--------------------------------------------------------------------
     override fun onCreateView(
@@ -85,16 +67,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addButtonListeners(view)
-       // view.findViewById<TextView>(R.id.days_label).text = this.daysSelected
-       // view.findViewById<TextView>(R.id.distance_label).text = this.distanceSelected
-       // var daysLabel = days_label
+
         days_label.text = this.daysSelected
          distance_label.text = this.distanceSelected
 
     }
     //--------------------------------------------------------------------
     private fun addButtonListeners(view: View?) {
-        //val groupButton = view?.findViewById<Button>(R.id.manage_groups_button)
         manage_groups_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
