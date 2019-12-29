@@ -20,7 +20,7 @@ data class Contact (
     val country : String = "",
     @ColumnInfo(name = "kids")
     val kids : String = "",
-    @ColumnInfo(name = "last_sent")
+    @ColumnInfo(name = "xmas_card_received")
     val lastSent : String = "",
     @ColumnInfo(name = "xmas_card_received")
     val xmasCardReceived : String = "",

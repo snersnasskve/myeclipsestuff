@@ -30,14 +30,14 @@ class DistanceViewModel : ViewModel(), LifecycleObserver {
 
     fun sliderChanged(name: String, value: Int) {
         when (name) {
-            "min" -> {
+            SLIDER_MIN -> {
 
                 _minDistance.value = if (0 == value) 1 else value
                 if (minDistance.value!! > maxDistance.value!!) {
                     _maxDistance.value = minDistance.value!!
                 }
             }
-            "max" -> {
+            SLIDER_MAX -> {
                 _maxDistance.value = if (0 == value) 1 else value
                 if (maxDistance.value!! < minDistance.value!!) {
                     _minDistance.value = maxDistance.value!!

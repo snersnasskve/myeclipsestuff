@@ -26,5 +26,6 @@
     <string name="weekdays">Weekdays</string>
     <string name="weekends">Weekends</string>
     <string name="everyday">Every Day</string>
+    <string name="none">None</string>
 
 </resources>

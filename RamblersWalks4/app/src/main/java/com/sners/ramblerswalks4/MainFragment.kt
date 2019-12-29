@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.sners.ramblerswalks4.controller.SearchManager
+import com.sners.ramblerswalks4.data.DAYS
+import com.sners.ramblerswalks4.data.MIN_DIST
 import com.sners.ramblerswalks4.data.RamblersViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import timber.log.Timber
@@ -38,8 +40,10 @@ class MainFragment : Fragment() {
     private lateinit var search: SearchManager
     private lateinit var viewModel : RamblersViewModel
 
-    private var daysSelected : String = "None"
-    private var distanceSelected : String = "None"
+    private lateinit var daysSelected : String
+    private lateinit var distanceSelected : String
+
+
 
 
     //--------------------------------------------------------------------
@@ -57,7 +61,16 @@ class MainFragment : Fragment() {
         //  Add the ViewModel for this fragment
         viewModel = ViewModelProviders.of(this).get(RamblersViewModel::class.java)
 
-        var view = inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        // Restor last values
+        //  view model actually saves instance state. Replace this with
+        //  https://www.raywenderlich.com/2705552-introduction-to-android-activities-with-kotlin/
+        //  Something from this link - he does prefs and stuff
+        daysSelected = savedInstanceState?.getString(MIN_DIST)
+            ?: getString(R.string.none)
+        distanceSelected = savedInstanceState?.getString(DAYS)
+            ?: getString(R.string.none)
 
             return view
 }
@@ -102,6 +115,12 @@ class MainFragment : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        //  Add data items here
+        outState.putString(MIN_DIST, this.distanceSelected)
+        outState.putString(DAYS, this.daysSelected)
+        super.onSaveInstanceState(outState)
 
+    }
 
 }

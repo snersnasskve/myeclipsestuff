@@ -1,13 +1,17 @@
 package com.sners.ramblerswalks4.data
 
+import android.content.res.Resources
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sners.ramblerswalks4.DaysFragment
+import com.sners.ramblerswalks4.R
+import com.sners.ramblerswalks4.controller.DaysController
+import kotlinx.android.synthetic.main.fragment_days.view.*
 import timber.log.Timber
 
-typealias DayName = DaysFragment.Companion.DayName
+typealias DayName = DaysController.Companion.DayName
 
 class DaysViewModel : ViewModel(), LifecycleObserver {
 
@@ -93,15 +97,6 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
             return desc
         }
 
-//    enum class DayName(val day: String) {
-//        MONDAY("Monday"),
-//        TUESDAY("Tuesday"),
-//        WEDNESDAY("Wednesday"),
-//        THURSDAY("Thursday"),
-//        FRIDAY("Friday"),
-//        SATURDAY("Saturday"),
-//        SUNDAY("Sunday")
-//    }
 
     init {
         Timber.i("Days View Model created from karen")
@@ -216,5 +211,7 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
 //            }
 //        }
 //        return desc
-//    }
+
+
+
 }

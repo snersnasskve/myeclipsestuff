@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sners.ramblerswalks4.data.DistanceViewModel
+import com.sners.ramblerswalks4.data.SLIDER_MAX
+import com.sners.ramblerswalks4.data.SLIDER_MIN
 import kotlinx.android.synthetic.main.fragment_distance.*
 import timber.log.Timber
 
@@ -73,7 +75,7 @@ class DistanceFragment : Fragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                this@DistanceFragment.viewModel.sliderChanged("min", this.progressChangedValue)
+                this@DistanceFragment.viewModel.sliderChanged(SLIDER_MIN, this.progressChangedValue)
 
             }
         })
@@ -92,7 +94,7 @@ class DistanceFragment : Fragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                this@DistanceFragment.viewModel.sliderChanged("max", this.progressChangedValue)
+                this@DistanceFragment.viewModel.sliderChanged(SLIDER_MAX, this.progressChangedValue)
 
             }
         })
