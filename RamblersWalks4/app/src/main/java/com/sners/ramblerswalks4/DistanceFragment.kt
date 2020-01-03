@@ -26,6 +26,7 @@ class DistanceFragment : Fragment() {
         fun newInstance() = DistanceFragment()
     }
 
+
     private lateinit var viewModel : DistanceViewModel
     //--------------------------------------------------------------------
     override fun onCreateView(

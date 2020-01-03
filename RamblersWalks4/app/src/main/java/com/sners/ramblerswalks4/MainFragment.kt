@@ -90,9 +90,9 @@ class MainFragment : Fragment() {
         manage_groups_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Group button preseed called from karen")
-
+            val groupsFragment = GroupsFragment.newInstance()
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, GroupsFragment.newInstance()).addToBackStack(null)
+            ft.replace(R.id.container, groupsFragment).addToBackStack(null)
             ft.commit()
 }
 
@@ -100,8 +100,9 @@ class MainFragment : Fragment() {
         manage_distance_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
+            val distanceFragment = DistanceFragment.newInstance()
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, DistanceFragment.newInstance()).addToBackStack(null)
+            ft.replace(R.id.container, distanceFragment).addToBackStack(null)
             ft.commit()
         }
 
@@ -109,8 +110,9 @@ class MainFragment : Fragment() {
         manage_days_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
+            val daysFragment = DaysFragment.newInstance()
             val ft = fragmentManager!!.beginTransaction()
-            ft.replace(R.id.container, DaysFragment.newInstance()).addToBackStack(null)
+            ft.replace(R.id.container, daysFragment).addToBackStack(null)
             ft.commit()
         }
     }
@@ -121,6 +123,12 @@ class MainFragment : Fragment() {
         outState.putString(DAYS, this.daysSelected)
         super.onSaveInstanceState(outState)
 
+    }
+
+    public interface Callbacks {
+        public fun onGroupsButtonPressed()
+        public fun onDistanceButtonPressed()
+        public fun onDaysButtonPressed()
     }
 
 }

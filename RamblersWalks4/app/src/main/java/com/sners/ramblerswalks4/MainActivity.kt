@@ -16,7 +16,7 @@ const val MEMORYKEY = "mykey"
 2. Add RamblersApplicaton class and instantiate Timber in there
 3. Add name = .RamblersApplication in manifest
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     lateinit var searchManager : SearchManager
 
@@ -90,7 +90,6 @@ class MainActivity : AppCompatActivity() {
         Timber.i("onDestroy called from karen")
 
     }
-
 
 
 }
