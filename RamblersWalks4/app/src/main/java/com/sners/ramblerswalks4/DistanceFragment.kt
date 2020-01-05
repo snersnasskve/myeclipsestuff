@@ -22,12 +22,15 @@ import timber.log.Timber
  */
 class DistanceFragment : Fragment() {
 
+
     companion object {
         fun newInstance() = DistanceFragment()
     }
 
 
     private lateinit var viewModel : DistanceViewModel
+    lateinit var reportBackFragment: MainFragment
+
     //--------------------------------------------------------------------
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,6 +106,12 @@ class DistanceFragment : Fragment() {
             backButtonPressed()
         }
     }
+
+    override fun onDestroy() {
+        this.reportBackFragment.setDistanceDescription(this.viewModel.description())
+        super.onDestroy()
+    }
+
     private fun backButtonPressed() {
         Timber.i("Days back button preseed called from karen")
 

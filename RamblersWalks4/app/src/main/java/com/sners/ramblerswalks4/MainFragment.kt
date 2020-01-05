@@ -2,11 +2,13 @@ package com.sners.ramblerswalks4
 
 //import androidx.navigation.Navigation
 //import androidx.navigation.findNavController
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sners.ramblerswalks4.controller.SearchManager
 import com.sners.ramblerswalks4.data.DAYS
@@ -35,6 +37,7 @@ class MainFragment : Fragment() {
         //  newInstance is a singleton
         //  I now have a problem because view is never supposed to talk direct to data
         //  But ... ok I suppose there is a clue there
+
     }
 
     private lateinit var search: SearchManager
@@ -80,11 +83,42 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addButtonListeners(view)
+        Timber.i("onViewCreated from MainFrag from Karen")
 
-        days_label.text = this.daysSelected
-         distance_label.text = this.distanceSelected
+         viewModel.daysDescription.observe(this, Observer{newValue ->
+            days_label.text = newValue
+         })
+        viewModel.distanceDescription.observe(this, Observer{newValue ->
+            distance_label.text = newValue
+        })
+
+        //    days_label.text = this.daysSelected
+       //  distance_label.text = this.distanceSelected
 
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Timber.i("onAttach from MainFrag from Karen")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.i("onCreate from MainFrag from Karen")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart from MainFrag from Karen")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume from MainFrag from Karen")
+
+    }
+
+
     //--------------------------------------------------------------------
     private fun addButtonListeners(view: View?) {
         manage_groups_button?.setOnClickListener {
@@ -101,6 +135,7 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Distance button preseed called from karen")
             val distanceFragment = DistanceFragment.newInstance()
+            distanceFragment.reportBackFragment = this
             val ft = fragmentManager!!.beginTransaction()
             ft.replace(R.id.container, distanceFragment).addToBackStack(null)
             ft.commit()
@@ -111,6 +146,7 @@ class MainFragment : Fragment() {
             //  All fragments and activities have access to navigation
             Timber.i("Days button preseed called from karen")
             val daysFragment = DaysFragment.newInstance()
+            daysFragment.reportBackFragment = this
             val ft = fragmentManager!!.beginTransaction()
             ft.replace(R.id.container, daysFragment).addToBackStack(null)
             ft.commit()
@@ -125,10 +161,15 @@ class MainFragment : Fragment() {
 
     }
 
-    public interface Callbacks {
-        public fun onGroupsButtonPressed()
-        public fun onDistanceButtonPressed()
-        public fun onDaysButtonPressed()
+    public fun setDaysDescription(desc: String)
+    {
+        this.viewModel.setDaysDescription(desc)
     }
+
+    public fun setDistanceDescription(desc: String)
+    {
+        this.viewModel.setDistanceDescription(desc)
+    }
+
 
 }

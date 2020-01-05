@@ -26,6 +26,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     }
 
     private lateinit var viewModel : DaysViewModel
+    lateinit var reportBackFragment: MainFragment
     //--------------------------------------------------------------------
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -101,10 +102,26 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         //daysDescription = viewModel.daysDescription
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//        backButtonPressed()
-//    }
+    override fun onPause() {
+        Timber.i("onPause from DaysFrag from Karen")
+        super.onPause()
+    }
+
+    override fun onDestroyView() {
+        Timber.i("onDestroyView from DaysFrag from Karen")
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        Timber.i("onDestroy from DaysFrag from Karen")
+        this.reportBackFragment.setDaysDescription(DaysController.daysDescription(viewModel.getDaysArray()))
+        super.onDestroy()
+    }
+
+    override fun onDetach() {
+        Timber.i("onDetach from DaysFrag from Karen")
+        super.onDetach()
+    }
 
     private fun backButtonPressed() {
         Timber.i("Days back button preseed called from karen")
