@@ -147,6 +147,7 @@ class MainFragment : Fragment() {
             Timber.i("Days button preseed called from karen")
             val daysFragment = DaysFragment.newInstance()
             daysFragment.reportBackFragment = this
+            daysFragment.daysDescription = this.viewModel.daysDescription.value.toString()
             val ft = fragmentManager!!.beginTransaction()
             ft.replace(R.id.container, daysFragment).addToBackStack(null)
             ft.commit()

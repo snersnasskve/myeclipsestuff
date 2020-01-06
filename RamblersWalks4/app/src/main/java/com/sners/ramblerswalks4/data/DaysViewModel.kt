@@ -19,83 +19,83 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
     //  Mutable live data is editable and should only be accessible within the class
     //  Expose a non-mutable LiveData value to external
 
-    private val _monday = MutableLiveData<Boolean> ()
-    val monday : LiveData<Boolean>
+    private val _monday = MutableLiveData<Boolean>()
+    val monday: LiveData<Boolean>
         get() = _monday
 
-    private val _tuesday = MutableLiveData<Boolean> ()
-    val tuesday : LiveData<Boolean>
+    private val _tuesday = MutableLiveData<Boolean>()
+    val tuesday: LiveData<Boolean>
         get() = _tuesday
 
-    private val _wednesday = MutableLiveData<Boolean> ()
-    val wednesday : LiveData<Boolean>
+    private val _wednesday = MutableLiveData<Boolean>()
+    val wednesday: LiveData<Boolean>
         get() = _wednesday
 
-    private val _thursday = MutableLiveData<Boolean> ()
-    val thursday : LiveData<Boolean>
+    private val _thursday = MutableLiveData<Boolean>()
+    val thursday: LiveData<Boolean>
         get() = _thursday
 
-    private val _friday = MutableLiveData<Boolean> ()
-    val friday : LiveData<Boolean>
+    private val _friday = MutableLiveData<Boolean>()
+    val friday: LiveData<Boolean>
         get() = _friday
 
-    private val _saturday = MutableLiveData<Boolean> ()
-    val saturday : LiveData<Boolean>
+    private val _saturday = MutableLiveData<Boolean>()
+    val saturday: LiveData<Boolean>
         get() = _saturday
 
-    private val _sunday = MutableLiveData<Boolean> ()
-    val sunday : LiveData<Boolean>
+    private val _sunday = MutableLiveData<Boolean>()
+    val sunday: LiveData<Boolean>
         get() = _sunday
 
-    private val _weekdays = MutableLiveData<Boolean> ()
-    val weekdays : LiveData<Boolean>
+    private val _weekdays = MutableLiveData<Boolean>()
+    val weekdays: LiveData<Boolean>
         get() = _weekdays
 
-    private val _weekend = MutableLiveData<Boolean> ()
-    val weekend : LiveData<Boolean>
+    private val _weekend = MutableLiveData<Boolean>()
+    val weekend: LiveData<Boolean>
         get() = _weekend
 
-    private val _everyday = MutableLiveData<Boolean> ()
-    val everyday : LiveData<Boolean>
+    private val _everyday = MutableLiveData<Boolean>()
+    val everyday: LiveData<Boolean>
         get() = _everyday
 
-    val daysDescription : String
-        get() {
-            var desc = "None"
-            val selectedDays = ArrayList<String>()
-            if(monday.value!!)
-            {
-                selectedDays.add(DayName.MONDAY.day)
-            }
-            if(tuesday.value!!)
-            {
-                selectedDays.add(DayName.TUESDAY.day)
-            }
-            if(wednesday.value!!)
-            {
-                selectedDays.add(DayName.WEDNESDAY.day)
-            }
-            if(thursday.value!!)
-            {
-                selectedDays.add(DayName.THURSDAY.day)
-            }
-            if(friday.value!!)
-            {
-                selectedDays.add(DayName.FRIDAY.day)
-            }
-            if(saturday.value!!)
-            {
-                selectedDays.add(DayName.SATURDAY.day)
-            }
-            if(sunday.value!!)
-            {
-                selectedDays.add(DayName.SUNDAY.day)
-            }
-            if (selectedDays.count() > 0) {
-                desc = selectedDays.joinToString(separator = ", ")
-            }
-            return desc
-        }
+//    val daysDescription : String
+//        get() {
+//            var desc = "None"
+//            val selectedDays = ArrayList<String>()
+//            if(monday.value!!)
+//            {
+//                selectedDays.add(DayName.MONDAY.day)
+//            }
+//            if(tuesday.value!!)
+//            {
+//                selectedDays.add(DayName.TUESDAY.day)
+//            }
+//            if(wednesday.value!!)
+//            {
+//                selectedDays.add(DayName.WEDNESDAY.day)
+//            }
+//            if(thursday.value!!)
+//            {
+//                selectedDays.add(DayName.THURSDAY.day)
+//            }
+//            if(friday.value!!)
+//            {
+//                selectedDays.add(DayName.FRIDAY.day)
+//            }
+//            if(saturday.value!!)
+//            {
+//                selectedDays.add(DayName.SATURDAY.day)
+//            }
+//            if(sunday.value!!)
+//            {
+//                selectedDays.add(DayName.SUNDAY.day)
+//            }
+//            if (selectedDays.count() > 0) {
+//                desc = selectedDays.joinToString(separator = ", ")
+//            }
+//            return desc
+//        }
 
 
     init {
@@ -119,10 +119,9 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
         Timber.i("Days View Model destroyed from karen")
     }
 
-    fun tickBoxChanged(name: String, checked: Boolean)
-    {
+    fun tickBoxChanged(name: String, checked: Boolean) {
         Timber.i("Received a tick event for $name of value $checked from karen")
-        when(name) {
+        when (name) {
             "Monday" -> _monday.value = checked
             "Tuesday" -> _tuesday.value = checked
             "Wednesday" -> _wednesday.value = checked
@@ -142,8 +141,7 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
 
     }
 
-    private fun weekdaysChanged(checked: Boolean)
-    {
+    private fun weekdaysChanged(checked: Boolean) {
         _weekdays.value = checked
         _monday.value = checked
         _tuesday.value = checked
@@ -152,66 +150,32 @@ class DaysViewModel : ViewModel(), LifecycleObserver {
         _friday.value = checked
     }
 
-    fun weekendsChanged(checked: Boolean)
-    {
+    fun weekendsChanged(checked: Boolean) {
         _weekend.value = checked
         _saturday.value = checked
         _sunday.value = checked
     }
 
-    fun getDaysArray() : Array<Boolean>
-    {
-        var daysTicked = arrayOf(monday.value!!, tuesday.value!!, wednesday.value!!,
+    fun getDaysArray(): Array<Boolean> {
+        var daysTicked = arrayOf(
+            monday.value!!, tuesday.value!!, wednesday.value!!,
             thursday.value!!, friday.value!!, saturday.value!!, sunday.value!!,
-            weekdays.value!!, weekend.value!!, everyday.value!!)
+            weekdays.value!!, weekend.value!!, everyday.value!!
+        )
         return daysTicked
     }
 
-    //  Moved to companions
-//    fun description(): String
-//    {
-//        var desc = "None"
-//        if (everyday.value!! || ((weekdays.value!! && weekend.value!!) ))
-//        {
-//            desc = "Every Day"
-//        }
-//        else if (weekdays.value!!)
-//        {
-//            desc = "Weekdays"
-//        }
-//        else if (weekend.value!!)
-//        {
-//            desc = "Weekends"
-//        }
-//        else {
-//            val selectedDays = ArrayList<String>()
-//            if (monday.value!!) {
-//                selectedDays.add(DayName.MONDAY.day)
-//            }
-//            if (tuesday.value!!) {
-//                selectedDays.add(DayName.TUESDAY.day)
-//            }
-//            if (wednesday.value!!) {
-//                selectedDays.add(DayName.WEDNESDAY.day)
-//            }
-//            if (thursday.value!!) {
-//                selectedDays.add(DayName.THURSDAY.day)
-//            }
-//            if (friday.value!!) {
-//                selectedDays.add(DayName.FRIDAY.day)
-//            }
-//            if (saturday.value!!) {
-//                selectedDays.add(DayName.SATURDAY.day)
-//            }
-//            if (sunday.value!!) {
-//                selectedDays.add(DayName.SUNDAY.day)
-//            }
-//            if (selectedDays.count() > 0) {
-//                desc = selectedDays.joinToString(separator = ", ")
-//            }
-//        }
-//        return desc
-
-
+    fun setDaysFromArray(daysArray: Array<Boolean>) {
+        _monday.value = daysArray[0]
+        _tuesday.value = daysArray[1]
+        _wednesday.value = daysArray[2]
+        _thursday.value = daysArray[3]
+        _friday.value = daysArray[4]
+        _saturday.value = daysArray[5]
+        _sunday.value = daysArray[6]
+        _weekdays.value = daysArray[7]
+        _weekend.value = daysArray[8]
+        _everyday.value = daysArray[9]
+    }
 
 }

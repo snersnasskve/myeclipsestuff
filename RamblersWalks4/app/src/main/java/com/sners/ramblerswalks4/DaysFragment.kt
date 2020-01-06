@@ -2,6 +2,7 @@ package com.sners.ramblerswalks4
 
 
 import android.os.Bundle
+import android.os.ParcelFileDescriptor
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,9 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private lateinit var viewModel : DaysViewModel
     lateinit var reportBackFragment: MainFragment
+
+    lateinit var daysDescription : String
+
     //--------------------------------------------------------------------
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +59,8 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         weekdays_checkbox.setOnCheckedChangeListener(this)
         weekends_checkbox.setOnCheckedChangeListener(this)
         everyday_checkbox.setOnCheckedChangeListener(this)
+
+        viewModel.setDaysFromArray(DaysController.daysFromDescription(this.daysDescription))
 
         viewModel.monday.observe(this, Observer{newValue ->
             monday_checkbox.isChecked = newValue
@@ -102,15 +108,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         //daysDescription = viewModel.daysDescription
     }
 
-    override fun onPause() {
-        Timber.i("onPause from DaysFrag from Karen")
-        super.onPause()
-    }
 
-    override fun onDestroyView() {
-        Timber.i("onDestroyView from DaysFrag from Karen")
-        super.onDestroyView()
-    }
 
     override fun onDestroy() {
         Timber.i("onDestroy from DaysFrag from Karen")
@@ -126,21 +124,7 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private fun backButtonPressed() {
         Timber.i("Days back button preseed called from karen")
 
-        //  Now figure out how to get this back to main
-        val daysDesc = DaysController.daysDescription(viewModel.getDaysArray())
-        print(daysDesc)
-        Timber.i("'$daysDesc' from karen")
 
-//        var mainFragment = MainFragment.newInstance()
-//        mainFragment.daysSelected = daysDescription
-//        //  Of course this stomps over any other fields so need to figure
-//        //mainFragment.daysSelected = viewModel.description()
-//
-//        //  Add to stored memory
-//
-//        val ft = fragmentManager!!.beginTransaction()
-//        ft.replace(R.id.container, mainFragment)
-//        ft.commitNow()
         val ft = fragmentManager!!.popBackStackImmediate()
     }
 
