@@ -1,16 +1,40 @@
-package com.sners.xmascardlist_v4.data.database
+/*
+ * Copyright 2018, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.example.android.trackmysleepquality.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Contact::class], version = 1, exportSchema = false)
-abstract class ContactDatabase : RoomDatabase() {
+/**
+ * A database that stores SleepNight information.
+ * And a global method to get access to the database.
+ *
+ * This pattern is pretty much the same for any database,
+ * so you can reuse it.
+ */
+@Database(entities = [SleepNight::class], version = 1, exportSchema = false)
+abstract class SleepDatabase : RoomDatabase() {
+
     /**
      * Connects the database to the DAO.
      */
-    abstract val contactDao : ContactDao
+    abstract val sleepDatabaseDao: SleepDatabaseDao
 
     /**
      * Define a companion object, this allows us to add functions on the SleepDatabase class.
@@ -28,9 +52,8 @@ abstract class ContactDatabase : RoomDatabase() {
          *  reads will be done to and from the main memory. It means that changes made by one
          *  thread to shared data are visible to other threads.
          */
-
         @Volatile
-        private var INSTANCE: ContactDatabase? = null
+        private var INSTANCE: SleepDatabase? = null
 
         /**
          * Helper function to get the database.
@@ -49,7 +72,7 @@ abstract class ContactDatabase : RoomDatabase() {
          *
          * @param context The application context Singleton, used to get access to the filesystem.
          */
-        fun getInstance(context: Context): ContactDatabase? {
+        fun getInstance(context: Context): SleepDatabase {
             // Multiple threads can ask for the database at the same time, ensure we only initialize
             // it once by using synchronized. Only one thread may enter a synchronized block at a
             // time.
@@ -60,60 +83,22 @@ abstract class ContactDatabase : RoomDatabase() {
                 // If instance is `null` make a new database instance.
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        ContactDatabase::class.java,
-                        "sleep_history_database"
+                            context.applicationContext,
+                            SleepDatabase::class.java,
+                            "sleep_history_database"
                     )
-                        // Wipes and rebuilds instead of migrating if no Migration object.
-                        // Migration is not part of this lesson. You can learn more about
-                        // migration with Room in this blog post:
-                        // https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
-                        .fallbackToDestructiveMigration()
-                        .build()
+                            // Wipes and rebuilds instead of migrating if no Migration object.
+                            // Migration is not part of this lesson. You can learn more about
+                            // migration with Room in this blog post:
+                            // https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
+                            .fallbackToDestructiveMigration()
+                            .build()
                     // Assign INSTANCE to the newly created database.
                     INSTANCE = instance
                 }
                 // Return instance; smart cast to be non-null.
                 return instance
             }
-
-
-        }
-
-        fun getFred(): String
-        {
-            return "Fred"
         }
     }
-//    abstract val contactDao : ContactDao
-//
-//    companion object {
-//        @Volatile
-//        private var INSTANCE: ContactDatabase? = null
-//
-//        fun getInstance(context: Context): ContactDatabase {
-//            //  Lock for multiple access
-//            synchronized(this) {
-//                ///WARNING: We don't actually want destructive migration - figure out the alternative
-//                //  You need to add the sequel commands to ALTER TABLE etc
-//                //  https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
-//
-//                //  Smart cast is only available to local variables - whatever that means
-//                var instance = INSTANCE
-//                if (null == instance)
-//                {
-//                    instance = Room.databaseBuilder(
-//                        context.applicationContext,
-//                        ContactDatabase::class.java,
-//                        "xmas_card_contact_database"
-//                    )
-//                        .fallbackToDestructiveMigration()
-//                        .build()
-//                    INSTANCE = instance
-//                }
-//
-//                return instance
-//            }
-//        }
-//    }
 }
