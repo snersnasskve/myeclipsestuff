@@ -22,7 +22,6 @@ class ContactDatabaseTest {
     @Before
     fun createDB() {
 
-        val fred = ContactDatabase.getFred()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         // Using an in-memory database because the information stored here disappears when the
         // process is killed.
