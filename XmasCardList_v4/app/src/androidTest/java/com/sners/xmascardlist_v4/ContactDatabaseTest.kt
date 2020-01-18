@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.sners.xmascardlist_v4.data.database.*
 
 import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertTrue
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -41,11 +42,12 @@ class ContactDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetContact() {
-       val contact = Contact()
+       val contact = Contact(firstName = "Fred", address = "somewhere")
+
         contactDao.insert(contact)
         val egContact = contactDao.getTonight()
-        Assert.assertEquals(egContact?.sleepQuality, -1)
-
+        print(egContact?.firstName)
+       assertTrue(egContact?.firstName == "Fred")
     }
 
 }

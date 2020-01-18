@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProviders
 import com.sners.xmascardlist_v4.controller.ContactController
-import com.sners.xmascardlist_v4.data.ContactViewModel
-import com.sners.xmascardlist_v4.data.ContactViewModelFactory
+import com.sners.xmascardlist_v4.data.ContactVM
+import com.sners.xmascardlist_v4.data.ContactVMFactory
 import kotlinx.android.synthetic.main.item_detail.view.*
 
 /**
@@ -21,8 +21,8 @@ import kotlinx.android.synthetic.main.item_detail.view.*
 class ContactDetailFragment : Fragment() , LifecycleObserver{
 
     public var contactController: ContactController? = null
-    private lateinit var contactViewModel : ContactViewModel
-    private  lateinit var viewModelFractory: ContactViewModelFactory
+    private lateinit var contactViewModel : ContactVM
+    private  lateinit var viewModelFractory: ContactVMFactory
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +40,9 @@ class ContactDetailFragment : Fragment() , LifecycleObserver{
 
                 //  She suggested this should go in onCreateView().  Not sure the benefits / otherwise
                 val contactId = it.getInt(ARG_ITEM_ID)
-                viewModelFractory = ContactViewModelFactory(contactId)
+                viewModelFractory = ContactVMFactory(contactId)
 
-                contactViewModel = ViewModelProviders.of(this, viewModelFractory).get(ContactViewModel::class.java)
+                contactViewModel = ViewModelProviders.of(this, viewModelFractory).get(ContactVM::class.java)
                 //activity?.toolbar_layout?.title = contact?.firstName!!.value
             }
         }

@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sners.xmascardlist_v4.controller.ContactController
-import com.sners.xmascardlist_v4.data.ContactViewModel
+import com.sners.xmascardlist_v4.data.ContactVM
 
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -64,7 +64,7 @@ class XmasCardListActivity : AppCompatActivity() {
 
     class XmasCardItemRecyclerViewAdapter(
         private val parentActivity: XmasCardListActivity,
-        private val values: List<ContactViewModel>,
+        private val values: List<ContactVM>,
         private val twoPane: Boolean
     ) :
         RecyclerView.Adapter<XmasCardItemRecyclerViewAdapter.ViewHolder>() {
@@ -73,7 +73,7 @@ class XmasCardListActivity : AppCompatActivity() {
 
         init {
             onClickListener = View.OnClickListener { v ->
-                val item = v.tag as ContactViewModel
+                val item = v.tag as ContactVM
                 if (twoPane) {
                     val fragment = ContactDetailFragment().apply {
                         arguments = Bundle().apply {

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
 
-class ContactViewModel (contactId : Int): ViewModel(), LifecycleObserver {
+class ContactVM (contactId : Int): ViewModel(), LifecycleObserver {
 
     var contactId : Int = 0
 

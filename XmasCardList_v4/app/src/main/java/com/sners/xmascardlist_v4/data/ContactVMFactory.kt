@@ -7,10 +7,10 @@ import java.lang.IllegalArgumentException
 //  You'll create a view model factory that allows you to define a custom constructor for a ViewModel
 //  that gets called when you use ViewModelProviders.
 //  https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)
-class ContactViewModelFactory(private val contactId: Int) : ViewModelProvider.Factory {
+class ContactVMFactory(private val contactId: Int) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ContactViewModel::class.java)) {
-            return  ContactViewModel(contactId) as T
+        if (modelClass.isAssignableFrom(ContactVM::class.java)) {
+            return  ContactVM(contactId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }
