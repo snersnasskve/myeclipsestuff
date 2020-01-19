@@ -7,4 +7,6 @@ import com.sners.xmascardlist_v4.data.database.ContactDao
 class XmasCardListVM (
     val database: ContactDao,
     application: Application) : AndroidViewModel(application){
+
+    val contacts : MutableList<ContactVM> = ArrayList()
 }

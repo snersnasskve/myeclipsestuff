@@ -1,11 +1,15 @@
 package com.sners.myfavouriterobot
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
+import com.sners.myfavouriterobot.data.Robot
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -20,8 +24,13 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "You entered a name of ${editText.text}", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+            val robot = Robot("Skania", "myfile",
+                "The one and only Skania", "The world's greated house-bot",
+                999.99, 5)
         }
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -9,8 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProviders
 import com.sners.xmascardlist_v4.controller.ContactController
 import com.sners.xmascardlist_v4.data.ContactVM
+import com.sners.xmascardlist_v4.data.ContactVMFactory
+import com.sners.xmascardlist_v4.data.XmasCardListVM
+import com.sners.xmascardlist_v4.data.XmasCardListVMFactory
+import com.sners.xmascardlist_v4.data.database.ContactDatabase
 
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -26,7 +31,7 @@ import kotlinx.android.synthetic.main.item_list.*
  */
 class XmasCardListActivity : AppCompatActivity() {
 
-    var contactController = ContactController()
+   // var contactController = ContactController()
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -59,7 +64,14 @@ class XmasCardListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
 
-        recyclerView.adapter = XmasCardItemRecyclerViewAdapter(this, contactController.contacts, twoPane)
+        //  Set up the link to the database
+        val application = requireNotNull(this).application
+        val dataSource = ContactDatabase.getInstance(application).contactDao
+        val viewModelFactory = XmasCardListVMFactory(dataSource, application)
+        val listViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(XmasCardListVM::class.java)
+
+        recyclerView.adapter = XmasCardItemRecyclerViewAdapter(this, listViewModel.contacts, twoPane)
     }
 
     class XmasCardItemRecyclerViewAdapter(
@@ -80,7 +92,7 @@ class XmasCardListActivity : AppCompatActivity() {
                             putInt(ContactDetailFragment.ARG_ITEM_ID, item.contactId)
                         }
                     }
-                    fragment.contactController = parentActivity.contactController
+                   // fragment.contactController = parentActivity.contactController
                     parentActivity.supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.contact_detail_container, fragment)
