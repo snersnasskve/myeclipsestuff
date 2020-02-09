@@ -5,6 +5,6 @@ data class Robot (
     val imageName : String,
     val caption : String,
     val description : String,
-    val price : Double,
+    val birthYear : Int,
     val usefulness : Int
 )

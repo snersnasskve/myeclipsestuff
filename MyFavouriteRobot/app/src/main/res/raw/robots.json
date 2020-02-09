@@ -1,0 +1,18 @@
+[
+	{
+		"robotName" : "Skania",
+		"imageName" : "skania",
+		"caption" : "Literally my favourite robot",
+		"description" : "A robot with personality. Its sonar looks like eyes. And it has a personalised name plate made out of raw leather.",
+		"birthYear" : 2016,
+		"usefulness" : 3
+	},
+		{
+		"robotName" : "First Attempt",
+		"imageName" : "first",
+		"caption" : "A very scrappy attempt",
+		"description" : "Everything about this poor robot was bad. The soldering kept breaking. And in the end it shied away from light instead of following it.",
+		"birthYear" : 2015,
+		"usefulness" : 1
+	}
+]

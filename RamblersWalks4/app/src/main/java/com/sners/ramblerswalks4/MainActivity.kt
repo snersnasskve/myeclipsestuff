@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.sners.ramblerswalks4.controller.SearchManager
 import timber.log.Timber
 
+
 //import com.sners.ramblerswalks4.databinding
 
 const val MEMORYKEY = "mykey"
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity(){
             print(myint)
         }
         Timber.i("onCreate called from karen")
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

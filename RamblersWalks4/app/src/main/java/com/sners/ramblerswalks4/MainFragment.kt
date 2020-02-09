@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.sners.ramblerswalks4.controller.SearchManager
 import com.sners.ramblerswalks4.data.DAYS
 import com.sners.ramblerswalks4.data.MIN_DIST
@@ -123,7 +124,10 @@ class MainFragment : Fragment() {
     private fun addButtonListeners(view: View?) {
         manage_groups_button?.setOnClickListener {
             //  All fragments and activities have access to navigation
-            Timber.i("Group button preseed called from karen")
+            if (view != null) {
+                Snackbar.make(view, "Loading area information from master file, wait a moment", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            }
             val groupsFragment = GroupsFragment.newInstance()
             val ft = fragmentManager!!.beginTransaction()
             ft.replace(R.id.container, groupsFragment).addToBackStack(null)
