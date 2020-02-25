@@ -32,7 +32,7 @@ class GroupsViewModel(app: Application ) : AndroidViewModel(app) {
 
     private  var groupData: List<Group> = emptyList()
 
-    private  var areas : List<String> = emptyList()
+
     val _areaNames = MutableLiveData<List<String>> ()
     val areaNames : LiveData<List<String>>
         get() = _areaNames
@@ -54,8 +54,10 @@ class GroupsViewModel(app: Application ) : AndroidViewModel(app) {
             if (gData != null)
             {
                 groupData = gData
-                areas = groupData.filter {it.scope == "A" }.map { it.name }
+                val  areas : List<String> = groupData.filter {it.scope == "A" }.map { it.name }
                 _areaNames.value = areas
+
+                //  If we have a default area, we should now go ahead and populate the groupNames
             }
         }
 
@@ -73,7 +75,6 @@ class GroupsViewModel(app: Application ) : AndroidViewModel(app) {
             //  So you cannot have this.groupData - scope????
             val readGroupData = adapter.fromJson(groupsText)
             readGroupData
-
         }
     }
 
