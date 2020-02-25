@@ -2,10 +2,11 @@ package com.sners.xmascardlist_v4.data
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.sners.xmascardlist_v4.data.database.Contact
 import com.sners.xmascardlist_v4.data.database.ContactDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 
 class XmasCardListVM (
     val database: ContactDao,
@@ -24,7 +25,7 @@ class XmasCardListVM (
     //  Use Dispatchers.Main as we intend this data to go into the UI on Main
     private  val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    var contacts :  MutableLiveData<List<Contact>>()
+    var contacts : LiveData<List<Contact>> = MutableLiveData<List<Contact>>()
 
     init {
         this.readContacts()
@@ -45,8 +46,8 @@ class XmasCardListVM (
         }
     }
 
-    private suspend fun readContactsFromDatabase(): List<Contact>>?
-    {
+    private suspend fun readContactsFromDatabase()
+    : LiveData<List<Contact>> {
         return withContext(Dispatchers.IO) {
             val dbContacts = database.getAllContacts()
             dbContacts

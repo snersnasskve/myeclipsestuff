@@ -9,8 +9,10 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+
 import com.sners.ramblerswalks4.data.DistanceViewModel
+import com.sners.ramblerswalks4.data.RamblersWalksVMFactory
 import com.sners.ramblerswalks4.data.SLIDER_MAX
 import com.sners.ramblerswalks4.data.SLIDER_MIN
 import kotlinx.android.synthetic.main.fragment_distance.*
@@ -38,9 +40,9 @@ class DistanceFragment : Fragment() {
     ): View? {
 
         //  Add the ViewModel for this fragment
-        viewModel = ViewModelProviders.of(this).get(DistanceViewModel::class.java)
-
-        // Inflate the layout for this fragment
+        val application = requireNotNull(activity).application
+        val viewModelFactory = RamblersWalksVMFactory(application)
+        viewModel =  ViewModelProvider(this).get(DistanceViewModel::class.java)
 
 
         return inflater.inflate(R.layout.fragment_distance, container, false)
@@ -52,11 +54,11 @@ class DistanceFragment : Fragment() {
 
 //
 
-        viewModel.minDistance.observe(this, Observer{newValue ->
+        viewModel.minDistance.observe(this.viewLifecycleOwner, Observer{newValue ->
             minimum_distance_value.text = newValue.toString()
             seekBarMinimum.progress = newValue
         })
-        viewModel.maxDistance.observe(this, Observer{newValue ->
+        viewModel.maxDistance.observe(this.viewLifecycleOwner, Observer{newValue ->
             maximum_distance_value.text = newValue.toString()
             seekBarMaximum.progress = newValue
         })

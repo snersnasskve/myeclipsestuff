@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,20 +8,55 @@
     tools:context=".GroupsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:id="@+id/groupsDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/anygroup"
+        android:textAppearance="@style/body_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
+    <Spinner
+        android:id="@+id/groupNameSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/east_yorkshire" />
-    <Button
-        android:id="@+id/groups_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupsDescription"
+        android:textAppearance="@style/body_style"/>
 
-</LinearLayout>
+<!--    <FrameLayout-->
+<!--        android:id="@+id/groupFrameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="parent">-->
+
+
+<!--        <include layout="@+id/groupNameSpinner" />-->
+<!--    </FrameLayout>-->
+
+
+    <Button
+        android:id="@+id/group_back_button"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupNameSpinner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
