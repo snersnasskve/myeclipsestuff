@@ -32,6 +32,11 @@ class GroupsViewModel(app: Application ) : AndroidViewModel(app) {
 
     private  var groupData: List<Group> = emptyList()
 
+    var selectedArea : Group? = null
+    val _areaDescription = MutableLiveData<String>()
+    val areaDesription : LiveData<String>
+        get() = _areaDescription
+
 
     val _areaNames = MutableLiveData<List<String>> ()
     val areaNames : LiveData<List<String>>
