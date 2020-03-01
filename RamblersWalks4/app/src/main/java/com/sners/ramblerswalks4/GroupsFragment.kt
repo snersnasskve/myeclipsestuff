@@ -82,15 +82,19 @@ class GroupsFragment : Fragment() {
                 id: Long
             ) {
 
-                Timber.i(
+
                     //  Working on trying to get the area description onto the screen
                     //  I think I am overthinking this - just need to
                     //  Instantiate an actual group in the data - areaGroup
                     //  Bung the name on the screen ... temporary solution, not required in final
                     //  Show up the correct list of groups
-                    "Karen has a position: " + (viewModel.areaNames.value?.get(position)
+
+                    Timber.i("Karen has a position: " + (viewModel.areaNames.value?.get(position)
                         ?: "... or maybe not")
                 )
+                groupsDescription.text = viewModel.areaNames.value?.get(position)
+                viewModel.getGroupsForArea(viewModel.areas.get(position))
+                //  Go populate a list
             }
 
         }
