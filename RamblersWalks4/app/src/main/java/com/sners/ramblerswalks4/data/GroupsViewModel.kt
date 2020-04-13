@@ -13,9 +13,8 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.*
 import timber.log.Timber
 
-class GroupsViewModel(app: Application ) : AndroidViewModel(app) {
+class GroupsViewModel(var app: Application) : AndroidViewModel(app) {
 
-    var app = app
     private val GroupListType = Types.newParameterizedType(
         List::class.java, Group::class.java
     )
@@ -82,10 +81,10 @@ class GroupsViewModel(app: Application ) : AndroidViewModel(app) {
 
     //  Deal with the groups
     //--------------------------------------------------------------------
-    fun getGroupsForArea(area: Group)
-    {
-val areaGroups = groupData.filter {it.scope == "G" &&
-    it.groupCode.substring(0, 2) == area.groupCode
+    fun getGroupsForArea(area: Group) {
+        val areaGroups = groupData.filter {
+            it.scope == "G" &&
+                    it.groupCode.substring(0, 2) == area.groupCode
         }
     }
 

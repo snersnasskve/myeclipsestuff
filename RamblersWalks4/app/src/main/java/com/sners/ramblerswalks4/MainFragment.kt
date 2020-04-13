@@ -86,10 +86,10 @@ class MainFragment : Fragment() {
         addButtonListeners(view)
         Timber.i("onViewCreated from MainFrag from Karen")
 
-         viewModel.daysDescription.observe(this, Observer{newValue ->
+         viewModel.daysDescription.observe(viewLifecycleOwner, Observer{newValue ->
             days_label.text = newValue
          })
-        viewModel.distanceDescription.observe(this, Observer{newValue ->
+        viewModel.distanceDescription.observe(viewLifecycleOwner, Observer{newValue ->
             distance_label.text = newValue
         })
 
