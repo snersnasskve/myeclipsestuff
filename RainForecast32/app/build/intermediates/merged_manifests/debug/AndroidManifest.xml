@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kve.rainforecast3"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/umbrella"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.kve.rainforecast3.ForecastMainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.rainforecast3.view.WeatherCurrent"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.rainforecast3.WEATHERCURRENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.rainforecast3.view.WeatherDashboard"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.rainforecast3.WEATHERDASHBOARD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.rainforecast3.view.MinutelyPrecipChart"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.rainforecast3.MINUTELYPRECIPCHART" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.rainforecast3.view.HourlyPrecipChart"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.rainforecast3.HOURLYPRECIPCHART" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kve.rainforecast3.view.WeatherAlert"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.kve.rainforecast3.WEATHERALERT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

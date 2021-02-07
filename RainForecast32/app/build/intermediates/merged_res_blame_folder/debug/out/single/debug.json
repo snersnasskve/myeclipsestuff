@@ -1,0 +1,158 @@
+[
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_alert_item.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\alert_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_partly_cloudy_night.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\partly_cloudy_night.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_forecast_main.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\fragment_forecast_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\menu_forecast_main.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\menu\\forecast_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_forecast_main.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\activity_forecast_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_kite.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\kite.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_campfire.jpg.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\campfire.jpg"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_hat.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\hat.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_dashboard.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout-land\\dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_alert_scroll.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\alert_scroll.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_clear_day.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\clear_day.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_temperature.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\temperature.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_precip_chart.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout-land\\precip_chart.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_fog.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\fog.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_alert.jpg.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\alert.jpg"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_wind.gif.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\wind.gif"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_clear_night.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\clear_night.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_sleet.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\sleet.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_currently.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\currently.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_wind_speed.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\wind_speed.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_right_arrow.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\right_arrow.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_snow.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\snow.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_heavy_snow.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\heavy_snow.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_partly_cloudy_day.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\partly_cloudy_day.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_umbrella.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\umbrella.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_cloudy.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\cloudy.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_precip_chart.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\precip_chart.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_rain.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\rain.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_sunset_icon.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\sunset_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_hiking.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\hiking.png"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_icon_gallery.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\icon_gallery.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_currently.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout-land\\currently.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\raw_gestures.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\raw\\gestures"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_washing.jpg.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\washing.jpg"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\layout_dashboard.xml.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\layout\\dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\sners_nass\\Documents\\Android\\myeclipsestuff\\RainForecast32\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    }
+]

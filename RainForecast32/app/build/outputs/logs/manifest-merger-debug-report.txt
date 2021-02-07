@@ -1,0 +1,149 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\44ca52d7ef3e732fef0df8d7367e96d9\appcompat-v7-20.0.0\AndroidManifest.xml:15:1-18:12
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\3cb3b670b44d67b60a228a850a1740eb\support-v4-20.0.0\AndroidManifest.xml:15:1-18:12
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:1-76:12
+	package
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:3:5-36
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\44ca52d7ef3e732fef0df8d7367e96d9\appcompat-v7-20.0.0\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\44ca52d7ef3e732fef0df8d7367e96d9\appcompat-v7-20.0.0\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\3cb3b670b44d67b60a228a850a1740eb\support-v4-20.0.0\AndroidManifest.xml:16:5-42
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\3cb3b670b44d67b60a228a850a1740eb\support-v4-20.0.0\AndroidManifest.xml:16:5-42
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:7:5-9:41
+	android:targetSdkVersion
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:9:9-38
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:8:9-35
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:10:5-80
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:10:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:11:5-78
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:11:22-76
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:12:5-66
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:12:22-64
+application
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:14:5-74:20
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\44ca52d7ef3e732fef0df8d7367e96d9\appcompat-v7-20.0.0\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:appcompat-v7:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\44ca52d7ef3e732fef0df8d7367e96d9\appcompat-v7-20.0.0\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\3cb3b670b44d67b60a228a850a1740eb\support-v4-20.0.0\AndroidManifest.xml:17:5-19
+MERGED from [com.android.support:support-v4:20.0.0] C:\Users\sners_nass\.gradle\caches\transforms-2\files-2.1\3cb3b670b44d67b60a228a850a1740eb\support-v4-20.0.0\AndroidManifest.xml:17:5-19
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:17:9-41
+	android:icon
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:16:9-42
+	android:allowBackup
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:15:9-35
+	android:theme
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:18:9-40
+activity#com.kve.rainforecast3.ForecastMainActivity
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:19:9-27:20
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:21:13-45
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:20:13-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:22:13-26:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:23:17-69
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:23:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:25:27-74
+activity#com.kve.rainforecast3.view.WeatherCurrent
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:29:5-37:20
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:31:13-45
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:30:13-69
+intent-filter#action:name:com.kve.rainforecast3.WEATHERCURRENT+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:32:13-36:29
+action#com.kve.rainforecast3.WEATHERCURRENT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:33:17-79
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:33:25-76
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:35:17-76
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:35:27-73
+activity#com.kve.rainforecast3.view.WeatherDashboard
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:38:7-46:20
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:40:13-45
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:39:13-71
+intent-filter#action:name:com.kve.rainforecast3.WEATHERDASHBOARD+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:41:13-45:29
+action#com.kve.rainforecast3.WEATHERDASHBOARD
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:42:25-78
+activity#com.kve.rainforecast3.view.MinutelyPrecipChart
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:47:7-55:20
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:49:13-45
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:48:13-74
+intent-filter#action:name:com.kve.rainforecast3.MINUTELYPRECIPCHART+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:50:13-54:29
+action#com.kve.rainforecast3.MINUTELYPRECIPCHART
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:51:17-84
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:51:25-81
+activity#com.kve.rainforecast3.view.HourlyPrecipChart
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:56:6-64:20
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:58:13-45
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:57:13-72
+intent-filter#action:name:com.kve.rainforecast3.HOURLYPRECIPCHART+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:59:13-63:29
+action#com.kve.rainforecast3.HOURLYPRECIPCHART
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:60:17-82
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:60:25-79
+activity#com.kve.rainforecast3.view.WeatherAlert
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:65:6-73:20
+	android:label
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:67:13-45
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:66:13-67
+intent-filter#action:name:com.kve.rainforecast3.WEATHERALERT+category:name:android.intent.category.DEFAULT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:68:13-72:29
+action#com.kve.rainforecast3.WEATHERALERT
+ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:69:17-77
+	android:name
+		ADDED from C:\Users\sners_nass\Documents\Android\myeclipsestuff\RainForecast32\app\src\main\AndroidManifest.xml:69:25-74
