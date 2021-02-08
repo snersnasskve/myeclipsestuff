@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 /*
@@ -22,10 +23,7 @@ import org.json.JSONObject;
  *		(Most HTTP client libraries wrap this functionality for you, please consult your library’s documentation for details. 
  *		Be advised that we do not support such compression over HTTP/1.0 connections.)
  *
- * Now going to try Climacell because they have probability
- * 1gYIV8J35T6IfmIStb0zT0FyfxChvN8c
- *https://www.c-sharpcorner.com/article/getting-started-with-climacell-weather-api/
- * c# is nearly the same as java ... maybe!
+
  *
  */
 
@@ -64,11 +62,10 @@ public class WeatherData {
 		JSONObject jsonObj;
 		try {
 			jsonObj = new JSONObject(jsonData);
-			
-			//	Set up current data
-			JSONObject jsonCurrent = jsonObj.getJSONObject(WeatherConstants.CURRENTLY);
-			currently = new CurrentlyData(jsonCurrent);
-			
+
+			JSONObject tempObj = 	jsonObj.getJSONObject(WeatherConstants.DATA);
+			JSONArray timelinesArray = 	tempObj.getJSONArray(WeatherConstants.TIMELINE);
+
 			headlineSummary = currently.getSummary();
 			headlineIcon	= currently.getIcon();
 			

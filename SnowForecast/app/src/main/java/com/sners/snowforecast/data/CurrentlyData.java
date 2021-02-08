@@ -64,14 +64,6 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 		return icon;
 	}
 
-	public String getNearestStormDistance() {
-		return nearestStormDistance;
-	}
-
-	public String getNearestStormBearing() {
-		return nearestStormBearing;
-	}
-
 	public String getTemperature() {
 		
 		String formattedTemp = "" + tempFormat.format(getTemperatureNum() ) + WeatherConstants.DEGREES_C;

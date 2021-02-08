@@ -20,7 +20,6 @@ public class HourlyData extends IntervalData {
 	private String visibility;
 	private String cloudCover;
 	private String pressure;
-	private String ozone;
 
 	public HourlyData(JSONObject jsonHourly)
 	{
@@ -40,7 +39,6 @@ public class HourlyData extends IntervalData {
 			visibility 			= jsonValueFor		  (WeatherConstants.HOURLY, jsonHourly);
 			cloudCover 			= jsonValueFor		  (WeatherConstants.CLOUD_COVER, jsonHourly);
 			pressure 			= jsonHourly.getString(WeatherConstants.PRESSURE);
-			ozone 				= jsonHourly.getString(WeatherConstants.OZONE);
 
 
 		} catch (JSONException e) {
@@ -95,8 +93,5 @@ public class HourlyData extends IntervalData {
 		return pressure;
 	}
 
-	public String getOzone() {
-		return ozone;
-	}
 
 }

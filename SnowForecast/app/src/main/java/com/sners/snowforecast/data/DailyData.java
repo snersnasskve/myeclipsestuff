@@ -47,8 +47,7 @@ public class DailyData extends IntervalData {
 			visibility 					= jsonValueFor		 (WeatherConstants.VISIBILITY, 			jsonDaily);
 			cloudCover 					= jsonValueFor		 (WeatherConstants.CLOUD_COVER, 			jsonDaily);
 			pressure 					= jsonDaily.getString(WeatherConstants.PRESSURE);
-			ozone 						= jsonDaily.getString(WeatherConstants.OZONE);
-	
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
