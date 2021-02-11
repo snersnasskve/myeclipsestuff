@@ -5,13 +5,13 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Currently {
     //  We will be calculating current values from minutely data
     private ArrayList<IntervalData> minutelyData;
 
-    //  For displaying temperatures
-    private static final DecimalFormat tempFormat = new DecimalFormat("0.0");
 
     //  Used for calculating time ranges throughout
     private String time;
@@ -46,20 +46,32 @@ public class Currently {
 
         if (minutelyData.size() > 0) {
             time = (minutelyData.get(0).getTime());
+
+            String weatherCode = weatherHelper.summaryForWeatherCode(
+                    minutelyData.get(0).getWeatherCode());
+
+            String icon = weatherHelper.summaryForWeatherCode(
+                    minutelyData.get(0).getWeatherCode());
+
         }
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     //	Get Summary - calculate a short phrase to show the current weather
     ////////////////////////////////////////////////////////////////////////////////
+ void generateSummaryAndIcon() {
+     HashMap<String, Integer> weatherWords = new HashMap<String, Integer>();
+
+     minutelyData.forEach(minuteInst -> {
+        String weatherSummary = weatherHelper.summaryForWeatherCode(minuteInst.weatherCode);
+        Integer temp = weatherWords.getOrDefault(weatherSummary, 0);
+        weatherWords.put(weatherSummary, temp + 1);
+    });
+     // Now try and get the winning word
+ }
+
     public String getSummary() {
-
-        Integer weatherCode = 0;
-        if (minutelyData.size() > 0) {
-            weatherCode = minutelyData.get(0).getWeatherCode();
-        }
-
-        return weatherHelper.summaryForWeatherCode(weatherCode);
+       return currentlyData.getSummary();
     }
 
     public String getIcon() {

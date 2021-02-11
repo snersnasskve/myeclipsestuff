@@ -15,13 +15,16 @@ public class WeatherHelper {
 	public static final String MM_HR = " mm/hr";
 	public static final String PERCENT = " %";
 
-	private static final DecimalFormat tempFormat = new DecimalFormat("0.0");
+	//  For displaying temperatures
+	public static final DecimalFormat tempFormat = new DecimalFormat("0.0");
 	Double beaufortScaleUppers[] = {1.0, 3.0, 7.0, 12.0, 17.0, 24.0, 30.0, 38.0, 46.0, 54.0, 63.0, 73.0};
 
 	String[] knownWeatherWords = {"Snow", "snow", "Rain", "rain", "Drizzle", "drizzle",
 			"Flurry", "flurry", "Hail", "hail", "Storm", "storm"};
 
 	private static HashMap<Integer, String> weatherCodes = new HashMap<Integer, String>();
+
+
 
 	////////////////////////////////////////////////////////////////////////////////
 	//	Constructor
@@ -192,7 +195,7 @@ public class WeatherHelper {
 			case 3:
 				precipType = "Freezing Rain";
 				break;
-			case 3:
+			case 4:
 				precipType = "Ice Pellets";
 				break;
 			default:
