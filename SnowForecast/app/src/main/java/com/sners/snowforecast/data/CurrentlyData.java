@@ -8,8 +8,6 @@ import org.json.JSONObject;
 
 public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 
-
-	private String time;
 	private String icon;
 	private String temperature;
 	private String apparentTemperature;
@@ -21,44 +19,17 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 	private String cloudCover;
 	private String pressure;
 
-	private static final DecimalFormat tempFormat = new DecimalFormat("0.0");
 
-	private com.sners.snowforecast.data.WeatherHelper weatherHelper;
 	
-	public CurrentlyData(JSONObject jsonCurrent)
+	public CurrentlyData()
 	{
 		weatherHelper = new com.sners.snowforecast.data.WeatherHelper();
-		
-		try {
-			time				= jsonCurrent.getString(WeatherConstants.TIME);
-			JSONObject weatherObject= jsonCurrent.getJSONArray(WeatherConstants.WEATHER).getJSONObject(0);
-			summary = weatherObject.getString(WeatherConstants.SUMMARY);
-			icon 				= weatherObject.getString(WeatherConstants.MAIN_WORD);
-			///precipIntensity 	= jsonCurrent.getString(WeatherConstants.PRECIP_INTENSITY);
 
-			//precipProbability 	= jsonCurrent.getString(WeatherConstants.PRECIP_PROBABILITY);
-			temperature 		= jsonCurrent.getString(WeatherConstants.TEMPERATURE);
-			apparentTemperature = jsonCurrent.getString(WeatherConstants.APPARENT_TEMPERATURE);
-			dewPoint 			= jsonCurrent.getString(WeatherConstants.DEW_POINT);
-			humidity 			= jsonCurrent.getString(WeatherConstants.HUMIDITY);
-			windSpeed 			= jsonCurrent.getString(WeatherConstants.WIND_SPEED);
-			windBearing 		= jsonCurrent.getString(WeatherConstants.WIND_BEARING);
-			visibility 			= jsonCurrent.getString(WeatherConstants.VISIBILITY);
-			cloudCover			= jsonCurrent.getString(WeatherConstants.CLOUD_COVER);
-			pressure 			= jsonCurrent.getString(WeatherConstants.PRESSURE);
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 
 		
 
-	public String getTime() {
-		return time;
-	}
 
 	public String getIcon() {
 		return icon;

@@ -21,18 +21,22 @@ public class Hourly {
 
 	private ArrayList <String> weatherWords;
 
-	public Hourly(JSONObject jsonHourly)
+	////////////////////////////////////////////////////////////////////////////////
+	//	Constructor
+	////////////////////////////////////////////////////////////////////////////////
+	public Hourly(JSONArray hourlyArary)
 	{
 		maxPrecip = -1.0f;
 		hourlyData		= new ArrayList <IntervalData> ();	
 		try {
-			summary 			= jsonHourly.getString(WeatherConstants.SUMMARY);
-			icon 				= jsonHourly.getString(WeatherConstants.ICON);
+			//summary 			= jsonHourly.getString(WeatherConstants.SUMMARY);
+			//icon 				= jsonHourly.getString(WeatherConstants.ICON);
+			summary = "Please implement me";
+			icon = "Please implement me";
 
-			JSONArray  	intervalData	= jsonHourly.getJSONArray(WeatherConstants.DATA);
-			for (int intervalCounter = 0 ; intervalCounter < intervalData.length() ; intervalCounter++)
+			for (int intervalCounter = 0 ; intervalCounter < hourlyArary.length() ; intervalCounter++)
 			{
-				com.sners.snowforecast.data.HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(intervalData.getJSONObject(intervalCounter));
+				com.sners.snowforecast.data.HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(hourlyArary.getJSONObject(intervalCounter));
 				hourlyData.add(dataInst);
 			}
 
@@ -42,7 +46,7 @@ public class Hourly {
 		}
 
 		WeatherHelper weatherHelper = new WeatherHelper();
-		weatherWords = weatherHelper.weatherWordsFromString(jsonHourly.toString());
+		weatherWords = weatherHelper.weatherWordsFromString(hourlyArary.toString());
 
 	}
 

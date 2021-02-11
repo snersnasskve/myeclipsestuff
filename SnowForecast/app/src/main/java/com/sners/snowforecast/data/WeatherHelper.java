@@ -4,6 +4,8 @@ import com.sners.snowforecast.data.IntervalData;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -18,9 +20,14 @@ public class WeatherHelper {
 
 	String[] knownWeatherWords = {"Snow", "snow", "Rain", "rain", "Drizzle", "drizzle",
 			"Flurry", "flurry", "Hail", "hail", "Storm", "storm"};
-	
+
+	private static HashMap<Integer, String> weatherCodes = new HashMap<Integer, String>();
+
+	////////////////////////////////////////////////////////////////////////////////
+	//	Constructor
+	////////////////////////////////////////////////////////////////////////////////
 	public WeatherHelper() {
-		
+		// Populate weathercodes
 	}
 	
 	public int periodWhenValueExceededPrecipIntensity(ArrayList<IntervalData> intervalData, double minValue)
@@ -142,8 +149,7 @@ public class WeatherHelper {
 		return timeString;
 	}
 
-	public ArrayList <String> weatherWordsFromString(String anyString)
-	{
+	public ArrayList <String> weatherWordsFromString(String anyString) {
 		ArrayList <String> foundWords = new ArrayList <String>();
 		for (int wCounter = 0 ; wCounter < knownWeatherWords.length ; wCounter++)
 		{
@@ -155,5 +161,78 @@ public class WeatherHelper {
 		return foundWords;
 	}
 
-	
+	////////////////////////////////////////////////////////////////////////////////
+	//	SummaryForWeatherCode
+	////////////////////////////////////////////////////////////////////////////////
+	public String summaryForWeatherCode(Integer weatherCode) {
+
+		String weatherWord = "Unidentified Weather";
+		if (weatherCodes.containsKey(weatherCode)) {
+			weatherWord = weatherCodes.get(weatherCode);
+		}
+		return weatherWord;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////
+	//	PrecipitationTypeForCode - Meansings are direct from the API documentation
+	////////////////////////////////////////////////////////////////////////////////
+	public String precipitationTypeForCode(Integer weatherCode) {
+
+		String precipType = "Unknown";
+		switch (weatherCode) {
+			case 0:
+				precipType = "N/A";
+				break;
+			case 1:
+				precipType = "Rain";
+				break;
+			case 2:
+				precipType = "Snow";
+				break;
+			case 3:
+				precipType = "Freezing Rain";
+				break;
+			case 3:
+				precipType = "Ice Pellets";
+				break;
+			default:
+				precipType = "New precipitation type";
+		}
+		return precipType;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////
+	//	Populate weather codes
+	//	https://docs.climacell.co/reference/data-layers-core#data-layers-weather-codes
+	////////////////////////////////////////////////////////////////////////////////
+	private void populateWeatherCodes() {
+		
+		//	This is a fixed array per API - only used once so not using constants
+		weatherCodes.put(1000, "Clear");
+		weatherCodes.put(1001, "Cloudy");
+		weatherCodes.put(1100, "Mostly Clear");
+		weatherCodes.put(1101, "Partly Cloudy");
+		weatherCodes.put(1102, "Mostly Cloudy");
+		weatherCodes.put(2000, "Fog");
+		weatherCodes.put(2100, "Light Fog");
+		weatherCodes.put(3000, "Light Wind");
+		weatherCodes.put(3001, "Wind");
+		weatherCodes.put(3002, "Strong Wind");
+		weatherCodes.put(4000, "Drizzle");
+		weatherCodes.put(4001, "Rain");
+		weatherCodes.put(4200, "Light Rain");
+		weatherCodes.put(4201, "Heavy Rain");
+		weatherCodes.put(5000, "Snow");
+		weatherCodes.put(5001, "Flurries");
+		weatherCodes.put(5100, "Light Snow");
+		weatherCodes.put(5101, "Heavy Snow");
+		weatherCodes.put(6000, "Freezing Drizzle");
+		weatherCodes.put(6001, "Freezing Rain");
+		weatherCodes.put(6200, "Light Freezing Rain");
+		weatherCodes.put(6201, "Heavy Freezing Rain");
+		weatherCodes.put(7000, "Ice Pellets");
+		weatherCodes.put(7101, "Heavy Ice Pellets");
+		weatherCodes.put(7102, "Light Ice Pellets");
+		weatherCodes.put(8000, "Thunderstorm");
+	}
 }

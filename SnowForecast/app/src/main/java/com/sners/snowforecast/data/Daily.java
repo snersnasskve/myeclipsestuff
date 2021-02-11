@@ -20,19 +20,21 @@ public class Daily {
 
 	private ArrayList <String> weatherWords;
 
-	public Daily(JSONObject jsonDaily)
+	////////////////////////////////////////////////////////////////////////////////
+	//	Constructor
+	////////////////////////////////////////////////////////////////////////////////
+	public Daily(JSONArray dailyArray)
 	{
 		dailyData		= new ArrayList <IntervalData> ();	
 		today = null;
 
 		try {
-			summary 			= jsonDaily.getString(WeatherConstants.SUMMARY);
-			icon 				= jsonDaily.getString(WeatherConstants.ICON);
+			//summary 			= jsonDaily.getString(WeatherConstants.SUMMARY);
+			//icon 				= jsonDaily.getString(WeatherConstants.ICON);
 
-			JSONArray  	intervalData	= jsonDaily.getJSONArray(WeatherConstants.DATA);
-			for (int intervalCounter = 0 ; intervalCounter < intervalData.length() ; intervalCounter++)
+			for (int intervalCounter = 0 ; intervalCounter < dailyArray.length() ; intervalCounter++)
 			{
-				com.sners.snowforecast.data.DailyData dataInst = new com.sners.snowforecast.data.DailyData(intervalData.getJSONObject(intervalCounter));
+				com.sners.snowforecast.data.DailyData dataInst = new com.sners.snowforecast.data.DailyData(dailyArray.getJSONObject(intervalCounter));
 				dailyData.add(dataInst);
 			}
 
@@ -46,7 +48,7 @@ public class Daily {
 		}
 		
 		WeatherHelper weatherHelper = new WeatherHelper();
-		weatherWords = weatherHelper.weatherWordsFromString(jsonDaily.toString());
+		weatherWords = weatherHelper.weatherWordsFromString(dailyArray.toString());
 	}
 
 	public Long getSunsetTime()

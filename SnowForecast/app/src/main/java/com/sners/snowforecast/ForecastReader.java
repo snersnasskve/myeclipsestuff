@@ -9,10 +9,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 
 import android.util.Log;
 
+import com.sners.snowforecast.data.WeatherConstants;
 import com.sners.snowforecast.data.WeatherData;
 import com.sners.snowforecast.ForecastMainActivity;
 
@@ -32,18 +35,19 @@ public class ForecastReader {
 	 * c# is nearly the same as java ... maybe!
 	 */
 
+	//	sunsetTime is not allowed for 1m or 1h timesteps
 
-	private static String unit_system="metric";
-	private static String start_time = "now";
-	//private static String fields  = ["humidity", "temp", "weather_code"];
-	private static String fields  = "humidity,temperature,weatherCode";
+	private static List<String> fields = Arrays.asList(WeatherConstants.HUMIDITY,
+			WeatherConstants.TEMPERATURE, WeatherConstants.PRECIP_INTENSITY,
+			WeatherConstants.PRECIP_PROBABILITY, WeatherConstants.PRECIP_TYPE,
+			WeatherConstants.CLOUD_COVER,
+			WeatherConstants.WEATHER_CODE, WeatherConstants.WIND_SPEED);
+	//private static String fields  = "humidity,temperature,weatherCode,precipitationIntensity,
+	// precipitationProbability,precipitationType,sunsetTime,cloudCover,windSpeed";
 	private static String requesturl =  "";
 	private static String urlTemplate ="{url}{period}?lat={lat}&lon={lon}&unit_system={unit}&start_time=now&fields={fields}&apikey={api_key}";
 //	private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m,1h,1d";
 	private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m";
-	private static String urlTemplateNowcast = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=5m";
-	private static String urlTemplateHourly = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1h";
-	private static String urlTemplateDaily = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1d";
 
 
 

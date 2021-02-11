@@ -1,5 +1,6 @@
 package  com.sners.snowforecast.data;
 
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
@@ -41,8 +42,7 @@ import com.sners.snowforecast.data.WeatherHelper;
 public class WeatherData {
 
 
-
-	private CurrentlyData currently;
+private Currently currently;
 	private Minutely minutely;
 	private Hourly hourly;
 	private Daily daily;
@@ -54,7 +54,16 @@ public class WeatherData {
 	private String			headlineIcon;
 	private long 			minutesTilSunset;
 
+	enum TimePeriod {
+		MINUTELY,
+		HOURLY,
+		DAILY,
+		UNKNOWN
+	};
 
+	////////////////////////////////////////////////////////////////////////////////
+	//	Constructor
+	////////////////////////////////////////////////////////////////////////////////
 	public WeatherData(String jsonData)
 	{
 		weatherHelper = new WeatherHelper();
@@ -66,31 +75,35 @@ public class WeatherData {
 			JSONObject tempObj = 	jsonObj.getJSONObject(WeatherConstants.DATA);
 			JSONArray timelinesArray = 	tempObj.getJSONArray(WeatherConstants.TIMELINE);
 
+			//	Set up the main data objects
+			for (int timelineCounter = 0 ; timelineCounter < timelinesArray.length() ; timelineCounter++) {
+				JSONObject timelineObj = timelinesArray.getJSONObject(timelineCounter);
+				switch (getPeriodForTimestep( timelineObj.getString(WeatherConstants.TIMESTEP))) {
+					case MINUTELY:
+						minutely = new Minutely(timelineObj.getJSONArray(WeatherConstants.INTERVALS));
+						currently = new Currently(minutely.getMinutelyData());
+						break;
+					case HOURLY:
+						hourly = new Hourly(timelineObj.getJSONArray(WeatherConstants.INTERVALS));
+						break;
+					case DAILY:
+						daily = new Daily(timelineObj.getJSONArray(WeatherConstants.INTERVALS));
+						break;
+					case UNKNOWN:
+						break;
+					default: {
+
+						break;
+					}
+				}
+			}
+
 			headlineSummary = currently.getSummary();
 			headlineIcon	= currently.getIcon();
+
 			
 			minutesTilSunset = -1;
 			
-			//	Set up minutely data
-			if (jsonData.contains(WeatherConstants.MINUTELY))
-			{
-				minutely = new Minutely(jsonObj.getJSONArray(WeatherConstants.MINUTELY));
-			}
-	
-			if (jsonData.contains(WeatherConstants.HOURLY))
-			{
-				hourly = new Hourly(jsonObj.getJSONObject(WeatherConstants.HOURLY));
-			}
-
-			if (jsonData.contains(WeatherConstants.DAILY))
-			{
-				daily = new Daily(jsonObj.getJSONObject(WeatherConstants.DAILY));
-			}
-			
-			if (jsonData.contains(WeatherConstants.ALERTSINQUOTES))
-			{
-				alert = new Alert(jsonObj.getJSONArray(WeatherConstants.ALERTS));
-			}
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -372,6 +385,22 @@ public class WeatherData {
 		else
 		{
 			return hourly.getHourlyData();
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private TimePeriod getPeriodForTimestep(String timestep) {
+		if (timestep == "1s") {
+			return TimePeriod.MINUTELY;
+		}
+		else if (timestep == "1h") {
+			return TimePeriod.HOURLY;
+		}
+		else if (timestep == "1d") {
+			return TimePeriod.DAILY;
+		}
+		else {
+			return TimePeriod.UNKNOWN;
 		}
 	}
 

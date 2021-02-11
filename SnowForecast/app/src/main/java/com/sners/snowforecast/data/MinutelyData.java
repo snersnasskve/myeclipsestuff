@@ -10,25 +10,27 @@ import org.json.JSONObject;
 
 public class MinutelyData extends IntervalData {
 
-	String time;
-	
+
+	////////////////////////////////////////////////////////////////////////////////
+	//	Constructor
+	////////////////////////////////////////////////////////////////////////////////
 	public MinutelyData(JSONObject jsonMinutely)
 	{
 		try {
 			time 				= jsonMinutely.getString(WeatherConstants.TIME);
-			precipIntensity 	= jsonMinutely.getString(WeatherConstants.PRECIP_INTENSITY);
-			precipProbability 	= jsonMinutely.getString(WeatherConstants.PRECIP_PROBABILITY);
-			precipType 			= jsonValueFor		  (WeatherConstants.PRECIP_TYPE, jsonMinutely);
-	
+			JSONObject values = jsonMinutely.getJSONObject(WeatherConstants.VALUES);
+			precipIntensity 	= values.getString(WeatherConstants.PRECIP_INTENSITY);
+			precipProbability 	= values.getString(WeatherConstants.PRECIP_PROBABILITY);
+			precipType 			= values.getString(WeatherConstants.PRECIP_TYPE);;
+			weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);;
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public String getTime() {
-		return time;
-	}
+
 
 
 	

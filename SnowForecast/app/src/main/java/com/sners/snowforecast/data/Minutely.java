@@ -20,15 +20,19 @@ public class Minutely {
 	
 	private Float maxPrecip;
 
-	public Minutely(JSONArray jsonMinutely)
+	////////////////////////////////////////////////////////////////////////////////
+	//	Constructor
+	////////////////////////////////////////////////////////////////////////////////
+	public Minutely(JSONArray minutelyArray)
 	{
 		maxPrecip = -1.0f;
 		minutelyData		= new ArrayList <IntervalData> ();	
 		try {
-			JSONArray  	intervalData	= jsonMinutely;
-			for (int intervalCounter = 0 ; intervalCounter < intervalData.length() ; intervalCounter++)
+			for (int intervalCounter = 0 ; intervalCounter < minutelyArray.length() ; intervalCounter++)
 			{
-				com.sners.snowforecast.data.MinutelyData dataInst = new com.sners.snowforecast.data.MinutelyData(intervalData.getJSONObject(intervalCounter));
+				JSONObject minuteObj = minutelyArray.getJSONObject(intervalCounter);
+				com.sners.snowforecast.data.MinutelyData dataInst =
+						new com.sners.snowforecast.data.MinutelyData(minuteObj);
 				minutelyData.add(dataInst);
 			}
 
@@ -37,7 +41,7 @@ public class Minutely {
 			e.printStackTrace();
 		}
 		WeatherHelper weatherHelper = new WeatherHelper();
-		weatherWords = weatherHelper.weatherWordsFromString(jsonMinutely.toString());
+		weatherWords = weatherHelper.weatherWordsFromString(minutelyArray.toString());
 
 	}
 

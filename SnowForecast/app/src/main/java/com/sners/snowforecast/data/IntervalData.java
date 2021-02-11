@@ -10,6 +10,8 @@ public class IntervalData {
 	protected String precipIntensity;
 	protected String precipProbability;
 	protected String precipType;
+	protected String time;
+	protected Integer weatherCode;
 
 	protected WeatherHelper weatherHelper;
 	public IntervalData() {
@@ -42,12 +44,25 @@ public class IntervalData {
 		return precipIntensityNum;
 	}
 
+
+	////////////////////////////////////////////////////////////////////////////////
+	//	Getters
+	////////////////////////////////////////////////////////////////////////////////
+
 	public String getPrecipProbability() {
 		return precipProbability;
 	}
 
 	public String getPrecipType() {
 		return precipType;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public Integer getWeatherCode() {
+		return weatherCode;
 	}
 
 }
