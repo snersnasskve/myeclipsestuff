@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.sners.snowforecast.data.*;
+
 
 public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 
 	private String headline = "Not found";
 	private String icon = "";
-	private float precipitation = 0;
+	private float precipIntensity = 0;
+	private float precipProbability = 0;
 	private float temperature = 0;
 	private float windSpeed = 0;
 	private float nextRain = 0;
@@ -20,10 +23,14 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 
 
 	
-	public CurrentlyData()
+	public CurrentlyData(ArrayList<IntervalData> minutely)
 	{
-		weatherHelper = new com.sners.snowforecast.data.WeatherHelper();
-
+		weatherHelper = new WeatherHelper();
+		//	Cast the first record to a MinutelyData
+		MinutelyData minute1 = (MinutelyData) minutely.get(0);
+		precipIntensity = minute1.getPrecipIntensity();
+		precipProbability = minute1.getPrecipProbability();
+		temperature = minute1.getTemperature();
 
 		galleryIcons = new ArrayList<String>();
 	}
@@ -73,11 +80,11 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 	}
 
 	public float getPrecipitation() {
-		return precipitation;
+		return precipIntensity;
 	}
 
 	public void setPrecipitation(float precipitation) {
-		this.precipitation = precipitation;
+		this.precipIntensity = precipitation;
 	}
 
 	public float getWindSpeed() {

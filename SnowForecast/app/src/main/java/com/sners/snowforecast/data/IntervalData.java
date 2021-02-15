@@ -7,9 +7,9 @@ import org.json.JSONObject;
 public class IntervalData {
 
 	protected String summary;
-	protected String precipIntensity;
-	protected String precipProbability;
-	protected String precipType;
+	protected float precipIntensity;
+	protected float precipProbability;
+	protected Integer precipType;
 	protected String time;
 	protected Integer weatherCode;
 
@@ -31,29 +31,22 @@ public class IntervalData {
 		return result;
 	}
 	
-	public String getSummary() {
-		return summary;
-	}
-	public String getPrecipIntensity() {
-		String formattedPrecip = weatherHelper.precipIntensityToMilsFormatted(precipIntensity);
-		return formattedPrecip;
-	}
 
-	public Float getPrecipIntensityNum() {
-		Float precipIntensityNum = weatherHelper.precipIntensityToMils(precipIntensity);
-		return precipIntensityNum;
-	}
+
+
 
 
 	////////////////////////////////////////////////////////////////////////////////
 	//	Getters
 	////////////////////////////////////////////////////////////////////////////////
 
-	public String getPrecipProbability() {
+	public float getPrecipProbability() {
 		return precipProbability;
 	}
 
-	public String getPrecipType() {
+	public float getPrecipIntensity() { return precipIntensity; }
+
+	public Integer getPrecipType() {
 		return precipType;
 	}
 
@@ -63,6 +56,10 @@ public class IntervalData {
 
 	public Integer getWeatherCode() {
 		return weatherCode;
+	}
+
+	public String getSummary() {
+		return summary;
 	}
 
 }

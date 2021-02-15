@@ -23,6 +23,7 @@ public class WeatherHelper {
 			"Flurry", "flurry", "Hail", "hail", "Storm", "storm"};
 
 	private static HashMap<Integer, String> weatherCodes = new HashMap<Integer, String>();
+	private static HashMap<Integer, String> iconCodes = new HashMap<Integer, String>();
 
 
 
@@ -31,6 +32,7 @@ public class WeatherHelper {
 	////////////////////////////////////////////////////////////////////////////////
 	public WeatherHelper() {
 		// Populate weathercodes
+		populateWeatherCodes();
 	}
 	
 	public int periodWhenValueExceededPrecipIntensity(ArrayList<IntervalData> intervalData, double minValue)
@@ -176,6 +178,15 @@ public class WeatherHelper {
 		return weatherWord;
 	}
 
+	public String iconForWeatherCode(Integer weatherCode) {
+
+		String weatherWord = "clear_day";
+		if (iconCodes.containsKey(weatherCode)) {
+			weatherWord = iconCodes.get(weatherCode);
+		}
+		return weatherWord;
+	}
+
 	////////////////////////////////////////////////////////////////////////////////
 	//	PrecipitationTypeForCode - Meansings are direct from the API documentation
 	////////////////////////////////////////////////////////////////////////////////
@@ -237,5 +248,31 @@ public class WeatherHelper {
 		weatherCodes.put(7101, "Heavy Ice Pellets");
 		weatherCodes.put(7102, "Light Ice Pellets");
 		weatherCodes.put(8000, "Thunderstorm");
+		iconCodes.put(1000, "clear_day");
+		iconCodes.put(1001, "Cloudy");
+		iconCodes.put(1100, "clear_day");
+		iconCodes.put(1101, "partly_cloudy_day");
+		iconCodes.put(1102, "partly_cloudy_day");
+		iconCodes.put(2000, "fog");
+		iconCodes.put(2100, "fog");
+		iconCodes.put(3000, "wind");
+		iconCodes.put(3001, "wind");
+		iconCodes.put(3002, "wind");
+		iconCodes.put(4000, "rain");
+		iconCodes.put(4001, "rain");
+		iconCodes.put(4200, "rain");
+		iconCodes.put(4201, "rain");
+		iconCodes.put(5000, "snow");
+		iconCodes.put(5001, "snow");
+		iconCodes.put(5100, "heavy_snow");
+		iconCodes.put(5101, "heavy_snow");
+		iconCodes.put(6000, "sleet");
+		iconCodes.put(6001, "sleet");
+		iconCodes.put(6200, "sleet");
+		iconCodes.put(6201, "sleet");
+		iconCodes.put(7000, "sleet");
+		iconCodes.put(7101, "sleet");
+		iconCodes.put(7102, "sleet");
+		iconCodes.put(8000, "rain");
 	}
 }

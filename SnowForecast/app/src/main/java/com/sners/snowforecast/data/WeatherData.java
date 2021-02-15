@@ -42,7 +42,7 @@ import com.sners.snowforecast.data.WeatherHelper;
 public class WeatherData {
 
 
-private Currently currently;
+	private Currently currently;
 	private Minutely minutely;
 	private Hourly hourly;
 	private Daily daily;
@@ -353,7 +353,7 @@ private Currently currently;
 
 
 	//	Getters
-	public CurrentlyData getCurrently()
+	public Currently getCurrently()
 	{
 		return currently;
 	}

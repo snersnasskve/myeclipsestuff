@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 public class MinutelyData extends IntervalData {
 
+	protected float temperature;
+
 
 	////////////////////////////////////////////////////////////////////////////////
 	//	Constructor
@@ -22,7 +24,8 @@ public class MinutelyData extends IntervalData {
 			precipIntensity 	= values.getString(WeatherConstants.PRECIP_INTENSITY);
 			precipProbability 	= values.getString(WeatherConstants.PRECIP_PROBABILITY);
 			precipType 			= values.getString(WeatherConstants.PRECIP_TYPE);;
-			weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);;
+			weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);
+			temperature			= (float) values.getDouble(WeatherConstants.TEMPERATURE);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -31,9 +34,11 @@ public class MinutelyData extends IntervalData {
 	}
 
 
+	public float getTemperature() {
+		return temperature;
+	}
 
-
-	
-	
-
+	public void setTemperature(float temperature) {
+		this.temperature = temperature;
+	}
 }
