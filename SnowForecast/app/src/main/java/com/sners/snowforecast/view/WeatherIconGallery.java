@@ -3,14 +3,15 @@ package com.sners.snowforecast.view;
 import java.util.ArrayList;
 
 import com.sners.snowforecast.ForecastMainActivity;
+import com.sners.snowforecast.data.WeatherConstants;
+import com.sners.snowforecast.data.WeatherData;
+import com.sners.snowforecast.data.WeatherHelper;
 
 
 public class WeatherIconGallery {
 
-	
 	public WeatherIconGallery()
 	{
-
 	}
 	
 	
@@ -62,7 +63,7 @@ public class WeatherIconGallery {
 	{
 		boolean isItOK = false;
 		if (ForecastMainActivity.weatherData.isDayTime() && 
-				(!ForecastMainActivity.weatherData.dataContainsWeatherword("rain", "minutely")) &&
+				(!ForecastMainActivity.weatherData.dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY)) &&
 				(ForecastMainActivity.weatherData.getTimeTilSunset() > 60) &&
 				(ForecastMainActivity.weatherData.getCurrently().getTemperatureNum() > 5))
 		{
@@ -75,8 +76,9 @@ public class WeatherIconGallery {
 	{
 		boolean isItOK = false;
 		if ((ForecastMainActivity.weatherData.isDayTime()) && 
-				(!ForecastMainActivity.weatherData.dataContainsWeatherword("rain", "hourly")) 	&& 
-				(ForecastMainActivity.weatherData.getTimeTilSunset() > 120))
+				(!ForecastMainActivity.weatherData.
+						dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.HOURLY) &&
+				(ForecastMainActivity.weatherData.getTimeTilSunset() > 120)))
 		{
 			isItOK = true;
 		}
@@ -86,7 +88,8 @@ public class WeatherIconGallery {
 	private boolean okToUseUmbrella()
 	{
 		boolean isItOK = false;
-		if (ForecastMainActivity.weatherData.dataContainsWeatherword("rain", "minutely"))
+		if (ForecastMainActivity.weatherData.
+				dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY))
 		{
 			isItOK = true;
 		}
@@ -96,8 +99,10 @@ public class WeatherIconGallery {
 	private boolean okToSnow()
 	{
 		boolean isItOK = false;
-		if (ForecastMainActivity.weatherData.dataContainsWeatherword("snow", "minutely") ||
-				ForecastMainActivity.weatherData.dataContainsWeatherword("snow", "hourly") 	)
+		if (ForecastMainActivity.weatherData.
+				dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_SNOW, WeatherConstants.MINUTELY) ||
+				ForecastMainActivity.weatherData.
+						dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_SNOW, WeatherConstants.HOURLY) 	)
 		{
 			isItOK = true;
 		}
@@ -107,7 +112,9 @@ public class WeatherIconGallery {
 	private boolean okToBraai()
 	{
 		boolean isItOK = false;
-		if (!ForecastMainActivity.weatherData.dataContainsWeatherword("rain", "minutely"))
+		// if it is not going to rain in the next hour
+		if (!ForecastMainActivity.weatherData.
+				dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY))
 		{
 			isItOK = true;
 		}
@@ -117,7 +124,7 @@ public class WeatherIconGallery {
 	private boolean okToWearHat()
 	{
 		boolean isItOK = false;
-		Double temperature = ForecastMainActivity.weatherData.getCurrently().getTemperatureNum();
+		float temperature = ForecastMainActivity.weatherData.getCurrently().getTemperatureNum();
 		if (ForecastMainActivity.weatherData.isDayTime() && temperature > 20)
 		{
 			isItOK = true;
@@ -128,7 +135,7 @@ public class WeatherIconGallery {
 	private boolean okToFlyKite()
 	{
 		boolean isItOK = false;
-		int windSpeed = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
+		float windSpeed = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
 		
 		if (ForecastMainActivity.weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
 				(ForecastMainActivity.weatherData.getCurrently().getTemperatureNum() > 5))

@@ -15,8 +15,9 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 	private String icon = "";
 	private float precipIntensity = 0;
 	private float precipProbability = 0;
+	private Integer weatherCode;
 	private float temperature = 0;
-	private float windSpeed = 0;
+	private float windSpeed = 0;	//	Wind speed is metres per second in the data classes
 	private float nextRain = 0;
 	private float nextSnow = 0;
 	private ArrayList<String> galleryIcons;
@@ -79,36 +80,16 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 		this.temperature = temperature;
 	}
 
-	public float getPrecipitation() {
+	public float getPrecipIntensity() {
 		return precipIntensity;
 	}
 
-	public void setPrecipitation(float precipitation) {
+	public void setPrecipIntensity(float precipitation) {
 		this.precipIntensity = precipitation;
-	}
-
-	public float getWindSpeed() {
-		return windSpeed;
 	}
 
 	public void setWindSpeed(float windSpeed) {
 		this.windSpeed = windSpeed;
-	}
-
-	public float getNextRain() {
-		return nextRain;
-	}
-
-	public void setNextRain(float nextRain) {
-		this.nextRain = nextRain;
-	}
-
-	public float getNextSnow() {
-		return nextSnow;
-	}
-
-	public void setNextSnow(float nextSnow) {
-		this.nextSnow = nextSnow;
 	}
 
 	public ArrayList<String> getGalleryIcons() {
@@ -117,5 +98,9 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 
 	public void setGalleryIcons(ArrayList<String> galleryIcons) {
 		this.galleryIcons = galleryIcons;
+	}
+
+	public void setWeatherCode(Integer weatherCode) {
+		this.weatherCode = weatherCode;
 	}
 }

@@ -4,6 +4,7 @@ import com.sners.snowforecast.data.IntervalData;
 import com.sners.snowforecast.data.WeatherHelper;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +20,9 @@ public class Hourly {
 	
 	private Float maxPrecip;
 
-	private ArrayList <String> weatherWords;
+	Set<Integer> weatherCodes;
+	Set<Integer> precipCodes;
+
 
 	////////////////////////////////////////////////////////////////////////////////
 	//	Constructor
@@ -38,15 +41,14 @@ public class Hourly {
 			{
 				com.sners.snowforecast.data.HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(hourlyArary.getJSONObject(intervalCounter));
 				hourlyData.add(dataInst);
+				weatherCodes.add(dataInst.getWeatherCode());
+				precipCodes.add(dataInst.getPrecipType());
 			}
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		WeatherHelper weatherHelper = new WeatherHelper();
-		weatherWords = weatherHelper.weatherWordsFromString(hourlyArary.toString());
 
 	}
 
@@ -58,7 +60,7 @@ public class Hourly {
 			//	only calculate it once
 			for (IntervalData hour : hourlyData)
 			{
-				Float precip = hour.getPrecipIntensityNum();
+				Float precip = hour.getPrecipIntensity();
 				if (precip > maxPrecip)
 				{
 					maxPrecip = precip;
@@ -77,10 +79,13 @@ public class Hourly {
 		return icon;
 	}
 
-	public ArrayList<String> getWeatherWords() {
-		return weatherWords;
+	public Set<Integer> getWeatherCodes() {
+		return weatherCodes;
 	}
 
+	public Set<Integer> getPrecipCodes() {
+		return precipCodes;
+	}
 
 	public ArrayList<IntervalData> getHourlyData() {
 		return hourlyData;

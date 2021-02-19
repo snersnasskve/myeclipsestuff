@@ -7,6 +7,7 @@ import com.sners.snowforecast.data.WeatherConstants;
 
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,10 +15,11 @@ import org.json.JSONObject;
 
 public class Minutely {
 
-	private ArrayList <IntervalData> minutelyData;
+	final private ArrayList <IntervalData> minutelyData;
 	
-	ArrayList <String> weatherWords;
-	
+	Set<Integer> weatherCodes;
+	Set<Integer> precipCodes;
+
 	private Float maxPrecip;
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +28,8 @@ public class Minutely {
 	public Minutely(JSONArray minutelyArray)
 	{
 		maxPrecip = -1.0f;
-		minutelyData		= new ArrayList <IntervalData> ();	
+		minutelyData		= new ArrayList <IntervalData> ();
+
 		try {
 			for (int intervalCounter = 0 ; intervalCounter < minutelyArray.length() ; intervalCounter++)
 			{
@@ -34,15 +37,14 @@ public class Minutely {
 				com.sners.snowforecast.data.MinutelyData dataInst =
 						new com.sners.snowforecast.data.MinutelyData(minuteObj);
 				minutelyData.add(dataInst);
+				weatherCodes.add(dataInst.getWeatherCode());
+				precipCodes.add(dataInst.getPrecipType());
 			}
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WeatherHelper weatherHelper = new WeatherHelper();
-		weatherWords = weatherHelper.weatherWordsFromString(minutelyArray.toString());
-
 	}
 
 	public Float getMaxPrecip()
@@ -52,7 +54,7 @@ public class Minutely {
 			//	only calculate it once
 			for (IntervalData minute : minutelyData)
 			{
-				Float precip = minute.getPrecipIntensityNum();
+				Float precip = minute.getPrecipIntensity();
 				if (precip > maxPrecip)
 				{
 					maxPrecip = precip;
@@ -62,8 +64,12 @@ public class Minutely {
 		return maxPrecip;
 	}
 
-	public ArrayList<String> getWeatherWords() {
-		return weatherWords;
+	public Set<Integer> getWeatherCodes() {
+		return weatherCodes;
+	}
+
+	public Set<Integer> getPrecipCodes() {
+		return precipCodes;
 	}
 
 	public ArrayList<IntervalData> getMinutelyData() {

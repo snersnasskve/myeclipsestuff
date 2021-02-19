@@ -155,7 +155,7 @@ private void drawPrecipitationGraph()
 	
 		tvDashTemperature.setText(tempString);
 		
-		Double temperatureNum = ForecastMainActivity.weatherData.getCurrently().getTemperatureNum();
+		float temperatureNum = ForecastMainActivity.weatherData.getCurrently().getTemperatureNum();
 		if (temperatureNum > 20)
 		{
 			tvDashTemperature.setTextColor(Color.RED);
@@ -177,7 +177,7 @@ private void drawPrecipitationGraph()
 	
 	private void populateWind()
 	{
-		int beaufortValue = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
+		float beaufortValue = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
 		
 		tvDashWind.setText(""+ beaufortValue);
 		if (beaufortValue < 5)

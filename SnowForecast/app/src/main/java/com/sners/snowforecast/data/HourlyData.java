@@ -12,13 +12,6 @@ public class HourlyData extends IntervalData {
 	private String time;
 	private String icon;
 	private String temperature;
-	private String apparentTemperature;
-	private String dewPoint;
-	private String humidity;
-	private String windSpeed;
-	private String windBearing;
-	private String visibility;
-	private String cloudCover;
 	private String pressure;
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -28,20 +21,14 @@ public class HourlyData extends IntervalData {
 	{
 		try {
 			time				= jsonHourly.getString(WeatherConstants.TIME);
-			summary 			= jsonHourly.getString(WeatherConstants.SUMMARY);
+			JSONObject values = jsonHourly.getJSONObject(WeatherConstants.VALUES);
 			icon 				= jsonHourly.getString(WeatherConstants.ICON);
-			precipIntensity 	= jsonHourly.getString(WeatherConstants.PRECIP_INTENSITY);
-			precipProbability 	= jsonHourly.getString(WeatherConstants.PRECIP_PROBABILITY);
-			precipType 			= jsonValueFor		  (WeatherConstants.PRECIP_TYPE, jsonHourly);
-			temperature 		= jsonHourly.getString(WeatherConstants.TEMPERATURE);
-			apparentTemperature = jsonHourly.getString(WeatherConstants.APPARENT_TEMPERATURE);
-			dewPoint 			= jsonHourly.getString(WeatherConstants.DEW_POINT);
-			humidity 			= jsonHourly.getString(WeatherConstants.HUMIDITY);
-			windSpeed 			= jsonHourly.getString(WeatherConstants.WIND_SPEED);
-			windBearing 		= jsonHourly.getString(WeatherConstants.WIND_BEARING);
-			visibility 			= jsonValueFor		  (WeatherConstants.HOURLY, jsonHourly);
-			cloudCover 			= jsonValueFor		  (WeatherConstants.CLOUD_COVER, jsonHourly);
-			pressure 			= jsonHourly.getString(WeatherConstants.PRESSURE);
+			precipIntensity 	= (float)values.getDouble(WeatherConstants.PRECIP_INTENSITY);
+			precipProbability 	= (float)values.getDouble(WeatherConstants.PRECIP_PROBABILITY);
+			precipType 			= values.getInt(WeatherConstants.PRECIP_TYPE);;
+			temperature 		= values.getString(WeatherConstants.TEMPERATURE);
+			windSpeed 			= values.getDouble(WeatherConstants.WIND_SPEED);
+				pressure 			= values.getString(WeatherConstants.PRESSURE);
 
 
 		} catch (JSONException e) {
@@ -64,33 +51,7 @@ public class HourlyData extends IntervalData {
 		return temperature;
 	}
 
-	public String getApparentTemperature() {
-		return apparentTemperature;
-	}
 
-	public String getDewPoint() {
-		return dewPoint;
-	}
-
-	public String getHumidity() {
-		return humidity;
-	}
-
-	public String getWindSpeed() {
-		return windSpeed;
-	}
-
-	public String getWindBearing() {
-		return windBearing;
-	}
-
-	public String getVisibility() {
-		return visibility;
-	}
-
-	public String getCloudCover() {
-		return cloudCover;
-	}
 
 	public String getPressure() {
 		return pressure;

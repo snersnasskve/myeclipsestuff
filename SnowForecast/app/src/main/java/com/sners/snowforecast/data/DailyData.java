@@ -12,12 +12,10 @@ public class DailyData extends IntervalData {
 	private String time;
 	private String icon;
 	private String sunsetTime;
-	private String precipIntensityMax;
-	private String precipIntensityMaxTime;
+	private String sunriseTime;
+	//private String precipIntensityMax;
+	//private String precipIntensityMaxTime;
 
-
-	private String windSpeed;
-	private String windBearing;
 
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -27,16 +25,15 @@ public class DailyData extends IntervalData {
 	{
 		try {
 			time 						= jsonDaily.getString(WeatherConstants.TIME);
-			summary 					= jsonDaily.getString(WeatherConstants.SUMMARY);
-			sunsetTime 					= jsonDaily.getString(WeatherConstants.SUNSET_TIME);
-			precipIntensity 			= jsonDaily.getString(WeatherConstants.PRECIP_INTENSITY);
-			precipIntensityMax 			= jsonDaily.getString(WeatherConstants.PRECIP_INTENSITY_MAX);
-			precipIntensityMaxTime 		= jsonValueFor		 (WeatherConstants.PRECIP_INTENSITY_MAX_TIME, jsonDaily);
-			precipProbability 			= jsonValueFor		 (WeatherConstants.PRECIP_PROBABILITY, 		jsonDaily);
-			precipType 					= jsonValueFor		 (WeatherConstants.PRECIP_TYPE, 			jsonDaily);
+			JSONObject values = jsonDaily.getJSONObject(WeatherConstants.VALUES);
 
-			windSpeed 					= jsonDaily.getString(WeatherConstants.WIND_SPEED);
-			windBearing 				= jsonDaily.getString(WeatherConstants.WIND_BEARING);
+			sunsetTime 					= jsonDaily.getString(WeatherConstants.SUNSET_TIME);
+			sunriseTime 					= jsonDaily.getString(WeatherConstants.SUNRISE_TIME);
+			//precipIntensity 	= (float)values.getDouble(WeatherConstants.PRECIP_INTENSITY);			precipIntensityMax 			= jsonDaily.getString(WeatherConstants.PRECIP_INTENSITY_MAX);
+			//precipIntensityMaxTime 		= jsonValueFor		 (WeatherConstants.PRECIP_INTENSITY_MAX_TIME, jsonDaily);
+			precipProbability 	= (float)values.getDouble(WeatherConstants.PRECIP_PROBABILITY);
+			precipType 			= values.getInt(WeatherConstants.PRECIP_TYPE);;
+		weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -44,7 +41,7 @@ public class DailyData extends IntervalData {
 
 	}
 
-		public String getTime() {
+	public String getTime() {
 		return time;
 	}
 
@@ -53,27 +50,24 @@ public class DailyData extends IntervalData {
 	}
 
 
-	public String
-	getSunsetTime() {
+	public String getSunsetTime() {
 		return sunsetTime;
 	}
 
-
-	public String getPrecipIntensityMax() {
-		return precipIntensityMax;
+	public String getSunriseTime() {
+		return sunriseTime;
 	}
 
-	public String getPrecipIntensityMaxTime() {
-		return precipIntensityMaxTime;
-	}
+	//public String getPrecipIntensityMax() {
+	//	return precipIntensityMax;
+	//}
 
-	public String getWindSpeed() {
-		return windSpeed;
-	}
+	//public String getPrecipIntensityMaxTime() {
+	//	return precipIntensityMaxTime;
+	//}
 
-	public String getWindBearing() {
-		return windBearing;
-	}
+
+
 
 
 

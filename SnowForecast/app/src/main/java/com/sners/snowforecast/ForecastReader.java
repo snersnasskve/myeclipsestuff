@@ -21,12 +21,6 @@ import com.sners.snowforecast.ForecastMainActivity;
 
 public class ForecastReader {
 	/*
-	 * https://openweathermap.org
-	 * https://openweathermap.org/darksky-openweather
-	 * https://openweathermap.org/api
-	 * My own private api key - 48fe222d3bc24e203df4da8e56196446
-	 * user name is sners_nass
-	 * https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={API key}
 	 *  * Now going to try Climacell because they have probability
 	 * 1gYIV8J35T6IfmIStb0zT0FyfxChvN8c
 	 *https://www.c-sharpcorner.com/article/getting-started-with-climacell-weather-api/
@@ -41,13 +35,13 @@ public class ForecastReader {
 			WeatherConstants.TEMPERATURE, WeatherConstants.PRECIP_INTENSITY,
 			WeatherConstants.PRECIP_PROBABILITY, WeatherConstants.PRECIP_TYPE,
 			WeatherConstants.CLOUD_COVER,
-			WeatherConstants.WEATHER_CODE, WeatherConstants.WIND_SPEED);
+			WeatherConstants.WEATHER_CODE, WeatherConstants.WIND_SPEED,
+			WeatherConstants.SUNRISE_TIME, WeatherConstants.SUNSET_TIME);
 	//private static String fields  = "humidity,temperature,weatherCode,precipitationIntensity,
 	// precipitationProbability,precipitationType,sunsetTime,cloudCover,windSpeed";
-	private static String requesturl =  "";
 	private static String urlTemplate ="{url}{period}?lat={lat}&lon={lon}&unit_system={unit}&start_time=now&fields={fields}&apikey={api_key}";
 //	private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m,1h,1d";
-	private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m";
+	private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m,1h,1d";
 
 
 

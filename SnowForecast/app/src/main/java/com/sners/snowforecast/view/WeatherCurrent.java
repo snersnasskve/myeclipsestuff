@@ -1,16 +1,5 @@
 package com.sners.snowforecast.view;
 
-import java.util.ArrayList;
-
-import com.sners.snowforecast.ForecastMainActivity;
-import com.sners.snowforecast.R;
-import com.sners.snowforecast.R.id;
-import com.sners.snowforecast.R.layout;
-import com.sners.snowforecast.view.HourlyPrecipChart;
-import com.sners.snowforecast.view.MinutelyPrecipChart;
-import com.sners.snowforecast.view.WeatherAlert;
-import com.sners.snowforecast.view.WeatherDashboard;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +13,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sners.snowforecast.ForecastMainActivity;
+import com.sners.snowforecast.R;
+import com.sners.snowforecast.data.WeatherConstants;
+
+import java.util.ArrayList;
 
 public class WeatherCurrent extends Activity {
 	
@@ -72,13 +67,13 @@ public class WeatherCurrent extends Activity {
 		tvCurPrecipIntensity.	setText(ForecastMainActivity.weatherData.getCurrently().getPrecipIntensity());
 		tvCurPrecipProbability.	setText(ForecastMainActivity.weatherData.getCurrently().getPrecipProbability());
 		tvCurTemperature.		setText(ForecastMainActivity.weatherData.getCurrently().getTemperature());
-		tvCurWind.				setText(ForecastMainActivity.weatherData.getCurrently().getWindSpeed());
+		tvCurWind.				setText(ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufortString());
 		
-		tvCurTimeTilSunset.		setText("" + ForecastMainActivity.weatherData.getTimeTilSunsetString());
+		tvCurTimeTilSunset.		setText(ForecastMainActivity.weatherData.getTimeTilSunsetString());
 		
 		//	timeTillPrecip
 		tvCurTimeTilPrecip.  	setText(ForecastMainActivity.weatherData.timeTilPrecipString(false));
-		tvCurTimeTilSnow.  		setText(ForecastMainActivity.weatherData.timeTilPrecipTypeString("Snow"));
+		tvCurTimeTilSnow.  		setText(ForecastMainActivity.weatherData.timeTilPrecipTypeString(WeatherConstants.PRECIP_TYPE_SNOW));
 
 		String alertHeadline = "None";
 		if (null != ForecastMainActivity.weatherData.getAlerts())
@@ -87,7 +82,8 @@ public class WeatherCurrent extends Activity {
 		}
 		tvCurAlertString.		setText(alertHeadline);
 			
-		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon().replaceAll("-", "_");
+		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon().
+				replaceAll("-", "_");
 		int iconId 	= 	getResources().getIdentifier(iconName, "drawable", getPackageName());
 		ivCurIcon.		setImageResource(iconId);	
 		ivCurIcon.		setContentDescription(iconName);
@@ -100,7 +96,8 @@ public class WeatherCurrent extends Activity {
 
 	private void setWeatherActivityIcons() {
 
-		com.sners.snowforecast.view.WeatherIconGallery iconGallery = new com.sners.snowforecast.view.WeatherIconGallery();
+		com.sners.snowforecast.view.WeatherIconGallery iconGallery =
+				new com.sners.snowforecast.view.WeatherIconGallery();
 		ArrayList <String> qualIcons = iconGallery.getWeatherActivityIcons();
 		
 				

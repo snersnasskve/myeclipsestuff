@@ -12,8 +12,6 @@ import java.util.Locale;
 
 public class WeatherHelper {
 
-	public static final String MM_HR = " mm/hr";
-	public static final String PERCENT = " %";
 
 	//  For displaying temperatures
 	public static final DecimalFormat tempFormat = new DecimalFormat("0.0");
@@ -24,6 +22,7 @@ public class WeatherHelper {
 
 	private static HashMap<Integer, String> weatherCodes = new HashMap<Integer, String>();
 	private static HashMap<Integer, String> iconCodes = new HashMap<Integer, String>();
+	private static HashMap<Integer, String> precipTypes = new HashMap<Integer, String>();
 
 
 
@@ -34,7 +33,9 @@ public class WeatherHelper {
 		// Populate weathercodes
 		populateWeatherCodes();
 	}
-	
+
+	////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////
 	public int periodWhenValueExceededPrecipIntensity(ArrayList<IntervalData> intervalData, double minValue)
 	{
 		int periodFound = -1;
@@ -43,7 +44,7 @@ public class WeatherHelper {
 			int intervalCounter = 0;
 			while (intervalCounter < intervalData.size() && !precipExceedsMin)
 			{
-				Float 		fieldValue = intervalData.get(intervalCounter).getPrecipIntensityNum();
+				Float 		fieldValue = intervalData.get(intervalCounter).getPrecipIntensity();
 				if (fieldValue > minValue)
 				{
 					precipExceedsMin = true;
@@ -54,52 +55,58 @@ public class WeatherHelper {
 		return periodFound;
 	}
 
-	public boolean dataContainsKeyword(ArrayList<IntervalData> intervalData, String keyword)
-	{
-		boolean wordFound = false;
+//	////////////////////////////////////////////////////////////////////////////////
+//	public boolean dataContainsKeyword(ArrayList<IntervalData> intervalData, String keyword)
+//	{
+//		boolean wordFound = false;
+//
+//		int intervalCounter = 0;
+//		while (intervalCounter < intervalData.size() && !wordFound)
+//		{
+//			if (intervalData.get(intervalCounter).getSummary().toLowerCase(Locale.ENGLISH).contains(keyword))
+//			{
+//				wordFound = true;
+//				break;
+//			}
+//			intervalCounter++;
+//		}
+//		return wordFound;
+//	}
 
-		int intervalCounter = 0;
-		while (intervalCounter < intervalData.size() && !wordFound)
-		{
-			if (intervalData.get(intervalCounter).getSummary().toLowerCase(Locale.ENGLISH).contains(keyword))
-			{
-				wordFound = true;
-				break;
-			}
-			intervalCounter++;
-		}
-		return wordFound;
-	}
+//	////////////////////////////////////////////////////////////////////////////////
+//	public int intervalCounterForKeyword(ArrayList<IntervalData> intervalData, String keyword)
+//	{
+//		boolean wordFound = false;
+//		int precipCode = codeForPrecipitationType(keyword);
+//
+//		int intervalCounter = 0;
+//		while (intervalCounter < intervalData.size() && !wordFound)
+//		{
+//			if (intervalData.get(intervalCounter).getSummary().toLowerCase(Locale.ENGLISH).contains(keyword.toLowerCase(Locale.ENGLISH)))
+//			{
+//				wordFound = true;
+//				break;
+//			}
+//			else if (null != intervalData.get(intervalCounter).getPrecipType() &&
+//					intervalData.get(intervalCounter).getPrecipType().toLowerCase(Locale.ENGLISH).contains(keyword.toLowerCase(Locale.ENGLISH)))
+//			{
+//				wordFound = true;
+//				break;
+//			}
+//			intervalCounter++;
+//		}
+//		if (!wordFound)
+//		{
+//			intervalCounter = -1;
+//		}
+//		return intervalCounter;
+//	}
 
-	public int intervalCounterForKeyword(ArrayList<IntervalData> intervalData, String keyword)
-	{
-		boolean wordFound = false;
-
-		int intervalCounter = 0;
-		while (intervalCounter < intervalData.size() && !wordFound)
-		{
-			if (intervalData.get(intervalCounter).getSummary().toLowerCase(Locale.ENGLISH).contains(keyword.toLowerCase(Locale.ENGLISH)))
-			{
-				wordFound = true;
-				break;
-			}
-			else if (null != intervalData.get(intervalCounter).getPrecipType() &&
-					intervalData.get(intervalCounter).getPrecipType().toLowerCase(Locale.ENGLISH).contains(keyword.toLowerCase(Locale.ENGLISH)))
-			{
-				wordFound = true;
-				break;
-			}
-			intervalCounter++;
-		}
-		if (!wordFound)
-		{
-			intervalCounter = -1;
-		}
-		return intervalCounter;
-	}
-
+	////////////////////////////////////////////////////////////////////////////////
 	public int windSpeedToBeaufort(Double windSpeed)
 	{
+		//	Wind speed from clima cell is meters per second
+
 		int beaufortValue = 0;
 		for (int scaleCounter = 0 ; scaleCounter < beaufortScaleUppers.length ; scaleCounter++)
 		{
@@ -123,12 +130,14 @@ public class WeatherHelper {
 		return cels ;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////
 	public String precipIntensityToMilsFormatted(String inchesString)
 	{
 		Float mils = precipIntensityToMils(inchesString);
-		return tempFormat.format(mils) + MM_HR;
+		return tempFormat.format(mils) + WeatherConstants.MM_HR;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////
 	public Float precipIntensityToMils(String inchesString)
 	{
 		Float inches = Float.parseFloat(inchesString);
@@ -136,13 +145,16 @@ public class WeatherHelper {
 	}
 
 
+	////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////
 	public String probabilityToPercent(String decimalNo)
 	{
 		Double dec = Double.parseDouble(decimalNo);
 		Double perc = (dec * 100);
-		return tempFormat.format(perc) + PERCENT;
+		return tempFormat.format(perc) + WeatherConstants.PERCENT;
 	}
-	
+
+	////////////////////////////////////////////////////////////////////////////////
 	public String formatTime(long totalMinutes)
 	{
 		String timeString = "" + totalMinutes;
@@ -154,6 +166,7 @@ public class WeatherHelper {
 		return timeString;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////
 	public ArrayList <String> weatherWordsFromString(String anyString) {
 		ArrayList <String> foundWords = new ArrayList <String>();
 		for (int wCounter = 0 ; wCounter < knownWeatherWords.length ; wCounter++)
@@ -187,32 +200,38 @@ public class WeatherHelper {
 		return weatherWord;
 	}
 
+
 	////////////////////////////////////////////////////////////////////////////////
 	//	PrecipitationTypeForCode - Meansings are direct from the API documentation
+	//	enum is not the answer - the API gives you numbers - Java enums are not numbes
 	////////////////////////////////////////////////////////////////////////////////
-	public String precipitationTypeForCode(Integer weatherCode) {
+	public String precipitationTypeForCode(int weatherCode) {
 
 		String precipType = "Unknown";
-		switch (weatherCode) {
-			case 0:
-				precipType = "N/A";
-				break;
-			case 1:
-				precipType = "Rain";
-				break;
-			case 2:
-				precipType = "Snow";
-				break;
-			case 3:
-				precipType = "Freezing Rain";
-				break;
-			case 4:
-				precipType = "Ice Pellets";
-				break;
-			default:
-				precipType = "New precipitation type";
+		if (precipTypes.containsKey(weatherCode)) {
+			precipType = precipTypes.get(weatherCode);
 		}
 		return precipType;
+	}
+
+	public int codeForPrecipitationType(String weatherDesc) {
+		int weatherCode = -1; //
+		for (int key : precipTypes.keySet()) {
+			if (precipTypes.get(key).equals(weatherDesc)) {
+				weatherCode = key;
+			}
+		}
+		return weatherCode;
+	}
+
+	public int codeForWeatherWord(String weatherWord) {
+		int weatherCode = -1;
+		for (int key : weatherCodes.keySet()) {
+			if (weatherCodes.get(key).equals(weatherWord)) {
+				weatherCode = key;
+			}
+		}
+		return weatherCode;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -274,5 +293,13 @@ public class WeatherHelper {
 		iconCodes.put(7101, "sleet");
 		iconCodes.put(7102, "sleet");
 		iconCodes.put(8000, "rain");
+
+		precipTypes.put(0, "N/A");
+		precipTypes.put(1, WeatherConstants.PRECIP_TYPE_RAIN);
+		precipTypes.put(2, WeatherConstants.PRECIP_TYPE_SNOW);
+		precipTypes.put(3, WeatherConstants.PRECIP_TYPE_FREEZING_RAIN);
+		precipTypes.put(4, WeatherConstants.PRECIP_TYPE_ICE_PELLETS);
+		precipTypes.put(5, WeatherConstants.PRECIP_TYPE_OTHER);
+
 	}
 }

@@ -46,13 +46,10 @@ public class Currently {
         weatherHelper = new com.sners.snowforecast.data.WeatherHelper();
 
         if (minutelyData.size() > 0) {
+
             time = (minutelyData.get(0).getTime());
+            generateCurrentSummaries();
 
-            String weatherCode = weatherHelper.summaryForWeatherCode(
-                    minutelyData.get(0).getWeatherCode());
-
-            String icon = weatherHelper.summaryForWeatherCode(
-                    minutelyData.get(0).getWeatherCode());
 
         }
     }
@@ -60,17 +57,19 @@ public class Currently {
     ////////////////////////////////////////////////////////////////////////////////
     //	Get Summary - calculate a short phrase to show the current weather
     ////////////////////////////////////////////////////////////////////////////////
-    void generateSummaryAndIcon() {
+    void generateCurrentSummaries() {
         HashMap<Integer, Integer> weatherCodes = new HashMap<Integer, Integer>();
 
         // Use the first 60 minutes for data - or whatever we have
         int hourCount = (minutelyData.size() > 59) ? 60 : minutelyData.size();
+        double totWindSpeed = 0.0;
 
         for (int minCount = 0; minCount < hourCount; minCount++) {
             MinutelyData minuteInst = (MinutelyData) minutelyData.get(minCount);
 
             Integer temp = weatherCodes.getOrDefault(minuteInst.weatherCode, 0);
             weatherCodes.put(minuteInst.weatherCode, temp + 1);
+            totWindSpeed += minuteInst.getWindSpeed();
         }
         // Now try and get the winning code
 //     weatherCodes.entrySet().stream().max((entry1, entry2) ->
@@ -79,11 +78,8 @@ public class Currently {
 
         currentlyData.setHeadline(weatherHelper.summaryForWeatherCode(modeCode));
         currentlyData.setIcon(weatherHelper.iconForWeatherCode(modeCode));
+        currentlyData.setWindSpeed((float) (totWindSpeed / 60.0 ));
 
-    }
-
-    public String getSummary() {
-        return currentlyData.getSummary();
     }
 
     public String getIcon() {
@@ -95,7 +91,7 @@ public class Currently {
     }
 
     public float getPrecipIntensityNum() {
-        return currentlyData.getPrecipIntensityNum();
+        return currentlyData.getPrecipIntensity();
     }
 
     public String getTemperature() {
@@ -107,4 +103,30 @@ public class Currently {
         return formattedTemp;
     }
 
+    public String getPrecipIntensity() {
+        return "" + currentlyData.getPrecipIntensity() + WeatherConstants.MM_HR;
+    }
+
+    public String getPrecipProbability() {
+        return "" + currentlyData.getPrecipProbability() + WeatherConstants.PERCENT;
+    }
+
+    public double getWindSpeedMph() {
+        return (currentlyData.getWindSpeed() * WeatherConstants.MS_TO_MPH_CONVERSION);
+    }
+    public float getWindSpeedBeaufort() {
+        return weatherHelper.windSpeedToBeaufort(getWindSpeedMph());
+    }
+
+    public String getWindSpeedBeaufortString() {
+        return "" + weatherHelper.windSpeedToBeaufort(getWindSpeedMph());
+    }
+
+    public String getHeadline() {
+        return currentlyData.getHeadline();
+    }
+
+    public float getTemperatureNum() {
+        return currentlyData.getTemperature();
+    }
 }

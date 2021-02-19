@@ -6,12 +6,12 @@ import org.json.JSONObject;
 
 public class IntervalData {
 
-	protected String summary;
 	protected float precipIntensity;
 	protected float precipProbability;
 	protected Integer precipType;
 	protected String time;
 	protected Integer weatherCode;
+	protected double windSpeed;	//	Wind speed is metres per second in the data classes
 
 	protected WeatherHelper weatherHelper;
 	public IntervalData() {
@@ -58,8 +58,7 @@ public class IntervalData {
 		return weatherCode;
 	}
 
-	public String getSummary() {
-		return summary;
+	public double getWindSpeed() {
+		return windSpeed;
 	}
-
 }

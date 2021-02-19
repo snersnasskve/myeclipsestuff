@@ -21,11 +21,12 @@ public class MinutelyData extends IntervalData {
 		try {
 			time 				= jsonMinutely.getString(WeatherConstants.TIME);
 			JSONObject values = jsonMinutely.getJSONObject(WeatherConstants.VALUES);
-			precipIntensity 	= values.getString(WeatherConstants.PRECIP_INTENSITY);
-			precipProbability 	= values.getString(WeatherConstants.PRECIP_PROBABILITY);
-			precipType 			= values.getString(WeatherConstants.PRECIP_TYPE);;
+			precipIntensity 	= (float)values.getDouble(WeatherConstants.PRECIP_INTENSITY);
+			precipProbability 	= (float)values.getDouble(WeatherConstants.PRECIP_PROBABILITY);
+			precipType 			= values.getInt(WeatherConstants.PRECIP_TYPE);;
 			weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);
 			temperature			= (float) values.getDouble(WeatherConstants.TEMPERATURE);
+			windSpeed			= (float) values.getDouble(WeatherConstants.WIND_SPEED);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
