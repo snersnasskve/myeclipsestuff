@@ -36,9 +36,9 @@ public class MinutelyPrecipChart extends com.sners.snowforecast.view.WeatherPrec
         
         maxPrecip = setTitleAndColours(maxPrecip);
     
-	    drawPrecipGraph(minutely, maxPrecip);
+	    drawPrecipGraph(minutely, maxPrecip, 48);
 
-        drawProbabilityGraph(minutely);
+        drawProbabilityGraph(minutely, 48);
 	}
 
 	public void displayDashboard(View v){

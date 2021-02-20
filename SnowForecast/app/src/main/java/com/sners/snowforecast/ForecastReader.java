@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
+
 import android.util.Log;
 
 import com.sners.snowforecast.data.WeatherConstants;
@@ -62,7 +63,7 @@ public class ForecastReader {
 		String forecastUrl = urlTemplateRealtime;
 		forecastUrl = forecastUrl.replace("LAT", "" + latitude);
 		forecastUrl = forecastUrl.replace("LONG", "" + longitude);
-		forecastUrl = forecastUrl.replace("FIELD_NAME", "" + fields);
+		forecastUrl = forecastUrl.replace("FIELD_NAME", "" + fieldsToString());
 		forecastUrl = forecastUrl + "&apikey=" + apiKey;
 
 
@@ -122,7 +123,29 @@ public class ForecastReader {
 		return result;
 	}	//		readWeatherForecast
 
+	//	Thank you to kind internet person for supplying a basic function
+	//		Which really should be part of any language
+String fieldsToString() {
 
+	StringBuilder sbString = new StringBuilder("");
+
+	//iterate through ArrayList
+	for(String language : fields){
+
+		//append ArrayList element followed by comma
+		sbString.append(language).append(",");
+	}
+
+	//convert StringBuffer to String
+	String strList = sbString.toString();
+
+	//remove last comma from String if you want
+	if( strList.length() > 0 )
+		strList = strList.substring(0, strList.length() - 1);
+
+	return strList;
+
+}
 
 }
 

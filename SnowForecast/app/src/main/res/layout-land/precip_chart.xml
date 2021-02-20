@@ -2,50 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" 
-      android:onClick="displayDashboard">
+    android:onClick="displayDashboard"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical" 
-        android:layout_weight="1">
-        
-     <TextView
-        android:id="@+id/tvPcIntensity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/precip_intensity_hint"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
- 
-    <ImageView
-        android:id="@+id/ivPcProbability"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        <TextView
+            android:id="@+id/tvPcIntensity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/precip_intensity_hint"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/ivPcIntensity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical" 
-        android:layout_weight="1">
- 
-  <TextView
-      android:id="@+id/textView2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/precip_probability_hint"
-      android:textAppearance="?android:attr/textAppearanceMedium" />
-  
-     <ImageView
-        android:id="@+id/ivPcIntensity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-  </LinearLayout>
-    
-    
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/precip_probability_hint"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+        <ImageView
+            android:id="@+id/ivPcProbability"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
 </LinearLayout>

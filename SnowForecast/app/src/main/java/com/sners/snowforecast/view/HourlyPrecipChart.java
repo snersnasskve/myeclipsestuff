@@ -33,9 +33,9 @@ public class HourlyPrecipChart extends com.sners.snowforecast.view.WeatherPrecip
         
         maxPrecip = setTitleAndColours(maxPrecip);
     
-	    drawPrecipGraph(hourly, maxPrecip);
+	    drawPrecipGraph(hourly, maxPrecip, 60);
 
-        drawProbabilityGraph(hourly);
+        drawProbabilityGraph(hourly, 60);
 	}
 
 	

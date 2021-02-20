@@ -43,7 +43,7 @@ public class WeatherConstants {
     public static final String PRECIP_INTENSITY_MAX_TIME = "precipIntensityMaxTime";
     public static final String TITLE = "title";
     public static final String EXPIRES = "expires";
-    public static final String TEMPERATURE = "temp";
+    public static final String TEMPERATURE = "temperature";
     public static final String APPARENT_TEMPERATURE = "feels_like";
     public static final String TIME = "startTime";
     public static final String TIMELINE = "timelines";

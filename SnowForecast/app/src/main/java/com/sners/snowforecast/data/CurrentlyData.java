@@ -9,6 +9,10 @@ import org.json.JSONObject;
 import com.sners.snowforecast.data.*;
 
 
+/*
+This class is a convenience summary.
+The data it uses comes from minutely, but it calculates things once
+ */
 public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 
 	private String headline = "Not found";
@@ -23,7 +27,9 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 	private ArrayList<String> galleryIcons;
 
 
-	
+	/*
+	Constructor
+	 */
 	public CurrentlyData(ArrayList<IntervalData> minutely)
 	{
 		weatherHelper = new WeatherHelper();
@@ -36,25 +42,6 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 		galleryIcons = new ArrayList<String>();
 	}
 
-		
-
-
-
-//	public String getTemperature() {
-//
-//		String formattedTemp = "" + WeatherHelper.tempFormat.format(getTemperatureNum() ) + WeatherConstants.DEGREES_C;
-//
-//		return formattedTemp;
-//	}
-//
-//	public Double getTemperatureNum() {
-//		Double temperatureNum = weatherHelper.fahrenheitToCelsius(temperature);
-//		return temperatureNum;
-//	}
-//
-//	public int getWindSpeedBeaufort() {
-//		return weatherHelper.windSpeedToBeaufort(Double.parseDouble(windSpeed));
-//	}
 
 	public String getHeadline() {
 		return headline;
