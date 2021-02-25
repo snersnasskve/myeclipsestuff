@@ -383,7 +383,7 @@ public class WeatherData {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private TimePeriod getPeriodForTimestep(String timestep) {
-		if (timestep.equals("1s")) {
+		if (timestep.equals("1m")) {
 			return TimePeriod.MINUTELY;
 		}
 		else if (timestep.equals("1h")) {
