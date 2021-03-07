@@ -11,7 +11,6 @@ public class HourlyData extends IntervalData {
 
 	private String time;
 	private String icon;
-	private String temperature;
 	private String pressure;
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -22,13 +21,12 @@ public class HourlyData extends IntervalData {
 		try {
 			time				= jsonHourly.getString(WeatherConstants.TIME);
 			JSONObject values = jsonHourly.getJSONObject(WeatherConstants.VALUES);
-			icon 				= jsonHourly.getString(WeatherConstants.ICON);
 			precipIntensity 	= (float)values.getDouble(WeatherConstants.PRECIP_INTENSITY);
 			precipProbability 	= (float)values.getDouble(WeatherConstants.PRECIP_PROBABILITY);
 			precipType 			= values.getInt(WeatherConstants.PRECIP_TYPE);;
-			temperature 		= values.getString(WeatherConstants.TEMPERATURE);
+			temperature 		= (float) values.getDouble(WeatherConstants.TEMPERATURE);
 			windSpeed 			= values.getDouble(WeatherConstants.WIND_SPEED);
-				pressure 			= values.getString(WeatherConstants.PRESSURE);
+			weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);
 
 
 		} catch (JSONException e) {
@@ -43,19 +41,12 @@ public class HourlyData extends IntervalData {
 		return time;
 	}
 
-	public String getIcon() {
-		return icon;
-	}
 
-		public String getTemperature() {
+		public float getTemperature() {
 		return temperature;
 	}
 
 
-
-	public String getPressure() {
-		return pressure;
-	}
 
 
 }

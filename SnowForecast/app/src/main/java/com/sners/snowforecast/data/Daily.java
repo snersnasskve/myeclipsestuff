@@ -3,7 +3,14 @@ package com.sners.snowforecast.data;
 import com.sners.snowforecast.data.IntervalData;
 import com.sners.snowforecast.data.WeatherHelper;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.json.JSONArray;
@@ -18,9 +25,10 @@ public class Daily {
 	private String icon;
 	private ArrayList <IntervalData> dailyData;
 	private com.sners.snowforecast.data.DailyData today;
+	LocalDateTime sunriseTime;
+	LocalDateTime sunsetTime;
 
-	Set<Integer> weatherCodes;
-
+	Set<Integer> weatherCodes = new HashSet<Integer>();
 	////////////////////////////////////////////////////////////////////////////////
 	//	Constructor
 	////////////////////////////////////////////////////////////////////////////////
@@ -28,15 +36,19 @@ public class Daily {
 	{
 		dailyData		= new ArrayList <IntervalData> ();	
 		today = null;
+		WeatherHelper weatherHelper = new WeatherHelper();
 
 		try {
 
 			for (int intervalCounter = 0 ; intervalCounter < dailyArray.length() ; intervalCounter++)
 			{
-				com.sners.snowforecast.data.DailyData dataInst = new com.sners.snowforecast.data.DailyData(dailyArray.getJSONObject(intervalCounter));
+				DailyData dataInst = new DailyData(dailyArray.getJSONObject(intervalCounter));
+
 				dailyData.add(dataInst);
 				weatherCodes.add(dataInst.getWeatherCode());
 			}
+
+
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -45,22 +57,23 @@ public class Daily {
 		if (dailyData.size() > 0)
 		{
 			today 			= (com.sners.snowforecast.data.DailyData) dailyData.get(0);
+			//	Set up the times -- only want to parse them once
+			DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+			TemporalAccessor sunriseParsed = formatter.parse(today.getSunriseTime() );
+			sunriseTime = LocalDateTime.from(sunriseParsed);
+			TemporalAccessor sunsetParsed = formatter.parse(today.getSunsetTime() );
+			sunsetTime = LocalDateTime.from(sunsetParsed);
+
 		}
 	}
 
-	public Long getSunsetTime()
+	public LocalDateTime getSunsetTime()
 	{
-		// Today
-		DailyData today = (DailyData) dailyData.get(0);
-		Long sunsetTime = Long.parseLong(today.getSunsetTime());
 		return sunsetTime;
 	}
 
-	public Long getSunriseTime()
+	public LocalDateTime getSunriseTime()
 	{
-		// Today
-		DailyData today = (DailyData) dailyData.get(0);
-		Long sunriseTime = Long.parseLong(today.getSunriseTime());
 		return sunriseTime;
 	}
 	

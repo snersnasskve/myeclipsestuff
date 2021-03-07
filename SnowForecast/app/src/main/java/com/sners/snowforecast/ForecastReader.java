@@ -37,7 +37,13 @@ public class ForecastReader {
 
     //	sunsetTime is not allowed for 1m or 1h timesteps
 
-    private static List<String> fields = Arrays.asList(WeatherConstants.HUMIDITY,
+
+    final private static List<String> minutelyFields = Arrays.asList(WeatherConstants.HUMIDITY,
+            WeatherConstants.TEMPERATURE, WeatherConstants.PRECIP_INTENSITY,
+            WeatherConstants.PRECIP_PROBABILITY, WeatherConstants.PRECIP_TYPE,
+            WeatherConstants.CLOUD_COVER,
+            WeatherConstants.WEATHER_CODE, WeatherConstants.WIND_SPEED);
+    final private static List<String> dailyFields = Arrays.asList(WeatherConstants.HUMIDITY,
             WeatherConstants.TEMPERATURE, WeatherConstants.PRECIP_INTENSITY,
             WeatherConstants.PRECIP_PROBABILITY, WeatherConstants.PRECIP_TYPE,
             WeatherConstants.CLOUD_COVER,
@@ -48,7 +54,8 @@ public class ForecastReader {
     private static String urlTemplate = "{url}{period}?lat={lat}&lon={lon}&unit_system={unit}&start_time=now&fields={fields}&apikey={api_key}";
     //	private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m,1h,1d";
     private static String urlTemplateRealtime = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1m,1h,1d";
-    private static String urlTemplateWithDate = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&startTime=START&endTime=END&fields=FIELD_NAME&timesteps=1m,1h,1d";
+    private static String hourUrlTemplate = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&fields=FIELD_NAME&timesteps=1h,1d";
+    private static String minuteUrlTemplate = "https://data.climacell.co/v4/timelines?location=LAT%2CLONG&startTime=START&endTime=END&fields=FIELD_NAME&timesteps=1m";
 
 
     private static String apiKey = "1gYIV8J35T6IfmIStb0zT0FyfxChvN8c";
@@ -59,19 +66,28 @@ public class ForecastReader {
 
     }
 
-    public String readWeatherForecast(Double latitude, Double longitude) {
+    public String readWeatherForecast(Double latitude, Double longitude, String timePeriod) {
 
         ForecastMainActivity.weatherData = null;
         //jsonData = null;
         String startDate = getFormattedDate(0);
         String endDate = getFormattedDate(1);
-        String forecastUrl = urlTemplateWithDate;
+        String forecastUrl = hourUrlTemplate;
+        if (timePeriod.equals("1m")) {
+            forecastUrl = minuteUrlTemplate;
+            forecastUrl = forecastUrl.replace("FIELD_NAME", "" + fieldsToString(minutelyFields));
+            forecastUrl = forecastUrl.replace("START", startDate);
+            forecastUrl = forecastUrl.replace("END", endDate);
+        }
+        else {
+            forecastUrl = hourUrlTemplate;
+            forecastUrl = forecastUrl.replace("FIELD_NAME", "" + fieldsToString(dailyFields));
+
+        }
         forecastUrl = forecastUrl.replace("LAT", "" + latitude);
         forecastUrl = forecastUrl.replace("LONG", "" + longitude);
-        forecastUrl = forecastUrl.replace("START", startDate);
-        forecastUrl = forecastUrl.replace("END", endDate);
 
-        forecastUrl = forecastUrl.replace("FIELD_NAME", "" + fieldsToString());
+
         forecastUrl = forecastUrl + "&apikey=" + apiKey;
 
 
@@ -116,7 +132,12 @@ public class ForecastReader {
         if (null != result) {
             Log.i("jsonData", result);
             //	Set up the data weather object
-            ForecastMainActivity.weatherData = new WeatherData(result);
+            if (timePeriod.equals("1m")) {
+                ForecastMainActivity.rawMinutely = result;
+            }
+            else {
+                ForecastMainActivity.rawHourly = result;
+            }
         } else {
             Log.i("jsonData", "null");
         }
@@ -126,15 +147,15 @@ public class ForecastReader {
 
     //	Thank you to kind internet person for supplying a basic function
     //		Which really should be part of any language
-    String fieldsToString() {
+    String fieldsToString(List<String> reqFields) {
 
         StringBuilder sbString = new StringBuilder("");
 
         //iterate through ArrayList
-        for (String language : fields) {
+        for (String fieldName : reqFields) {
 
             //append ArrayList element followed by comma
-            sbString.append(language).append(",");
+            sbString.append(fieldName).append(",");
         }
 
         //convert StringBuffer to String

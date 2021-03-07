@@ -90,7 +90,7 @@ public class WeatherDashboard extends Activity {
 		tvDashTimeTilPrecip.  	setText(ForecastMainActivity.weatherData.timeTilPrecipString(false));
 		
 	
-		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon().replaceAll("-", "_");
+		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon();
 		int iconId 	= 	getResources().getIdentifier(iconName, "drawable", getPackageName());
 		ivDashSummary.	setImageResource(iconId);	
 		ivDashSummary.	setContentDescription(iconName);
@@ -179,7 +179,7 @@ private void drawPrecipitationGraph()
 	{
 		float beaufortValue = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
 		
-		tvDashWind.setText(""+ beaufortValue);
+		tvDashWind.setText(String.format("%d", Math.round(beaufortValue)));
 		if (beaufortValue < 5)
 		{
 			//tvDashWind.setTextColor(Color.GREEN);

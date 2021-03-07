@@ -1,96 +1,96 @@
 package com.sners.snowforecast.data;
 
-import com.sners.snowforecast.data.IntervalData;
-import com.sners.snowforecast.data.WeatherHelper;
-
-import java.util.ArrayList;
-import java.util.Set;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;import com.sners.snowforecast.data.WeatherConstants;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Hourly {
 
-	String summary;
-	String icon;
-	ArrayList <IntervalData> hourlyData;
-	
-	private Float maxPrecip;
+    String summary;
+    String icon;
+    ArrayList<IntervalData> hourlyData;
 
-	Set<Integer> weatherCodes;
-	Set<Integer> precipCodes;
+    private Float maxPrecip;
 
-
-	////////////////////////////////////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////////////////////////////////////
-	public Hourly(JSONArray hourlyArary)
-	{
-		maxPrecip = -1.0f;
-		hourlyData		= new ArrayList <IntervalData> ();	
-		try {
-			//summary 			= jsonHourly.getString(WeatherConstants.SUMMARY);
-			//icon 				= jsonHourly.getString(WeatherConstants.ICON);
-			summary = "Please implement me";
-			icon = "Please implement me";
-
-			for (int intervalCounter = 0 ; intervalCounter < hourlyArary.length() ; intervalCounter++)
-			{
-				com.sners.snowforecast.data.HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(hourlyArary.getJSONObject(intervalCounter));
-				hourlyData.add(dataInst);
-				weatherCodes.add(dataInst.getWeatherCode());
-				precipCodes.add(dataInst.getPrecipType());
-			}
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+    Set<Integer> weatherCodes = new HashSet<Integer>();
+    Set<Integer> precipCodes = new HashSet<Integer>();
+    WeatherHelper weatherHelper = new WeatherHelper();
 
 
-	public Float getMaxPrecip()
-	{
-		if (maxPrecip < 0.0f)
-		{
-			//	only calculate it once
-			for (IntervalData hour : hourlyData)
-			{
-				Float precip = hour.getPrecipIntensity();
-				if (precip > maxPrecip)
-				{
-					maxPrecip = precip;
-				}
-			}
-		}
-		return maxPrecip;
-	}
+    ////////////////////////////////////////////////////////////////////////////////
+    //	Constructor
+    ////////////////////////////////////////////////////////////////////////////////
+    public Hourly(JSONArray hourlyArary) {
+        maxPrecip = -1.0f;
+        hourlyData = new ArrayList<IntervalData>();
+        try {
 
-	public String getSummary() {
-		return summary;
-	}
+            summary = "Please implement me";
+            icon = "clear day";
+
+            for (int intervalCounter = 0; intervalCounter < hourlyArary.length(); intervalCounter++) {
+                HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(hourlyArary.getJSONObject(intervalCounter));
+                hourlyData.add(dataInst);
+                weatherCodes.add(dataInst.getWeatherCode());
+                //	Don't add precip type unless it actually has a probability
+                if (dataInst.precipProbability > 0) {
+                    Integer weatherCode = dataInst.getWeatherCode();
+                    weatherCodes.add(weatherCode);
+                    if (dataInst.precipProbability > 0) {
+                        precipCodes.add(dataInst.getPrecipType());
+
+                        if (weatherHelper.isWeatherCodeSnowType(weatherCode)) {
+                            weatherCodes.add(weatherHelper.codeForWeatherWord("Snow")); //	 for snow
+                        }
+                    }
+                }
+            }
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 
 
-	public String getIcon() {
-		return icon;
-	}
+    public Float getMaxPrecip() {
+        if (maxPrecip < 0.0f) {
+            //	only calculate it once
+            for (IntervalData hour : hourlyData) {
+                Float precip = hour.getPrecipIntensity();
+                if (precip > maxPrecip) {
+                    maxPrecip = precip;
+                }
+            }
+        }
+        return maxPrecip;
+    }
 
-	public Set<Integer> getWeatherCodes() {
-		return weatherCodes;
-	}
+    public String getSummary() {
+        return summary;
+    }
 
-	public Set<Integer> getPrecipCodes() {
-		return precipCodes;
-	}
 
-	public ArrayList<IntervalData> getHourlyData() {
-		return hourlyData;
-	}
+    public String getIcon() {
+        return icon;
+    }
 
+    public Set<Integer> getWeatherCodes() {
+        return weatherCodes;
+    }
+
+    public Set<Integer> getPrecipCodes() {
+        return precipCodes;
+    }
+
+    public ArrayList<IntervalData> getHourlyData() {
+        return hourlyData;
+    }
 
 
 }

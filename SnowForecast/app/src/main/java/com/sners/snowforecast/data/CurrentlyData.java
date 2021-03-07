@@ -13,7 +13,7 @@ import com.sners.snowforecast.data.*;
 This class is a convenience summary.
 The data it uses comes from minutely, but it calculates things once
  */
-public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
+public class CurrentlyData   {
 
 	private String headline = "Not found";
 	private String icon = "";
@@ -32,12 +32,25 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 	 */
 	public CurrentlyData(ArrayList<IntervalData> minutely)
 	{
-		weatherHelper = new WeatherHelper();
 		//	Cast the first record to a MinutelyData
-		MinutelyData minute1 = (MinutelyData) minutely.get(0);
-		precipIntensity = minute1.getPrecipIntensity();
-		precipProbability = minute1.getPrecipProbability();
-		temperature = minute1.getTemperature();
+		float totTemp = 0;
+		float totIntens = 0;
+		float totProb = 0;
+		float totWind = 0;
+
+
+		for (IntervalData interval :
+			 minutely) {
+			totTemp += interval.getTemperature();
+			totIntens += interval.getPrecipIntensity();
+			totProb += interval.getPrecipProbability();
+			totWind += interval.getWindSpeed();
+		}
+
+		precipIntensity = totIntens / 60;
+		precipProbability = totProb / 60;
+		temperature = totTemp / 60;
+		windSpeed = totWind / 60;
 
 		galleryIcons = new ArrayList<String>();
 	}
@@ -71,12 +84,12 @@ public class CurrentlyData extends com.sners.snowforecast.data.IntervalData {
 		return precipIntensity;
 	}
 
-	public void setPrecipIntensity(float precipitation) {
-		this.precipIntensity = precipitation;
+	public float getPrecipProbability() {
+		return precipProbability;
 	}
 
-	public void setWindSpeed(float windSpeed) {
-		this.windSpeed = windSpeed;
+	public float getWindSpeed() {
+		return windSpeed;
 	}
 
 	public ArrayList<String> getGalleryIcons() {

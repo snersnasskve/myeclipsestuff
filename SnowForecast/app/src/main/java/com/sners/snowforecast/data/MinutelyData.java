@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 public class MinutelyData extends IntervalData {
 
-	protected float temperature;
 
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -34,12 +33,4 @@ public class MinutelyData extends IntervalData {
 
 	}
 
-
-	public float getTemperature() {
-		return temperature;
-	}
-
-	public void setTemperature(float temperature) {
-		this.temperature = temperature;
-	}
 }

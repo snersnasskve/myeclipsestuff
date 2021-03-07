@@ -25,12 +25,10 @@ public class DailyData extends IntervalData {
 	{
 		try {
 			time 						= jsonDaily.getString(WeatherConstants.TIME);
-			JSONObject values = jsonDaily.getJSONObject(WeatherConstants.VALUES);
+				JSONObject values = jsonDaily.getJSONObject(WeatherConstants.VALUES);
 
-			sunsetTime 					= jsonDaily.getString(WeatherConstants.SUNSET_TIME);
-			sunriseTime 					= jsonDaily.getString(WeatherConstants.SUNRISE_TIME);
-			//precipIntensity 	= (float)values.getDouble(WeatherConstants.PRECIP_INTENSITY);			precipIntensityMax 			= jsonDaily.getString(WeatherConstants.PRECIP_INTENSITY_MAX);
-			//precipIntensityMaxTime 		= jsonValueFor		 (WeatherConstants.PRECIP_INTENSITY_MAX_TIME, jsonDaily);
+			sunsetTime 					= values.getString(WeatherConstants.SUNSET_TIME);
+			sunriseTime 					= values.getString(WeatherConstants.SUNRISE_TIME);
 			precipProbability 	= (float)values.getDouble(WeatherConstants.PRECIP_PROBABILITY);
 			precipType 			= values.getInt(WeatherConstants.PRECIP_TYPE);;
 		weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);
@@ -57,15 +55,6 @@ public class DailyData extends IntervalData {
 	public String getSunriseTime() {
 		return sunriseTime;
 	}
-
-	//public String getPrecipIntensityMax() {
-	//	return precipIntensityMax;
-	//}
-
-	//public String getPrecipIntensityMaxTime() {
-	//	return precipIntensityMaxTime;
-	//}
-
 
 
 

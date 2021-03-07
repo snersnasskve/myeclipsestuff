@@ -4,8 +4,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +23,8 @@ public class Currently {
 
 
     //  Used for calculating time ranges throughout
-    private String time;
+
+    LocalDateTime currTime;
 
     //  A class for common weather functions
     private com.sners.snowforecast.data.WeatherHelper weatherHelper;
@@ -42,12 +50,17 @@ public class Currently {
 
         //  We work out current from minutely
         minutelyData = minutely;
+        weatherHelper = new WeatherHelper();
         currentlyData = new CurrentlyData(minutely);
-        weatherHelper = new com.sners.snowforecast.data.WeatherHelper();
 
         if (minutelyData.size() > 0) {
 
-            time = (minutelyData.get(0).getTime());
+            String time = (minutelyData.get(0).getTime());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+            TemporalAccessor parsed = formatter.parse(  time );
+            currTime = LocalDateTime.from(parsed);
+
             generateCurrentSummaries();
 
 
@@ -69,7 +82,6 @@ public class Currently {
 
             Integer temp = weatherCodes.getOrDefault(minuteInst.weatherCode, 0);
             weatherCodes.put(minuteInst.weatherCode, temp + 1);
-            totWindSpeed += minuteInst.getWindSpeed();
         }
         // Now try and get the winning code
 //     weatherCodes.entrySet().stream().max((entry1, entry2) ->
@@ -78,7 +90,6 @@ public class Currently {
 
         currentlyData.setHeadline(weatherHelper.summaryForWeatherCode(modeCode));
         currentlyData.setIcon(weatherHelper.iconForWeatherCode(modeCode));
-        currentlyData.setWindSpeed((float) (totWindSpeed / 60.0 ));
 
     }
 
@@ -86,8 +97,9 @@ public class Currently {
         return currentlyData.getIcon();
     }
 
-    public String getTime() {
-        return time;
+    public LocalDateTime getTime()
+    {
+        return currTime;
     }
 
     public float getPrecipIntensityNum() {
@@ -96,9 +108,9 @@ public class Currently {
 
     public String getTemperature() {
 
-        String formattedTemp = "" +
-                WeatherHelper.tempFormat.format(currentlyData.getTemperature()) +
-                WeatherConstants.DEGREES_C;
+        String formattedTemp = String.format("%s%s",
+                WeatherHelper.tempFormat.format(currentlyData.getTemperature()),
+                WeatherConstants.DEGREES_C);
 
         return formattedTemp;
     }

@@ -43,7 +43,7 @@
     <!-- Acknowledge -->
 
     <string name="acknowledge1">(Weather icons by Weezle)</string>
-    <string name="acknowledge2">(Powered by openweathermap.org)</string>
+    <string name="acknowledge2">(Powered by https://www.climacell.co)</string>
     <string name="get_the_weather">Get the Weather</string>
 
     <!-- Menu -->

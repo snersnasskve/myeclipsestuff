@@ -82,8 +82,7 @@ public class WeatherCurrent extends Activity {
 		}
 		tvCurAlertString.		setText(alertHeadline);
 			
-		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon().
-				replaceAll("-", "_");
+		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon();
 		int iconId 	= 	getResources().getIdentifier(iconName, "drawable", getPackageName());
 		ivCurIcon.		setImageResource(iconId);	
 		ivCurIcon.		setContentDescription(iconName);

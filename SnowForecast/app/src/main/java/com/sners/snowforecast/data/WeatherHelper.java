@@ -55,53 +55,6 @@ public class WeatherHelper {
 		return periodFound;
 	}
 
-//	////////////////////////////////////////////////////////////////////////////////
-//	public boolean dataContainsKeyword(ArrayList<IntervalData> intervalData, String keyword)
-//	{
-//		boolean wordFound = false;
-//
-//		int intervalCounter = 0;
-//		while (intervalCounter < intervalData.size() && !wordFound)
-//		{
-//			if (intervalData.get(intervalCounter).getSummary().toLowerCase(Locale.ENGLISH).contains(keyword))
-//			{
-//				wordFound = true;
-//				break;
-//			}
-//			intervalCounter++;
-//		}
-//		return wordFound;
-//	}
-
-//	////////////////////////////////////////////////////////////////////////////////
-//	public int intervalCounterForKeyword(ArrayList<IntervalData> intervalData, String keyword)
-//	{
-//		boolean wordFound = false;
-//		int precipCode = codeForPrecipitationType(keyword);
-//
-//		int intervalCounter = 0;
-//		while (intervalCounter < intervalData.size() && !wordFound)
-//		{
-//			if (intervalData.get(intervalCounter).getSummary().toLowerCase(Locale.ENGLISH).contains(keyword.toLowerCase(Locale.ENGLISH)))
-//			{
-//				wordFound = true;
-//				break;
-//			}
-//			else if (null != intervalData.get(intervalCounter).getPrecipType() &&
-//					intervalData.get(intervalCounter).getPrecipType().toLowerCase(Locale.ENGLISH).contains(keyword.toLowerCase(Locale.ENGLISH)))
-//			{
-//				wordFound = true;
-//				break;
-//			}
-//			intervalCounter++;
-//		}
-//		if (!wordFound)
-//		{
-//			intervalCounter = -1;
-//		}
-//		return intervalCounter;
-//	}
-
 	////////////////////////////////////////////////////////////////////////////////
 	public int windSpeedToBeaufort(Double windSpeed)
 	{
@@ -234,6 +187,9 @@ public class WeatherHelper {
 		return weatherCode;
 	}
 
+	public boolean isWeatherCodeSnowType(Integer weatherCode) {
+		return (weatherCode >= 5000 && weatherCode < 8000);
+	}
 	////////////////////////////////////////////////////////////////////////////////
 	//	Populate weather codes
 	//	https://docs.climacell.co/reference/data-layers-core#data-layers-weather-codes

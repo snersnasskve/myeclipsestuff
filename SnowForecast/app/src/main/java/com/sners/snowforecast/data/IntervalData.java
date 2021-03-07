@@ -12,10 +12,10 @@ public class IntervalData {
 	protected String time;
 	protected Integer weatherCode;
 	protected double windSpeed;	//	Wind speed is metres per second in the data classes
+	protected float temperature;
 
-	protected WeatherHelper weatherHelper;
+
 	public IntervalData() {
-		weatherHelper = new WeatherHelper();
 	}
 	
 	
@@ -56,6 +56,10 @@ public class IntervalData {
 
 	public Integer getWeatherCode() {
 		return weatherCode;
+	}
+
+	public float getTemperature() {
+		return temperature;
 	}
 
 	public double getWindSpeed() {
