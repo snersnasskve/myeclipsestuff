@@ -116,7 +116,7 @@ public class Currently {
     }
 
     public String getPrecipIntensity() {
-        return "" + currentlyData.getPrecipIntensity() + WeatherConstants.MM_HR;
+        return String.format("%2g%s", currentlyData.getPrecipIntensity(), WeatherConstants.MM_HR);
     }
 
     public String getPrecipProbability() {
