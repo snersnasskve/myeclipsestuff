@@ -1,21 +1,14 @@
 package com.sners.snowforecast.data;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class Currently {
     //  We will be calculating current values from minutely data
@@ -46,12 +39,11 @@ public class Currently {
     ////////////////////////////////////////////////////////////////////////////////
     //	Constructor
     ////////////////////////////////////////////////////////////////////////////////
-    public Currently(ArrayList<IntervalData> minutely) {
+    public Currently(JSONObject currentJson) {
 
         //  We work out current from minutely
-        minutelyData = minutely;
         weatherHelper = new WeatherHelper();
-        currentlyData = new CurrentlyData(minutely);
+        currentlyData = new CurrentlyData(currentJson);
 
         if (minutelyData.size() > 0) {
 

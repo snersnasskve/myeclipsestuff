@@ -14,8 +14,8 @@ public class WeatherConstants {
     public static final String NONE_FORECAST = "None forecast";
     public static final String NOW = "Now";
 
-    public static final String PRECIP_INTENSITY = "precipitationIntensity";
-    public static final String PRECIP_PROBABILITY = "precipitationProbability";
+    public static final String PRECIP_INTENSITY = "precip";
+    public static final String PRECIP_PROBABILITY = "precipprob";
     public static final String PRECIP_TYPE = "precipitationType";
     public static final String PRECIP_TYPE_RAIN = "Rain";
     public static final String PRECIP_TYPE_SNOW = "Snow";
@@ -30,9 +30,10 @@ public class WeatherConstants {
 
     //  Time keywords
     public static final String MINUTELY = "minutely";
-    public static final String HOURLY = "hourly";
+    public static final String HOURLY = "hours";
+    public static final String CURRENTLY = "currentConditions";
     public static final String INTERVALS = "intervals";
-    public static final String DAILY = "daily";
+    public static final String DAILY = "days";
 
 
     public static final String SUNSET_TIME = "sunsetTime";
@@ -49,7 +50,10 @@ public class WeatherConstants {
     public static final String VALUES = "values";
     public static final String WEATHER = "weather";
     public static final String WEATHER_CODE = "weatherCode";
-    public static final String WIND_SPEED = "windSpeed";
+    public static final String WIND_SPEED = "windspeed";
     public static final String WIND_BEARING = "wind_deg";
     public static final double MS_TO_MPH_CONVERSION = 2.236936;
+
+    public static final String CONDITIONS = "conditions";
+    public static final String ICON = "icon";
 }

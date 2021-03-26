@@ -21,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sners.snowforecast.apicall.VisualCrossingReader;
+import com.sners.snowforecast.apicall.WeatherBitReader;
 import com.sners.snowforecast.data.WeatherData;
 import com.sners.snowforecast.location.ForecastLocation;
 import com.sners.snowforecast.location.WeatherLocation;
@@ -382,9 +384,22 @@ public class ForecastMainActivity extends FragmentActivity {
 
         @Override
         protected String doInBackground(Double... params) {
-            String minutelyJson = forecastReader.readWeatherForecast(params[0], params[1], "1m");
-            String hourlyJson = forecastReader.readWeatherForecast(params[0], params[1], "1h,1d");
-            ForecastMainActivity.weatherData = new WeatherData(minutelyJson, hourlyJson);
+           // String minutelyJson = forecastReader.readWeatherForecast(params[0], params[1], "1m");
+           // String hourlyJson = forecastReader.readWeatherForecast(params[0], params[1], "1h,1d");
+            VisualCrossingReader vcReader = new VisualCrossingReader();
+            try {
+                vcReader.timelineRequest(params[0], params[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            WeatherBitReader wbReader = new WeatherBitReader();
+            try {
+                wbReader.timelineRequest(params[0], params[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            ForecastMainActivity.weatherData = new WeatherData(rawMinutely, rawHourly);
             return "";
         }
 

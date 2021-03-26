@@ -8,25 +8,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/*
- *
- *	Just about every object property in the response is optional.
- *		In fact, a request with no data to return will return a nearly empty object, rather than a failure.
- *		Robust code will check for the presence of required parameters before using them, and will fail gracefully if they are not present.
- *	All numeric properties are real numbers, except for UNIX timestamps, which are (signed) integers.
- *	Summaries on the hourly data block actually only cover up to a maximum of 24 hours,
- *		rather than the full time period in the data block.
- *	Summaries and icons on daily data points actually cover the period from 4AM to 4AM,
- *		rather than the stated time period of midnight to midnight. We found that the summaries so generated were less awkward.
- *	The Forecast Data API supports HTTP compression.
- *		We heartily recommend using it, as it will make responses much smaller over the wire.
- *		To enable it, simply add an Accept-Encoding: gzip header to your request.
- *		(Most HTTP client libraries wrap this functionality for you, please consult your library’s documentation for details.
- *		Be advised that we do not support such compression over HTTP/1.0 connections.)
- *
 
- *
- */
 
 public class WeatherData {
 
@@ -58,49 +40,9 @@ public class WeatherData {
     public WeatherData(String rawMinutely, String rawHourly) {
         weatherHelper = new WeatherHelper();
 
-        JSONObject jsonObjMinutely;
-        JSONObject jsonObjHourly;
-        try {
-            jsonObjMinutely = new JSONObject(rawMinutely);
-            jsonObjHourly = new JSONObject(rawHourly);
+    setUpDataArrays(rawMinutely, rawHourly);
 
-            JSONObject tempMinutelyObj = jsonObjMinutely.getJSONObject(WeatherConstants.DATA);
-            JSONObject tempHourlyObj = jsonObjHourly.getJSONObject(WeatherConstants.DATA);
-            JSONArray minutelyTimelinesArray = tempMinutelyObj.getJSONArray(WeatherConstants.TIMELINE);
-            JSONArray hourlyTimelinesArray = tempHourlyObj.getJSONArray(WeatherConstants.TIMELINE);
-
-            //	Minutely is now in a separate json object
-            JSONObject minutelyTimelineObj = minutelyTimelinesArray.getJSONObject(0);
-            minutely = new Minutely(minutelyTimelineObj.getJSONArray(WeatherConstants.INTERVALS));
-            currently = new Currently(minutely.getMinutelyData());
-
-            //	Developer note - all good up to this point
-            //	We are having a paddy somewhere in the loop below - think we are in hourly
-            //	Got to to find the exceptin
-
-            //	Set up the main data objects
-            for (int timelineCounter = 0; timelineCounter < hourlyTimelinesArray.length(); timelineCounter++) {
-                JSONObject timelineObj = hourlyTimelinesArray.getJSONObject(timelineCounter);
-                switch (getPeriodForTimestep(timelineObj.getString(WeatherConstants.TIMESTEP))) {
-//					case MINUTELY:
-//						minutely = new Minutely(timelineObj.getJSONArray(WeatherConstants.INTERVALS));
-//						currently = new Currently(minutely.getMinutelyData());
-//						break;
-                    case HOURLY:
-                        hourly = new Hourly(timelineObj.getJSONArray(WeatherConstants.INTERVALS));
-                        break;
-                    case DAILY:
-                        daily = new Daily(timelineObj.getJSONArray(WeatherConstants.INTERVALS));
-                        break;
-                    case UNKNOWN:
-                        break;
-                    default: {
-
-                        break;
-                    }
-                }
-            }
-
+    //  Get some basic data extracted
             headlineSummary = currently.getHeadline();
             //	Replace with night time icon if available
             headlineIcon = currently.getIcon().replaceAll("-", "_").toLowerCase();
@@ -116,16 +58,45 @@ public class WeatherData {
 
             minutesTilSunset = -1;
 
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-
-
     }
+
+    //  This stuff changes with every api
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+void setUpDataArrays(String rawMinutely, String rawDaily) {
+    //  Minutely is independent
+    JSONObject jsonObjMinutely = null;
+    try {
+        jsonObjMinutely = new JSONObject(rawMinutely);
+        JSONArray minutelyTimelinesArray = jsonObjMinutely.getJSONArray(WeatherConstants.DATA);
+        JSONObject minutelyTimelineObj = minutelyTimelinesArray.getJSONObject(0);
+        minutely = new Minutely(minutelyTimelinesArray);
+   } catch (JSONException e) {
+        //  We have no minutely data
+        e.printStackTrace();
+    }
+
+    try {
+        JSONObject jsonObjDaily = new JSONObject(rawDaily);
+        JSONArray dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY);
+        // There must be a oneliner way of doing this, but I don't know it
+        JSONArray hourlyTimelineArray = new JSONArray();
+        for (int dCounter = 0 ; dCounter < dailyTimelineArray.length() ; dCounter++) {
+            JSONObject thisDay= dailyTimelineArray.getJSONObject(dCounter);
+            JSONArray thisDayHours = thisDay.getJSONArray(WeatherConstants.HOURLY);
+            for (int hCounter = 0; hCounter < thisDayHours.length() ; hCounter++) {
+                JSONObject thisHour = thisDayHours.getJSONObject(hCounter);
+                hourlyTimelineArray.put(thisHour);
+            }
+        }
+        hourly = new Hourly(hourlyTimelineArray);
+        daily = new Daily(dailyTimelineArray);
+        currently = new Currently(jsonObjDaily.getJSONObject(WeatherConstants.CURRENTLY));
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+
+
+}
 
     public String getHeadlineSummary() {
         return headlineSummary;

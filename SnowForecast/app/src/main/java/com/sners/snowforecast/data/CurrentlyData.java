@@ -30,27 +30,23 @@ public class CurrentlyData   {
 	/*
 	Constructor
 	 */
-	public CurrentlyData(ArrayList<IntervalData> minutely)
+	public CurrentlyData(JSONObject currentJson)
 	{
-		//	Cast the first record to a MinutelyData
-		float totTemp = 0;
-		float totIntens = 0;
-		float totProb = 0;
-		float totWind = 0;
-
-
-		for (IntervalData interval :
-			 minutely) {
-			totTemp += interval.getTemperature();
-			totIntens += interval.getPrecipIntensity();
-			totProb += interval.getPrecipProbability();
-			totWind += interval.getWindSpeed();
+		try {
+			headline = currentJson.getString(WeatherConstants.CONDITIONS);
+			icon = currentJson.getString(WeatherConstants.ICON);
+			precipIntensity = (float) currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY);
+			if (precipIntensity > 0) {
+				//	This is null if no precipIntensity
+				precipProbability = (float) currentJson.getDouble(WeatherConstants.PRECIP_PROBABILITY);
+			}
+			windSpeed = (float) currentJson.getDouble(WeatherConstants.WIND_SPEED);
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 
-		precipIntensity = totIntens / 60;
-		precipProbability = totProb / 60;
-		temperature = totTemp / 60;
-		windSpeed = totWind / 60;
+
+
 
 		galleryIcons = new ArrayList<String>();
 	}
