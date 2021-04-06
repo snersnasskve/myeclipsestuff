@@ -11,7 +11,8 @@ import java.util.ArrayList;
 public class DailyData extends IntervalData {
 
     private String date;
-    private String icon;
+    private float tempMin;
+    private float tempMax;
 
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -22,8 +23,10 @@ public class DailyData extends IntervalData {
             date = jsonDaily.getString(WeatherConstants.TIME);
 
             precipIntensity = (float) jsonDaily.getDouble(WeatherConstants.PRECIP_INTENSITY);
-
             precipProbability = (float) jsonDaily.getDouble(WeatherConstants.PRECIP_PROBABILITY);
+
+            tempMin = (float) jsonDaily.getDouble(WeatherConstants.TEMP_MIN);
+            tempMax = (float) jsonDaily.getDouble(WeatherConstants.TEMP_MAX);
 
             if (!jsonDaily.isNull(WeatherConstants.PRECIP_TYPE)) {
                 //  If it is null, then it is not an array
@@ -44,13 +47,15 @@ public class DailyData extends IntervalData {
     }
 
 
-    public String getIcon() {
-        return icon;
-    }
-
     public String getDate() {
         return date;
     }
 
+    public float getTempMin() {
+        return tempMin;
+    }
 
+    public float getTempMax() {
+        return tempMax;
+    }
 }

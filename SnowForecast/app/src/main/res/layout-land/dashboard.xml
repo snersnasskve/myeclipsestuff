@@ -30,7 +30,7 @@
            android:alignmentMode="alignBounds"
            android:columnCount="4"
            android:overScrollMode="always"
-           android:paddingRight="@dimen/component_padding"
+           android:paddingEnd="@dimen/component_padding"
            android:rowCount="3" >
 
            <ImageView
@@ -131,30 +131,28 @@
                android:hint="@string/time_til_sunset_hint"
                android:textAppearance="?android:attr/textAppearanceLarge"
                android:textColor="#008000" />
-           
+
+           <ImageView
+               android:id="@+id/imageView5"
+               android:layout_width="@dimen/dash_land_cell_width"
+               android:layout_height="@dimen/dash_land_cell_height"
+               android:layout_gravity="center"
+               android:contentDescription="@string/time_til_precip_hint"
+               android:maxWidth="@dimen/icon_width"
+               android:maxHeight="@dimen/icon_height"
+               android:padding="@dimen/component_padding"
+               android:src="@drawable/rain" />
+
+           <TextView
+               android:id="@+id/tvDashTimeTilPrecip"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:hint="@string/time_til_precip_hint"
+               android:textAppearance="?android:attr/textAppearanceLarge"
+               android:textColor="#008000" />
+
        </GridLayout>
 
-       <TableLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center_horizontal"
-           android:layout_margin="5dp" >
-  
-     <TableRow
-               android:id="@+id/tableRowDash7"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content" 
-                android:layout_weight="1" >
-
-               <TextView
-                   android:id="@+id/tvDashTimeTilPrecip"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="2"
-                   android:hint="@string/time_til_precip_hint" />
-
-           </TableRow>
-       </TableLayout>
 
        <HorizontalScrollView
            android:id="@+id/hsvDashActivityIcons"

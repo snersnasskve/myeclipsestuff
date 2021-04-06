@@ -10,7 +10,6 @@ public class WeatherConstants {
     public static final String DEW_POINT = "dew_point";
 
 
-    public static final String MAIN_WORD ="main";
     public static final String NONE_FORECAST = "None forecast";
     public static final String NOW = "Now";
 
@@ -42,6 +41,8 @@ public class WeatherConstants {
     public static final String TITLE = "title";
     public static final String EXPIRES = "expires";
     public static final String TEMPERATURE = "temp";
+    public static final String TEMP_MAX = "tempmax";
+    public static final String TEMP_MIN = "tempmin";
 
     public static final String TIME_LOCAL = "timestamp_local";
     public static final String TIME = "datetime";

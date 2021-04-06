@@ -42,7 +42,7 @@ public class IntervalData {
 	////////////////////////////////////////////////////////////////////////////////
 
 	public float getPrecipProbability() {
-		return precipProbability;
+		return (precipProbability / 100.0f);
 	}
 
 	public float getPrecipIntensity() { return precipIntensity; }

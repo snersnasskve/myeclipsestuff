@@ -19,6 +19,10 @@ public class WeatherPrecipChart extends Activity {
     ImageView ivPcProbability;
     TextView tvPcIntensity;
 
+    final float precipNone = .001f;
+    final float precipVeryLight = 0.2f;
+    final float precipLight = 0.5f;
+
     int mGraphMargin = 5;
     int yAxis = 40;
     private Paint mAxesPaint;
@@ -97,16 +101,16 @@ public class WeatherPrecipChart extends Activity {
         String descrip = "";
         int chartColour = Color.BLUE;
 
-        if (maxPrecip < .001f) {
+        if (maxPrecip < precipNone) {
             descrip = precipPrefix + "None";
             chartColour = 0xFF000000;        //	white
             maxPrecip = 0.1f;
-        } else if (maxPrecip <= 0.1) {
+        } else if (maxPrecip <= precipVeryLight) {
             //	.002 inches = .0508 mm
             descrip = precipPrefix + "Very Light";
             chartColour = 0xFFC0C0C0;        //	light grey
             maxPrecip = maxPrecip * 5;
-        } else if (maxPrecip <= 0.5) {
+        } else if (maxPrecip <= precipLight) {
             //	0.017 inches = 0.4318 mm
             descrip = precipPrefix + "Light";
             chartColour = 0xFF99CCFF;        //	pale blue

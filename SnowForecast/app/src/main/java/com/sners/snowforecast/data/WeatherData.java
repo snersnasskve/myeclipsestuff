@@ -269,6 +269,15 @@ public class WeatherData {
         return timeTilString;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    public String getTemperatureSummary() {
+        String tempSummary = String.format("%.1f%s ( %.1f : %.1f )",
+                currently.getTemperatureNum(),
+                WeatherConstants.DEGREES_C,
+                daily.getTempMin(),
+                daily.getTempMax());
+        return tempSummary;
+    }
 
     //	Getters
     public Currently getCurrently() {

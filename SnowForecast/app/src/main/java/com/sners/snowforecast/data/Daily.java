@@ -96,4 +96,12 @@ public class Daily {
 	public String getCurrDateString() {
 		return currDateString;
 	}
+
+	public float getTempMin() {
+		return today.getTempMin();
+	}
+
+	public float getTempMax() {
+		return today.getTempMax();
+	}
 }
