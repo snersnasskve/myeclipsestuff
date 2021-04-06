@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.sners.snowforecast.ForecastMainActivity;
 import com.sners.snowforecast.R;
 import com.sners.snowforecast.data.WeatherConstants;
+import com.sners.snowforecast.data.WeatherData;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,9 @@ public class WeatherCurrent extends Activity {
 	HorizontalScrollView hsvCurActivityIcons;
 	LinearLayout llCurIcontainer;
 	LinearLayout llCurrently;
-	
+
+	WeatherData weatherData = ForecastMainActivity.weatherData;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -65,9 +68,9 @@ public class WeatherCurrent extends Activity {
 		
 		tvCurSummary.			setText(ForecastMainActivity.weatherData.getHeadlineSummary());
 		tvCurPrecipIntensity.	setText(ForecastMainActivity.weatherData.getCurrently().getPrecipIntensity());
-		tvCurPrecipProbability.	setText(ForecastMainActivity.weatherData.getCurrently().getPrecipProbability());
+		tvCurPrecipProbability.	setText(ForecastMainActivity.weatherData.getCurrently().getPrecipProbabilityString());
 		tvCurTemperature.		setText(ForecastMainActivity.weatherData.getCurrently().getTemperature());
-		tvCurWind.				setText(ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufortString());
+		tvCurWind.				setText(weatherData.getWindSpeedMphString());
 		
 		tvCurTimeTilSunset.		setText(ForecastMainActivity.weatherData.getTimeTilSunsetString());
 		
@@ -82,7 +85,7 @@ public class WeatherCurrent extends Activity {
 		}
 		tvCurAlertString.		setText(alertHeadline);
 			
-		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon();
+		String			iconName = weatherData.getHeadlineIcon();
 		int iconId 	= 	getResources().getIdentifier(iconName, "drawable", getPackageName());
 		ivCurIcon.		setImageResource(iconId);	
 		ivCurIcon.		setContentDescription(iconName);
@@ -125,7 +128,7 @@ public class WeatherCurrent extends Activity {
 	public void displayDashboard(View v){
 		Intent nextActivityIntent;
 		String toastMessage;
-		if (null != ForecastMainActivity.weatherData.getMinutely() && ForecastMainActivity.weatherData.getMinutely().getMaxPrecip() > 0.0f)
+		if (null != weatherData.getMinutely() && weatherData.getMinutely().getMaxPrecip() > 0.0f)
 		{
 			nextActivityIntent = new Intent(WeatherCurrent.this, MinutelyPrecipChart.class);
 			toastMessage = "Show Minutely graphs";

@@ -4,10 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 
 
 public class WeatherData {
@@ -19,9 +16,9 @@ public class WeatherData {
     private Daily daily;
     private Alert alert;
 
-    private WeatherHelper weatherHelper;
+    private final WeatherHelper weatherHelper;
 
-    private String headlineSummary;
+    private final String headlineSummary;
     private String headlineIcon;
     private long minutesTilSunset;
 
@@ -40,63 +37,64 @@ public class WeatherData {
     public WeatherData(String rawMinutely, String rawHourly) {
         weatherHelper = new WeatherHelper();
 
-    setUpDataArrays(rawMinutely, rawHourly);
+        setUpDataArrays(rawMinutely, rawHourly);
 
-    //  Get some basic data extracted
-            headlineSummary = currently.getHeadline();
-            //	Replace with night time icon if available
-            headlineIcon = currently.getIcon().replaceAll("-", "_").toLowerCase();
-            if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
-                if (headlineIcon.contains("_day") && isDayTime()) {
-                    headlineIcon = headlineIcon + "_day";
-                }
-                else {
-                    headlineIcon = headlineIcon + "_night";
-                }
+        //  Get some basic data extracted
+        headlineSummary = currently.getHeadline();
+        //	Replace with night time icon if available
+        headlineIcon = currently.getIcon().replaceAll("-", "_").toLowerCase();
+        if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
+            if (headlineIcon.contains("_day") && isDayTime()) {
+                headlineIcon = headlineIcon + "_day";
+            } else {
+                headlineIcon = headlineIcon + "_night";
             }
+        }
 
 
-            minutesTilSunset = -1;
+        minutesTilSunset = -1;
 
     }
 
     //  This stuff changes with every api
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-void setUpDataArrays(String rawMinutely, String rawDaily) {
-    //  Minutely is independent
-    JSONObject jsonObjMinutely = null;
-    try {
-        jsonObjMinutely = new JSONObject(rawMinutely);
-        JSONArray minutelyTimelinesArray = jsonObjMinutely.getJSONArray(WeatherConstants.DATA);
-        JSONObject minutelyTimelineObj = minutelyTimelinesArray.getJSONObject(0);
-        minutely = new Minutely(minutelyTimelinesArray);
-   } catch (JSONException e) {
-        //  We have no minutely data
-        e.printStackTrace();
-    }
-
-    try {
-        JSONObject jsonObjDaily = new JSONObject(rawDaily);
-        JSONArray dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY);
-        // There must be a oneliner way of doing this, but I don't know it
-        JSONArray hourlyTimelineArray = new JSONArray();
-        for (int dCounter = 0 ; dCounter < dailyTimelineArray.length() ; dCounter++) {
-            JSONObject thisDay= dailyTimelineArray.getJSONObject(dCounter);
-            JSONArray thisDayHours = thisDay.getJSONArray(WeatherConstants.HOURLY);
-            for (int hCounter = 0; hCounter < thisDayHours.length() ; hCounter++) {
-                JSONObject thisHour = thisDayHours.getJSONObject(hCounter);
-                hourlyTimelineArray.put(thisHour);
-            }
+    void setUpDataArrays(String rawMinutely, String rawDaily) {
+        //  Minutely is independent
+        JSONObject jsonObjMinutely = null;
+        try {
+            jsonObjMinutely = new JSONObject(rawMinutely);
+            JSONArray minutelyTimelinesArray = jsonObjMinutely.getJSONArray(WeatherConstants.DATA);
+            minutely = new Minutely(minutelyTimelinesArray);
+        } catch (JSONException e) {
+            //  We have no minutely data
+            e.printStackTrace();
         }
-        hourly = new Hourly(hourlyTimelineArray);
-        daily = new Daily(dailyTimelineArray);
-        currently = new Currently(jsonObjDaily.getJSONObject(WeatherConstants.CURRENTLY));
-    } catch (JSONException e) {
-        e.printStackTrace();
+
+        try {
+            JSONObject jsonObjDaily = new JSONObject(rawDaily);
+            JSONArray dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY);
+            // There must be a oneliner way of doing this, but I don't know it
+            JSONArray hourlyTimelineArray = new JSONArray();
+            for (int dCounter = 0; dCounter < dailyTimelineArray.length(); dCounter++) {
+                JSONObject thisDay = dailyTimelineArray.getJSONObject(dCounter);
+                JSONArray thisDayHours = thisDay.getJSONArray(WeatherConstants.HOURLY);
+                for (int hCounter = 0; hCounter < thisDayHours.length(); hCounter++) {
+                    JSONObject thisHour = thisDayHours.getJSONObject(hCounter);
+                    hourlyTimelineArray.put(thisHour);
+                }
+            }
+            hourly = new Hourly(hourlyTimelineArray);
+            daily = new Daily(dailyTimelineArray);
+            currently = new Currently(jsonObjDaily.getJSONObject(WeatherConstants.CURRENTLY),
+            daily.getCurrDateString());
+            //  Currently needs the sunrise and sunset, which currently is not picking up
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
-
-
-}
 
     public String getHeadlineSummary() {
         return headlineSummary;
@@ -112,20 +110,11 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
     public Long getTimeTilSunset() {
 
         // https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
-        
+
         //	If it's night this will be negative
+        minutesTilSunset = currently.getTimeTilSunset();
         if (minutesTilSunset < 0) {
             minutesTilSunset = 0;
-            //	Calculate it
-            LocalDateTime timeNow = currently.getTime();
-            LocalDateTime sunsetTime = daily.getSunsetTime();
-
-
-            if (sunsetTime.isAfter(timeNow)) {
-                Duration diff = Duration.between(timeNow, sunsetTime);
-
-                minutesTilSunset = diff.toMinutes();
-            }
         }
 
         return minutesTilSunset;
@@ -133,25 +122,13 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public String getTimeTilSunsetString() {
-        String timeTilSunsetString = weatherHelper.formatTime(getTimeTilSunset());
 
-        return timeTilSunsetString;
+        return weatherHelper.formatTime(getTimeTilSunset());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public boolean isDayTime() {
-        boolean dayTime = true;
-
-		LocalDateTime timeNow = currently.getTime();
-		LocalDateTime sunriseTime = daily.getSunriseTime();
-		LocalDateTime sunsetTime = daily.getSunsetTime();
-
-
-        if (timeNow.isBefore(sunriseTime) || timeNow.isAfter(sunsetTime)) {
-            dayTime = false;
-        }
-
-        return dayTime;
+        return currently.isDayTime();
     }
 
 
@@ -170,12 +147,12 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
     public long timeTilPrecip(boolean toIgnoreLightPrecip) {
         long minutesTilPrecip = -1;
 
-        Float minPrecip = 0.002f;
+        float minPrecip = 0.002f;
         if (toIgnoreLightPrecip) {
             minPrecip = 0.017f;
         }
 
-        Float precipIntensity = currently.getPrecipIntensityNum();
+        float precipIntensity = currently.getPrecipIntensityNum();
 
         if (precipIntensity > minPrecip) {
             //	It's raining now
@@ -232,15 +209,19 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
     public boolean dataContainsWeatherword(String weatherWord, String timeKeyWord) {
         boolean wordFound = false;
 
-        int weatherCode = weatherHelper.codeForWeatherWord(weatherWord);
-
         if (timeKeyWord.equals(WeatherConstants.MINUTELY)) {
-            if (minutely.getWeatherCodes().contains(weatherCode)) {
-                wordFound = true;
+            for (IntervalData minute : minutely.getMinutelyData()) {
+                if (minute.getWeatherWords().contains(timeKeyWord)) {
+                    wordFound = true;
+                    break;
+                }
             }
         } else if (timeKeyWord.equals(WeatherConstants.HOURLY)) {
-            if (hourly.getWeatherCodes().contains(weatherCode)) {
-                wordFound = true;
+            for (IntervalData hour : hourly.getHourlyData()) {
+                if (hour.getWeatherWords().contains(timeKeyWord)) {
+                    wordFound = true;
+                    break;
+                }
             }
         }
         return wordFound;
@@ -250,12 +231,10 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
     public String timeTilPrecipTypeString(String precipType) {
         long timeTil = -1;
 
-        int precipCode = weatherHelper.codeForPrecipitationType(precipType);
-
         ArrayList<IntervalData> minutely = getMinutelyData();
         if (null != minutely) {
             for (int minCounter = 0; minCounter < minutely.size(); minCounter++) {
-                if (minutely.get(minCounter).getPrecipType() == precipCode) {
+                if (minutely.get(minCounter).getWeatherWords().contains(precipType) ) {
                     timeTil = minCounter;
                     break;
                 }
@@ -263,16 +242,18 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
         }
 
         if (0 > timeTil && null != hourly) {
-            for (int minCounter = 0; minCounter < minutely.size(); minCounter++) {
-                if (minutely.get(minCounter).getPrecipType() == precipCode) {
+            ArrayList<IntervalData> hourlyData = hourly.getHourlyData();
+            for (int minCounter = 0; minCounter < hourlyData.size(); minCounter++) {
+                if (hourlyData.get(minCounter).getWeatherWords().contains(precipType) ) {
                     timeTil = (minCounter * 60);
                 }
             }
         }
 
         if (0 > timeTil && null != daily) {
-            for (int minCounter = 0; minCounter < minutely.size(); minCounter++) {
-                if (minutely.get(minCounter).getPrecipType() == precipCode) {
+            ArrayList<IntervalData> dailyData = daily.getDailyData();
+            for (int minCounter = 0; minCounter < dailyData.size(); minCounter++) {
+                if (dailyData.get(minCounter).getWeatherWords().contains(precipType)) {
                     timeTil = (minCounter * 60 * 60);
                 }
             }
@@ -307,6 +288,7 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
         return minutely;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public ArrayList<IntervalData> getHourlyData() {
         if (null == hourly) {
             return null;
@@ -315,18 +297,7 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private TimePeriod getPeriodForTimestep(String timestep) {
-        if (timestep.equals("1m")) {
-            return TimePeriod.MINUTELY;
-        } else if (timestep.equals("1h")) {
-            return TimePeriod.HOURLY;
-        } else if (timestep.equals("1d")) {
-            return TimePeriod.DAILY;
-        } else {
-            return TimePeriod.UNKNOWN;
-        }
-    }
+
 
     public Hourly getHourly() {
         return hourly;
@@ -339,6 +310,32 @@ void setUpDataArrays(String rawMinutely, String rawDaily) {
     public ArrayList<AlertData> getAlertsData() {
         return alert.getAlertData();
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  WIND SPEED
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public double getWindSpeedMph() {
+        double windSpeed = currently.getWindSpeed();
+        if (windSpeed < 1) {
+            if (hourly.getHourlyData().size() > 0) {
+                windSpeed = hourly.getHourlyData().get(0).getWindSpeed();
+            }
+        }
+        return (windSpeed * WeatherConstants.KM_TO_MPH_CONVERSION);
+    }
+
+    public float getWindSpeedBeaufort() {
+        return weatherHelper.windSpeedToBeaufort(getWindSpeedMph());
+    }
+
+    public String getWindSpeedBeaufortString() {
+        return String.format("%s", weatherHelper.windSpeedToBeaufort(getWindSpeedMph()));
+    }
+
+    public String getWindSpeedMphString() {
+        return String.format("%.1f mph", getWindSpeedMph());
+    }
+
 
 
 }

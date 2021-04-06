@@ -28,7 +28,7 @@
            android:layout_marginTop="@dimen/component_padding"
            android:alignmentMode="alignBounds"
            android:columnCount="2"
-           android:paddingRight="@dimen/component_padding"
+           android:paddingEnd="@dimen/component_padding"
            android:rowCount="3" >
 
            <ImageView

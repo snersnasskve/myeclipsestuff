@@ -63,10 +63,12 @@ public class WeatherIconGallery {
 	{
 		boolean isItOK = false;
 		if (ForecastMainActivity.weatherData.isDayTime() && 
-				(!ForecastMainActivity.weatherData.dataContainsWeatherword(WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY)) &&
 				(ForecastMainActivity.weatherData.getTimeTilSunset() > 60) &&
-				(ForecastMainActivity.weatherData.getCurrently().getTemperatureNum() > 5))
-		{
+				(ForecastMainActivity.weatherData.getCurrently().getTemperatureNum() > 5) &&
+			(!ForecastMainActivity.weatherData.dataContainsWeatherword(
+					WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY
+			)))
+	{
 			isItOK = true;
 		}
 		return isItOK;
@@ -135,7 +137,7 @@ public class WeatherIconGallery {
 	private boolean okToFlyKite()
 	{
 		boolean isItOK = false;
-		float windSpeed = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
+		float windSpeed = ForecastMainActivity.weatherData.getWindSpeedBeaufort();
 		
 		if (ForecastMainActivity.weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
 				(ForecastMainActivity.weatherData.getCurrently().getTemperatureNum() > 5))

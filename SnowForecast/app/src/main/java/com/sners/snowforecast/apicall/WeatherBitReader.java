@@ -16,7 +16,7 @@ public class WeatherBitReader {
      *
      */
     public static void timelineRequest(Double latitude, Double longitude) throws Exception {
-        String apiEndPoint = "https://api.weatherbit.io/v2.0/forecast/minutely?";
+        String apiEndPoint = "https://api.weatherbit.io/v2.0/forecast/minutely";
 
         String apiKey = YOUR_API_KEY; //sign up for a free api key at https://www.visualcrossing.com/weather/weather-data-services
 
@@ -26,11 +26,11 @@ public class WeatherBitReader {
 
         //Build the URL pieces
         StringBuilder requestBuilder = new StringBuilder(apiEndPoint);
-        requestBuilder.append(String.format("lat=%f&lon=%f", longitude, latitude));
 
 
         //Build the parameters to send via GET or POST
         StringBuilder paramBuilder = new StringBuilder();
+        paramBuilder.append(String.format("lat=%f&lon=%f", latitude, longitude));
         paramBuilder.append("&").append("key=").append(apiKey);
 
 
@@ -43,22 +43,6 @@ public class WeatherBitReader {
         URL url = new URL(requestBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
-
-
-        //If post method, send post request
-        if ("POST".equals(method)) {
-            conn.setDoOutput(true);
-            conn.setInstanceFollowRedirects(false);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setRequestProperty("Content-Length", Integer.toString(paramBuilder.length()));
-            conn.setUseCaches(false);
-            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-            wr.writeBytes(paramBuilder.toString());
-            wr.flush();
-            wr.close();
-        }
 
         //check the response code and set up the reader for the appropriate stream
         int responseCode = conn.getResponseCode();
@@ -77,6 +61,7 @@ public class WeatherBitReader {
         }
         if (!isSuccess) {
             System.out.printf("Bad response status code:%d, %s%n", responseCode, response.toString());
+
 
             return;
         }

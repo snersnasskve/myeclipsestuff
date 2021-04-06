@@ -14,7 +14,6 @@ public class WeatherHelper {
 
 
 	//  For displaying temperatures
-	public static final DecimalFormat tempFormat = new DecimalFormat("0.0");
 	Double beaufortScaleUppers[] = {1.0, 3.0, 7.0, 12.0, 17.0, 24.0, 30.0, 38.0, 46.0, 54.0, 63.0, 73.0};
 
 	String[] knownWeatherWords = {"Snow", "snow", "Rain", "rain", "Drizzle", "drizzle",
@@ -26,13 +25,6 @@ public class WeatherHelper {
 
 
 
-	////////////////////////////////////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////////////////////////////////////
-	public WeatherHelper() {
-		// Populate weathercodes
-		populateWeatherCodes();
-	}
 
 	////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +79,7 @@ public class WeatherHelper {
 	public String precipIntensityToMilsFormatted(String inchesString)
 	{
 		Float mils = precipIntensityToMils(inchesString);
-		return tempFormat.format(mils) + WeatherConstants.MM_HR;
+		return String.format("%.1g%s", mils, WeatherConstants.MM_HR);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -100,23 +92,26 @@ public class WeatherHelper {
 
 	////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////
-	public String probabilityToPercent(String decimalNo)
+	public String probabilityToPercent(Float prob)
 	{
-		Double dec = Double.parseDouble(decimalNo);
-		Double perc = (dec * 100);
-		return tempFormat.format(perc) + WeatherConstants.PERCENT;
+		Double perc = (prob * 100.0);
+		return String.format("%.1f %s",perc, WeatherConstants.PERCENT);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////
 	public String formatTime(long totalMinutes)
 	{
-		String timeString = "" + totalMinutes;
-		int hours = (int) totalMinutes / 60;
-		int mins  = (int) totalMinutes % 60;
-		DecimalFormat myFormatter = new DecimalFormat("00");
-		String formattedMins = myFormatter.format(mins);
-		timeString = "" + hours + ":" + formattedMins + " hours";
-		return timeString;
+		long hours = totalMinutes / 60;
+		long mins = totalMinutes % 60;
+		if (hours > 24) {
+			long days = hours / 24;
+			hours = hours % 24;
+			return String.format("%d days, %2d:%02d", days, hours, mins);
+		}
+		else {
+			return String.format("%d:%02d", hours, mins);
+		}
+
 	}
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -153,109 +148,4 @@ public class WeatherHelper {
 		return weatherWord;
 	}
 
-
-	////////////////////////////////////////////////////////////////////////////////
-	//	PrecipitationTypeForCode - Meansings are direct from the API documentation
-	//	enum is not the answer - the API gives you numbers - Java enums are not numbes
-	////////////////////////////////////////////////////////////////////////////////
-	public String precipitationTypeForCode(int weatherCode) {
-
-		String precipType = "Unknown";
-		if (precipTypes.containsKey(weatherCode)) {
-			precipType = precipTypes.get(weatherCode);
-		}
-		return precipType;
-	}
-
-	public int codeForPrecipitationType(String weatherDesc) {
-		int weatherCode = -1; //
-		for (int key : precipTypes.keySet()) {
-			if (precipTypes.get(key).equals(weatherDesc)) {
-				weatherCode = key;
-			}
-		}
-		return weatherCode;
-	}
-
-	public int codeForWeatherWord(String weatherWord) {
-		int weatherCode = -1;
-		for (int key : weatherCodes.keySet()) {
-			if (weatherCodes.get(key).equals(weatherWord)) {
-				weatherCode = key;
-			}
-		}
-		return weatherCode;
-	}
-
-	public boolean isWeatherCodeSnowType(Integer weatherCode) {
-		return (weatherCode >= 5000 && weatherCode < 8000);
-	}
-	////////////////////////////////////////////////////////////////////////////////
-	//	Populate weather codes
-	//	https://docs.climacell.co/reference/data-layers-core#data-layers-weather-codes
-	////////////////////////////////////////////////////////////////////////////////
-	private void populateWeatherCodes() {
-		
-		//	This is a fixed array per API - only used once so not using constants
-		weatherCodes.put(1000, "Clear");
-		weatherCodes.put(1001, "Cloudy");
-		weatherCodes.put(1100, "Mostly Clear");
-		weatherCodes.put(1101, "Partly Cloudy");
-		weatherCodes.put(1102, "Mostly Cloudy");
-		weatherCodes.put(2000, "Fog");
-		weatherCodes.put(2100, "Light Fog");
-		weatherCodes.put(3000, "Light Wind");
-		weatherCodes.put(3001, "Wind");
-		weatherCodes.put(3002, "Strong Wind");
-		weatherCodes.put(4000, "Drizzle");
-		weatherCodes.put(4001, "Rain");
-		weatherCodes.put(4200, "Light Rain");
-		weatherCodes.put(4201, "Heavy Rain");
-		weatherCodes.put(5000, "Snow");
-		weatherCodes.put(5001, "Flurries");
-		weatherCodes.put(5100, "Light Snow");
-		weatherCodes.put(5101, "Heavy Snow");
-		weatherCodes.put(6000, "Freezing Drizzle");
-		weatherCodes.put(6001, "Freezing Rain");
-		weatherCodes.put(6200, "Light Freezing Rain");
-		weatherCodes.put(6201, "Heavy Freezing Rain");
-		weatherCodes.put(7000, "Ice Pellets");
-		weatherCodes.put(7101, "Heavy Ice Pellets");
-		weatherCodes.put(7102, "Light Ice Pellets");
-		weatherCodes.put(8000, "Thunderstorm");
-		iconCodes.put(1000, "clear_day");
-		iconCodes.put(1001, "Cloudy");
-		iconCodes.put(1100, "clear_day");
-		iconCodes.put(1101, "partly_cloudy_day");
-		iconCodes.put(1102, "partly_cloudy_day");
-		iconCodes.put(2000, "fog");
-		iconCodes.put(2100, "fog");
-		iconCodes.put(3000, "wind");
-		iconCodes.put(3001, "wind");
-		iconCodes.put(3002, "wind");
-		iconCodes.put(4000, "rain");
-		iconCodes.put(4001, "rain");
-		iconCodes.put(4200, "rain");
-		iconCodes.put(4201, "rain");
-		iconCodes.put(5000, "snow");
-		iconCodes.put(5001, "snow");
-		iconCodes.put(5100, "heavy_snow");
-		iconCodes.put(5101, "heavy_snow");
-		iconCodes.put(6000, "sleet");
-		iconCodes.put(6001, "sleet");
-		iconCodes.put(6200, "sleet");
-		iconCodes.put(6201, "sleet");
-		iconCodes.put(7000, "sleet");
-		iconCodes.put(7101, "sleet");
-		iconCodes.put(7102, "sleet");
-		iconCodes.put(8000, "rain");
-
-		precipTypes.put(0, "N/A");
-		precipTypes.put(1, WeatherConstants.PRECIP_TYPE_RAIN);
-		precipTypes.put(2, WeatherConstants.PRECIP_TYPE_SNOW);
-		precipTypes.put(3, WeatherConstants.PRECIP_TYPE_FREEZING_RAIN);
-		precipTypes.put(4, WeatherConstants.PRECIP_TYPE_ICE_PELLETS);
-		precipTypes.put(5, WeatherConstants.PRECIP_TYPE_OTHER);
-
-	}
 }

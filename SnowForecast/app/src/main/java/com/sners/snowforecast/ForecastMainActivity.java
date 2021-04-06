@@ -93,7 +93,7 @@ public class ForecastMainActivity extends FragmentActivity {
         //	This needs to be called from Android class
         LocationManager locationMgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        forecastLocation = new ForecastLocation(locationMgr);
+        forecastLocation = new ForecastLocation(locationMgr, ForecastMainActivity.this);
         forecastReader = new com.sners.snowforecast.ForecastReader();
 
         spFavourites.setOnItemSelectedListener(favouriteItemSelected);

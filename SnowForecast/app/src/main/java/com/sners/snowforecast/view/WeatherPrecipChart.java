@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,31 +23,35 @@ public class WeatherPrecipChart extends Activity {
     int yAxis = 40;
     private Paint mAxesPaint;
     private Paint mChartPaint;
+    private Paint mDashPaint;
 
     protected String precipPrefix;
 
 
     protected void drawProbabilityGraph(ArrayList<IntervalData> intData, Integer numPointsToPlot) {
         int graphWidth = intData.size();
+        if (numPointsToPlot < graphWidth) {
+            graphWidth = numPointsToPlot;
+        }
         Bitmap bmProb = Bitmap.createBitmap(graphWidth + (2 * mGraphMargin),
 				yAxis + (2 * mGraphMargin), Bitmap.Config.ARGB_8888);
         Canvas cProb = new Canvas(bmProb);
         cProb.drawColor(Color.WHITE);
+        //  Y axis
         cProb.drawLine(mGraphMargin, mGraphMargin, mGraphMargin, yAxis + mGraphMargin, mAxesPaint);
+        //  X axis
         cProb.drawLine(mGraphMargin, yAxis + mGraphMargin, graphWidth + mGraphMargin,
 				yAxis + mGraphMargin, mAxesPaint);
-		cProb.drawLine(mGraphMargin + (numPointsToPlot / 2), mGraphMargin + yAxis,
-				mGraphMargin + (numPointsToPlot / 2),
-				yAxis + mGraphMargin, mAxesPaint);
+        cProb.drawLine(mGraphMargin + (graphWidth / 2), mGraphMargin ,
+                mGraphMargin + (graphWidth / 2),
+                yAxis + mGraphMargin, mDashPaint);
 
-		//	Make sure we don't go out of range
-		Integer actualNumPoints = (numPointsToPlot <= intData.size()) ? numPointsToPlot : intData.size();
-
-		for (int i = 0; i < actualNumPoints; i++) {
+		for (int i = 0; i < graphWidth; i++) {
             Float probNum = (intData.get(i).getPrecipProbability() * yAxis);
             cProb.drawLine(mGraphMargin + i, (mGraphMargin + yAxis - probNum),
                     mGraphMargin + i, yAxis + mGraphMargin, mChartPaint);
         }
+
         ivPcProbability.setImageBitmap(bmProb);
     }
 
@@ -54,24 +59,28 @@ public class WeatherPrecipChart extends Activity {
     protected void drawPrecipGraph(ArrayList<IntervalData> intData,
                                    Float maxPrecip, Integer numPointsToPlot) {
         int graphWidth = intData.size();
+        if (numPointsToPlot < graphWidth) {
+            graphWidth = numPointsToPlot;
+        }
         Bitmap bmIntens = Bitmap.createBitmap(graphWidth + (2 * mGraphMargin), yAxis + (2 * mGraphMargin), Bitmap.Config.ARGB_8888);
         Canvas cIntens = new Canvas(bmIntens);
         cIntens.drawColor(Color.WHITE);
+        //  Y axis
         cIntens.drawLine(mGraphMargin, mGraphMargin, mGraphMargin, yAxis + mGraphMargin, mAxesPaint);
+        //  X axis
         cIntens.drawLine(mGraphMargin, yAxis + mGraphMargin, graphWidth + mGraphMargin,
 				yAxis + mGraphMargin, mAxesPaint);
-		cIntens.drawLine(mGraphMargin + (numPointsToPlot / 2), (mGraphMargin + yAxis),
-				mGraphMargin + (numPointsToPlot / 2), yAxis + mGraphMargin, mAxesPaint);
 
-		//	Make sure we don't go out of range
-		Integer actualNumPoints = (numPointsToPlot <= intData.size()) ? numPointsToPlot : intData.size();
-
-		for (int i = 0; i < intData.size(); i++) {
+        //  50% line
+        cIntens.drawLine(mGraphMargin + (graphWidth / 2), (mGraphMargin ),
+                mGraphMargin + (graphWidth / 2), yAxis + mGraphMargin, mDashPaint);
+		for (int i = 0; i < graphWidth; i++) {
             Float precipNum = (intData.get(i).getPrecipIntensity() * yAxis / maxPrecip);
             cIntens.drawLine(mGraphMargin + i, (mGraphMargin + yAxis - precipNum),
                     mGraphMargin + i, yAxis + mGraphMargin, mChartPaint);
         }
         ivPcIntensity.setImageBitmap(bmIntens);
+
     }
 
 
@@ -128,6 +137,11 @@ public class WeatherPrecipChart extends Activity {
         mAxesPaint.setColor(Color.BLACK);
         mChartPaint = new Paint();
         mChartPaint.setColor(chartColour);
+        mDashPaint = new Paint();
+        mDashPaint.setColor(Color.LTGRAY);
+        mDashPaint.setStyle(Paint.Style.STROKE);
+        mDashPaint.setPathEffect(new DashPathEffect(new float[]{2, 4}, 0));
+        mDashPaint.setStrokeWidth(1);
     }
 
 

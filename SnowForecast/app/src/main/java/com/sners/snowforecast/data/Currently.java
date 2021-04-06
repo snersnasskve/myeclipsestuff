@@ -1,26 +1,30 @@
 package com.sners.snowforecast.data;
 
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
+
 import org.json.JSONObject;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Currently {
     //  We will be calculating current values from minutely data
     private ArrayList<IntervalData> minutelyData;
+    Date sunriseTime;
+    Date sunsetTime;
+    String currDateString; //   This is not in the currently date, please send it to me
 
 
     //  Used for calculating time ranges throughout
 
-    LocalDateTime currTime;
+    Date currTime;
+
 
     //  A class for common weather functions
-    private com.sners.snowforecast.data.WeatherHelper weatherHelper;
+    private WeatherHelper weatherHelper;
 
     /*
     Use the incoming data to generate the variables required:
@@ -36,61 +40,42 @@ public class Currently {
     //  Hoping to remove this class as all our data is now sitting in minutely
     private CurrentlyData currentlyData;
 
+
     ////////////////////////////////////////////////////////////////////////////////
     //	Constructor
     ////////////////////////////////////////////////////////////////////////////////
-    public Currently(JSONObject currentJson) {
+    public Currently(JSONObject currentJson, String currDateString) {
 
-        //  We work out current from minutely
+        this.currDateString = currDateString;
+
         weatherHelper = new WeatherHelper();
         currentlyData = new CurrentlyData(currentJson);
 
-        if (minutelyData.size() > 0) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-            String time = (minutelyData.get(0).getTime());
+        String sunriseString = String.format("%s %s", currDateString, currentlyData.getSunriseTime());
+        String sunsetString = String.format("%s %s", currDateString, currentlyData.getSunsetTime());
+        currTime = new Date();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-            TemporalAccessor parsed = formatter.parse(  time );
-            currTime = LocalDateTime.from(parsed);
+        try {
+            sunriseTime = dateFormat.parse(sunriseString);
+            sunsetTime = dateFormat.parse(sunsetString);
 
-            generateCurrentSummaries();
-
-
+        } catch (ParseException e) {
+            e.printStackTrace();
+            //	No date info;
         }
+
+
     }
 
-    ////////////////////////////////////////////////////////////////////////////////
-    //	Get Summary - calculate a short phrase to show the current weather
-    ////////////////////////////////////////////////////////////////////////////////
-    void generateCurrentSummaries() {
-        HashMap<Integer, Integer> weatherCodes = new HashMap<Integer, Integer>();
 
-        // Use the first 60 minutes for data - or whatever we have
-        int hourCount = (minutelyData.size() > 59) ? 60 : minutelyData.size();
-        double totWindSpeed = 0.0;
-
-        for (int minCount = 0; minCount < hourCount; minCount++) {
-            MinutelyData minuteInst = (MinutelyData) minutelyData.get(minCount);
-
-            Integer temp = weatherCodes.getOrDefault(minuteInst.weatherCode, 0);
-            weatherCodes.put(minuteInst.weatherCode, temp + 1);
-        }
-        // Now try and get the winning code
-//     weatherCodes.entrySet().stream().max((entry1, entry2) ->
-//             entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
-        Integer modeCode = Collections.max(weatherCodes.entrySet(), Map.Entry.comparingByValue()).getKey();
-
-        currentlyData.setHeadline(weatherHelper.summaryForWeatherCode(modeCode));
-        currentlyData.setIcon(weatherHelper.iconForWeatherCode(modeCode));
-
-    }
 
     public String getIcon() {
         return currentlyData.getIcon();
     }
 
-    public LocalDateTime getTime()
-    {
+    public Date getTime() {
         return currTime;
     }
 
@@ -100,31 +85,30 @@ public class Currently {
 
     public String getTemperature() {
 
-        String formattedTemp = String.format("%s%s",
-                WeatherHelper.tempFormat.format(currentlyData.getTemperature()),
+        String formattedTemp = String.format("%.1f%s",
+               currentlyData.getTemperature(),
                 WeatherConstants.DEGREES_C);
 
         return formattedTemp;
     }
 
+
     public String getPrecipIntensity() {
-        return String.format("%2g%s", currentlyData.getPrecipIntensity(), WeatherConstants.MM_HR);
+        return String.format("%.2g%s", currentlyData.getPrecipIntensity(), WeatherConstants.MM_HR);
     }
 
-    public String getPrecipProbability() {
-        return "" + currentlyData.getPrecipProbability() + WeatherConstants.PERCENT;
+    public Float getPrecipProbability() {
+         return currentlyData.getPrecipProbability();
     }
 
-    public double getWindSpeedMph() {
-        return (currentlyData.getWindSpeed() * WeatherConstants.MS_TO_MPH_CONVERSION);
-    }
-    public float getWindSpeedBeaufort() {
-        return weatherHelper.windSpeedToBeaufort(getWindSpeedMph());
+    public String getPrecipProbabilityString() {
+        return weatherHelper.probabilityToPercent(getPrecipProbability());
     }
 
-    public String getWindSpeedBeaufortString() {
-        return "" + weatherHelper.windSpeedToBeaufort(getWindSpeedMph());
-    }
+
+public float getWindSpeed() {
+        return currentlyData.getWindSpeed();
+}
 
     public String getHeadline() {
         return currentlyData.getHeadline();
@@ -133,4 +117,28 @@ public class Currently {
     public float getTemperatureNum() {
         return currentlyData.getTemperature();
     }
+
+    public long getTimeTilSunset() {
+        long diffInMillies = (sunsetTime.getTime() - currTime.getTime());
+        long minutes = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return minutes;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public boolean isDayTime() {
+        boolean dayTime = true;
+
+//  Less then 0 means the date is before the parameter
+        //  Greater than 0 means the date is after the parameter
+        if (currTime.compareTo(sunriseTime) < 0 ||
+                currTime.compareTo(sunsetTime) > 0) {
+            dayTime = false;
+        }
+
+        return dayTime;
+    }
+
+
+
 }
+

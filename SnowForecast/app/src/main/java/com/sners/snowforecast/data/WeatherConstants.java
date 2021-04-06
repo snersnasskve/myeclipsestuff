@@ -16,9 +16,9 @@ public class WeatherConstants {
 
     public static final String PRECIP_INTENSITY = "precip";
     public static final String PRECIP_PROBABILITY = "precipprob";
-    public static final String PRECIP_TYPE = "precipitationType";
-    public static final String PRECIP_TYPE_RAIN = "Rain";
-    public static final String PRECIP_TYPE_SNOW = "Snow";
+    public static final String PRECIP_TYPE = "preciptype";
+    public static final String PRECIP_TYPE_RAIN = "rain";
+    public static final String PRECIP_TYPE_SNOW = "snow";
     public static final String PRECIP_TYPE_FREEZING_RAIN = "Freezing Rain";
     public static final String PRECIP_TYPE_ICE_PELLETS = "Ice Pellets";
     public static final String PRECIP_TYPE_OTHER = "New precipitation type";
@@ -36,16 +36,16 @@ public class WeatherConstants {
     public static final String DAILY = "days";
 
 
-    public static final String SUNSET_TIME = "sunsetTime";
-    public static final String SUNRISE_TIME = "sunriseTime";
+    public static final String SUNSET_TIME = "sunset";
+    public static final String SUNRISE_TIME = "sunrise";
 
     public static final String TITLE = "title";
     public static final String EXPIRES = "expires";
-    public static final String TEMPERATURE = "temperature";
+    public static final String TEMPERATURE = "temp";
 
-    public static final String TIME = "startTime";
-    public static final String TIMELINE = "timelines";
-    public static final String TIMESTEP = "timestep";
+    public static final String TIME_LOCAL = "timestamp_local";
+    public static final String TIME = "datetime";
+
     public static final String URI = "uri";
     public static final String VALUES = "values";
     public static final String WEATHER = "weather";
@@ -53,6 +53,7 @@ public class WeatherConstants {
     public static final String WIND_SPEED = "windspeed";
     public static final String WIND_BEARING = "wind_deg";
     public static final double MS_TO_MPH_CONVERSION = 2.236936;
+    public static final double KM_TO_MPH_CONVERSION = 0.6213712;
 
     public static final String CONDITIONS = "conditions";
     public static final String ICON = "icon";

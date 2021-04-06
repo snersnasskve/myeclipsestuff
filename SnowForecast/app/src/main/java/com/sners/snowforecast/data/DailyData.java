@@ -1,64 +1,56 @@
 package com.sners.snowforecast.data;
 
-import com.sners.snowforecast.data.IntervalData;
-
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;import com.sners.snowforecast.data.WeatherConstants;
+import org.json.JSONObject;
 
+import java.time.ZoneId;
+import java.util.ArrayList;
 
 
 public class DailyData extends IntervalData {
 
-	private String time;
-	private String icon;
-	private String sunsetTime;
-	private String sunriseTime;
-	//private String precipIntensityMax;
-	//private String precipIntensityMaxTime;
+    private String date;
+    private String icon;
 
 
+    ////////////////////////////////////////////////////////////////////////////////
+    //	Constructor
+    ////////////////////////////////////////////////////////////////////////////////
+    public DailyData(JSONObject jsonDaily) {
+        try {
+            date = jsonDaily.getString(WeatherConstants.TIME);
 
-	////////////////////////////////////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////////////////////////////////////
-	public DailyData(JSONObject jsonDaily)
-	{
-		try {
-			time 						= jsonDaily.getString(WeatherConstants.TIME);
-				JSONObject values = jsonDaily.getJSONObject(WeatherConstants.VALUES);
+            precipIntensity = (float) jsonDaily.getDouble(WeatherConstants.PRECIP_INTENSITY);
 
-			sunsetTime 					= values.getString(WeatherConstants.SUNSET_TIME);
-			sunriseTime 					= values.getString(WeatherConstants.SUNRISE_TIME);
-			precipProbability 	= (float)values.getDouble(WeatherConstants.PRECIP_PROBABILITY);
-			precipType 			= values.getInt(WeatherConstants.PRECIP_TYPE);;
-		weatherCode			= values.getInt(WeatherConstants.WEATHER_CODE);
+            precipProbability = (float) jsonDaily.getDouble(WeatherConstants.PRECIP_PROBABILITY);
 
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-
-	public String getSunsetTime() {
-		return sunsetTime;
-	}
-
-	public String getSunriseTime() {
-		return sunriseTime;
-	}
+            if (!jsonDaily.isNull(WeatherConstants.PRECIP_TYPE)) {
+                //  If it is null, then it is not an array
+                    JSONArray weatherWordsJson = jsonDaily.getJSONArray(WeatherConstants.PRECIP_TYPE);
+                    for (int wordCounter = 0; wordCounter < weatherWordsJson.length(); wordCounter++) {
+                        String precipType = weatherWordsJson.getString(wordCounter);
+                        weatherWords.add(precipType);
+                }
+            }
 
 
 
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public String getDate() {
+        return date;
+    }
 
 
 }

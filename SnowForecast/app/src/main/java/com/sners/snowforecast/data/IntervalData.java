@@ -3,16 +3,17 @@ package com.sners.snowforecast.data;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class IntervalData {
 
 	protected float precipIntensity;
 	protected float precipProbability;
-	protected Integer precipType;
 	protected String time;
-	protected Integer weatherCode;
 	protected double windSpeed;	//	Wind speed is metres per second in the data classes
 	protected float temperature;
+	protected ArrayList<String> weatherWords = new  ArrayList<String>();
 
 
 	public IntervalData() {
@@ -46,17 +47,10 @@ public class IntervalData {
 
 	public float getPrecipIntensity() { return precipIntensity; }
 
-	public Integer getPrecipType() {
-		return precipType;
-	}
-
 	public String getTime() {
 		return time;
 	}
 
-	public Integer getWeatherCode() {
-		return weatherCode;
-	}
 
 	public float getTemperature() {
 		return temperature;
@@ -65,4 +59,9 @@ public class IntervalData {
 	public double getWindSpeed() {
 		return windSpeed;
 	}
+
+	public ArrayList<String> getWeatherWords() {
+		return weatherWords;
+	}
+
 }

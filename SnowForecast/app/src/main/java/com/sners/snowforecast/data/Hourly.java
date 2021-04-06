@@ -19,6 +19,7 @@ public class Hourly {
     Set<Integer> weatherCodes = new HashSet<Integer>();
     Set<Integer> precipCodes = new HashSet<Integer>();
     WeatherHelper weatherHelper = new WeatherHelper();
+    final int numPointsToPlot = 48;
 
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -35,19 +36,7 @@ public class Hourly {
             for (int intervalCounter = 0; intervalCounter < hourlyArary.length(); intervalCounter++) {
                 HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(hourlyArary.getJSONObject(intervalCounter));
                 hourlyData.add(dataInst);
-                weatherCodes.add(dataInst.getWeatherCode());
-                //	Don't add precip type unless it actually has a probability
-                if (dataInst.precipProbability > 0) {
-                    Integer weatherCode = dataInst.getWeatherCode();
-                    weatherCodes.add(weatherCode);
-                    if (dataInst.precipProbability > 0) {
-                        precipCodes.add(dataInst.getPrecipType());
 
-                        if (weatherHelper.isWeatherCodeSnowType(weatherCode)) {
-                            weatherCodes.add(weatherHelper.codeForWeatherWord("Snow")); //	 for snow
-                        }
-                    }
-                }
             }
 
         } catch (JSONException e) {
@@ -61,8 +50,9 @@ public class Hourly {
     public Float getMaxPrecip() {
         if (maxPrecip < 0.0f) {
             //	only calculate it once
-            for (IntervalData hour : hourlyData) {
-                Float precip = hour.getPrecipIntensity();
+            for (int hourCounter = 0 ; hourCounter < numPointsToPlot ; hourCounter ++) {
+
+                float precip = hourlyData.get(hourCounter).getPrecipIntensity();
                 if (precip > maxPrecip) {
                     maxPrecip = precip;
                 }
@@ -75,17 +65,8 @@ public class Hourly {
         return summary;
     }
 
-
     public String getIcon() {
         return icon;
-    }
-
-    public Set<Integer> getWeatherCodes() {
-        return weatherCodes;
-    }
-
-    public Set<Integer> getPrecipCodes() {
-        return precipCodes;
     }
 
     public ArrayList<IntervalData> getHourlyData() {

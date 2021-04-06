@@ -1,110 +1,130 @@
 package com.sners.snowforecast.location;
 
-import java.io.IOException;
-import java.util.List;
-
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 
+import java.io.IOException;
+import java.util.List;
+
+import androidx.core.app.ActivityCompat;
+
 public class ForecastLocation {
-	
-	
-	LocationManager locationMgr;
-	
-	private static final long ONE_MIN = 1000 * 60;
-	private static final long FIVE_MIN = ONE_MIN * 5;
-	private static final float MIN_LAST_READ_ACCURACY = 5000.0f;
-	
-	private float minAccuracy 	= MIN_LAST_READ_ACCURACY;
-	private float minTime		= FIVE_MIN;
 
-	private double mLatitude 		= 0;
-	private double mLongitude 		= 0;
-	private boolean	validLocation 	= false;
 
-	public ForecastLocation(LocationManager locationMgr)
-	{
-		this.locationMgr = locationMgr;
-	}
-	
-	public double getmLatitude() {
-		return mLatitude;
-	}
+    LocationManager locationMgr;
+    Context mContext;
 
-	public void setmLatitude(double mLatitude) {
-		this.mLatitude = mLatitude;
-	}
+    private static final long ONE_MIN = 1000 * 60;
+    private static final long FIVE_MIN = ONE_MIN * 5;
+    private static final float MIN_LAST_READ_ACCURACY = 5000.0f;
 
-	public double getmLongitude() {
-		return mLongitude;
-	}
+    private float minAccuracy = MIN_LAST_READ_ACCURACY;
+    private float minTime = FIVE_MIN;
 
-	public void setmLongitude(double mLongitude) {
-		this.mLongitude = mLongitude;
-	}
+    private double mLatitude = 0;
+    private double mLongitude = 0;
+    private boolean validLocation = false;
 
-	public boolean isValidLocation() {
-		return validLocation;
-	}
+    public ForecastLocation(LocationManager locationMgr, Context mContext) {
+        this.locationMgr = locationMgr;
+        this.mContext = mContext;
+    }
 
-	public void setValidLocation(boolean validLocation) {
-		this.validLocation = validLocation;
-	}
+    public double getmLatitude() {
+        return mLatitude;
+    }
 
-	/*
-	 * Location class
-	 * android:permission ACCESS_COARSE_LOCATION	cell tower or wifi
-	 * android:permission ACCESS_FINE_LOCATION		cell tower or wifi or GPS
-	 * 
-	 */
+    public void setmLatitude(double mLatitude) {
+        this.mLatitude = mLatitude;
+    }
 
-	public Location bestLastKnownLocation() {
+    public double getmLongitude() {
+        return mLongitude;
+    }
 
- 		Location bestResult = null;
- 		float bestAccuracy = Float.MAX_VALUE;
- 		long bestTime = Long.MIN_VALUE;
+    public void setmLongitude(double mLongitude) {
+        this.mLongitude = mLongitude;
+    }
 
- 		List<String> matchingProviders = locationMgr.getAllProviders();
+    public boolean isValidLocation() {
+        return validLocation;
+    }
 
- 		for (String provider : matchingProviders) {
+    public void setValidLocation(boolean validLocation) {
+        this.validLocation = validLocation;
+    }
 
- 			Location location = locationMgr.getLastKnownLocation(provider);
+    /*
+     * Location class
+     * android:permission ACCESS_COARSE_LOCATION	cell tower or wifi
+     * android:permission ACCESS_FINE_LOCATION		cell tower or wifi or GPS
+     *
+     */
 
- 			if (location != null) {
+    public Location bestLastKnownLocation() {
 
- 				float accuracy = location.getAccuracy();
- 				long time = location.getTime();
+        Location bestResult = null;
+        float bestAccuracy = Float.MAX_VALUE;
+        long bestTime = Long.MIN_VALUE;
 
- 				if (accuracy < bestAccuracy) {
+        List<String> matchingProviders = locationMgr.getAllProviders();
+        Location location = null;
 
- 					bestResult = location;
- 					bestAccuracy = accuracy;
- 					bestTime = time;
+        for (String provider : matchingProviders) {
 
- 				}
- 			}
- 		}
+            if (ActivityCompat.checkSelfPermission(this.mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this.mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                location = null;
+            }
+            else {
 
- 		// Return best reading or null
- 		if (bestAccuracy > minAccuracy || bestTime < minTime) {
-			this.setmLatitude(0);
-			this.setmLongitude(0);
- 			return null;
- 		} else {
- 			this.setmLatitude(bestResult.getLatitude());
-			this.setmLongitude(bestResult.getLongitude());
-			return bestResult;
- 		}
- 	}
- 	
+                 location = locationMgr.getLastKnownLocation(provider);
 
-	// Json location from address
-	//	https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
-	// XML location from address
-	//	https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
+                if (location != null) {
+
+                    float accuracy = location.getAccuracy();
+                    long time = location.getTime();
+
+                    if (accuracy < bestAccuracy) {
+
+                        bestResult = location;
+                        bestAccuracy = accuracy;
+                        bestTime = time;
+
+                    }
+                }
+            }
+        }
+
+        // Return best reading or null
+        if (bestAccuracy > minAccuracy || bestTime < minTime || location == null) {
+            this.setmLatitude(0);
+            this.setmLongitude(0);
+            return null;
+        } else {
+            this.setmLatitude(bestResult.getLatitude());
+            this.setmLongitude(bestResult.getLongitude());
+            return bestResult;
+        }
+    }
+
+
+    // Json location from address
+    //	https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
+    // XML location from address
+    //	https://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
 	/*
 	 * status
 	 * 
@@ -116,9 +136,9 @@ public class ForecastLocation {
     "UNKNOWN_ERROR" indicates that the request could not be processed due to a server error. The request may succeed if you try again.
 
 	 */
-	
-	//	api key for google locations
-	//	AIzaSyDJbwty38gHjuWWKXLVw85C2XmV7wJPrU4
+
+    //	api key for google locations
+    //	AIzaSyDJbwty38gHjuWWKXLVw85C2XmV7wJPrU4
 	/*
 	public Location locationForAddress(String place)
 	{
@@ -171,27 +191,25 @@ public class ForecastLocation {
     reqQueue.add(stateReq);
 	}
 	*/
-	//////crashing here
-	public void locationFromPlace(String locationName, Context context)
-	{
-		//	I don't understand why it only errors when not plugged in
-		//	http://stackoverflow.com/questions/15711499/get-latitude-and-longitude-with-geocoder-and-android-google-maps-api-v2
-		//	Uses do in background, but has extra stuff so not doing it today
-		this.setValidLocation(false);
-		Geocoder myLocation = new Geocoder(context);
-		int maxResults = 1;
-	    try {
-			List<Address> addressList = myLocation.getFromLocationName( locationName,  maxResults);
-			if (!addressList.isEmpty() &&  addressList.get(0).hasLatitude() && addressList.get(0).hasLongitude())
-			{
-				this.setmLatitude(addressList.get(0).getLatitude());
-				this.setmLongitude(addressList.get(0).getLongitude());
-				this.setValidLocation(true);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    //////crashing here
+    public void locationFromPlace(String locationName, Context context) {
+        //	I don't understand why it only errors when not plugged in
+        //	http://stackoverflow.com/questions/15711499/get-latitude-and-longitude-with-geocoder-and-android-google-maps-api-v2
+        //	Uses do in background, but has extra stuff so not doing it today
+        this.setValidLocation(false);
+        Geocoder myLocation = new Geocoder(context);
+        int maxResults = 1;
+        try {
+            List<Address> addressList = myLocation.getFromLocationName(locationName, maxResults);
+            if (!addressList.isEmpty() && addressList.get(0).hasLatitude() && addressList.get(0).hasLongitude()) {
+                this.setmLatitude(addressList.get(0).getLatitude());
+                this.setmLongitude(addressList.get(0).getLongitude());
+                this.setValidLocation(true);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }

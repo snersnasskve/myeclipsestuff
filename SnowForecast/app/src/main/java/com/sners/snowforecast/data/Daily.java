@@ -1,12 +1,18 @@
 package com.sners.snowforecast.data;
 
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
+
 import com.sners.snowforecast.data.IntervalData;
 import com.sners.snowforecast.data.WeatherHelper;
 
+import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,8 +31,7 @@ public class Daily {
 	private String icon;
 	private ArrayList <IntervalData> dailyData;
 	private com.sners.snowforecast.data.DailyData today;
-	LocalDateTime sunriseTime;
-	LocalDateTime sunsetTime;
+	String currDateString;
 
 	Set<Integer> weatherCodes = new HashSet<Integer>();
 	////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +42,8 @@ public class Daily {
 		dailyData		= new ArrayList <IntervalData> ();	
 		today = null;
 		WeatherHelper weatherHelper = new WeatherHelper();
+		Date sunriseTime;
+		Date sunsetTime;
 
 		try {
 
@@ -45,10 +52,13 @@ public class Daily {
 				DailyData dataInst = new DailyData(dailyArray.getJSONObject(intervalCounter));
 
 				dailyData.add(dataInst);
-				weatherCodes.add(dataInst.getWeatherCode());
+//				weatherCodes.add(dataInst.getWeatherCode());
 			}
 
-
+	if (dailyArray.length() > 0) {
+		DailyData today = (DailyData) dailyData.get(0);
+		currDateString = today.getDate();
+	}
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -57,26 +67,14 @@ public class Daily {
 		if (dailyData.size() > 0)
 		{
 			today 			= (com.sners.snowforecast.data.DailyData) dailyData.get(0);
-			//	Set up the times -- only want to parse them once
-			DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-			TemporalAccessor sunriseParsed = formatter.parse(today.getSunriseTime() );
-			sunriseTime = LocalDateTime.from(sunriseParsed);
-			TemporalAccessor sunsetParsed = formatter.parse(today.getSunsetTime() );
-			sunsetTime = LocalDateTime.from(sunsetParsed);
+
+
 
 		}
 	}
+//    ZonedDateTime datetime=ZonedDateTime.ofInstant(Instant.ofEpochSecond(dayValue.getLong("datetimeEpoch")), zoneId);
+//
 
-	public LocalDateTime getSunsetTime()
-	{
-		return sunsetTime;
-	}
-
-	public LocalDateTime getSunriseTime()
-	{
-		return sunriseTime;
-	}
-	
 	
 	public String getSummary() {
 		return summary;
@@ -95,10 +93,7 @@ public class Daily {
 		return weatherCodes;
 	}
 
-	public DailyData getToday() {
-		return today;
+	public String getCurrDateString() {
+		return currDateString;
 	}
-
-
-	
 }

@@ -18,26 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sners.snowforecast.*;
+import com.sners.snowforecast.data.WeatherData;
 
 public class WeatherDashboard extends Activity {
-	/*
-	 * 
-     *	Just about every object property in the response is optional. 
-     *		In fact, a request with no data to return will return a nearly empty object, rather than a failure. 
-     *		Robust code will check for the presence of required parameters before using them, and will fail gracefully if they are not present.
-   	 *	All numeric properties are real numbers, except for UNIX timestamps, which are (signed) integers.
-     *	Summaries on the hourly data block actually only cover up to a maximum of 24 hours, 
-     *		rather than the full time period in the data block. 
-     *	Summaries and icons on daily data points actually cover the period from 4AM to 4AM, 
-     *		rather than the stated time period of midnight to midnight. We found that the summaries so generated were less awkward.
-     *	The Forecast Data API supports HTTP compression. 
-     *		We heartily recommend using it, as it will make responses much smaller over the wire. 
-     *		To enable it, simply add an Accept-Encoding: gzip header to your request. 
-     *		(Most HTTP client libraries wrap this functionality for you, please consult your library’s documentation for details. 
-     *		Be advised that we do not support such compression over HTTP/1.0 connections.)
-	 */
-	
-	//	Please I want time until precipitation
+
 
 	ImageView ivDashSummary;
 	TextView tvDashSummary;
@@ -53,6 +37,7 @@ public class WeatherDashboard extends Activity {
 	LinearLayout llDashDashboard;
 	
 	//	String jsonData;
+	WeatherData weatherData = ForecastMainActivity.weatherData;
 
 	
  
@@ -65,8 +50,7 @@ public class WeatherDashboard extends Activity {
 	    ivDashSummary			= (ImageView)findViewById(R.id.ivDashSummary);
 		tvDashSummary			= (TextView) findViewById(R.id.tvDashSummary);
 	    tvDashPrecip			= (TextView) findViewById(R.id.tvDashPrecip);
-	    //vDashPrecipitation	= (View) findViewById(R.id.vDashPrecipitation);
-		//tvDashPrecipProbability	= (TextView) findViewById(R.id.tvDashPrecipProbability);
+
 		tvDashTemperature		= (TextView) findViewById(R.id.tvDashTemperature);
 		tvDashWind				= (TextView) findViewById(R.id.tvDashWind);
 		tvDashTimeTilSunset		= (TextView) findViewById(R.id.tvDashTimeTilSunset);
@@ -79,18 +63,18 @@ public class WeatherDashboard extends Activity {
 		//llDashDashboard.startAnimation(animExitLeft);
 	
 			
-		//HashMap <String, String> currentInfo = ForecastMainActivity.forecastReader.parseCurrentInfo(jsonData);
+
+		tvDashSummary.			setText(weatherData.getHeadlineSummary());
 		
-		tvDashSummary.			setText(ForecastMainActivity.weatherData.getHeadlineSummary());
-		
-		tvDashTimeTilSunset.	setText("" + ForecastMainActivity.weatherData.getTimeTilSunsetString());
+		tvDashTimeTilSunset.	setText(
+				String.format("%s", weatherData.getTimeTilSunsetString()));
 		
 		//	timeTillPrecip
 		
-		tvDashTimeTilPrecip.  	setText(ForecastMainActivity.weatherData.timeTilPrecipString(false));
+		tvDashTimeTilPrecip.  	setText(weatherData.timeTilPrecipString(false));
 		
 	
-		String			iconName = ForecastMainActivity.weatherData.getHeadlineIcon();
+		String			iconName = weatherData.getHeadlineIcon();
 		int iconId 	= 	getResources().getIdentifier(iconName, "drawable", getPackageName());
 		ivDashSummary.	setImageResource(iconId);	
 		ivDashSummary.	setContentDescription(iconName);
@@ -109,7 +93,7 @@ public class WeatherDashboard extends Activity {
 
 	private void setWeatherActivityIcons() {
 
-		com.sners.snowforecast.view.WeatherIconGallery iconGallery = new com.sners.snowforecast.view.WeatherIconGallery();
+		WeatherIconGallery iconGallery = new WeatherIconGallery();
 		ArrayList <String> qualIcons = iconGallery.getWeatherActivityIcons();
 		
 				
@@ -151,11 +135,11 @@ private void drawPrecipitationGraph()
 
 	private void populateTemperature()
 	{
-		String tempString = ForecastMainActivity.weatherData.getCurrently().getTemperature() ;
+		String tempString = weatherData.getCurrently().getTemperature() ;
 	
 		tvDashTemperature.setText(tempString);
 		
-		float temperatureNum = ForecastMainActivity.weatherData.getCurrently().getTemperatureNum();
+		float temperatureNum = weatherData.getCurrently().getTemperatureNum();
 		if (temperatureNum > 20)
 		{
 			tvDashTemperature.setTextColor(Color.RED);
@@ -177,7 +161,7 @@ private void drawPrecipitationGraph()
 	
 	private void populateWind()
 	{
-		float beaufortValue = ForecastMainActivity.weatherData.getCurrently().getWindSpeedBeaufort();
+		float beaufortValue = weatherData.getWindSpeedBeaufort();
 		
 		tvDashWind.setText(String.format("%d", Math.round(beaufortValue)));
 		if (beaufortValue < 5)

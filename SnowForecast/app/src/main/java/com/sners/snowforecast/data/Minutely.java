@@ -13,8 +13,6 @@ public class Minutely {
 
     final private ArrayList<IntervalData> minutelyData;
 
-    Set<Integer> weatherCodes = new HashSet<Integer>();
-    Set<Integer> precipCodes = new HashSet<Integer>();
     WeatherHelper weatherHelper = new WeatherHelper();
 
     private Float maxPrecip;
@@ -32,15 +30,16 @@ public class Minutely {
                 com.sners.snowforecast.data.MinutelyData dataInst =
                         new com.sners.snowforecast.data.MinutelyData(minuteObj);
                 minutelyData.add(dataInst);
-                Integer weatherCode = dataInst.getWeatherCode();
-                weatherCodes.add(weatherCode);
-                if (dataInst.precipProbability > 0) {
-                    precipCodes.add(dataInst.getPrecipType());
-
-                    if (weatherHelper.isWeatherCodeSnowType(weatherCode)) {
-                        weatherCodes.add(weatherHelper.codeForWeatherWord("Snow")); //	 for snow
-                    }
-                }
+                //  I need to know what I need to know but I don't know what I need to know
+//                Integer weatherCode = dataInst.getWeatherCode();
+//                weatherCodes.add(weatherCode);
+//                if (dataInst.precipProbability > 0) {
+//                    precipCodes.add(dataInst.getPrecipType());
+//
+//                    if (weatherHelper.isWeatherCodeSnowType(weatherCode)) {
+//                        weatherCodes.add(weatherHelper.codeForWeatherWord("Snow")); //	 for snow
+//                    }
+//                }
             }
 
         } catch (JSONException e) {
@@ -62,13 +61,6 @@ public class Minutely {
         return maxPrecip;
     }
 
-    public Set<Integer> getWeatherCodes() {
-        return weatherCodes;
-    }
-
-    public Set<Integer> getPrecipCodes() {
-        return precipCodes;
-    }
 
     public ArrayList<IntervalData> getMinutelyData() {
         return minutelyData;

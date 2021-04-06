@@ -24,7 +24,11 @@ public class CurrentlyData   {
 	private float windSpeed = 0;	//	Wind speed is metres per second in the data classes
 	private float nextRain = 0;
 	private float nextSnow = 0;
+	private String time;
+	private String sunsetTime;
+	private String sunriseTime;
 	private ArrayList<String> galleryIcons;
+	private ArrayList<String> weatherWords;
 
 
 	/*
@@ -35,11 +39,24 @@ public class CurrentlyData   {
 		try {
 			headline = currentJson.getString(WeatherConstants.CONDITIONS);
 			icon = currentJson.getString(WeatherConstants.ICON);
+			time = currentJson.getString(WeatherConstants.TIME);
+			sunriseTime = currentJson.getString(WeatherConstants.SUNRISE_TIME);
+			sunsetTime = currentJson.getString(WeatherConstants.SUNSET_TIME);
 			precipIntensity = (float) currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY);
+			temperature = (float) currentJson.getDouble(WeatherConstants.TEMPERATURE);
 			if (precipIntensity > 0) {
 				//	This is null if no precipIntensity
 				precipProbability = (float) currentJson.getDouble(WeatherConstants.PRECIP_PROBABILITY);
 			}
+
+			if (precipIntensity > 0 && precipProbability > 0) {
+				JSONArray weatherWordsJson = currentJson.getJSONArray(WeatherConstants.PRECIP_TYPE);
+				for (int wordCounter = 0 ; wordCounter < weatherWordsJson.length() ; wordCounter++) {
+					String precipType = weatherWordsJson.getString(wordCounter);
+					weatherWords.add(precipType) ;
+				}
+			}
+
 			windSpeed = (float) currentJson.getDouble(WeatherConstants.WIND_SPEED);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -96,7 +113,20 @@ public class CurrentlyData   {
 		this.galleryIcons = galleryIcons;
 	}
 
-	public void setWeatherCode(Integer weatherCode) {
-		this.weatherCode = weatherCode;
+	public String getTime() {
+		return time;
 	}
+
+		public String getSunsetTime() {
+		return sunsetTime;
+	}
+
+	public String getSunriseTime() {
+		return sunriseTime;
+	}
+
+	public ArrayList<String> getWeatherWords() {
+		return weatherWords;
+	}
+
 }
