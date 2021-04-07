@@ -81,8 +81,6 @@ public class VisualCrossingReader {
         //pass the string response to be parsed and used
         //parseTimelineJson(response.toString());
         ForecastMainActivity.rawHourly = response.toString();
-
-
     }
 
 

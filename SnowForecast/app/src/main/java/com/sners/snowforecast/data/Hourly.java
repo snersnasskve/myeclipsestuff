@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,10 +33,22 @@ public class Hourly {
 
             summary = "Please implement me";
             icon = "clear day";
+            Boolean beforeNow = true;
+            Calendar rightNow = Calendar.getInstance();
+            int hourNow = rightNow.get(Calendar.HOUR_OF_DAY);
+
 
             for (int intervalCounter = 0; intervalCounter < hourlyArary.length(); intervalCounter++) {
                 HourlyData dataInst = new com.sners.snowforecast.data.HourlyData(hourlyArary.getJSONObject(intervalCounter));
-                hourlyData.add(dataInst);
+                if (beforeNow) {
+                    int hourInst = Integer.parseInt(dataInst.getTime().substring(0, 2));
+                    if (hourInst >= hourNow) {
+                        beforeNow = false;
+                    }
+                }
+                if (!beforeNow) {
+                    hourlyData.add(dataInst);
+                }
 
             }
 
@@ -50,7 +63,7 @@ public class Hourly {
     public Float getMaxPrecip() {
         if (maxPrecip < 0.0f) {
             //	only calculate it once
-            for (int hourCounter = 0 ; hourCounter < numPointsToPlot ; hourCounter ++) {
+            for (int hourCounter = 0; hourCounter < numPointsToPlot; hourCounter++) {
 
                 float precip = hourlyData.get(hourCounter).getPrecipIntensity();
                 if (precip > maxPrecip) {
