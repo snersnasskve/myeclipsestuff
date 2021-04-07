@@ -202,7 +202,8 @@
                    android:hint="@string/next_snow_hint"
                   />
 
-           </TableRow>     <TableRow
+           </TableRow>
+           <TableRow
                android:id="@+id/tableRowCur8"
                android:layout_width="match_parent"
                android:layout_height="wrap_content" >
