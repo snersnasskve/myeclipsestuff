@@ -21,6 +21,7 @@ public class CurrentlyData   {
 	private float precipProbability = 0;
 	private Integer weatherCode;
 	private float temperature = 0;
+	private float tempFeelsLike = 0;
 	private float windSpeed = 0;	//	Wind speed is metres per second in the data classes
 	private float nextRain = 0;
 	private float nextSnow = 0;
@@ -44,6 +45,7 @@ public class CurrentlyData   {
 			sunsetTime = currentJson.getString(WeatherConstants.SUNSET_TIME);
 			precipIntensity = (float) currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY);
 			temperature = (float) currentJson.getDouble(WeatherConstants.TEMPERATURE);
+			tempFeelsLike = (float) currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE);
 			if (precipIntensity > 0) {
 				//	This is null if no precipIntensity
 				precipProbability = (float) currentJson.getDouble(WeatherConstants.PRECIP_PROBABILITY);
@@ -129,4 +131,7 @@ public class CurrentlyData   {
 		return weatherWords;
 	}
 
+	public float getTempFeelsLike() {
+		return tempFeelsLike;
+	}
 }

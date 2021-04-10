@@ -138,7 +138,9 @@ public float getWindSpeed() {
         return dayTime;
     }
 
-
+    public float getTempFeelsLike() {
+        return currentlyData.getTempFeelsLike();
+    }
 
 }
 

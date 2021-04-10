@@ -13,6 +13,7 @@ public class IntervalData {
 	protected String time;
 	protected double windSpeed;	//	Wind speed is metres per second in the data classes
 	protected float temperature;
+	protected float tempFeelsLike;
 	protected ArrayList<String> weatherWords = new  ArrayList<String>();
 
 
@@ -64,4 +65,7 @@ public class IntervalData {
 		return weatherWords;
 	}
 
+	public float getTempFeelsLike() {
+		return tempFeelsLike;
+	}
 }

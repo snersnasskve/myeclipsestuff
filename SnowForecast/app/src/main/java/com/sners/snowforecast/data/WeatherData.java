@@ -271,11 +271,12 @@ public class WeatherData {
 
     ////////////////////////////////////////////////////////////////////////////////
     public String getTemperatureSummary() {
-        String tempSummary = String.format("%.1f%s ( %.1f : %.1f )",
-                currently.getTemperatureNum(),
+        String tempSummary = String.format("F/L %.1f%s ( %.1f : %.1f )",
+                currently. getTempFeelsLike(),
                 WeatherConstants.DEGREES_C,
                 daily.getTempMin(),
-                daily.getTempMax());
+                daily.getTempMax()
+                );
         return tempSummary;
     }
 

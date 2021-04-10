@@ -43,6 +43,7 @@ public class WeatherConstants {
     public static final String TEMPERATURE = "temp";
     public static final String TEMP_MAX = "tempmax";
     public static final String TEMP_MIN = "tempmin";
+    public static final String TEMP_FEELS_LIKE = "feelslike";
 
     public static final String TIME_LOCAL = "timestamp_local";
     public static final String TIME = "datetime";
