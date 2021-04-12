@@ -5,11 +5,12 @@ package com.sners.snowforecast.data
  * This is kind of a controller class despite being called data
  * The word data is here in order to tell callers to come here for data
  *
- * This class has no useful logic; it's just a documentation example.
- *
- * @param T the type of a member in this group.
- * @property name the name of this group.
- * @constructor Creates an empty group.
+
+ * @param rawMinutely The raw minutely data coming in from the API call.
+ * @param rawHourly The raw hourly data coming in from the API call.
+ * @constructor Turn the raw data into proper data classes.
  */
-class WeatherData : WeatherDataBase() {
+class WeatherData(rawMinutely: String, rawHourly: String) :
+        WeatherDataBase(rawMinutely, rawHourly) {
+
 }

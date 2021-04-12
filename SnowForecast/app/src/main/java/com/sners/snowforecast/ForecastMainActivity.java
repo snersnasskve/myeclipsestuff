@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.sners.snowforecast.apicall.VisualCrossingReader;
 import com.sners.snowforecast.apicall.WeatherBitReader;
-import com.sners.snowforecast.data.WeatherData;
+import com.sners.snowforecast.data.*;
 import com.sners.snowforecast.location.ForecastLocation;
 import com.sners.snowforecast.location.WeatherLocation;
 

@@ -22,8 +22,7 @@ public class WeatherDataBase {
     private String headlineIcon;
     private long minutesTilSunset;
 
-    public WeatherDataBase() {
-    }
+
 
     enum TimePeriod {
         MINUTELY,
@@ -37,7 +36,7 @@ public class WeatherDataBase {
     ////////////////////////////////////////////////////////////////////////////////
     //	Constructor
     ////////////////////////////////////////////////////////////////////////////////
-    public void WeatherData(String rawMinutely, String rawHourly) {
+    public WeatherDataBase(String rawMinutely, String rawHourly) {
 
         setUpDataArrays(rawMinutely, rawHourly);
 
