@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class WeatherData {
+public class WeatherDataBase {
 
 
     private Currently currently;
@@ -16,11 +16,14 @@ public class WeatherData {
     private Daily daily;
     private Alert alert;
 
-    private final WeatherHelper weatherHelper;
+    private final WeatherHelper weatherHelper = new WeatherHelper();
 
-    private final String headlineSummary;
+    private String headlineSummary = "";
     private String headlineIcon;
     private long minutesTilSunset;
+
+    public WeatherDataBase() {
+    }
 
     enum TimePeriod {
         MINUTELY,
@@ -34,8 +37,7 @@ public class WeatherData {
     ////////////////////////////////////////////////////////////////////////////////
     //	Constructor
     ////////////////////////////////////////////////////////////////////////////////
-    public WeatherData(String rawMinutely, String rawHourly) {
-        weatherHelper = new WeatherHelper();
+    public void WeatherData(String rawMinutely, String rawHourly) {
 
         setUpDataArrays(rawMinutely, rawHourly);
 
