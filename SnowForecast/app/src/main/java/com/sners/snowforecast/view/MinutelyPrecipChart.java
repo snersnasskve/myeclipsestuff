@@ -19,6 +19,7 @@ import com.sners.snowforecast.view.HourlyPrecipChart;
 
 public class MinutelyPrecipChart extends com.sners.snowforecast.view.WeatherPrecipChart {
 
+	final int numPointsToPlot = 60;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,9 @@ public class MinutelyPrecipChart extends com.sners.snowforecast.view.WeatherPrec
         
         maxPrecip = setTitleAndColours(maxPrecip);
     
-	    drawPrecipGraph(minutely, maxPrecip, 48);
+	    drawPrecipGraph(minutely, maxPrecip, numPointsToPlot);
 
-        drawProbabilityGraph(minutely, 48);
+        drawProbabilityGraph(minutely, numPointsToPlot);
 	}
 
 	public void displayDashboard(View v){

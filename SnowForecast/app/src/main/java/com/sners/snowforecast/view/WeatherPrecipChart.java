@@ -20,9 +20,9 @@ public class WeatherPrecipChart extends Activity {
     TextView tvPcIntensity;
 
     final float precipNone = .001f;
-    final float precipVeryLight = 0.2f;
-    final float precipLight = 0.5f;
-
+    final float precipVeryLight = 0.3f;
+    final float precipLight = 0.6f;
+    final float precipModerate = 3.0f;
     int mGraphMargin = 5;
     int yAxis = 40;
     private Paint mAxesPaint;
@@ -46,12 +46,12 @@ public class WeatherPrecipChart extends Activity {
         //  X axis
         cProb.drawLine(mGraphMargin, yAxis + mGraphMargin, graphWidth + mGraphMargin,
 				yAxis + mGraphMargin, mAxesPaint);
-        cProb.drawLine(mGraphMargin + (graphWidth / 2), mGraphMargin ,
-                mGraphMargin + (graphWidth / 2),
+        cProb.drawLine(mGraphMargin + (graphWidth / 2.0f), mGraphMargin ,
+                mGraphMargin + (graphWidth / 2.0f),
                 yAxis + mGraphMargin, mDashPaint);
 
 		for (int i = 0; i < graphWidth; i++) {
-            Float probNum = (intData.get(i).getPrecipProbability() * yAxis);
+            float probNum = (intData.get(i).getPrecipProbability() * yAxis);
             cProb.drawLine(mGraphMargin + i, (mGraphMargin + yAxis - probNum),
                     mGraphMargin + i, yAxis + mGraphMargin, mChartPaint);
         }
@@ -76,10 +76,10 @@ public class WeatherPrecipChart extends Activity {
 				yAxis + mGraphMargin, mAxesPaint);
 
         //  50% line
-        cIntens.drawLine(mGraphMargin + (graphWidth / 2), (mGraphMargin ),
-                mGraphMargin + (graphWidth / 2), yAxis + mGraphMargin, mDashPaint);
+        cIntens.drawLine(mGraphMargin + (graphWidth / 2.0f), (mGraphMargin ),
+                mGraphMargin + (graphWidth / 2.0f), yAxis + mGraphMargin, mDashPaint);
 		for (int i = 0; i < graphWidth; i++) {
-            Float precipNum = (intData.get(i).getPrecipIntensity() * yAxis / maxPrecip);
+            float precipNum = (intData.get(i).getPrecipIntensity() * yAxis / maxPrecip);
             cIntens.drawLine(mGraphMargin + i, (mGraphMargin + yAxis - precipNum),
                     mGraphMargin + i, yAxis + mGraphMargin, mChartPaint);
         }
@@ -115,7 +115,7 @@ public class WeatherPrecipChart extends Activity {
             descrip = precipPrefix + "Light";
             chartColour = 0xFF99CCFF;        //	pale blue
             maxPrecip = maxPrecip * 4;
-        } else if (maxPrecip <= 3.0) {
+        } else if (maxPrecip <= precipModerate) {
             //	0.1 inches = 2.54 mm
             descrip = precipPrefix + "Moderate";
             chartColour = 0xFF0080FF;        //	medium blue
