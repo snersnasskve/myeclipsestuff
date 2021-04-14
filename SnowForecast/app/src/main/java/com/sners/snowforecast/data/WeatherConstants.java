@@ -53,6 +53,7 @@ public class WeatherConstants {
     public static final String WEATHER = "weather";
     public static final String WEATHER_CODE = "weatherCode";
     public static final String WIND_SPEED = "windspeed";
+    public static final String WIND_GUSTS = "windgusts";
     public static final String WIND_BEARING = "wind_deg";
     public static final double MS_TO_MPH_CONVERSION = 2.236936;
     public static final double KM_TO_MPH_CONVERSION = 0.6213712;
