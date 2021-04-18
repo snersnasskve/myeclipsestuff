@@ -6,7 +6,6 @@ import java.util.*
 
 /*
 This class is a convenience summary.
-The data it uses comes from minutely, but it calculates things once
  */
 /**
  * A data class of current conditions
@@ -17,42 +16,42 @@ class CurrentlyData(currentJson: JSONObject) {
     /**
      *  @property headline Top level summary
      */
-    private var headline: String = "Not found"
+    var headline: String = "Not found"
 
     /**
      *  @property icon Name of the icon that represents current conditions
      */
-    private var icon: String = ""
+    var icon: String = ""
 
     /**
      *  @property precipIntensity Expected rain in mm/h usually
      */
-    private var precipIntensity = 0f
+    var precipIntensity = 0f
 
     /**
      *  @property precipProbability Probability of rain 0-100
      */
-    private var precipProbability = 0f
+    var precipProbability = 0f
 
     /**
      *  @property temperature Temperature in degrees C
      */
-    private var temperature = 0f
+    var temperature = 0f
 
     /**
      *  @property tempFeelsLike Feels like temperature in degrees C
      */
-    private var tempFeelsLike = 0f
+    var tempFeelsLike = 0f
 
     /**
      *  @property windSpeed Wind speed in metres per second usually
      */
-    private var windSpeed = 0f
+    var windSpeed = 0f
 
     /**
      *  @property windGusts Wind gust speed in metres per second usually
      */
-    private var windGusts = 0f
+    var windGusts = 0f
 
     /**
      *  @property time Current time as read from the json
@@ -60,12 +59,12 @@ class CurrentlyData(currentJson: JSONObject) {
     private var time: String? = null
 
     /**
-     *  @property time Sunset time as read from the json
+     *  @property sunsetTime Sunset time as read from the json
      */
     private var sunsetTime: String? = null
 
     /**
-     *  @property time Sunrise time as read from the json
+     *  @property sunriseTime Sunrise time as read from the json
      */
     private var sunriseTime: String? = null
     private val weatherWords: ArrayList<String>? = null
@@ -77,7 +76,7 @@ class CurrentlyData(currentJson: JSONObject) {
         try {
             /* For each property, unpack the Json string as appropriate */
             this.headline = currentJson.getString(WeatherConstants.CONDITIONS)
-            icon = currentJson.getString(WeatherConstants.ICON)
+            this.icon = currentJson.getString(WeatherConstants.ICON)
             //  Times
             time = currentJson.getString(WeatherConstants.TIME)
             sunriseTime = currentJson.getString(WeatherConstants.SUNRISE_TIME)
@@ -86,12 +85,12 @@ class CurrentlyData(currentJson: JSONObject) {
             temperature = currentJson.getDouble(WeatherConstants.TEMPERATURE).toFloat()
             tempFeelsLike = currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()
             //  Precipitation
-            precipIntensity = currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
-            if (precipIntensity > 0) {
+            this.precipIntensity = currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
+            if (this.precipIntensity > 0) {
                 //	This is null if no precipIntensity
-                precipProbability = currentJson.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
+                this.precipProbability = currentJson.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             }
-            if (precipIntensity > 0 && precipProbability > 0) {
+            if (this.precipIntensity > 0 && this.precipProbability > 0) {
                 val weatherWordsJson = currentJson.getJSONArray(WeatherConstants.PRECIP_TYPE)
                 for (wordCounter in 0..weatherWordsJson.length() - 1) {
                     val precipType = weatherWordsJson.getString(wordCounter)
@@ -99,8 +98,8 @@ class CurrentlyData(currentJson: JSONObject) {
                 }
             }
             //  Wind
-            windSpeed = currentJson.getDouble(WeatherConstants.WIND_SPEED).toFloat()
-            windGusts = currentJson.getDouble(WeatherConstants.WIND_GUSTS).toFloat()
+            this.windSpeed = currentJson.getDouble(WeatherConstants.WIND_SPEED).toFloat()
+            this.windGusts = currentJson.getDouble(WeatherConstants.WIND_GUSTS).toFloat()
         } catch (e: JSONException) {
             e.printStackTrace()
         }
@@ -108,6 +107,10 @@ class CurrentlyData(currentJson: JSONObject) {
 
     /**
      * Getters
+     */
+    /**
+     *  Get Sunrise Time
+     *  @return sunrise time as a string or empty string if not present
      */
     fun getSunriseTime() : String {
         return if (null == this.sunriseTime) {
@@ -117,43 +120,16 @@ class CurrentlyData(currentJson: JSONObject) {
         }
     }
 
+    /**
+     *  Get Sunset Time
+     *  @return sunset time as a string or empty string if not present
+     */
     fun getSunsetTime() : String {
         return if (null == this.sunsetTime) {
             ""
         } else {
             sunsetTime as String
         }
-    }
-
-    fun getHeadline() : String {
-        return headline
-    }
-    fun getIcon() : String {
-        return icon
-    }
-
-    fun getPrecipIntensity() : Float {
-        return precipIntensity
-    }
-
-    fun getPrecipProbability() : Float {
-        return precipProbability
-    }
-
-    fun getTemperature() : Float {
-        return temperature
-    }
-
-    fun getTempFeelsLike() : Float {
-        return tempFeelsLike
-    }
-
-    fun getWindSpeed() : Float {
-        return windSpeed
-    }
-
-    fun getWindGusts() : Float {
-        return windGusts
     }
 }
 

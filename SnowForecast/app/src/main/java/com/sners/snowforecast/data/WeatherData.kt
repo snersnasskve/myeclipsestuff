@@ -19,6 +19,6 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
      */
     fun getWindDetails() : String {
         //  eg 1.2 mph (gusts: 4 mph)
-        return "${currently.getWindSpeed()} mph"
+        return "${currently.windSpeed} mph (gusts: ${currently.windGusts})"
     }
 }
