@@ -11,10 +11,12 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 // https://github.com/visualcrossing/WeatherApi/blob/master/Java/com/visualcrossing/weather/samples/TimelineApiSample.java
@@ -83,6 +85,19 @@ public class VisualCrossingReader {
         ForecastMainActivity.rawHourly = response.toString();
     }
 
+    private String startDate() {
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate= formatter.format(today);
+        return strDate;
+    }
+
+    private String endDate() {
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate= formatter.format(today);
+        return strDate;
+    }
 
     private static void parseTimelineJson(String rawResult) {
 
