@@ -16,7 +16,9 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 
 // https://github.com/visualcrossing/WeatherApi/blob/master/Java/com/visualcrossing/weather/samples/TimelineApiSample.java
@@ -40,8 +42,11 @@ public class VisualCrossingReader {
 
         //Build the URL pieces
         StringBuilder requestBuilder=new StringBuilder(apiEndPoint);
-          requestBuilder.append(String.format("%f,%f", latitude, longitude));
-
+        requestBuilder.append(String.format("%f,%f", latitude, longitude));
+        //  Start date
+        requestBuilder.append(String.format("/%s", getDateString(0)));
+        //  End date
+        requestBuilder.append(String.format("/%s", getDateString(8)));
 
         //Build the parameters to send via GET or POST
         StringBuilder paramBuilder=new StringBuilder();
@@ -85,18 +90,14 @@ public class VisualCrossingReader {
         ForecastMainActivity.rawHourly = response.toString();
     }
 
-    private String startDate() {
-        Date today = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String strDate= formatter.format(today);
-        return strDate;
-    }
+    private static String getDateString(int offsetTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, offsetTime);
 
-    private String endDate() {
-        Date today = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String strDate= formatter.format(today);
+        String strDate= formatter.format(cal.getTime());
         return strDate;
+
     }
 
     private static void parseTimelineJson(String rawResult) {
