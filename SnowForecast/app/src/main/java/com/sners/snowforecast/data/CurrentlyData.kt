@@ -4,9 +4,6 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-/*
-This class is a convenience summary.
- */
 /**
  * A data class of current conditions
  * It takes the raw json and converts it into a data structure
@@ -67,6 +64,10 @@ class CurrentlyData(currentJson: JSONObject) {
      *  @property sunriseTime Sunrise time as read from the json
      */
     private var sunriseTime: String? = null
+
+    /**
+     *  @property weatherWords Array of words describing the weather
+     */
     private val weatherWords: ArrayList<String>? = null
 
     /*

@@ -10,6 +10,9 @@ public class IntervalData {
 
 	protected float precipIntensity;
 	protected float precipProbability;
+	/**
+	 * 	 *  @property time Time as read from the json
+	 */
 	protected String time;
 	protected double windSpeed;	//	Wind speed is metres per second in the data classes
 	protected float temperature;
