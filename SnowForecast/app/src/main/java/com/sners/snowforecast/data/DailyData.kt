@@ -9,8 +9,9 @@ import org.json.JSONObject
  * @param jsonDaily The raw current data coming in from the API call
  */
 class DailyData(jsonDaily: JSONObject) : IntervalData() {
+    
     /**
-     *  @property time Date as read from the json
+     *  @property date Date as read from the json
      */
     var date: String? = null
 
