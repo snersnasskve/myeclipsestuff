@@ -37,7 +37,7 @@ class Daily(dailyArray: JSONArray) {
      */
     val tempMin: Float
         get() = today!!.tempMin
-    
+
     /**
      *  @property tempMax Max temperature as retrieved from today data object
      */
