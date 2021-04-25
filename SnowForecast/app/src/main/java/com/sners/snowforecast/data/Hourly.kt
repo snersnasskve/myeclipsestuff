@@ -57,6 +57,7 @@ class Hourly(hourlyArray: JSONArray) {
   Constructor
    */
     init {
+
         maxPrecip = -1.0f
         hourlyData = ArrayList()
         try {
