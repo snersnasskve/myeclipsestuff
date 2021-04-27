@@ -13,9 +13,7 @@ object WeatherConstants {
     const val PRECIP_TYPE = "preciptype"
     const val PRECIP_TYPE_RAIN = "rain"
     const val PRECIP_TYPE_SNOW = "snow"
-    const val PRECIP_TYPE_FREEZING_RAIN = "Freezing Rain"
-    const val PRECIP_TYPE_ICE_PELLETS = "Ice Pellets"
-    const val PRECIP_TYPE_OTHER = "New precipitation type"
+
     const val MM_HR = " mm/hr"
     const val PERCENT = " %"
     const val HUMIDITY = "humidity"
@@ -37,8 +35,7 @@ object WeatherConstants {
     const val TIME_LOCAL = "timestamp_local"
     const val TIME = "datetime"
     const val URI = "uri"
-    const val VALUES = "values"
-    const val WEATHER = "weather"
+
     const val WEATHER_CODE = "weatherCode"
     const val WIND_SPEED = "windspeed"
     const val WIND_GUSTS = "windgusts"

@@ -20,8 +20,8 @@ public class WeatherPrecipChart extends Activity {
     TextView tvPcIntensity;
 
     final float precipNone = .001f;
-    final float precipVeryLight = 0.3f;
-    final float precipLight = 0.6f;
+    final float precipVeryLight = 0.5f;
+    final float precipLight = 1.0f;
     final float precipModerate = 3.0f;
     int mGraphMargin = 5;
     int yAxis = 40;
