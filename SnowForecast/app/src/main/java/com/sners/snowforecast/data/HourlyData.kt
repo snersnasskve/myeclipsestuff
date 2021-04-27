@@ -10,6 +10,11 @@ import org.json.JSONException
  */
 class HourlyData(jsonHourly: JSONObject) : IntervalData() {
 
+    /**
+     *  @property windGusts Wind gust speed in metres per second usually
+     */
+    var windGusts = 0f
+
     /*
   Constructor
    */
@@ -20,6 +25,7 @@ class HourlyData(jsonHourly: JSONObject) : IntervalData() {
             precipProbability = jsonHourly.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             temperature = jsonHourly.getDouble(WeatherConstants.TEMPERATURE).toFloat()
             windSpeed = jsonHourly.getDouble(WeatherConstants.WIND_SPEED)
+            windGusts = jsonHourly.getDouble(WeatherConstants.WIND_GUSTS).toFloat()
             if (!jsonHourly.isNull(WeatherConstants.PRECIP_TYPE)) {
                 //  If it is null, then it is not an array
                 val weatherWordsJson = jsonHourly.getJSONArray(WeatherConstants.PRECIP_TYPE)

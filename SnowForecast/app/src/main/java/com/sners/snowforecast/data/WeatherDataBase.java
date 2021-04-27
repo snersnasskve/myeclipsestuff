@@ -16,7 +16,7 @@ public class WeatherDataBase {
     private Daily daily;
     private Alert alert;
 
-    private final WeatherHelper weatherHelper = new WeatherHelper();
+    protected final WeatherHelper weatherHelper = new WeatherHelper();
 
     private String headlineSummary = "";
     private String headlineIcon;
@@ -322,30 +322,6 @@ public class WeatherDataBase {
         return alert.getAlertData();
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //  WIND SPEED
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public double getWindSpeedMph() {
-        double windSpeed = currently.getWindSpeed();
-        if (windSpeed < 1) {
-            if (hourly.getHourlyData().size() > 0) {
-                windSpeed = hourly.getHourlyData().get(0).getWindSpeed();
-            }
-        }
-        return (windSpeed * WeatherConstants.KM_TO_MPH_CONVERSION);
-    }
-
-    public float getWindSpeedBeaufort() {
-        return weatherHelper.windSpeedToBeaufort(getWindSpeedMph());
-    }
-
-    public String getWindSpeedBeaufortString() {
-        return String.format("%s", weatherHelper.windSpeedToBeaufort(getWindSpeedMph()));
-    }
-
-    public String getWindSpeedMphString() {
-        return String.format("%.1f mph", getWindSpeedMph());
-    }
 
 
 
