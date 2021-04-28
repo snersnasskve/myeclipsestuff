@@ -137,7 +137,7 @@ public class WeatherIconGallery {
 	private boolean okToFlyKite()
 	{
 		boolean isItOK = false;
-		float windSpeed = ForecastMainActivity.weatherData.getWindSpeedBeaufort();
+		float windSpeed = ForecastMainActivity.weatherData.wind.getSpeedBeaufort();
 		
 		if (ForecastMainActivity.weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
 				(ForecastMainActivity.weatherData.getCurrently().getTemperatureNum() > 5))

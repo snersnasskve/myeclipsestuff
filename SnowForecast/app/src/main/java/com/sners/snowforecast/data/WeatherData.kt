@@ -13,71 +13,47 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
         WeatherDataBase(rawMinutely, rawHourly) {
 
     /**
-     *  @property windSpeed Wind speed - reads from data object as appropriate
+     * @property minutesTilSunset Minutes til sunset - calculate once
      */
-    private val windSpeed : Float
+    private var minutesTilSunset: Long = -1
 
-        get() {
-            var wind = currently.windSpeed
-            if (wind < 1) {
-                wind = hourlyData[0].windSpeed.toFloat()
-            }
-            return wind
+
+    /**
+     * Get the headline summary for the weather pages
+     * @return headline from currently data
+     */
+    fun getHeadlineSummary(): String? {
+        return currently.headline
+    }
+
+    /**
+     * Get the headline icon name
+     * @return headlineIcon
+     */
+    fun getHeadlineIcon(): String? {
+        return headlineIcon
+    }
+
+    /**
+     * Get time to sunset as string
+     * @return formatted time till sunset
+     */
+    fun getTimeTilSunsetString(): String? {
+        return weatherHelper.formatTime(getTimeTilSunset())
+    }
+
+    /**
+     * Get time to sunset as number
+     * @return minutes til sunset
+     */
+    fun getTimeTilSunset(): Long {
+      //	If it's night this will be negative
+        minutesTilSunset = currently.timeTilSunset
+        if (minutesTilSunset < 0) {
+            minutesTilSunset = 0
         }
-
-    /**
-     *  @property windGusts Wind speed - reads from data object as appropriate
-     */
-    private val windGusts : Float
-        get() {
-            var gusts = currently.windGusts
-            if (gusts < 1) {
-                gusts = hourlyData[0].windSpeed.toFloat()
-            }
-            return gusts
-        }
-
-
-    /**
-     * Get the wind details
-     * @return Wind details string
-     */
-    fun getWindDetails() : String {
-
-        //  eg 1.2 mph (gusts: 4 mph)
-        return "$windSpeed mph (gusts: $windGusts)"
+        return minutesTilSunset
     }
 
-    /**
-     * Get the wind speed as mph
-     * @return Wind converted to mph
-     */
-    private fun getWindSpeedMph(): Double {
-        return windSpeed * WeatherConstants.KM_TO_MPH_CONVERSION
-    }
-
-    /**
-     * Get the wind speed as Beaufort
-     * @return Wind converted to Beaufort number
-     */
-    fun getWindSpeedBeaufort(): Float {
-        return weatherHelper.windSpeedToBeaufort(getWindSpeedMph()).toFloat()
-    }
-
-    /**
-     * Get the wind speed as Beaufort string
-     * @return Wind converted to Beaufort string
-     */
-     fun getWindSpeedBeaufortString(): String {
-        return "${getWindSpeedBeaufort()}"
-    }
-
-    /**
-     * Get the wind speed as mph string
-     * @return Wind converted to mph string
-     */
-     fun getWindSpeedMphString(): String {
-        return java.lang.String.format("%.1f mph", getWindSpeedMph())
-    }
 
 }

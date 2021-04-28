@@ -70,7 +70,7 @@ public class WeatherCurrent extends Activity {
 		tvCurPrecipIntensity.	setText(weatherData.getCurrently().getPrecipIntensity());
 		tvCurPrecipProbability.	setText(weatherData.getCurrently().getPrecipProbabilityString());
 		tvCurTemperature.		setText(weatherData.getTemperatureSummary());
-		tvCurWind.				setText(weatherData.getWindDetails());
+		tvCurWind.				setText(weatherData.wind.getDetails());
 		
 		tvCurTimeTilSunset.		setText(weatherData.getTimeTilSunsetString());
 		

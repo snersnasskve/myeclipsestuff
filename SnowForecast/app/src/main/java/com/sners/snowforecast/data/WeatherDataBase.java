@@ -16,11 +16,11 @@ public class WeatherDataBase {
     private Daily daily;
     private Alert alert;
 
+    public Wind wind;
+
     protected final WeatherHelper weatherHelper = new WeatherHelper();
 
-    private String headlineSummary = "";
-    private String headlineIcon;
-    private long minutesTilSunset;
+    protected String headlineIcon;
 
 
 
@@ -40,8 +40,8 @@ public class WeatherDataBase {
 
         setUpDataArrays(rawMinutely, rawHourly);
 
-        //  Get some basic data extracted
-        headlineSummary = currently.getHeadline();
+
+
         //	Replace with night time icon if available
         headlineIcon = currently.getIcon().replaceAll("-", "_").toLowerCase();
         if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
@@ -52,8 +52,7 @@ public class WeatherDataBase {
             }
         }
 
-
-        minutesTilSunset = -1;
+        wind = new Wind(hourly.getHourlyData(), currently);
 
     }
 
@@ -97,35 +96,7 @@ public class WeatherDataBase {
 
     }
 
-    public String getHeadlineSummary() {
-        return headlineSummary;
-    }
 
-    public String getHeadlineIcon() {
-        return headlineIcon;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //	Daily stuff  --  Can't go into daily as need to compare against currently
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public Long getTimeTilSunset() {
-
-        // https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
-
-        //	If it's night this will be negative
-        minutesTilSunset = currently.getTimeTilSunset();
-        if (minutesTilSunset < 0) {
-            minutesTilSunset = 0;
-        }
-
-        return minutesTilSunset;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public String getTimeTilSunsetString() {
-
-        return weatherHelper.formatTime(getTimeTilSunset());
-    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public boolean isDayTime() {

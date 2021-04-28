@@ -14,7 +14,6 @@ public class WeatherHelper {
 
 
 	//  For displaying temperatures
-	Double beaufortScaleUppers[] = {1.0, 3.0, 7.0, 12.0, 17.0, 24.0, 30.0, 38.0, 46.0, 54.0, 63.0, 73.0};
 
 	String[] knownWeatherWords = {"Snow", "snow", "Rain", "rain", "Drizzle", "drizzle",
 			"Flurry", "flurry", "Hail", "hail", "Storm", "storm"};
@@ -43,22 +42,7 @@ public class WeatherHelper {
 		return periodFound;
 	}
 
-	////////////////////////////////////////////////////////////////////////////////
-	public int windSpeedToBeaufort(Double windSpeed)
-	{
-		//	Wind speed from clima cell is meters per second
 
-		int beaufortValue = 0;
-		for (int scaleCounter = 0 ; scaleCounter < beaufortScaleUppers.length ; scaleCounter++)
-		{
-			if (windSpeed < beaufortScaleUppers[scaleCounter])
-			{
-				beaufortValue = scaleCounter;
-				break;
-			}
-		}
-		return beaufortValue;
-	}
 	
 	////////////////////////////////////////////////////////////////////////////////
 	//	Format Strings

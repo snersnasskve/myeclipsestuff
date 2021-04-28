@@ -161,7 +161,7 @@ private void drawPrecipitationGraph()
 	
 	private void populateWind()
 	{
-		float beaufortValue = weatherData.getWindSpeedBeaufort();
+		float beaufortValue = weatherData.wind.getSpeedBeaufort();
 		
 		tvDashWind.setText(String.format("%d", Math.round(beaufortValue)));
 		if (beaufortValue < 5)
