@@ -18,6 +18,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
     private var minutesTilSunset: Long = -1
 
 
+
     /**
      * Get the headline summary for the weather pages
      * @return headline from currently data

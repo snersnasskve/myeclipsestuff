@@ -75,7 +75,8 @@ public class WeatherCurrent extends Activity {
 		tvCurTimeTilSunset.		setText(weatherData.getTimeTilSunsetString());
 		
 		//	timeTillPrecip
-		tvCurTimeTilPrecip.  	setText(ForecastMainActivity.weatherData.timeTilPrecipString(false));
+		tvCurTimeTilPrecip.setText(ForecastMainActivity.weatherData.precipitation.
+				timeTilString(false));
 		tvCurTimeTilSnow.  		setText(ForecastMainActivity.weatherData.timeTilPrecipTypeString(WeatherConstants.PRECIP_TYPE_SNOW));
 
 		String alertHeadline = "None";

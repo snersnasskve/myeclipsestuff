@@ -71,7 +71,7 @@ public class WeatherDashboard extends Activity {
 		
 		//	timeTillPrecip
 		
-		tvDashTimeTilPrecip.  	setText(weatherData.timeTilPrecipString(false));
+		tvDashTimeTilPrecip.setText(weatherData.precipitation.timeTilString(false));
 		
 	
 		String			iconName = weatherData.getHeadlineIcon();

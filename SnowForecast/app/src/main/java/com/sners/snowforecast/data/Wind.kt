@@ -8,13 +8,14 @@ import java.util.ArrayList
  * @param inCurrently current weather data
  */
 class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
+
     /**
-     *  @property hourlyData Container class for weather data
+     *  @property hourlyData Hourly data
      */
     private val hourlyData:  ArrayList<IntervalData>
 
     /**
-     *  @property hourlyData Container class for weather data
+     *  @property currently Current weather info
      */
     private val currently: Currently
 

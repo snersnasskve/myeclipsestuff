@@ -18,6 +18,9 @@ public class WeatherDataBase {
 
     public Wind wind;
 
+    public Precipitation precipitation;
+
+
     protected final WeatherHelper weatherHelper = new WeatherHelper();
 
     protected String headlineIcon;
@@ -53,6 +56,7 @@ public class WeatherDataBase {
         }
 
         wind = new Wind(hourly.getHourlyData(), currently);
+        precipitation = new Precipitation(daily, hourly, minutely, currently);
 
     }
 
@@ -109,71 +113,9 @@ public class WeatherDataBase {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    //precipIntensity: A numerical value representing the average expected intensity (in inches of liquid water per hour)
-    //	of precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all).
-    //	A very rough guide is that a value of 0 in./hr. corresponds to no precipitation,
-    //	0.002 in./hr. corresponds to very light precipitation,
-    //	0.017 in./hr. corresponds to light precipitation,
-    //	0.1 in./hr. corresponds to moderate precipitation,
-    //	and 0.4 in./hr. corresponds to heavy precipitation.
-    public long timeTilPrecip(boolean toIgnoreLightPrecip) {
-        long minutesTilPrecip = -1;
-
-        float minPrecip = 0.002f;
-        if (toIgnoreLightPrecip) {
-            minPrecip = 0.017f;
-        }
-
-        float precipIntensity = currently.getPrecipIntensityNum();
-
-        if (precipIntensity > minPrecip) {
-            //	It's raining now
-            minutesTilPrecip = 0;
-        } else {
-            //	Check minutely
-            if (null != minutely) {
-                int rainMinutes = weatherHelper.periodWhenValueExceededPrecipIntensity(minutely.getMinutelyData(), minPrecip);
-                if (rainMinutes >= 0) {
-                    minutesTilPrecip = (rainMinutes + 1);
-                }
-            }
-            if (minutesTilPrecip < 1) {
-                //	Check hourly
-                if (null != hourly) {
-                    int rainHours = weatherHelper.periodWhenValueExceededPrecipIntensity(hourly.getHourlyData(), minPrecip);
-                    if (rainHours >= 0) {
-                        minutesTilPrecip = ((rainHours + 1) * 60);
-                    }
-                }
-            }
-            if (minutesTilPrecip < 1) {
-                //	Check hourly
-                if (null != daily) {
-                    int rainDays = weatherHelper.periodWhenValueExceededPrecipIntensity(daily.getDailyData(), minPrecip);
-                    if (rainDays >= 0) {
-                        minutesTilPrecip = ((rainDays + 1) * 60 * 24);
-                    } else {
-                        minutesTilPrecip = -1;
-                    }
-                }
-            }
-        }
 
 
-        return minutesTilPrecip;
-    }
 
-    public String timeTilPrecipString(boolean toIgnoreLightPrecip) {
-        String timeTilString = WeatherConstants.NONE_FORECAST;
-        long timeTil = timeTilPrecip(toIgnoreLightPrecip);
-        if (timeTil > 0) {
-            timeTilString = weatherHelper.formatTime(timeTil);
-        } else if (timeTil == 0) {
-            timeTilString = WeatherConstants.NOW;
-        }
-
-        return timeTilString;
-    }
 
 
     //	tiemKeyWord: "daily", "hourly", "minutely", "currently"
