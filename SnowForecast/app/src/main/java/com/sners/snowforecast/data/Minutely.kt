@@ -29,7 +29,7 @@ class Minutely(minutelyArray: JSONArray) {
         if (maxPrecip < 0.0f) {
             //	only calculate it once
             for (minute in minutelyData) {
-                val precip = minute.getPrecipIntensity()
+                val precip = minute.precipIntensity
                 if (precip > maxPrecip) {
                     maxPrecip = precip
                 }

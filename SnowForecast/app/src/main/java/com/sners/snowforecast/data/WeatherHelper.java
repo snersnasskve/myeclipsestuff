@@ -23,10 +23,6 @@ public class WeatherHelper {
 	private static HashMap<Integer, String> iconCodes = new HashMap<Integer, String>();
 	private static HashMap<Integer, String> precipTypes = new HashMap<Integer, String>();
 
-
-
-
-	////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////
 	public int periodWhenValueExceededPrecipIntensity(ArrayList<IntervalData> intervalData, double minValue)
 	{

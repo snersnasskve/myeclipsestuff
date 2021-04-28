@@ -44,7 +44,7 @@ class Hourly(hourlyArray: JSONArray) {
         if (maxPrecip < 0.0f) {
             //	only calculate it once
             for (hourCounter in 0..numPointsToPlot - 1) {
-                val precip = hourlyData[hourCounter].getPrecipIntensity()
+                val precip = hourlyData[hourCounter].precipIntensity
                 if (precip > maxPrecip) {
                     maxPrecip = precip
                 }
@@ -71,7 +71,7 @@ class Hourly(hourlyArray: JSONArray) {
                 //  This API returns hours in the past, it starts at 0am today
                 //  We only want from the current hour onwards
                 if (beforeNow) {
-                    val hourString = dataInst.getTime().subSequence(0, 2) as String
+                    val hourString = dataInst.time?.subSequence(0, 2) as String
                     val hourInst = Integer.parseInt(hourString)
                     if (hourInst >= hourNow) {
                         beforeNow = false
