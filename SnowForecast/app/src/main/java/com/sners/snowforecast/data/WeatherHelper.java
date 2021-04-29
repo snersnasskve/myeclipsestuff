@@ -23,24 +23,7 @@ public class WeatherHelper {
 	private static HashMap<Integer, String> precipTypes = new HashMap<Integer, String>();
 
 	////////////////////////////////////////////////////////////////////////////////
-	public int periodWhenValueExceededPrecipIntensity(ArrayList<IntervalData> intervalData, double minValue)
-	{
-		int periodFound = -1;
-		boolean precipExceedsMin = false;
-	
-			int intervalCounter = 0;
-			while (intervalCounter < intervalData.size() && !precipExceedsMin)
-			{
-				Float 		fieldValue = intervalData.get(intervalCounter).getPrecipIntensity();
-				if (fieldValue > minValue)
-				{
-					precipExceedsMin = true;
-					periodFound = intervalCounter;
-				}
-				intervalCounter++;
-			}
-		return periodFound;
-	}
+
 
 
 	

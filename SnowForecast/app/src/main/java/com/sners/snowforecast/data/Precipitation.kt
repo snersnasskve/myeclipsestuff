@@ -1,5 +1,7 @@
 package com.sners.snowforecast.data
 
+import java.util.ArrayList
+
 //precipIntensity: A numerical value representing the average expected intensity (in inches of liquid water per hour)
 //	of precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all).
 //	A very rough guide is that a value of 0 in./hr. corresponds to no precipitation,
@@ -42,6 +44,16 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
      */
     private val weatherHelper = WeatherHelper()
 
+    /**
+     *  @property minPrecipLight Min precip to take into account
+     */
+    private val minPrecipLight = 0.002
+
+    /**
+     *  @property minPrecipMedium Min precip to take into account if we're ignoring light precip
+     */
+    private val minPrecipMedium = 0.017
+
     init {
         daily = inDaily
         hourly = inHourly
@@ -55,13 +67,11 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
      * @param toIgnoreLightPrecip boolean
      * @return Minutes til precipitation
      */
-     fun timeTil(toIgnoreLightPrecip: Boolean): Long {
+    private fun timeTil(toIgnoreLightPrecip: Boolean): Long {
 
-        var minutesTilPrecip: Long = -1
-        var minPrecip = 0.002f
-        if (toIgnoreLightPrecip) {
-            minPrecip = 0.017f
-        }
+        var minutesTilPrecip = -1
+        val minPrecip = if (toIgnoreLightPrecip) minPrecipMedium else minPrecipLight
+
         val precipIntensity: Float = currently.precipIntensityNum
         if (precipIntensity > minPrecip) {
             //	It's raining now
@@ -69,19 +79,19 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
         } else {
             //	Check minutely
             if (null != minutely) {
-                val rainMinutes: Int =
-                    weatherHelper.periodWhenValueExceededPrecipIntensity(minutely.minutelyData, minPrecip.toDouble())
+                val rainMinutes =
+                    periodWhenIntensityExceeded(minutely.minutelyData,minPrecip)
                 if (rainMinutes >= 0) {
-                    minutesTilPrecip = (rainMinutes + 1).toLong()
+                    minutesTilPrecip = (rainMinutes + 1)
                 }
             }
             if (minutesTilPrecip < 1) {
                 //	Check hourly
                 if (null != hourly) {
                     val rainHours: Int =
-                        weatherHelper.periodWhenValueExceededPrecipIntensity(hourly.hourlyData, minPrecip.toDouble())
+                        periodWhenIntensityExceeded(hourly.hourlyData, minPrecip)
                     if (rainHours >= 0) {
-                        minutesTilPrecip = ((rainHours + 1) * 60).toLong()
+                        minutesTilPrecip = ((rainHours + 1) * 60)
                     }
                 }
             }
@@ -89,16 +99,16 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
                 //	Check hourly
                 if (null != daily) {
                     val rainDays: Int =
-                        weatherHelper.periodWhenValueExceededPrecipIntensity(daily.dailyData, minPrecip.toDouble())
+                        periodWhenIntensityExceeded(daily.dailyData, minPrecip)
                     minutesTilPrecip = if (rainDays >= 0) {
-                        ((rainDays + 1) * 60 * 24).toLong()
+                        ((rainDays + 1) * 60 * 24)
                     } else {
                         -1
                     }
                 }
             }
         }
-        return minutesTilPrecip
+        return minutesTilPrecip.toLong()
     }
 
     /**
@@ -117,4 +127,27 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
         }
         return timeTilString
     }
+
+    /**
+     * Period when Intensity Exceeded
+     * @param intervalData the data to search
+     * @param minValue The minimum value under which we ignore
+     * @return Integer index of element where condition was first met
+     */
+    private fun periodWhenIntensityExceeded(intervalData: ArrayList<IntervalData>, minValue: Double): Int {
+        var periodFound = -1
+        var precipExceedsMin = false
+        var intervalCounter = 0
+        while (intervalCounter < intervalData.size && !precipExceedsMin) {
+            val fieldValue = intervalData[intervalCounter].precipIntensity
+            if (fieldValue > minValue) {
+                precipExceedsMin = true
+                periodFound = intervalCounter
+            }
+            intervalCounter++
+        }
+        return periodFound
+    }
+
+
 }

@@ -16,7 +16,7 @@ class MinutelyData(jsonMinutely: JSONObject) : IntervalData() {
     init {
         try {
             time = jsonMinutely.getString(WeatherConstants.TIME_LOCAL)
-            precipIntensity = jsonMinutely.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
+            precipIntensity = jsonMinutely.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat() / 24f
             precipProbability = jsonMinutely.getDouble(WeatherConstants.PRECIP_TYPE_SNOW).toFloat()
             if (precipProbability > 100) {
                 precipProbability = 100f
