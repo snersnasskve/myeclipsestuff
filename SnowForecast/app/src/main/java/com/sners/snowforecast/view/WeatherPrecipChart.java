@@ -21,8 +21,10 @@ public class WeatherPrecipChart extends Activity {
 
     final float precipNone = .001f;
     final float precipVeryLight = 0.5f;
-    final float precipLight = 1.0f;
-    final float precipModerate = 3.0f;
+    final float precipLight = 2.0f;
+    final float precipModerate = 6.25f;
+    final float precipHeavy = 25.0f;
+
     int mGraphMargin = 5;
     int yAxis = 40;
     private Paint mAxesPaint;
@@ -120,7 +122,7 @@ public class WeatherPrecipChart extends Activity {
             descrip = precipPrefix + "Moderate";
             chartColour = 0xFF0080FF;        //	medium blue
             maxPrecip = maxPrecip * 3;
-        } else if (maxPrecip <= 25.0) {
+        } else if (maxPrecip <= precipHeavy) {
             //	0.4 inches = 10.16 mm
             descrip = precipPrefix + "Heavy";
             chartColour = 0xFF000066;        //	dark blue

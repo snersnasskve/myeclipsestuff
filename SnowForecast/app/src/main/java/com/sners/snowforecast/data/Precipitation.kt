@@ -70,44 +70,25 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
     private fun timeTil(toIgnoreLightPrecip: Boolean): Long {
 
         var minutesTilPrecip = -1
+        var minutesTilPrecipControl = -1
         val minPrecip = if (toIgnoreLightPrecip) minPrecipMedium else minPrecipLight
 
-        val precipIntensity: Float = currently.precipIntensityNum
-        if (precipIntensity > minPrecip) {
-            //	It's raining now
-            minutesTilPrecip = 0
-        } else {
-            //	Check minutely
-            if (null != minutely) {
-                val rainMinutes =
-                    periodWhenIntensityExceeded(minutely.minutelyData,minPrecip)
-                if (rainMinutes >= 0) {
-                    minutesTilPrecip = (rainMinutes + 1)
-                }
-            }
-            if (minutesTilPrecip < 1) {
-                //	Check hourly
-                if (null != hourly) {
-                    val rainHours: Int =
-                        periodWhenIntensityExceeded(hourly.hourlyData, minPrecip)
-                    if (rainHours >= 0) {
-                        minutesTilPrecip = ((rainHours + 1) * 60)
-                    }
-                }
-            }
-            if (minutesTilPrecip < 1) {
-                //	Check hourly
-                if (null != daily) {
-                    val rainDays: Int =
-                        periodWhenIntensityExceeded(daily.dailyData, minPrecip)
-                    minutesTilPrecip = if (rainDays >= 0) {
-                        ((rainDays + 1) * 60 * 24)
-                    } else {
-                        -1
-                    }
-                }
-            }
+        //  Case = currently -> 0
+        //  Case = minutely -> minutesTil
+        //  Case = hourly -> hoursTil * 60
+        //  Case = daily -> daysTil * 60 * 24
+        when {
+            //  It's raining now
+            currently.precipIntensityNum > minPrecip -> minutesTilPrecip = 0
+            null != minutely && timeTilRain(minutely.minutelyData, minPrecip, 1) >=0 ->
+                minutesTilPrecip = timeTilRain(minutely.minutelyData, minPrecip, 1)
+            null != hourly && timeTilRain(hourly.hourlyData, minPrecip, 1) >=0 ->
+                minutesTilPrecip = timeTilRain(hourly.hourlyData, minPrecip, 60)
+            null != daily && timeTilRain(daily.dailyData, minPrecip, 1) >=0 ->
+                minutesTilPrecip = timeTilRain(daily.dailyData, minPrecip, 60 * 24)
         }
+
+
         return minutesTilPrecip.toLong()
     }
 
@@ -147,6 +128,23 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
             intervalCounter++
         }
         return periodFound
+    }
+
+    /**
+     * Time til Rain
+     * @param intervalData the data to search
+     * @param minValue The minimum value under which we ignore
+     * @param multiplier A number to convert the interval number to a time
+     * @return Integer index of element where condition was first met
+     */
+    private fun timeTilRain(intervalData: ArrayList<IntervalData>, minValue: Double, multiplier: Int): Int {
+        var timeTilInterval = -1
+        val rainInterval =
+            periodWhenIntensityExceeded(intervalData, minValue)
+        if (rainInterval >= 0) {
+            timeTilInterval = (rainInterval + 1) * multiplier
+        }
+        return timeTilInterval
     }
 
 

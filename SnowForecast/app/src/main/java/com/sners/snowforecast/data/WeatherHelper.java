@@ -57,7 +57,7 @@ public class WeatherHelper {
 	////////////////////////////////////////////////////////////////////////////////
 	public String probabilityToPercent(Float prob)
 	{
-		Double perc = (prob * 100.0);
+		Double perc = (prob <= 1) ? (prob * 100.0) : prob;
 		return String.format("%.1f %s",perc, WeatherConstants.PERCENT);
 	}
 
