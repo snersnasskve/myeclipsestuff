@@ -70,7 +70,6 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
     private fun timeTil(toIgnoreLightPrecip: Boolean): Long {
 
         var minutesTilPrecip = -1
-        var minutesTilPrecipControl = -1
         val minPrecip = if (toIgnoreLightPrecip) minPrecipMedium else minPrecipLight
 
         //  Case = currently -> 0
@@ -80,12 +79,17 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
         when {
             //  It's raining now
             currently.precipIntensityNum > minPrecip -> minutesTilPrecip = 0
+            //  Check if it will rain in minutes
             null != minutely && timeTilRain(minutely.minutelyData, minPrecip, 1) >=0 ->
                 minutesTilPrecip = timeTilRain(minutely.minutelyData, minPrecip, 1)
+            //  Check if it will rain in hours
             null != hourly && timeTilRain(hourly.hourlyData, minPrecip, 1) >=0 ->
                 minutesTilPrecip = timeTilRain(hourly.hourlyData, minPrecip, 60)
+            //  Check if it will rain in days
             null != daily && timeTilRain(daily.dailyData, minPrecip, 1) >=0 ->
                 minutesTilPrecip = timeTilRain(daily.dailyData, minPrecip, 60 * 24)
+            //  No rain forecast
+            else -> minutesTilPrecip = -1
         }
 
 
@@ -116,18 +120,8 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
      * @return Integer index of element where condition was first met
      */
     private fun periodWhenIntensityExceeded(intervalData: ArrayList<IntervalData>, minValue: Double): Int {
-        var periodFound = -1
-        var precipExceedsMin = false
-        var intervalCounter = 0
-        while (intervalCounter < intervalData.size && !precipExceedsMin) {
-            val fieldValue = intervalData[intervalCounter].precipIntensity
-            if (fieldValue > minValue) {
-                precipExceedsMin = true
-                periodFound = intervalCounter
-            }
-            intervalCounter++
-        }
-        return periodFound
+        //  -1 means not found -> fully aligns with my needs
+        return intervalData.indexOfFirst({it.precipIntensity > minValue})
     }
 
     /**
