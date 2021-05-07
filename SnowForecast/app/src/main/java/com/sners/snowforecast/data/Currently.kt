@@ -55,8 +55,8 @@ class Currently(currentJson: JSONObject?,
         currentlyData = CurrentlyData(currentJson!!)
         val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
         //  Make the dates from the separate date and time fields
-        val sunriseString = "${currDateString} ${currentlyData.getSunriseTime()}"
-        val sunsetString = "${currDateString} ${currentlyData.getSunsetTime()}"
+        val sunriseString = "$currDateString ${currentlyData.getSunriseTime()}"
+        val sunsetString = "$currDateString ${currentlyData.getSunsetTime()}"
         time = Date()
         try {
             sunriseTime = dateFormat.parse(sunriseString)
