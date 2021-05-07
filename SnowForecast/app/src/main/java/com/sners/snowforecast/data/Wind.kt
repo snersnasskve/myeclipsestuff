@@ -1,6 +1,6 @@
 package com.sners.snowforecast.data
 
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Everything about wind
@@ -93,7 +93,7 @@ class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
      * @return Wind converted to mph string
      */
     fun getpeedMphString(): String {
-        return java.lang.String.format("%.1f mph", getSpeedMph())
+        return java.lang.String.format(Locale.UK,"%.1f mph", getSpeedMph())
     }
 
     /**
@@ -102,14 +102,9 @@ class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
      * @return Wind converted to Beaufort number
      */
     private fun windSpeedToBeaufort(windSpeed: Double): Int {
-        //	Wind speed from clima cell is meters per second
-        var beaufortValue = 0
-        for (scaleCounter in 0..beaufortScaleUppers.size -1) {
-            if (windSpeed < beaufortScaleUppers[scaleCounter]) {
-                beaufortValue = scaleCounter
-                break
-            }
-        }
+        //	Wind speed is meters per second
+
+        val beaufortValue = beaufortScaleUppers.indexOfFirst ({ windSpeed < it })
         return beaufortValue
     }
 }
