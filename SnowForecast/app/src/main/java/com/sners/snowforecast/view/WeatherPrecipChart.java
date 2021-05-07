@@ -53,7 +53,7 @@ public class WeatherPrecipChart extends Activity {
                 yAxis + mGraphMargin, mDashPaint);
 
 		for (int i = 0; i < graphWidth; i++) {
-            float probNum = (intData.get(i).getPrecipProbability() * yAxis);
+            float probNum = (intData.get(i).getPrecipProbability() * yAxis) / 100;
             cProb.drawLine(mGraphMargin + i, (mGraphMargin + yAxis - probNum),
                     mGraphMargin + i, yAxis + mGraphMargin, mChartPaint);
         }

@@ -132,13 +132,9 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
      * @return Integer index of element where condition was first met
      */
     private fun timeTilRain(intervalData: ArrayList<IntervalData>, minValue: Double, multiplier: Int): Int {
-        var timeTilInterval = -1
-        val rainInterval =
-            periodWhenIntensityExceeded(intervalData, minValue)
-        if (rainInterval >= 0) {
-            timeTilInterval = (rainInterval + 1) * multiplier
-        }
-        return timeTilInterval
+
+        val rainInterval = periodWhenIntensityExceeded(intervalData, minValue)
+        return if (rainInterval >= 0)  (rainInterval + 1) * multiplier else -1
     }
 
 
