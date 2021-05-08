@@ -4,9 +4,20 @@ import org.json.JSONObject
 import org.json.JSONException
 import java.util.ArrayList
 
+//  You can only inherit from an open class
+/**
+ * A data class to be used as an interface / Base class for weather data classes
+ */
 open class IntervalData {
+    /**
+     * *  @property precipIntensity Precipitation as read from the json
+     */
     var precipIntensity = 0f
         protected set
+
+    /**
+     * *  @property precipProbability Precipitation probability as read from the json
+     */
     var precipProbability: Float = 0f
         protected set
 
@@ -15,6 +26,7 @@ open class IntervalData {
      */
     var time: String? = null
         protected set
+
     /**
      *  @property windSpeed Wind speed in metres per second usually
      */
@@ -27,14 +39,31 @@ open class IntervalData {
     var windGusts = 0f
       protected set
 
+    /**
+     *  @property temperature Temperature Celcius
+     */
     var temperature = 0f
         protected set
+
+    /**
+     *  @property tempFeelsLike Feels like temperature Celcius
+     */
     var tempFeelsLike = 0f
         protected set
+
+    /**
+     *  @property weatherWords Weather words found in the json
+     */
     var weatherWords = ArrayList<String>()
         protected set
 
-    protected fun jsonValueFor(fieldName: String?, jsonData: JSONObject): String? {
+    /**
+     *  Json value for
+     *  @param fieldName Json field name
+     *  @param jsonData The json object where data should be foud
+     *  @return result as string
+     */
+    protected fun jsonValueFor(fieldName: String, jsonData: JSONObject): String? {
         var result: String? = null
         result = try {
             jsonData.getString(fieldName)

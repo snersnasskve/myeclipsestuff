@@ -68,7 +68,7 @@ class CurrentlyData(currentJson: JSONObject) {
     /**
      *  @property weatherWords Array of words describing the weather
      */
-    private val weatherWords: ArrayList<String>? = null
+     val weatherWords = ArrayList<String>()
 
     /*
   Constructor
@@ -95,7 +95,7 @@ class CurrentlyData(currentJson: JSONObject) {
                 val weatherWordsJson = currentJson.getJSONArray(WeatherConstants.PRECIP_TYPE)
                 for (wordCounter in 0..weatherWordsJson.length() - 1) {
                     val precipType = weatherWordsJson.getString(wordCounter)
-                    weatherWords!!.add(precipType)
+                    weatherWords.add(precipType)
                 }
             }
             //  Wind

@@ -1,7 +1,5 @@
 package com.sners.snowforecast.data
 
-import java.util.ArrayList
-
 //precipIntensity: A numerical value representing the average expected intensity (in inches of liquid water per hour)
 //	of precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all).
 //	A very rough guide is that a value of 0 in./hr. corresponds to no precipitation,
@@ -12,32 +10,13 @@ import java.util.ArrayList
 
 /**
  * Everything about Precipitation
- * @param inDaily daily weather data
- * @param inHourly hourly weather data
- * @param inMinutely minutely weather data
- * @param inCurrently current weather data
+ * @param daily daily weather data
+ * @param hourly hourly weather data
+ * @param minutely minutely weather data
+ * @param currently current weather data
  */
-class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, inCurrently: Currently) {
-
-    /**
-     *  @property daily Daily weather info
-     */
-    private val daily: Daily? = inDaily
-
-    /**
-     *  @property hourly Hourly weather info
-     */
-    private val hourly: Hourly? = inHourly
-
-    /**
-     *  @property minutely Minutely weather info
-     */
-    private val minutely: Minutely? = inMinutely
-
-    /**
-     *  @property currently Current weather info
-     */
-    private val currently: Currently = inCurrently
+class Precipitation(private val daily: Daily?,  private val hourly: Hourly?,
+                    private val minutely: Minutely?,  private val currently: Currently) {
 
     /**
      *  @property weatherHelper Helper class with useful weather functions
@@ -95,10 +74,11 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
     fun timeTilString(toIgnoreLightPrecip: Boolean): String? {
 
         var timeTilString: String? = WeatherConstants.NONE_FORECAST
-        val timeTil = timeTil(toIgnoreLightPrecip)
-        if (timeTil > 0) {
-            timeTilString = weatherHelper.formatTime(timeTil)
-        } else if (timeTil == 0L) {
+        val timeTilNum = timeTil(toIgnoreLightPrecip)
+        //  If it's going to rain in 1 minute, count it as raining now
+        if (timeTilNum > 1) {
+            timeTilString = weatherHelper.formatTime(timeTilNum)
+        } else if (timeTilNum >= 0) {
             timeTilString = WeatherConstants.NOW
         }
         return timeTilString
@@ -126,6 +106,62 @@ class Precipitation(inDaily: Daily?, inHourly: Hourly?, inMinutely: Minutely?, i
 
         val rainInterval = periodWhenIntensityExceeded(intervalData, minValue)
         return if (rainInterval >= 0)  (rainInterval + 1) * multiplier else -1
+    }
+
+    /**
+     * Time til PrecipType
+     * @param precipType the weather word to search for
+     * @return Integer index of element where condition was first met
+     */
+    fun timeTilPrecipTypeString(precipType: String): String? {
+
+      val timeTil = timeTilPrecipType(precipType)
+        var timeTilString: String? = WeatherConstants.NONE_FORECAST
+        if (timeTil > 0) {
+            timeTilString = weatherHelper.formatTime(timeTil.toLong())
+        } else if (timeTil == 0) {
+            timeTilString = WeatherConstants.NOW
+        }
+        return timeTilString
+    }
+
+    /**
+     * Time til PrecipType
+     * @param precipType the weather word to search for
+     * @return Integer index of element where condition was first met
+     */
+    fun timeTilPrecipType(precipType: String):Int {
+
+        val minutesTilPrecip : Int = when {
+            //  It's raining now
+            currently.weatherWords.contains(precipType) -> 0
+            //  Check if it will rain in minutes
+            null != minutely && timeTilWeatherWordFound(minutely.minutelyData, precipType, 1) >=0 ->
+                timeTilWeatherWordFound(minutely.minutelyData, precipType, 1)
+            //  Check if it will rain in hours
+            null != hourly && timeTilWeatherWordFound(hourly.hourlyData, precipType, 1) >=0 ->
+                timeTilWeatherWordFound(hourly.hourlyData, precipType, 60)
+            //  Check if it will rain in days
+            null != daily && timeTilWeatherWordFound(daily.dailyData, precipType, 1) >=0 ->
+                timeTilWeatherWordFound(daily.dailyData, precipType, 60 * 24)
+            //  No rain forecast
+            else -> -1
+        }
+
+        return minutesTilPrecip
+    }
+
+    /**
+     * Period when Weather Word Found
+     * @param intervalData the data to search
+     * @param precipType the weather word to search for
+     * @param multiplier * number of minutes to multiply by
+     * @return Integer index of element where condition was first met
+     */
+    private fun timeTilWeatherWordFound(intervalData: ArrayList<IntervalData>, precipType: String, multiplier: Int): Int {
+        //  -1 means not found -> fully aligns with my needs
+        val periodFound = intervalData.indexOfFirst { it.weatherWords.contains(precipType) }
+        return if (periodFound == -1) -1 else periodFound * multiplier
     }
 
 

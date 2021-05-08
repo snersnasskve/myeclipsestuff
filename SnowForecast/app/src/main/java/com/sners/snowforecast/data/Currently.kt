@@ -121,6 +121,11 @@ class Currently(currentJson: JSONObject?,
      */
     val windGusts = currentlyData.windGusts
 
+    /**
+     *  @property weatherWords Array of words describing the weather
+     */
+    val weatherWords = currentlyData.weatherWords
+
 
     /**
      *  @property headline A weather phrase describing current conditions

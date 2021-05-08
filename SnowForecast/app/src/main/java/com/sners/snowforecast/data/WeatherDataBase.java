@@ -13,7 +13,7 @@ public class WeatherDataBase {
     private Currently currently;
     private Minutely minutely;
     private Hourly hourly;
-    private Daily daily;
+    protected Daily daily;
     private Alert alert;
 
     public Wind wind;
@@ -27,14 +27,6 @@ public class WeatherDataBase {
 
 
 
-    enum TimePeriod {
-        MINUTELY,
-        HOURLY,
-        DAILY,
-        UNKNOWN
-    }
-
-    ;
 
     ////////////////////////////////////////////////////////////////////////////////
     //	Constructor
@@ -119,58 +111,8 @@ public class WeatherDataBase {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////
-    public String timeTilPrecipTypeString(String precipType) {
-        long timeTil = -1;
 
-        ArrayList<IntervalData> minutely = getMinutelyData();
-        if (null != minutely) {
-            for (int minCounter = 0; minCounter < minutely.size(); minCounter++) {
-                if (minutely.get(minCounter).getWeatherWords().contains(precipType) ) {
-                    timeTil = minCounter;
-                    break;
-                }
-            }
-        }
 
-        if (0 > timeTil && null != hourly) {
-            ArrayList<IntervalData> hourlyData = hourly.getHourlyData();
-            for (int minCounter = 0; minCounter < hourlyData.size(); minCounter++) {
-                if (hourlyData.get(minCounter).getWeatherWords().contains(precipType) ) {
-                    timeTil = (minCounter * 60);
-                }
-            }
-        }
-
-        if (0 > timeTil && null != daily) {
-            ArrayList<IntervalData> dailyData = daily.getDailyData();
-            for (int minCounter = 0; minCounter < dailyData.size(); minCounter++) {
-                if (dailyData.get(minCounter).getWeatherWords().contains(precipType)) {
-                    timeTil = (minCounter * 60 * 60);
-                }
-            }
-        }
-
-        String timeTilString = WeatherConstants.NONE_FORECAST;
-
-        if (timeTil > 0) {
-            timeTilString = weatherHelper.formatTime(timeTil);
-        } else if (timeTil == 0) {
-            timeTilString = WeatherConstants.NOW;
-        }
-        return timeTilString;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    public String getTemperatureSummary() {
-        String tempSummary = String.format("F/L %.1f%s ( %.1f : %.1f )",
-                currently. getTempFeelsLike(),
-                WeatherConstants.DEGREES_C,
-                daily.getTempMin(),
-                daily.getTempMax()
-                );
-        return tempSummary;
-    }
 
     //	Getters
     public Currently getCurrently() {

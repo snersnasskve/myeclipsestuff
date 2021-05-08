@@ -71,5 +71,18 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
         return wordFound
     }
 
+    /**
+     * Get temperature summary
+     * @return A string containing temperature information
+     */
+    fun getTemperatureSummary(): String {
+        return String.format(
+            "F/L %.1f%s ( %.1f : %.1f )",
+            currently.tempFeelsLike,
+            WeatherConstants.DEGREES_C,
+            daily.tempMin,
+            daily.tempMax
+        )
+    }
 
 }
