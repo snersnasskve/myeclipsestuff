@@ -4,30 +4,16 @@ import java.util.*
 
 /**
  * Everything about wind
- * @param inHourlyData array of hourly data
- * @param inCurrently current weather data
+ * @param hourlyData array of hourly data
+ * @param currently current weather data
  */
-class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
-
-    /**
-     *  @property hourlyData Hourly data
-     */
-    private val hourlyData:  ArrayList<IntervalData>
-
-    /**
-     *  @property currently Current weather info
-     */
-    private val currently: Currently
+class Wind(private val hourlyData: ArrayList<IntervalData>, private val currently: Currently) {
 
     /**
      *  @property beaufortScaleUppers Upper limits of beaufort wind speeds
      */
     private var beaufortScaleUppers = arrayOf(1.0, 3.0, 7.0, 12.0, 17.0, 24.0, 30.0, 38.0, 46.0, 54.0, 63.0, 73.0)
 
-    init {
-        currently = inCurrently
-        hourlyData = inHourlyData
-    }
 
     /**
      *  @property windSpeed Wind speed - reads from data object as appropriate
@@ -46,7 +32,7 @@ class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
      */
     private val windGusts: Float
         get() {
-            return if (currently.windGusts >= 0) currently.windGusts else hourlyData[0].windGusts.toFloat()
+            return if (currently.windGusts >= 0) currently.windGusts else hourlyData[0].windGusts
         }
 
 
