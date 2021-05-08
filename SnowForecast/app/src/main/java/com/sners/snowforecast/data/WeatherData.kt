@@ -56,5 +56,20 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
         return minutesTilSunset
     }
 
+     /**
+     * Data Contains Weather word
+     * @return bool indicating whether it contains the word
+     */
+    fun dataContainsWeatherword(weatherWord: String?, timeKeyWord: String): Boolean {
+        var wordFound = false
+        if (timeKeyWord == WeatherConstants.MINUTELY) {
+            wordFound = minutely.minutelyData.any { it.weatherWords.contains(weatherWord) }
+
+        } else if (timeKeyWord == WeatherConstants.HOURLY) {
+            wordFound = hourly.hourlyData.any { it.weatherWords.contains(weatherWord) }
+        }
+        return wordFound
+    }
+
 
 }

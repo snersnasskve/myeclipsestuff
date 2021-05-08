@@ -46,11 +46,7 @@ class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
      */
     private val windGusts: Float
         get() {
-            var gusts = currently.windGusts
-            if (gusts < 1) {
-                gusts = hourlyData[0].windSpeed.toFloat()
-            }
-            return gusts
+            return if (currently.windGusts >= 0) currently.windGusts else hourlyData[0].windGusts.toFloat()
         }
 
 
@@ -86,14 +82,6 @@ class Wind(inHourlyData: ArrayList<IntervalData>, inCurrently: Currently) {
      */
     fun getSpeedBeaufortString(): String {
         return "${getSpeedBeaufort()}"
-    }
-
-    /**
-     * Get the wind speed as mph string
-     * @return Wind converted to mph string
-     */
-    fun getpeedMphString(): String {
-        return java.lang.String.format(Locale.UK,"%.1f mph", getSpeedMph())
     }
 
     /**

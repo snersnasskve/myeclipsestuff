@@ -70,14 +70,12 @@ class Currently(currentJson: JSONObject?,
     /**
      *  @property icon The weather word to use as an icon
      */
-    val icon: String
-        get() = currentlyData.icon
+    val icon = currentlyData.icon
 
     /**
      *  @property precipIntensityNum Precipitatation as a number
      */
-    val precipIntensityNum: Float
-        get() = currentlyData.precipIntensity
+    val precipIntensityNum = currentlyData.precipIntensity
 
     /**
      *  @property precipIntensity Precipitatation as a formatteed string
@@ -88,8 +86,7 @@ class Currently(currentJson: JSONObject?,
     /**
      *  @property precipProbability Precipitation probability
      */
-    val precipProbability: Float
-        get() = currentlyData.precipProbability
+    val precipProbability = currentlyData.precipProbability
 
     /**
      *  @property precipProbabilityString Precipitation probability as a formatted string
@@ -106,34 +103,29 @@ class Currently(currentJson: JSONObject?,
     /**
      *  @property temperature Temperature as a number
      */
-    val temperatureNum: Float
-        get() = currentlyData.temperature
+    val temperatureNum = currentlyData.temperature
 
     /**
      *  @property tempFeelsLike Feels-like Temperature
      */
-    val tempFeelsLike: Float
-        get() = currentlyData.tempFeelsLike
+    val tempFeelsLike = currentlyData.tempFeelsLike
 
 
     /**
      *  @property windSpeed Wind speed
      */
-    val windSpeed: Float
-        get() = currentlyData.windSpeed
+    val windSpeed = currentlyData.windSpeed
 
     /**
      *  @property windGusts Wind gusts
      */
-    val windGusts: Float
-        get() = currentlyData.windGusts
+    val windGusts = currentlyData.windGusts
 
 
     /**
      *  @property headline A weather phrase describing current conditions
      */
-    val headline: String
-        get() = currentlyData.headline
+    val headline = currentlyData.headline
 
 
     /**
@@ -150,15 +142,10 @@ class Currently(currentJson: JSONObject?,
      */
     val isDayTime: Boolean
         get() {
-            var dayTime = true
-
-            //  Less then 0 means the date is before the parameter
-            if (time.compareTo(sunriseTime) < 0 ||
-                    //  Greater than 0 means the date is after the parameter
-                    time.compareTo(sunsetTime) > 0) {
-                dayTime = false
-            }
-            return dayTime
+            //  Greater than 0 means the date is after the parameter
+            return (time.compareTo(sunriseTime) > 0 &&
+                    //  Less then 0 means the date is before the parameter
+                    time.compareTo(sunsetTime) < 0)
         }
 
 

@@ -118,28 +118,6 @@ public class WeatherDataBase {
 
 
 
-    //	tiemKeyWord: "daily", "hourly", "minutely", "currently"
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public boolean dataContainsWeatherword(String weatherWord, String timeKeyWord) {
-        boolean wordFound = false;
-
-        if (timeKeyWord.equals(WeatherConstants.MINUTELY)) {
-            for (IntervalData minute : minutely.getMinutelyData()) {
-                if (minute.getWeatherWords().contains(timeKeyWord)) {
-                    wordFound = true;
-                    break;
-                }
-            }
-        } else if (timeKeyWord.equals(WeatherConstants.HOURLY)) {
-            for (IntervalData hour : hourly.getHourlyData()) {
-                if (hour.getWeatherWords().contains(timeKeyWord)) {
-                    wordFound = true;
-                    break;
-                }
-            }
-        }
-        return wordFound;
-    }
 
     ////////////////////////////////////////////////////////////////////////////////
     public String timeTilPrecipTypeString(String precipType) {

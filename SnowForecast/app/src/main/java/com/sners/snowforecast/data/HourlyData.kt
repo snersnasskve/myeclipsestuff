@@ -10,10 +10,7 @@ import org.json.JSONException
  */
 class HourlyData(jsonHourly: JSONObject) : IntervalData() {
 
-    /**
-     *  @property windGusts Wind gust speed in metres per second usually
-     */
-    var windGusts = 0f
+
 
     /*
   Constructor

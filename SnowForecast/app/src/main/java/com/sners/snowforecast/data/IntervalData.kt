@@ -15,9 +15,18 @@ open class IntervalData {
      */
     var time: String? = null
         protected set
-    var windSpeed //	Wind speed is metres per second in the data classes
-            = 0.0
+    /**
+     *  @property windSpeed Wind speed in metres per second usually
+     */
+    var windSpeed = 0.0
         protected set
+
+    /**
+     *  @property windGusts Wind gust speed in metres per second usually
+     */
+    var windGusts = 0f
+      protected set
+
     var temperature = 0f
         protected set
     var tempFeelsLike = 0f
