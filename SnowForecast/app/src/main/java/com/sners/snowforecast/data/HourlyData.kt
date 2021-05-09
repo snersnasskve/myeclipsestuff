@@ -18,11 +18,17 @@ class HourlyData(jsonHourly: JSONObject) : IntervalData() {
     init {
         try {
             time = jsonHourly.getString(WeatherConstants.TIME)
-            precipIntensity = jsonHourly.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
+            //  guard against null
+            precipIntensity = jsonFloatValueFor(WeatherConstants.PRECIP_INTENSITY, jsonHourly) ?: 0f
             precipProbability = jsonHourly.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             temperature = jsonHourly.getDouble(WeatherConstants.TEMPERATURE).toFloat()
             windSpeed = jsonHourly.getDouble(WeatherConstants.WIND_SPEED)
-            windGusts = jsonHourly.getDouble(WeatherConstants.WIND_GUSTS).toFloat()
+            windGusts = jsonHourly.getDouble(WeatherConstants.WIND_GUST).toFloat()
+            val dir = jsonHourly.getString(WeatherConstants.WIND_DIRECTION)
+            //  If winddir is not entered, it should not be initialised
+            if (!dir.isNullOrBlank()) {
+                windDir = dir.toFloat()
+            }
             if (!jsonHourly.isNull(WeatherConstants.PRECIP_TYPE)) {
                 //  If it is null, then it is not an array
                 val weatherWordsJson = jsonHourly.getJSONArray(WeatherConstants.PRECIP_TYPE)

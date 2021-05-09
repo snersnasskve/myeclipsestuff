@@ -38,8 +38,12 @@ object WeatherConstants {
 
     const val WEATHER_CODE = "weatherCode"
     const val WIND_SPEED = "windspeed"
-    const val WIND_GUSTS = "windgusts"
-    const val WIND_BEARING = "wind_deg"
+    const val WIND_GUST = "windgust"
+    const val WIND_DIRECTION= "winddir"
+    const val NORTH = "N"
+    const val SOUTH = "S"
+    const val WEST = "W"
+    const val EAST = "E"
     const val MS_TO_MPH_CONVERSION = 2.236936
     const val KM_TO_MPH_CONVERSION = 0.6213712
     const val CONDITIONS = "conditions"

@@ -31,10 +31,16 @@ class DailyData(jsonDaily: JSONObject) : IntervalData() {
     init {
         try {
             date = jsonDaily.getString(WeatherConstants.TIME)
-            precipIntensity = jsonDaily.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
+            precipIntensity = jsonFloatValueFor(WeatherConstants.PRECIP_INTENSITY, jsonDaily) ?: 0f
             precipProbability = jsonDaily.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             tempMin = jsonDaily.getDouble(WeatherConstants.TEMP_MIN).toFloat()
             tempMax = jsonDaily.getDouble(WeatherConstants.TEMP_MAX).toFloat()
+            val dir = jsonDaily.getString(WeatherConstants.WIND_GUST)
+            //  If winddir is not entered, it should not be initialised
+            if (!dir.isNotEmpty()) {
+                windDir = dir.toFloat()
+            }
+
             if (!jsonDaily.isNull(WeatherConstants.PRECIP_TYPE)) {
                 //  If it is null, then it is not an array
                 val weatherWordsJson = jsonDaily.getJSONArray(WeatherConstants.PRECIP_TYPE)

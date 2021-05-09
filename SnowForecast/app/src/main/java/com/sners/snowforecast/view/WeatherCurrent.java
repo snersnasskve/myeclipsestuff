@@ -70,14 +70,14 @@ public class WeatherCurrent extends Activity {
 		tvCurPrecipIntensity.	setText(weatherData.getCurrently().getPrecipIntensity());
 		tvCurPrecipProbability.	setText(weatherData.getCurrently().getPrecipProbabilityString());
 		tvCurTemperature.		setText(weatherData.getTemperatureSummary());
-		tvCurWind.				setText(weatherData.wind.getDetails());
+		tvCurWind.				setText(weatherData.getWind().getDetails());
 		
 		tvCurTimeTilSunset.		setText(weatherData.getTimeTilSunsetString());
 		
 		//	timeTillPrecip
-		tvCurTimeTilPrecip.setText(ForecastMainActivity.weatherData.precipitation.
+		tvCurTimeTilPrecip.setText(ForecastMainActivity.weatherData.getPrecipitation().
 				timeTilString(false));
-		tvCurTimeTilSnow.  		setText(ForecastMainActivity.weatherData.precipitation.
+		tvCurTimeTilSnow.  		setText(ForecastMainActivity.weatherData.getPrecipitation().
 				timeTilPrecipTypeString(WeatherConstants.PRECIP_TYPE_SNOW));
 
 		String alertHeadline = "None";

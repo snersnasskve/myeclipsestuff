@@ -22,9 +22,9 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
         get() {
             var wind = currently.windSpeed
             if (wind < 1) {
-                wind = hourlyData[0].windSpeed.toFloat()
+                wind = hourlyData[0].windSpeed
             }
-            return wind
+            return wind.toFloat()
         }
 
     /**
@@ -32,18 +32,32 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      */
     private val windGusts: Float
         get() {
-            return if (currently.windGusts >= 0) currently.windGusts else hourlyData[0].windGusts
+            return if (currently.windGusts >= 0) currently.windGusts.toFloat()
+            else hourlyData[0].windGusts
         }
 
+    /**
+     *  @property windGusts Wind speed - reads from data object as appropriate
+     */
+    private val windDir: Float
+        get() {
+
+            return if (currently.windDir >= 0) currently.windDir.toFloat()
+            else hourlyData[0].windDir
+        }
 
     /**
      * Get the wind details
      * @return Wind details string
      */
     fun getDetails(): String {
-
-        //  eg 1.2 mph (gusts: 4 mph)
-        return "$windSpeed mph (gusts: $windGusts)"
+        //  eg 1.2 mph (gusts: 4 mph) NE
+        //return "$windSpeed mph (gusts: $windGusts) ${windDirToString(windDir)}"
+        return String.format(
+            "%.1f mph (gusts %.1f) %s",
+            windSpeed,
+            windGusts,
+            windDirToString(windDir))
     }
 
     /**
@@ -81,4 +95,24 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
         val beaufortValue = beaufortScaleUppers.indexOfFirst ({ windSpeed < it })
         return beaufortValue
     }
+
+    fun windDirToString(windDir : Float): String {
+            val mainDir = Math.round(windDir / 90)
+            var dir = when (mainDir % 4) {
+                0 -> WeatherConstants.NORTH
+                1 -> WeatherConstants.EAST
+                2 -> WeatherConstants.SOUTH
+                3 -> WeatherConstants.WEST
+                else -> ""
+            }
+            val secondDir = Math.round(windDir / 45)
+            dir = dir + when (secondDir % 8) {
+                1 -> WeatherConstants.NORTH
+                3 -> WeatherConstants.EAST
+                5 -> WeatherConstants.SOUTH
+                7 -> WeatherConstants.WEST
+                else -> ""
+            }
+            return dir
+        }
 }

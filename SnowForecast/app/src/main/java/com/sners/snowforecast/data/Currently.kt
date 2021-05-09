@@ -4,6 +4,7 @@ import android.icu.text.DateFormat
 import android.icu.text.SimpleDateFormat
 
 import org.json.JSONObject
+import java.lang.Math.round
 
 import java.text.ParseException
 import java.util.*
@@ -18,8 +19,10 @@ This class is used for managing data about the current weather
  * @param currentJson The raw current data coming in from the API call
  * @param currDateString This is not found in the currently data - needed for sunrise sunset calcs
  */
-class Currently(currentJson: JSONObject?,
-                var currDateString: String) {
+class Currently(
+    currentJson: JSONObject?,
+    var currDateString: String
+) {
 
     /**
      *  @property sunriseTime Sunrise time after conversion to Date
@@ -114,12 +117,20 @@ class Currently(currentJson: JSONObject?,
     /**
      *  @property windSpeed Wind speed
      */
-    val windSpeed = currentlyData.windSpeed
+    val windSpeed
+        get() = currentlyData.windSpeed * WeatherConstants.KM_TO_MPH_CONVERSION
 
     /**
      *  @property windGusts Wind gusts
      */
-    val windGusts = currentlyData.windGusts
+    val windGusts
+        get() = currentlyData.windGusts * WeatherConstants.KM_TO_MPH_CONVERSION
+
+    /**
+     *  @property windDir Wind direction
+     */
+    val windDir = currentlyData.windDir
+
 
     /**
      *  @property weatherWords Array of words describing the weather

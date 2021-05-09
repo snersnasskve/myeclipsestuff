@@ -1,5 +1,10 @@
 package com.sners.snowforecast.data
 
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.util.ArrayList
+
 /**
  * A class to abstract the data from the view
  * This is kind of a controller class despite being called data
@@ -9,30 +14,140 @@ package com.sners.snowforecast.data
  * @param rawHourly The raw hourly data coming in from the API call.
  * @constructor Turn the raw data into proper data classes.
  */
-class WeatherData(rawMinutely: String, rawHourly: String) :
-        WeatherDataBase(rawMinutely, rawHourly) {
+class WeatherData(rawMinutely: String, rawHourly: String) {
+
+    /**
+     * @property currently Info about Current weather
+     */
+    var currently: Currently? = null
+        private set
+
+    /**
+     * @property minutely Info about minutely weather
+     */
+    var minutely: Minutely? = null
+        private set
+
+    val minutelyData : ArrayList<IntervalData>
+        get() = minutely!!.minutelyData
+
+    /**
+     * @property hourly  Info about hourly weather
+     */
+    var hourly: Hourly? = null
+        private set
+
+    val hourlyData : ArrayList<IntervalData>
+        get() = hourly!!.hourlyData
+
+    /**
+     * @property daily  Info about daily weather
+     */
+    var daily: Daily? = null
+        private set
+
+
+
+    /**
+     * @property alert Info about alerts
+     */
+     var alerts: Alert? = null
+        private set
+
+    val alertsData: ArrayList<AlertData>?
+        get() = alerts?.getAlertData()
+
+    /**
+     * @property wind Wind object - with all the wind info
+     */
+     var wind: Wind? = null
+
+    /**
+     * @property precipitation Precipitation with all the precipitation info
+     */
+    var precipitation: Precipitation? = null
+
+    /**
+     * @property weatherHelper Weather helper class
+     */
+    protected val weatherHelper = WeatherHelper()
+
+    /**
+     * @property headlineSummary topline weather summary
+     */
+    val headlineSummary: String
+        get() = currently?.headline ?: "Unknown weather"
+
+    /**
+     * @property headlineIcon name of weather icon to use
+     */
+     var headlineIcon: String? = null
+        private set
 
     /**
      * @property minutesTilSunset Minutes til sunset - calculate once
      */
     private var minutesTilSunset: Long = -1
 
+    init {
+        setUpDataArrays(rawMinutely, rawHourly)
 
 
-    /**
-     * Get the headline summary for the weather pages
-     * @return headline from currently data
-     */
-    fun getHeadlineSummary(): String? {
-        return currently.headline
+        //	Replace with night time icon if available
+        headlineIcon = (currently?.icon ?: "").replace("-", "_").toLowerCase()
+        if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
+            headlineIcon = if (headlineIcon!!.contains("_day") && isDayTime()) {
+                headlineIcon.toString() + "_day"
+            } else {
+                headlineIcon.toString() + "_night"
+            }
+        }
+        wind = Wind(hourly!!.hourlyData, currently!!)
+        precipitation = Precipitation(daily, hourly, minutely, currently!!)
     }
 
-    /**
-     * Get the headline icon name
-     * @return headlineIcon
-     */
-    fun getHeadlineIcon(): String? {
-        return headlineIcon
+    //  This stuff changes with every api
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    fun setUpDataArrays(rawMinutely: String?, rawDaily: String?) {
+        //  Minutely is independent
+        var jsonObjMinutely: JSONObject? = null
+        try {
+            jsonObjMinutely = JSONObject(rawMinutely)
+            val minutelyTimelinesArray = jsonObjMinutely.getJSONArray(WeatherConstants.DATA)
+            minutely = Minutely(minutelyTimelinesArray)
+        } catch (e: JSONException) {
+            //  We have no minutely data
+            e.printStackTrace()
+        }
+        try {
+            val jsonObjDaily = JSONObject(rawDaily)
+            val dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY)
+            // There must be a oneliner way of doing this, but I don't know it
+            val hourlyTimelineArray = JSONArray()
+            for (dCounter in 0 until dailyTimelineArray.length()) {
+                val thisDay = dailyTimelineArray.getJSONObject(dCounter)
+                val thisDayHours = thisDay.getJSONArray(WeatherConstants.HOURLY)
+                for (hCounter in 0 until thisDayHours.length()) {
+                    val thisHour = thisDayHours.getJSONObject(hCounter)
+                    hourlyTimelineArray.put(thisHour)
+                }
+            }
+            hourly = Hourly(hourlyTimelineArray)
+            daily = Daily(dailyTimelineArray)
+            currently = Currently(
+                jsonObjDaily.getJSONObject(WeatherConstants.CURRENTLY),
+                daily!!.currDateString!!
+            )
+            //  Currently needs the sunrise and sunset, which currently is not picking up
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    fun isDayTime(): Boolean {
+        return currently!!.isDayTime
     }
 
     /**
@@ -49,7 +164,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
      */
     fun getTimeTilSunset(): Long {
       //	If it's night this will be negative
-        minutesTilSunset = currently.timeTilSunset
+        minutesTilSunset = currently!!.timeTilSunset
         if (minutesTilSunset < 0) {
             minutesTilSunset = 0
         }
@@ -63,10 +178,10 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
     fun dataContainsWeatherword(weatherWord: String?, timeKeyWord: String): Boolean {
         var wordFound = false
         if (timeKeyWord == WeatherConstants.MINUTELY) {
-            wordFound = minutely.minutelyData.any { it.weatherWords.contains(weatherWord) }
+            wordFound = minutely!!.minutelyData.any { it.weatherWords.contains(weatherWord) }
 
         } else if (timeKeyWord == WeatherConstants.HOURLY) {
-            wordFound = hourly.hourlyData.any { it.weatherWords.contains(weatherWord) }
+            wordFound = hourly!!.hourlyData.any { it.weatherWords.contains(weatherWord) }
         }
         return wordFound
     }
@@ -78,10 +193,10 @@ class WeatherData(rawMinutely: String, rawHourly: String) :
     fun getTemperatureSummary(): String {
         return String.format(
             "F/L %.1f%s ( %.1f : %.1f )",
-            currently.tempFeelsLike,
+            currently!!.tempFeelsLike,
             WeatherConstants.DEGREES_C,
-            daily.tempMin,
-            daily.tempMax
+            daily!!.tempMin,
+            daily!!.tempMax
         )
     }
 

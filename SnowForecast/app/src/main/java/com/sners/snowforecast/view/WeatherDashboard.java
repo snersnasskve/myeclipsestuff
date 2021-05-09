@@ -71,7 +71,7 @@ public class WeatherDashboard extends Activity {
 		
 		//	timeTillPrecip
 		
-		tvDashTimeTilPrecip.setText(weatherData.precipitation.timeTilString(false));
+		tvDashTimeTilPrecip.setText(weatherData.getPrecipitation().timeTilString(false));
 		
 	
 		String			iconName = weatherData.getHeadlineIcon();
@@ -161,7 +161,7 @@ private void drawPrecipitationGraph()
 	
 	private void populateWind()
 	{
-		float beaufortValue = weatherData.wind.getSpeedBeaufort();
+		float beaufortValue = weatherData.getWind().getSpeedBeaufort();
 		
 		tvDashWind.setText(String.format("%d", Math.round(beaufortValue)));
 		if (beaufortValue < 5)

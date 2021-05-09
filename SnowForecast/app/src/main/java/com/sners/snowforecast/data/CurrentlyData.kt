@@ -14,61 +14,80 @@ class CurrentlyData(currentJson: JSONObject) {
      *  @property headline Top level summary
      */
     var headline: String = "Not found"
+        private set
 
     /**
      *  @property icon Name of the icon that represents current conditions
      */
     var icon: String = ""
+        private set
 
     /**
      *  @property precipIntensity Expected rain in mm/h usually
      */
     var precipIntensity = 0f
+        private set
 
     /**
      *  @property precipProbability Probability of rain 0-100
      */
     var precipProbability = 0f
+        private set
 
     /**
      *  @property temperature Temperature in degrees C
      */
     var temperature = 0f
+        private set
 
     /**
      *  @property tempFeelsLike Feels like temperature in degrees C
      */
     var tempFeelsLike = 0f
+        private set
 
     /**
      *  @property windSpeed Wind speed in metres per second usually
      */
     var windSpeed = 0f
+        private set
 
     /**
      *  @property windGusts Wind gust speed in metres per second usually
      */
     var windGusts = 0f
+        private set
+
+    /**
+     *  @property windDir Wind direction degrees
+     */
+    var windDir = 0f
+        private set
+
 
     /**
      *  @property time Current time as read from the json
      */
     private var time: String? = null
+        private set
 
     /**
      *  @property sunsetTime Sunset time as read from the json
      */
     private var sunsetTime: String? = null
+        private set
 
     /**
      *  @property sunriseTime Sunrise time as read from the json
      */
     private var sunriseTime: String? = null
+        private set
 
     /**
      *  @property weatherWords Array of words describing the weather
      */
-     val weatherWords = ArrayList<String>()
+     var weatherWords = ArrayList<String>()
+        private set
 
     /*
   Constructor
@@ -100,8 +119,12 @@ class CurrentlyData(currentJson: JSONObject) {
             }
             //  Wind
             this.windSpeed = currentJson.getDouble(WeatherConstants.WIND_SPEED).toFloat()
-            this.windGusts = currentJson.getDouble(WeatherConstants.WIND_GUSTS).toFloat()
-        } catch (e: JSONException) {
+            this.windGusts = currentJson.getDouble(WeatherConstants.WIND_GUST).toFloat()
+            val dir = currentJson.getString(WeatherConstants.WIND_DIRECTION)
+            //  If winddir is not entered, it should not be initialised
+            if (dir.isNotEmpty()) {
+                windDir = dir.toFloat()
+            }        } catch (e: JSONException) {
             e.printStackTrace()
         }
     }
