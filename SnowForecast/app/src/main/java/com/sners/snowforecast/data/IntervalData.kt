@@ -45,7 +45,6 @@ open class IntervalData {
     var windDir = -1f
         protected set
 
-
     /**
      *  @property temperature Temperature Celcius
      */
@@ -71,8 +70,7 @@ open class IntervalData {
      *  @return result as string
      */
     protected fun jsonValueFor(fieldName: String, jsonData: JSONObject): String? {
-        var result: String?
-        result = try {
+        val result = try {
             jsonData.getString(fieldName)
         } catch (e: JSONException) {
             //e.printStackTrace();
@@ -81,6 +79,12 @@ open class IntervalData {
         return result
     }
 
+    /**
+     *  Json value for
+     *  @param fieldName Json field name
+     *  @param jsonData The json object where data should be found
+     *  @return result as optional Float
+     */
     protected fun jsonFloatValueFor(fieldName: String, jsonData: JSONObject): Float? {
         var result : Float? = null
         if (!jsonData.isNull(fieldName)) {
