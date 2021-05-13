@@ -386,9 +386,9 @@ public class ForecastMainActivity extends FragmentActivity {
         protected String doInBackground(Double... params) {
            // String minutelyJson = forecastReader.readWeatherForecast(params[0], params[1], "1m");
            // String hourlyJson = forecastReader.readWeatherForecast(params[0], params[1], "1h,1d");
-            VisualCrossingReader vcReader = new VisualCrossingReader();
+          //  VisualCrossingReader vcReader = new VisualCrossingReader();
             try {
-                vcReader.timelineRequest(params[0], params[1]);
+                VisualCrossingReader.timelineRequest(params[0], params[1]);
             } catch (Exception e) {
                 e.printStackTrace();
             }
