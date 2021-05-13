@@ -6,9 +6,9 @@ import java.util.ArrayList
 
 //  You can only inherit from an open class
 /**
- * A data class to be used as an interface / Base class for weather data classes
+ * An abstract class for weather data classes
  */
-open class IntervalData {
+ abstract class IntervalData {
     /**
      * *  @property precipIntensity Precipitation as read from the json
      */

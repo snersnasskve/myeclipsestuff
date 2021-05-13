@@ -54,10 +54,12 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
         //  eg 1.2 mph (gusts: 4 mph) NE
         //return "$windSpeed mph (gusts: $windGusts) ${windDirToString(windDir)}"
         return String.format(
-            "%.1f mph (gusts %.1f) %s",
+            "%.1f mph (gusts %.1f) %.0f - %s",
             windSpeed,
             windGusts,
-            windDirToString(windDir))
+            windDir,
+            windDirToString(windDir)
+        )
     }
 
     /**
@@ -92,27 +94,45 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
     private fun windSpeedToBeaufort(windSpeed: Double): Int {
         //	Wind speed is meters per second
 
-        val beaufortValue = beaufortScaleUppers.indexOfFirst ({ windSpeed < it })
+        val beaufortValue = beaufortScaleUppers.indexOfFirst({ windSpeed < it })
         return beaufortValue
     }
 
-    fun windDirToString(windDir : Float): String {
-            val mainDir = Math.round(windDir / 90)
-            var dir = when (mainDir % 4) {
-                0 -> WeatherConstants.NORTH
-                1 -> WeatherConstants.EAST
-                2 -> WeatherConstants.SOUTH
-                3 -> WeatherConstants.WEST
-                else -> ""
-            }
-            val secondDir = Math.round(windDir / 45)
-            dir = dir + when (secondDir % 8) {
-                1 -> WeatherConstants.NORTH
-                3 -> WeatherConstants.EAST
-                5 -> WeatherConstants.SOUTH
-                7 -> WeatherConstants.WEST
-                else -> ""
-            }
-            return dir
+    /**
+     * Wind direction to string
+     * https://snersbots.co.uk/index.php/weather-app-wind-direction/
+     * @param windDir Wind direction degrees
+     * @return A string representing wind direction
+     */
+    fun windDirToString(windDir: Float): String {
+
+        val directionPointer = Math.round(windDir / 45).toFloat()
+        val valA = Math.round(directionPointer / 2f)
+        val valB = Math.abs(valA - 1)
+
+        if (Math.round(directionPointer) % 2 == 0) {
+            //  wind is due something
+            return getWindAngleFor(valA)
+        } else if (valB % 2 == 1) {
+            return getWindAngleFor(valA) + getWindAngleFor(valB)
+        } else {
+            return getWindAngleFor(valB) + getWindAngleFor(valA)
         }
+    }
+
+    /**
+     * Get wind angle for
+     * @param pointer A number from 0 to 3
+     * @return Direction as string
+     */
+    fun getWindAngleFor(pointer: Int): String {
+
+        return when (pointer % 4) {
+            0 -> WeatherConstants.NORTH
+            1 -> WeatherConstants.EAST
+            2 -> WeatherConstants.SOUTH
+            3 -> WeatherConstants.WEST
+            else -> ""
+        }
+    }
 }
