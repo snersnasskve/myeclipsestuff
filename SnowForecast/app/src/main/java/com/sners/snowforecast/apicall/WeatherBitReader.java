@@ -9,16 +9,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class WeatherBitReader {
-    public static final String YOUR_API_KEY = "15097933a2e2423b881887d155d7c2c3";
 
     /*
      * timelineRequest - Requests Timeline Weather API data using native classes such as HttpURLConnection
      *
      */
-    public static void timelineRequest(Double latitude, Double longitude) throws Exception {
+    public static void timelineRequest(Double latitude, Double longitude, String apiKey) throws Exception {
         String apiEndPoint = "https://api.weatherbit.io/v2.0/forecast/minutely";
 
-        String apiKey = YOUR_API_KEY; //sign up for a free api key at https://www.visualcrossing.com/weather/weather-data-services
+         //sign up for a free api key at https://www.visualcrossing.com/weather/weather-data-services
 
 
         String method = "GET"; // GET OR POST

@@ -1,23 +1,20 @@
 package com.sners.snowforecast.apicall
 
 import com.sners.snowforecast.ForecastMainActivity
-import org.json.JSONException
-import org.json.JSONObject
+import com.sners.snowforecast.R
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 // https://github.com/visualcrossing/WeatherApi/blob/master/Java/com/visualcrossing/weather/samples/TimelineApiSample.java
+/**
+ * An object responsible for building the Visual Crossing url, sending and getting the results
+ * sign up for a free api key at https://www.visualcrossing.com/weather/weather-data-services
+ */
 object VisualCrossingReader {
-
-    private const val YOUR_API_KEY = "ZXC2R4HVTLM93GKJTCSSF7L32"
 
     /*
      * timelineRequest - Requests Timeline Weather API data using native classes such as HttpURLConnection
@@ -25,11 +22,10 @@ object VisualCrossingReader {
      */
     @JvmStatic
     @Throws(Exception::class)
-    fun timelineRequest(latitude: Double?, longitude: Double?) {
+    fun timelineRequest(latitude: Double?, longitude: Double?, apiKey: String) {
+        //val apiEndPoint = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
         val apiEndPoint = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-        val unitGroup = "metric" //us,metric,uk
-        val apiKey =
-            YOUR_API_KEY //sign up for a free api key at https://www.visualcrossing.com/weather/weather-data-services
+        val unitGroup = "metric"  //us,metric,uk
         val method = "GET" // GET OR POST
 
 
@@ -87,35 +83,4 @@ object VisualCrossingReader {
         return formatter.format(cal.time)
     }
 
-    private fun parseTimelineJson(rawResult: String?) {
-        if (rawResult == null || rawResult.isEmpty()) {
-            System.out.printf("No raw data%n")
-            return
-        }
-        try {
-            val timelineResponse = JSONObject(rawResult)
-            val zoneId = ZoneId.of(timelineResponse.getString("timezone"))
-            System.out.printf("Weather data for: %s%n", timelineResponse.getString("resolvedAddress"))
-            val values = timelineResponse.getJSONArray("days")
-            System.out.printf("Date\tMaxTemp\tMinTemp\tPrecip\tSource%n")
-            for (i in 0 until values.length()) {
-                val dayValue = values.getJSONObject(i)
-                val datetime = ZonedDateTime.ofInstant(Instant.ofEpochSecond(dayValue.getLong("datetimeEpoch")), zoneId)
-                val maxtemp = dayValue.getDouble("tempmax")
-                val mintemp = dayValue.getDouble("tempmin")
-                val pop = dayValue.getDouble("precip")
-                val source = dayValue.getString("source")
-                System.out.printf(
-                    "%s\t%.1f\t%.1f\t%.1f\t%s%n",
-                    datetime.format(DateTimeFormatter.ISO_LOCAL_DATE),
-                    maxtemp,
-                    mintemp,
-                    pop,
-                    source
-                )
-            }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-    }
 }
