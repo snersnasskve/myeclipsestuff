@@ -18,12 +18,12 @@ object VisualCrossingReader {
 
     /*
      * timelineRequest - Requests Timeline Weather API data using native classes such as HttpURLConnection
-     *
-     */
+     * @param latitude Target latitude
+     * @param longitude Target longitude
+   */
     @JvmStatic
     @Throws(Exception::class)
-    fun timelineRequest(latitude: Double?, longitude: Double?, apiKey: String) {
-        //val apiEndPoint = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+    fun timelineRequest(latitude: Double, longitude: Double, apiKey: String) {
         val apiEndPoint = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
         val unitGroup = "metric"  //us,metric,uk
         val method = "GET" // GET OR POST
@@ -71,11 +71,14 @@ object VisualCrossingReader {
             return
         }
 
-        //pass the string response to be parsed and used
-        //parseTimelineJson(response.toString());
         ForecastMainActivity.rawHourly = response.toString()
     }
 
+    /**
+     * Get date string
+     * @param offsetTime time to add to timenow
+     * @return Date formatted as required by api
+     */
     private fun getDateString(offsetTime: Int): String {
         val cal = Calendar.getInstance()
         cal.add(Calendar.DAY_OF_MONTH, offsetTime)
