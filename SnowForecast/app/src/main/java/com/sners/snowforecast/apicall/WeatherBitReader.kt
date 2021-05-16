@@ -1,21 +1,18 @@
 package com.sners.snowforecast.apicall
 
+import kotlin.Throws
 import com.sners.snowforecast.ForecastMainActivity
-import com.sners.snowforecast.R
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.lang.Exception
+import java.lang.StringBuilder
 import java.net.HttpURLConnection
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.*
 
-// https://github.com/visualcrossing/WeatherApi/blob/master/Java/com/visualcrossing/weather/samples/TimelineApiSample.java
 /**
- * An object responsible for building the Visual Crossing url, sending and getting the results
- * sign up for a free api key at https://www.visualcrossing.com/weather/weather-data-services
+ * An object responsible for building the WeatherBit url, sending and getting the results
  */
-object VisualCrossingReader {
-
+object WeatherBitReader {
     /*
      * timelineRequest - Requests Timeline Weather API data using native classes such as HttpURLConnection
      * @param latitude Target latitude
@@ -24,23 +21,19 @@ object VisualCrossingReader {
    */
     @JvmStatic
     @Throws(Exception::class)
-    fun timelineRequest(latitude: Double, longitude: Double, apiKey: String) {
-        val apiEndPoint = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-        val unitGroup = "metric"  //us,metric,uk
+    fun timelineRequest(latitude: Double, longitude: Double, apiKey: String?) {
+        val apiEndPoint = "https://api.weatherbit.io/v2.0/forecast/minutely"
+
         val method = "GET" // GET OR POST
 
 
         //Build the URL pieces
         val requestBuilder = StringBuilder(apiEndPoint)
-        requestBuilder.append(String.format("%f,%f", latitude, longitude))
-        //  Start date
-        requestBuilder.append(String.format("/%s", getDateString(0)))
-        //  End date
-        requestBuilder.append(String.format("/%s", getDateString(8)))
+
 
         //Build the parameters to send via GET or POST
         val paramBuilder = StringBuilder()
-        paramBuilder.append("unitGroup=").append(unitGroup)
+        paramBuilder.append(String.format("lat=%f&lon=%f", latitude, longitude))
         paramBuilder.append("&").append("key=").append(apiKey)
 
 
@@ -72,19 +65,7 @@ object VisualCrossingReader {
             return
         }
 
-        ForecastMainActivity.rawHourly = response.toString()
+        //  This needs to go back to a callback, I know - but not doing it yet
+        ForecastMainActivity.rawMinutely = response.toString()
     }
-
-    /**
-     * Get date string
-     * @param offsetTime time to add to timenow
-     * @return Date formatted as required by api
-     */
-    private fun getDateString(offsetTime: Int): String {
-        val cal = Calendar.getInstance()
-        cal.add(Calendar.DAY_OF_MONTH, offsetTime)
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
-        return formatter.format(cal.time)
-    }
-
 }

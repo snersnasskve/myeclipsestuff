@@ -396,12 +396,11 @@ public class ForecastMainActivity extends FragmentActivity {
                 e.printStackTrace();
             }
 
-            WeatherBitReader wbReader = new WeatherBitReader();
             try {
                 //  Please make a string resource file called secrets.
                 //  Your api key should do in there
                 String apiKey = getResources().getString(R.string.weather_bit_api_key);
-                wbReader.timelineRequest(params[0], params[1], apiKey);
+                WeatherBitReader.timelineRequest(params[0], params[1], apiKey);
             } catch (Exception e) {
                 e.printStackTrace();
             }
