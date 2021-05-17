@@ -43,13 +43,12 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     /**
      * @property daily  Info about daily weather
      */
-    var daily: Daily? = null
-        private set
+    private var daily: Daily? = null
 
 
 
     /**
-     * @property alert Info about alerts
+     * @property alerts Info about alerts
      */
      var alerts: Alert? = null
         private set
@@ -70,7 +69,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     /**
      * @property weatherHelper Weather helper class
      */
-    protected val weatherHelper = WeatherHelper()
+    private val weatherHelper = WeatherHelper()
 
     /**
      * @property headlineSummary topline weather summary
@@ -92,7 +91,6 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     init {
         setUpDataArrays(rawMinutely, rawHourly)
 
-
         //	Replace with night time icon if available
         headlineIcon = (currently?.icon ?: "").replace("-", "_").toLowerCase()
         if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
@@ -108,11 +106,11 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
 
     //  This stuff changes with every api
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    fun setUpDataArrays(rawMinutely: String?, rawDaily: String?) {
+    private fun setUpDataArrays(rawMinutely: String?, rawDaily: String?) {
         //  Minutely is independent
-        var jsonObjMinutely: JSONObject? = null
+        val jsonObjMinutely: JSONObject?
         try {
-            jsonObjMinutely = JSONObject(rawMinutely)
+            jsonObjMinutely = JSONObject(rawMinutely ?: "")
             val minutelyTimelinesArray = jsonObjMinutely.getJSONArray(WeatherConstants.DATA)
             minutely = Minutely(minutelyTimelinesArray)
         } catch (e: JSONException) {
@@ -120,7 +118,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
             e.printStackTrace()
         }
         try {
-            val jsonObjDaily = JSONObject(rawDaily)
+            val jsonObjDaily = JSONObject(rawDaily ?: "")
             val dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY)
             // There must be a oneliner way of doing this, but I don't know it
             val hourlyTimelineArray = JSONArray()
@@ -154,7 +152,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * Get time to sunset as string
      * @return formatted time till sunset
      */
-    fun getTimeTilSunsetString(): String? {
+    fun getTimeTilSunsetString(): String {
         return weatherHelper.formatTime(getTimeTilSunset())
     }
 
