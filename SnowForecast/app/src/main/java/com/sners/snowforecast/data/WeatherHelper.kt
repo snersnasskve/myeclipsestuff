@@ -1,7 +1,5 @@
 package com.sners.snowforecast.data
 
-import com.sners.snowforecast.data.WeatherConstants
-import com.sners.snowforecast.data.WeatherHelper
 import java.util.*
 
 class WeatherHelper {

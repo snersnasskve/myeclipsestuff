@@ -21,7 +21,7 @@ public class WeatherPrecipChart extends Activity {
 
     final float precipNone = .001f;
     final float precipVeryLight = 0.7f;
-    final float precipLight = 2.3f;
+    final float precipLight = 2.5f;
     final float precipModerate = 6.25f;
     final float precipHeavy = 25.0f;
 
