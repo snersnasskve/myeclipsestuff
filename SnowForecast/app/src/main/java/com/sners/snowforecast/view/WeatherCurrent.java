@@ -16,8 +16,9 @@ import android.widget.Toast;
 
 import com.sners.snowforecast.ForecastMainActivity;
 import com.sners.snowforecast.R;
-import com.sners.snowforecast.data.WeatherConstants;
-import com.sners.snowforecast.data.WeatherData;
+import com.sners.snowforecast.weather.WeatherConstants;
+import com.sners.snowforecast.weather.WeatherData;
+import com.sners.snowforecast.weather.WeatherIconGallery;
 
 import java.util.ArrayList;
 
@@ -100,8 +101,8 @@ public class WeatherCurrent extends Activity {
 
 	private void setWeatherActivityIcons() {
 
-		com.sners.snowforecast.view.WeatherIconGallery iconGallery =
-				new com.sners.snowforecast.view.WeatherIconGallery();
+		WeatherIconGallery iconGallery =
+				new WeatherIconGallery();
 		ArrayList <String> qualIcons = iconGallery.getWeatherActivityIcons();
 		
 				

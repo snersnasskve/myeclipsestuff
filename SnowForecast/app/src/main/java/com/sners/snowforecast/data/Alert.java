@@ -4,21 +4,20 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Alert {
 	
-	ArrayList <com.sners.snowforecast.data.AlertData> alertData;
+	ArrayList <AlertData> alertData;
 	
 	public Alert(JSONArray intervalData)
 	{
-		alertData		= new ArrayList <com.sners.snowforecast.data.AlertData> ();
+		alertData		= new ArrayList <AlertData> ();
 		try {
 	
 			//JSONArray  	intervalData	= jsonAlerts.getJSONArray("data");
 			for (int intervalCounter = 0 ; intervalCounter < intervalData.length() ; intervalCounter++)
 			{
-				com.sners.snowforecast.data.AlertData dataInst = new com.sners.snowforecast.data.AlertData(intervalData.getJSONObject(intervalCounter));
+				AlertData dataInst = new AlertData(intervalData.getJSONObject(intervalCounter));
 				alertData.add(dataInst);
 			}
 
@@ -29,7 +28,7 @@ public class Alert {
 
 	}
 
-	public ArrayList <com.sners.snowforecast.data.AlertData> getAlertData()
+	public ArrayList <AlertData> getAlertData()
 	{
 		return alertData;
 	}

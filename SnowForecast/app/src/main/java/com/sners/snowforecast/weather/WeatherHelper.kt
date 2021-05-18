@@ -1,4 +1,4 @@
-package com.sners.snowforecast.data
+package com.sners.snowforecast.weather
 
 /**
  * A Helper class with useful conversions and other functions in general use for weather

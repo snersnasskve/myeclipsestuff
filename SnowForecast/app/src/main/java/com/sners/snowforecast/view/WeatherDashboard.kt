@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import com.sners.snowforecast.ForecastMainActivity
 import com.sners.snowforecast.R
+import com.sners.snowforecast.weather.WeatherIconGallery
 
 /**
  * A class representing the Dashboard view
@@ -67,6 +68,9 @@ class WeatherDashboard : Activity() {
      */
     var llDashDashboard: LinearLayout? = null
 
+    /**
+     * @property weatherData Weather data object
+     */
     var weatherData = ForecastMainActivity.weatherData
 
     /**
@@ -168,7 +172,7 @@ class WeatherDashboard : Activity() {
         val windColour = when (beaufortValue) {
             in 5 .. 7 -> Color.MAGENTA
             in 7 .. Int.MAX_VALUE -> Color.RED
-            else -> Color.parseColor("#008000")
+            else -> Color.parseColor("#008000") // Green
         }
         tvDashWind!!.setTextColor(windColour)
     }

@@ -17,7 +17,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.sners.snowforecast.*;
-import com.sners.snowforecast.data.*;
+import com.sners.snowforecast.data.AlertData;
 
 public class WeatherAlert extends Activity {
 

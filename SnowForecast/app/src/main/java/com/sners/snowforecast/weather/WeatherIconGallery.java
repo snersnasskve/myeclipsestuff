@@ -1,11 +1,8 @@
-package com.sners.snowforecast.view;
+package com.sners.snowforecast.weather;
 
 import java.util.ArrayList;
 
 import com.sners.snowforecast.ForecastMainActivity;
-import com.sners.snowforecast.data.WeatherConstants;
-import com.sners.snowforecast.data.WeatherData;
-import com.sners.snowforecast.data.WeatherHelper;
 
 
 public class WeatherIconGallery {

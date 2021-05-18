@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.sners.snowforecast.ForecastMainActivity;
 import com.sners.snowforecast.R;
 import com.sners.snowforecast.data.IntervalData;
-import com.sners.snowforecast.view.HourlyPrecipChart;
 
 
 public class MinutelyPrecipChart extends com.sners.snowforecast.view.WeatherPrecipChart {

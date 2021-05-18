@@ -4,7 +4,7 @@ package com.sners.snowforecast;
 import android.icu.text.SimpleDateFormat;
 import android.util.Log;
 
-import com.sners.snowforecast.data.*;
+import com.sners.snowforecast.weather.WeatherConstants;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

@@ -1,5 +1,6 @@
 package com.sners.snowforecast.data
 
+import com.sners.snowforecast.weather.WeatherConstants
 import org.json.JSONException
 import org.json.JSONObject
 

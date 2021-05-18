@@ -1,5 +1,7 @@
-package com.sners.snowforecast.data
+package com.sners.snowforecast.weather
 
+import com.sners.snowforecast.data.Currently
+import com.sners.snowforecast.data.IntervalData
 import java.util.*
 import kotlin.math.roundToInt
 

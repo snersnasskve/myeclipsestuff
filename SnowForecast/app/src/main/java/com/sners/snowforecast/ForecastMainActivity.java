@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import com.sners.snowforecast.apicall.VisualCrossingReader;
 import com.sners.snowforecast.apicall.WeatherBitReader;
-import com.sners.snowforecast.data.*;
 import com.sners.snowforecast.location.ForecastLocation;
 import com.sners.snowforecast.location.WeatherLocation;
 
@@ -33,6 +32,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import androidx.fragment.app.FragmentActivity;
+import com.sners.snowforecast.weather.WeatherData;
 
 public class ForecastMainActivity extends FragmentActivity {
 

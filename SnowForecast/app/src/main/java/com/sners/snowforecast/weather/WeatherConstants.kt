@@ -1,4 +1,4 @@
-package com.sners.snowforecast.data
+package com.sners.snowforecast.weather
 
 object WeatherConstants {
     const val CLOUD_COVER = "cloudCover"

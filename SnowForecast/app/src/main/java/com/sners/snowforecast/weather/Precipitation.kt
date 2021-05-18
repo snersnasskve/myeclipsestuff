@@ -1,4 +1,6 @@
-package com.sners.snowforecast.data
+package com.sners.snowforecast.weather
+
+import com.sners.snowforecast.data.*
 
 //precipIntensity: A numerical value representing the average expected intensity (in inches of liquid water per hour)
 //	of precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all).
@@ -15,8 +17,9 @@ package com.sners.snowforecast.data
  * @param minutely minutely weather data
  * @param currently current weather data
  */
-class Precipitation(private val daily: Daily?,  private val hourly: Hourly?,
-                    private val minutely: Minutely?,  private val currently: Currently) {
+class Precipitation(private val daily: Daily?, private val hourly: Hourly?,
+                    private val minutely: Minutely?, private val currently: Currently
+) {
 
     /**
      *  @property weatherHelper Helper class with useful weather functions
