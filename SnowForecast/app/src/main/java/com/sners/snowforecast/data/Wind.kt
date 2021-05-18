@@ -1,6 +1,7 @@
 package com.sners.snowforecast.data
 
 import java.util.*
+import kotlin.math.roundToInt
 
 /**
  * Everything about wind
@@ -42,7 +43,7 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
     private val windDir: Float
         get() {
 
-            return if (currently.windDir >= 0) currently.windDir.toFloat()
+            return if (currently.windDir >= 0) currently.windDir
             else hourlyData[0].windDir
         }
 
@@ -55,8 +56,8 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
         //return "$windSpeed mph (gusts: $windGusts) ${windDirToString(windDir)}"
         return String.format(
             "%.1f mph (gusts %.1f) %.0f - %s",
-            windSpeed,
-            windGusts,
+            getSpeedMph(),
+            getGustsMph(),
             windDir,
             windDirToString(windDir)
         )
@@ -71,19 +72,19 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
     }
 
     /**
-     * Get the wind speed as Beaufort
-     * @return Wind converted to Beaufort number
+     * Get the wind gusts as mph
+     * @return Gusts converted to mph
      */
-    fun getSpeedBeaufort(): Float {
-        return windSpeedToBeaufort(getSpeedMph()).toFloat()
+    private fun getGustsMph(): Double {
+        return windGusts * WeatherConstants.KM_TO_MPH_CONVERSION
     }
 
     /**
-     * Get the wind speed as Beaufort string
-     * @return Wind converted to Beaufort string
+     * Get the wind speed as Beaufort
+     * @return Wind converted to Beaufort number
      */
-    fun getSpeedBeaufortString(): String {
-        return "${getSpeedBeaufort()}"
+    fun getSpeedBeaufort(): Int {
+        return windSpeedToBeaufort(getSpeedMph())
     }
 
     /**
@@ -92,7 +93,6 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      * @return Wind converted to Beaufort number
      */
     private fun windSpeedToBeaufort(windSpeed: Double): Int {
-        //	Wind speed is meters per second
 
         val beaufortValue = beaufortScaleUppers.indexOfFirst({ windSpeed < it })
         return beaufortValue
@@ -104,10 +104,10 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      * @param windDir Wind direction degrees
      * @return A string representing wind direction
      */
-    fun windDirToString(windDir: Float): String {
+    private fun windDirToString(windDir: Float): String {
 
         val directionPointer = Math.round(windDir / 45).toFloat()
-        val valA = Math.round(directionPointer / 2f)
+        val valA = (directionPointer / 2f).roundToInt()
         val valB = Math.abs(valA - 1)
 
         if (Math.round(directionPointer) % 2 == 0) {
