@@ -3,7 +3,7 @@ package com.sners.snowforecast.data
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A class to abstract the data from the view
@@ -28,7 +28,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     var minutely: Minutely? = null
         private set
 
-    val minutelyData : ArrayList<IntervalData>
+    val minutelyData: ArrayList<IntervalData>
         get() = minutely!!.minutelyData
 
     /**
@@ -37,7 +37,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     var hourly: Hourly? = null
         private set
 
-    val hourlyData : ArrayList<IntervalData>
+    val hourlyData: ArrayList<IntervalData>
         get() = hourly!!.hourlyData
 
     /**
@@ -46,11 +46,10 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     private var daily: Daily? = null
 
 
-
     /**
      * @property alerts Info about alerts
      */
-     var alerts: Alert? = null
+    var alerts: Alert? = null
         private set
 
     val alertsData: ArrayList<AlertData>?
@@ -59,7 +58,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     /**
      * @property wind Wind object - with all the wind info
      */
-     var wind: Wind? = null
+    var wind: Wind? = null
 
     /**
      * @property precipitation Precipitation with all the precipitation info
@@ -80,7 +79,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     /**
      * @property headlineIcon name of weather icon to use
      */
-     var headlineIcon: String? = null
+    var headlineIcon: String? = null
         private set
 
     /**
@@ -92,7 +91,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
         setUpDataArrays(rawMinutely, rawHourly)
 
         //	Replace with night time icon if available
-        headlineIcon = (currently?.icon ?: "").replace("-", "_").toLowerCase()
+        headlineIcon = (currently?.icon ?: "").replace("-", "_").toLowerCase(Locale.ROOT)
         if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
             headlineIcon = if (headlineIcon!!.contains("_day") && isDayTime()) {
                 headlineIcon.toString() + "_day"
@@ -106,6 +105,11 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
 
     //  This stuff changes with every api
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Set up data arrays
+     * @param rawMinutely Minutely data as received from the api
+     * @param rawDaily Daily data as received from the api
+     */
     private fun setUpDataArrays(rawMinutely: String?, rawDaily: String?) {
         //  Minutely is independent
         val jsonObjMinutely: JSONObject?
@@ -120,7 +124,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
         try {
             val jsonObjDaily = JSONObject(rawDaily ?: "")
             val dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY)
-            // There must be a oneliner way of doing this, but I don't know it
+            //  Unpack the hourly data from the within the daily Json ana make a separate array
             val hourlyTimelineArray = JSONArray()
             for (dCounter in 0 until dailyTimelineArray.length()) {
                 val thisDay = dailyTimelineArray.getJSONObject(dCounter)
@@ -143,7 +147,10 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Is Day Time
+     * @return boolean
+     */
     fun isDayTime(): Boolean {
         return currently!!.isDayTime
     }
@@ -161,7 +168,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @return minutes til sunset
      */
     fun getTimeTilSunset(): Long {
-      //	If it's night this will be negative
+        //	If it's night this will be negative
         minutesTilSunset = currently!!.timeTilSunset
         if (minutesTilSunset < 0) {
             minutesTilSunset = 0
@@ -169,7 +176,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
         return minutesTilSunset
     }
 
-     /**
+    /**
      * Data Contains Weather word
      * @return bool indicating whether it contains the word
      */

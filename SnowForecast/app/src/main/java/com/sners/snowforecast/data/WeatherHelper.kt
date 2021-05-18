@@ -1,7 +1,5 @@
 package com.sners.snowforecast.data
 
-import java.util.*
-
 /**
  * A Helper class with useful conversions and other functions in general use for weather
  */
