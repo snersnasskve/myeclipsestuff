@@ -10,7 +10,9 @@ import androidx.core.app.ActivityCompat
 import java.io.IOException
 
 /**
- * A class to get location
+ * Location class
+ * android:permission ACCESS_COARSE_LOCATION	cell tower or wifi
+ * android:permission ACCESS_FINE_LOCATION		cell tower or wifi or GPS
  *
  * @param locationMgr Location manager from Android
  * @param mContext Application context.
@@ -30,25 +32,15 @@ class ForecastLocation(var locationMgr: LocationManager, var mContext: Context) 
     /**
      * @property mLatitude Latitude
      */
-    private var mLatitude = 0.0
-    fun getmLongitude(): Double {
-        return mLongitude
-    }
-
-    fun setmLongitude(mLongitude: Double) {
-        this.mLongitude = mLongitude
-    }
+    var mLatitude = 0.0
+    private set
 
     /**
      * @property mLongitude Longitude
      */
-    private var mLongitude = 0.0
-    fun getmLatitude(): Double {
-        return mLatitude
-    }
-    fun setmLatitude(mLatitude: Double) {
-        this.mLatitude = mLatitude
-    }
+    var mLongitude = 0.0
+        private set
+
 
     /**
      * @property isValidLocation Is Valid Location bool
@@ -56,17 +48,12 @@ class ForecastLocation(var locationMgr: LocationManager, var mContext: Context) 
     var isValidLocation = false
 
 
-
-
-
-
-    /*
-     * Location class
-     * android:permission ACCESS_COARSE_LOCATION	cell tower or wifi
-     * android:permission ACCESS_FINE_LOCATION		cell tower or wifi or GPS
-     *
+    /**
+     * Best last known location
+     * @return Current location or null if no valid location information found
      */
     fun bestLastKnownLocation(): Location? {
+
         var bestResult: Location? = null
         var bestAccuracy = Float.MAX_VALUE
         var bestTime = Long.MIN_VALUE
@@ -106,18 +93,23 @@ class ForecastLocation(var locationMgr: LocationManager, var mContext: Context) 
 
         // Return best reading or null
         return if (bestAccuracy > minAccuracy || bestTime < minTime || location == null) {
-            setmLatitude(0.0)
-            setmLongitude(0.0)
+            mLatitude = 0.0
+            mLongitude = 0.0
             null
         } else {
-            setmLatitude(bestResult!!.latitude)
-            setmLongitude(bestResult.longitude)
+            mLatitude = bestResult!!.latitude
+            mLongitude = bestResult.longitude
             bestResult
         }
     }
 
 
-    fun locationFromPlace(locationName: String?, context: Context?) {
+    /**
+     * Location from Place
+     * @param locationName A string containing - hopefully - location information
+     * @param context Application context
+     */
+    fun locationFromPlace(locationName: String?, context: Context) {
 
         isValidLocation = false
         val myLocation = Geocoder(context)
@@ -125,8 +117,8 @@ class ForecastLocation(var locationMgr: LocationManager, var mContext: Context) 
         try {
             val addressList = myLocation.getFromLocationName(locationName, maxResults)
             if (!addressList.isEmpty() && addressList[0].hasLatitude() && addressList[0].hasLongitude()) {
-                setmLatitude(addressList[0].latitude)
-                setmLongitude(addressList[0].longitude)
+                mLatitude = addressList[0].latitude
+                mLongitude = addressList[0].longitude
                 isValidLocation = true
             }
         } catch (e: IOException) {

@@ -200,8 +200,8 @@ public class ForecastMainActivity extends FragmentActivity {
             //	Get location from text on screen
             forecastLocation.locationFromPlace(etLocationPlaceName.getText().toString(), getApplication());
             if (forecastLocation.isValidLocation()) {
-                String locationString = locationFormat.format(forecastLocation.getmLatitude()) + "  :  " +
-                        locationFormat.format(forecastLocation.getmLongitude());
+                String locationString = locationFormat.format(forecastLocation.getMLatitude()) + "  :  " +
+                        locationFormat.format(forecastLocation.getMLongitude());
                 tvLocation.setText(locationString);
                 statusString = "Location for address found";
                 success = true;
@@ -229,7 +229,7 @@ public class ForecastMainActivity extends FragmentActivity {
             Toast.makeText(getApplicationContext(), "Show forecast for this address",
                     Toast.LENGTH_SHORT).show();
             Log.i(TAG, "forecastForAddress - Leaving main thread");
-            getWeatherData(forecastLocation.getmLatitude(), forecastLocation.getmLongitude());
+            getWeatherData(forecastLocation.getMLatitude(), forecastLocation.getMLongitude());
         }
 
     }

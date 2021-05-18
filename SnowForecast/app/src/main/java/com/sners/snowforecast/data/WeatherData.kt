@@ -88,6 +88,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     private var minutesTilSunset: Long = -1
 
     init {
+
         setUpDataArrays(rawMinutely, rawHourly)
 
         //	Replace with night time icon if available
@@ -111,6 +112,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @param rawDaily Daily data as received from the api
      */
     private fun setUpDataArrays(rawMinutely: String?, rawDaily: String?) {
+
         //  Minutely is independent
         val jsonObjMinutely: JSONObject?
         try {
@@ -152,6 +154,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @return boolean
      */
     fun isDayTime(): Boolean {
+
         return currently!!.isDayTime
     }
 
@@ -160,6 +163,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @return formatted time till sunset
      */
     fun getTimeTilSunsetString(): String {
+
         return weatherHelper.formatTime(getTimeTilSunset())
     }
 
@@ -168,6 +172,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @return minutes til sunset
      */
     fun getTimeTilSunset(): Long {
+
         //	If it's night this will be negative
         minutesTilSunset = currently!!.timeTilSunset
         if (minutesTilSunset < 0) {
@@ -181,6 +186,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @return bool indicating whether it contains the word
      */
     fun dataContainsWeatherword(weatherWord: String?, timeKeyWord: String): Boolean {
+
         var wordFound = false
         if (timeKeyWord == WeatherConstants.MINUTELY) {
             wordFound = minutely!!.minutelyData.any { it.weatherWords.contains(weatherWord) }
@@ -196,6 +202,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @return A string containing temperature information
      */
     fun getTemperatureSummary(): String {
+
         return String.format(
             "F/L %.1f%s ( %.1f : %.1f )",
             currently!!.tempFeelsLike,
