@@ -107,7 +107,10 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      * @return A string representing wind direction
      */
     private fun windDirToString(windDir: Float): String {
-
+        if (windDir == 0f) {
+            //  If we have invalid data it comes through as 0 - then we don't want a direction
+            return "{$WeatherConstants.NORTH}(?)"
+        }
         val directionPointer = Math.round(windDir / 45).toFloat()
         val valA = (directionPointer / 2f).roundToInt()
         val valB = Math.abs(valA - 1)

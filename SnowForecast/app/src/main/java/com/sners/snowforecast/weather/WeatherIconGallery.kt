@@ -65,6 +65,10 @@ class WeatherIconGallery {
         return isItOK
     }
 
+    /**
+     * OK to go hiking
+     * @return bool indicating whether it contains the word
+     */
     private fun okToGoHiking(): Boolean {
         var isItOK = false
         if (ForecastMainActivity.weatherData.isDayTime() &&
@@ -81,6 +85,10 @@ class WeatherIconGallery {
 
     //  Low prob of rain as well
     //  Next 4 hours
+    /**
+     * OK to use umbrella
+     * @return bool indicating whether it contains the word
+     */
     private fun okToUseUmbrella(): Boolean {
         var isItOK = false
         if (ForecastMainActivity.weatherData.dataContainsWeatherword(
@@ -93,6 +101,10 @@ class WeatherIconGallery {
         return isItOK
     }
 
+    /**
+     * OK to snow
+     * @return bool indicating whether it contains the word
+     */
     private fun okToSnow(): Boolean {
         var isItOK = false
         if (ForecastMainActivity.weatherData.dataContainsWeatherword(
@@ -113,6 +125,10 @@ class WeatherIconGallery {
     //  After lunch time - what time is lunch time
     //      or including lunch
     //  Look out for guti = rain very low but not
+    /**
+     * OK to have braai
+     * @return bool indicating whether it contains the word
+     */
     private fun okToBraai(): Boolean {
         var isItOK = false
         // if it is not going to rain in the next hour
@@ -127,6 +143,10 @@ class WeatherIconGallery {
     }
 
     //  This should take UV cover into account
+    /**
+     * OK to wear a hat
+     * @return bool indicating whether it contains the word
+     */
     private fun okToWearHat(): Boolean {
         var isItOK = false
         val temperature = ForecastMainActivity.weatherData.currently!!.temperatureNum
@@ -137,6 +157,10 @@ class WeatherIconGallery {
     }
 
     //  Don't want to fly kite if it is raining
+    /**
+     * OK to fly a kite
+     * @return bool indicating whether it contains the word
+     */
     private fun okToFlyKite(): Boolean {
         var isItOK = false
         val windSpeed = ForecastMainActivity.weatherData.wind!!.getSpeedBeaufort().toFloat()
@@ -148,6 +172,10 @@ class WeatherIconGallery {
         return isItOK
     }
 
+    /**
+     * Alerts found
+     * @return bool indicating whether it contains the word
+     */
     private fun alertsFound(): Boolean {
         var isItOK = false
         if (null != ForecastMainActivity.weatherData.alerts) {
