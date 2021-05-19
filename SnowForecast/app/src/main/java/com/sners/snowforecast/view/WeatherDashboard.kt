@@ -12,6 +12,7 @@ import android.widget.*
 import com.sners.snowforecast.ForecastMainActivity
 import com.sners.snowforecast.R
 import com.sners.snowforecast.weather.WeatherIconGallery
+import kotlin.math.roundToInt
 
 /**
  * A class representing the Dashboard view
@@ -21,57 +22,57 @@ class WeatherDashboard : Activity() {
     /**
      * @property ivDashSummary Weather Summary - image view
      */
-    var ivDashSummary: ImageView? = null
+    private var ivDashSummary: ImageView? = null
 
     /**
      * @property ivDashSummary Weather Summary - text
      */
-    var tvDashSummary: TextView? = null
+    private var tvDashSummary: TextView? = null
 
     /**
      * @property tvDashPrecip Precipitation
      */
-    var tvDashPrecip: TextView? = null
+    private var tvDashPrecip: TextView? = null
 
     /**
      * @property tvDashTemperature Temperature
      */
-    var tvDashTemperature: TextView? = null
+    private var tvDashTemperature: TextView? = null
 
     /**
      * @property tvDashWind Wind speed
      */
-    var tvDashWind: TextView? = null
+    private var tvDashWind: TextView? = null
 
     /**
      * @property tvDashTimeTilSunset Time til sunset
      */
-    var tvDashTimeTilSunset: TextView? = null
+    private var tvDashTimeTilSunset: TextView? = null
 
     /**
      * @property tvDashTimeTilPrecip Time til next precipitation
      */
-    var tvDashTimeTilPrecip: TextView? = null
+    private var tvDashTimeTilPrecip: TextView? = null
 
     /**
      * @property hsvDashActivityIcons Activity icons scroll view
      */
-    var hsvDashActivityIcons: HorizontalScrollView? = null
+    private var hsvDashActivityIcons: HorizontalScrollView? = null
 
     /**
      * @property llDashIcontainer Linear Layout for the activity icon view
      */
-    var llDashIcontainer: LinearLayout? = null
+    private var llDashIcontainer: LinearLayout? = null
 
     /**
      * @property llDashDashboard Linear Layout for the Dashboard - needed for animations
      */
-    var llDashDashboard: LinearLayout? = null
+    private var llDashDashboard: LinearLayout? = null
 
     /**
      * @property weatherData Weather data object
      */
-    var weatherData = ForecastMainActivity.weatherData
+    private var weatherData = ForecastMainActivity.weatherData
 
     /**
      * On Create - Override
@@ -151,7 +152,7 @@ class WeatherDashboard : Activity() {
 
         val tempString = weatherData.currently!!.temperature
         tvDashTemperature!!.text = tempString
-        val temperatureNum = Math.round(weatherData.currently!!.temperatureNum)
+        val temperatureNum = weatherData.currently!!.temperatureNum.roundToInt()
         val tempColour = when (temperatureNum) {
             in Int.MIN_VALUE..0 -> Color.GRAY
             in 0..10 -> Color.BLUE
