@@ -47,6 +47,17 @@ class WeatherIconGallery {
     //	Weather Activity Checkers			 //
     ///////////////////////////////////////////
     //https://blog.metservice.com/washingweather
+    /*
+    rain - low probability
+solar radiation - the higher the better
+humidity - the lower the better - maybe below 60
+--
+Dew point less than temp
+Cloud cover less than 60
+Temp greater than 5
+Hours till sunset more than 3
+Wind less than gale unless u wanna share ur bookies with the neighbours
+     */
     /**
      * OK to hang washing
      * @return bool indicating whether it contains the word

@@ -22,13 +22,11 @@ class MinutelyData(jsonMinutely: JSONObject) : IntervalData() {
             if (precipProbability > 100) {
                 precipProbability = 100f
             }
-            if (precipProbability > 0) {
-                val snow = jsonMinutely.getDouble(WeatherConstants.PRECIP_TYPE_SNOW).toFloat()
-                if (snow > 0) {
-                    weatherWords.add(WeatherConstants.PRECIP_TYPE_SNOW)
-                } else {
-                    weatherWords.add(WeatherConstants.PRECIP_TYPE_RAIN)
-                }
+            val snow = jsonMinutely.getDouble(WeatherConstants.PRECIP_TYPE_SNOW).toFloat()
+            if (snow > 0) {
+                weatherWords.add(WeatherConstants.PRECIP_TYPE_SNOW)
+            } else {
+                weatherWords.add(WeatherConstants.PRECIP_TYPE_RAIN)
             }
         } catch (e: JSONException) {
             e.printStackTrace()
