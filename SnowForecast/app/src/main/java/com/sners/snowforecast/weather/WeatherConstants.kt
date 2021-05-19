@@ -17,6 +17,8 @@ object WeatherConstants {
     const val MM_HR = " mm/hr"
     const val PERCENT = " %"
     const val HUMIDITY = "humidity"
+    const val SOLAR_RADIATION = "solarradiation"
+    const val SEVERE_RISK = "severerisk"
 
     //  Time keywords
     const val MINUTELY = "minutely"

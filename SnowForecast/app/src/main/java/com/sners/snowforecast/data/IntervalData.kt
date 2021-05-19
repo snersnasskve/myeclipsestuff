@@ -1,5 +1,6 @@
 package com.sners.snowforecast.data
 
+import com.sners.snowforecast.weather.WeatherConstants
 import org.json.JSONObject
 import org.json.JSONException
 import java.util.ArrayList
@@ -58,11 +59,55 @@ abstract class IntervalData {
     var tempFeelsLike = 0f
         protected set
 
+
     /**
      *  @property weatherWords Weather words found in the json
      */
     var weatherWords = ArrayList<String>()
         protected set
+
+    /**
+     *  @property humidity Humidity Percent
+     */
+    var humidity = -1f
+
+    /**
+     *  @property solarradiation Solar Radiation
+     */
+    var solarradiation  = -1f
+
+    /**
+     *  @property severerisk Percentage likelihood of extreme weather
+     */
+    var severerisk  = -1f
+
+    /**
+     *  Read Humidity From
+     *  @param jsonData Json Object
+     *  @return humidity value
+     */
+    fun readHumidityFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.HUMIDITY, jsonData) ?: -1.0f
+    }
+
+    /**
+     *  Read Solar Radiation From
+     *  @param jsonData Json Object
+     *  @return solar radiation value
+     */
+    fun readSolarRadiationFrom(jsonData: JSONObject) : Float {
+    return jsonFloatValueFor(WeatherConstants.SOLAR_RADIATION, jsonData) ?: -1.0f
+}
+
+
+    /**
+     *  Read Severe Risk
+     *  @param jsonData Json Object
+     *  @return severe risk value
+     */
+    fun readSeverRiskFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.SEVERE_RISK, jsonData) ?: -1.0f
+    }
 
     /**
      *  Json value for
