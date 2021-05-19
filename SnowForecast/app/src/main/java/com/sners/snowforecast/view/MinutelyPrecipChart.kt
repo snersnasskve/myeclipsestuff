@@ -20,7 +20,7 @@ class MinutelyPrecipChart : WeatherPrecipChart() {
         tvPcIntensity = findViewById<View>(R.id.tvPcIntensity) as TextView
         precipPrefix = "Minutely Precip: "
         val minutely = ForecastMainActivity.weatherData.minutelyData
-        var maxPrecip: Float? = ForecastMainActivity.weatherData.minutely!!.getMaxPrecip()
+        var maxPrecip: Float = ForecastMainActivity.weatherData.minutely!!.getMaxPrecip()
         maxPrecip = setTitleAndColours(maxPrecip)
         drawPrecipGraph(minutely, maxPrecip, numPointsToPlot)
         drawProbabilityGraph(minutely, numPointsToPlot)

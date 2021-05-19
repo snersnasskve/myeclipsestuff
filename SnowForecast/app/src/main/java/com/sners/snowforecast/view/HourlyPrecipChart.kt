@@ -20,7 +20,7 @@ class HourlyPrecipChart : WeatherPrecipChart() {
         tvPcIntensity = findViewById<View>(R.id.tvPcIntensity) as TextView
         precipPrefix = "Hourly Precip: "
         val hourly = ForecastMainActivity.weatherData.hourlyData
-        var maxPrecip: Float? = ForecastMainActivity.weatherData.hourly!!.getMaxPrecip()
+        var maxPrecip: Float = ForecastMainActivity.weatherData.hourly!!.getMaxPrecip()
         maxPrecip = setTitleAndColours(maxPrecip)
         drawPrecipGraph(hourly, maxPrecip, numPointsToPlot)
         drawProbabilityGraph(hourly, numPointsToPlot)
