@@ -64,10 +64,10 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToHangWashing(): Boolean {
         var isItOK = false
-        if (ForecastMainActivity.weatherData.isDayTime() &&
-            ForecastMainActivity.weatherData.getTimeTilSunset() > 60 &&
-            ForecastMainActivity.weatherData.currently!!.temperatureNum > 5 &&
-            !ForecastMainActivity.weatherData.dataContainsWeatherword(
+        if (weatherData.isDayTime() &&
+            weatherData.getTimeTilSunset() > 60 &&
+            weatherData.currently!!.temperatureNum > 5 &&
+            !weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY
             )
         ) {
@@ -82,12 +82,12 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToGoHiking(): Boolean {
         var isItOK = false
-        if (ForecastMainActivity.weatherData.isDayTime() &&
-            !ForecastMainActivity.weatherData.dataContainsWeatherword(
+        if (weatherData.isDayTime() &&
+            !weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_RAIN,
                 WeatherConstants.HOURLY
             ) &&
-            ForecastMainActivity.weatherData.getTimeTilSunset() > 120
+            weatherData.getTimeTilSunset() > 120
         ) {
             isItOK = true
         }
@@ -102,7 +102,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToUseUmbrella(): Boolean {
         var isItOK = false
-        if (ForecastMainActivity.weatherData.dataContainsWeatherword(
+        if (weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_RAIN,
                 WeatherConstants.MINUTELY
             )
@@ -118,11 +118,11 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToSnow(): Boolean {
         var isItOK = false
-        if (ForecastMainActivity.weatherData.dataContainsWeatherword(
+        if (weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_SNOW,
                 WeatherConstants.MINUTELY
             ) ||
-            ForecastMainActivity.weatherData.dataContainsWeatherword(
+            weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_SNOW,
                 WeatherConstants.HOURLY
             )
@@ -143,7 +143,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     private fun okToBraai(): Boolean {
         var isItOK = false
         // if it is not going to rain in the next hour
-        if (!ForecastMainActivity.weatherData.dataContainsWeatherword(
+        if (!weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_RAIN,
                 WeatherConstants.MINUTELY
             )
@@ -160,8 +160,8 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToWearHat(): Boolean {
         var isItOK = false
-        val temperature = ForecastMainActivity.weatherData.currently!!.temperatureNum
-        if (ForecastMainActivity.weatherData.isDayTime() && temperature > 20) {
+        val temperature = weatherData.currently!!.temperatureNum
+        if (weatherData.isDayTime() && temperature > 20) {
             isItOK = true
         }
         return isItOK
@@ -174,9 +174,9 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToFlyKite(): Boolean {
         var isItOK = false
-        val windSpeed = ForecastMainActivity.weatherData.wind!!.getSpeedBeaufort().toFloat()
-        if (ForecastMainActivity.weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
-            ForecastMainActivity.weatherData.currently!!.temperatureNum > 5
+        val windSpeed = weatherData.wind!!.getSpeedBeaufort().toFloat()
+        if (weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
+            weatherData.currently!!.temperatureNum > 5
         ) {
             isItOK = true
         }
@@ -189,7 +189,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun alertsFound(): Boolean {
         var isItOK = false
-        if (null != ForecastMainActivity.weatherData.alerts) {
+        if (null != weatherData.alerts) {
             isItOK = true
         }
         return isItOK
