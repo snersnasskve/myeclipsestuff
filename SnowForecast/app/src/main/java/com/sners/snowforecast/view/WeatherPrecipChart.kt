@@ -6,21 +6,65 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sners.snowforecast.data.IntervalData
 
+/**
+ * A class representing the Graph views
+ */
 open class WeatherPrecipChart : Activity() {
+    /**
+     * @property ivPcIntensity Intensity image graph view
+     */
     var ivPcIntensity: ImageView? = null
+
+    /**
+     * @property ivPcProbability Probability image graph view
+     */
     var ivPcProbability: ImageView? = null
+
+    /**
+     * @property tvPcIntensity Intensity description text view
+     */
     var tvPcIntensity: TextView? = null
+
+    /**
+     * The values below are the cutoff points for different graph colours
+     */
     val precipNone = .001f
     val precipVeryLight = 0.9f
     val precipLight = 2.5f
     val precipModerate = 6.25f
     val precipHeavy = 25.0f
     var mGraphMargin = 5
+
+    /**
+     * @property yAxis The height of the y axis
+     */
     var yAxis = 40
+
+    /**
+     * @property mAxesPaint Paint colour for axes
+     */
     private var mAxesPaint: Paint? = null
+
+    /**
+     * @property mChartPaint Paint colour for chart bars
+     */
     private var mChartPaint: Paint? = null
+
+    /**
+     * @property mDashPaint Paint colour for dashed line
+     */
     private var mDashPaint: Paint? = null
+
+    /**
+     * @property precipPrefix Descriptor or precip intensity
+     */
     protected var precipPrefix: String? = null
+
+    /**
+     * Draw Probability graph
+     * @param intData Interval Data
+     * @param numPointsToPlot Number of points to plot
+     */
     protected fun drawProbabilityGraph(intData: ArrayList<IntervalData>, numPointsToPlot: Int) {
         var graphWidth = intData.size
         if (numPointsToPlot < graphWidth) {
@@ -60,6 +104,11 @@ open class WeatherPrecipChart : Activity() {
         ivPcProbability!!.setImageBitmap(bmProb)
     }
 
+    /**
+     * Draw Precipitation graph
+     * @param intData Interval Data
+     * @param numPointsToPlot Number of points to plot
+     */
     protected fun drawPrecipGraph(
         intData: ArrayList<IntervalData>,
         maxPrecip: Float, numPointsToPlot: Int
@@ -102,6 +151,11 @@ open class WeatherPrecipChart : Activity() {
     }
 
     //	Format title and set colours
+    /**
+     * Set Title and Colours
+     * @param maxPrecip Maximum precipitation
+     * @return New maximimum precipitation
+     */
     protected fun setTitleAndColours(maxPrecip: Float): Float {
         //precipIntensity: A numerical value representing the average expected intensity (in inches of liquid water per hour)
         //	of precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all).
@@ -142,10 +196,14 @@ open class WeatherPrecipChart : Activity() {
             chartColour = -0x99ff9a //	dark purple
         }
         setGraphColours(chartColour)
-        formatIntensityText(descrip, chartColour)
+        formatIntensityText(descrip)
         return maxPrecip
     }
 
+    /**
+     * Set Graph colours
+     * @param chartColour Colour to draw the bars
+     */
     private fun setGraphColours(chartColour: Int) {
         mAxesPaint = Paint()
         mAxesPaint!!.color = Color.BLACK
@@ -158,7 +216,11 @@ open class WeatherPrecipChart : Activity() {
         mDashPaint!!.strokeWidth = 1f
     }
 
-    private fun formatIntensityText(descrip: String, chartColour: Int) {
+    /**
+     * Format intensity
+     * @param descrip Description text
+     */
+    private fun formatIntensityText(descrip: String) {
 
         //	Not much happening here right now,
         tvPcIntensity!!.text = descrip

@@ -9,9 +9,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.sners.snowforecast.ForecastMainActivity
 import com.sners.snowforecast.R
+import com.sners.snowforecast.weather.WeatherConstants
 
+/**
+ * A class representing the Minutely graphs view
+ */
 class MinutelyPrecipChart : WeatherPrecipChart() {
-    val numPointsToPlot = 60
+
+    /**
+     * On Create - Override
+     * @param savedInstanceState Saved instance state
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.precip_chart)
@@ -22,10 +30,14 @@ class MinutelyPrecipChart : WeatherPrecipChart() {
         val minutely = ForecastMainActivity.weatherData.minutelyData
         var maxPrecip: Float = ForecastMainActivity.weatherData.minutely!!.getMaxPrecip()
         maxPrecip = setTitleAndColours(maxPrecip)
-        drawPrecipGraph(minutely, maxPrecip, numPointsToPlot)
-        drawProbabilityGraph(minutely, numPointsToPlot)
+        drawPrecipGraph(minutely, maxPrecip, WeatherConstants.MINUTELY_NUM_POINTS_TO_PLOT)
+        drawProbabilityGraph(minutely, WeatherConstants.MINUTELY_NUM_POINTS_TO_PLOT)
     }
 
+    /**
+     * Display Current Weather
+     * @param v View representing the current view - comes in from the layout
+     */
     fun displayDashboard(v: View?) {
         //Animation animExitLeft = AnimationUtils.makeOutAnimation(this, true);
         //llCurrently.startAnimation(animExitLeft);

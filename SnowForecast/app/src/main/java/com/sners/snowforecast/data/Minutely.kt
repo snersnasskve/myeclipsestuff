@@ -50,16 +50,7 @@ class Minutely(minutelyArray: JSONArray) {
                 val minuteObj = minutelyArray.getJSONObject(intervalCounter)
                 val dataInst = MinutelyData(minuteObj)
                 minutelyData.add(dataInst)
-                //  I need to know what I need to know but I don't know what I need to know
-//                Integer weatherCode = dataInst.getWeatherCode();
-//                weatherCodes.add(weatherCode);
-//                if (dataInst.precipProbability > 0) {
-//                    precipCodes.add(dataInst.getPrecipType());
-//
-//                    if (weatherHelper.isWeatherCodeSnowType(weatherCode)) {
-//                        weatherCodes.add(weatherHelper.codeForWeatherWord("Snow")); //	 for snow
-//                    }
-//                }
+
             }
         } catch (e: JSONException) {
             // TODO Auto-generated catch block

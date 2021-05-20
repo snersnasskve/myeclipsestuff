@@ -50,4 +50,9 @@ object WeatherConstants {
     const val KM_TO_MPH_CONVERSION = 0.6213712
     const val CONDITIONS = "conditions"
     const val ICON = "icon"
+
+    //  Graph constants
+    const val HOURLY_NUM_POINTS_TO_PLOT = 48
+    const val MINUTELY_NUM_POINTS_TO_PLOT = 60
+
 }

@@ -1,5 +1,6 @@
 package com.sners.snowforecast.data
 
+import com.sners.snowforecast.weather.WeatherConstants
 import org.json.JSONArray
 import org.json.JSONException
 import java.util.*
@@ -15,11 +16,6 @@ class Hourly(hourlyArray: JSONArray) {
      *  @property hourlyData Array of data objects
      */
     var hourlyData: ArrayList<IntervalData>
-
-    /**
-     *  @property numPointsToPlot Number of points to plot in hour graphs
-     */
-    val numPointsToPlot = 48
 
     /**
      *  @property summary Weather summary for the hour
@@ -43,7 +39,7 @@ class Hourly(hourlyArray: JSONArray) {
     fun getMaxPrecip(): Float {
         if (maxPrecip < 0.0f) {
             //	only calculate it once
-            for (hourCounter in 0..numPointsToPlot - 1) {
+            for (hourCounter in 0..WeatherConstants.HOURLY_NUM_POINTS_TO_PLOT - 1) {
                 val precip = hourlyData[hourCounter].precipIntensity
                 if (precip > maxPrecip) {
                     maxPrecip = precip

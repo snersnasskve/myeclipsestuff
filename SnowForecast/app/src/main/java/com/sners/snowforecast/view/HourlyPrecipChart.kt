@@ -9,9 +9,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.sners.snowforecast.ForecastMainActivity
 import com.sners.snowforecast.R
+import com.sners.snowforecast.weather.WeatherConstants
 
+/**
+ * A class representing the Hourly graphs view
+ */
 class HourlyPrecipChart : WeatherPrecipChart() {
-    val numPointsToPlot = 48
+
+    /**
+     * On Create - Override
+     * @param savedInstanceState Saved instance state
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.precip_chart)
@@ -22,10 +30,14 @@ class HourlyPrecipChart : WeatherPrecipChart() {
         val hourly = ForecastMainActivity.weatherData.hourlyData
         var maxPrecip: Float = ForecastMainActivity.weatherData.hourly!!.getMaxPrecip()
         maxPrecip = setTitleAndColours(maxPrecip)
-        drawPrecipGraph(hourly, maxPrecip, numPointsToPlot)
-        drawProbabilityGraph(hourly, numPointsToPlot)
+        drawPrecipGraph(hourly, maxPrecip, WeatherConstants.HOURLY_NUM_POINTS_TO_PLOT)
+        drawProbabilityGraph(hourly, WeatherConstants.HOURLY_NUM_POINTS_TO_PLOT)
     }
 
+    /**
+     * Display Current Weather
+     * @param v View representing the current view - comes in from the layout
+     */
     fun displayDashboard(v: View?) {
         //Animation animExitLeft = AnimationUtils.makeOutAnimation(this, true);
         //llCurrently.startAnimation(animExitLeft);
