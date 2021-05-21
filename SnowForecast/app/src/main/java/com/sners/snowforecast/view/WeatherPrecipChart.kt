@@ -5,6 +5,7 @@ import android.graphics.*
 import android.widget.ImageView
 import android.widget.TextView
 import com.sners.snowforecast.data.IntervalData
+import com.sners.snowforecast.weather.*
 
 /**
  * A class representing the Graph views
@@ -28,11 +29,21 @@ open class WeatherPrecipChart : Activity() {
     /**
      * The values below are the cutoff points for different graph colours
      */
+    enum class precipIntensities(max: Float) {
+        None(0.001f),
+        VeryLight(0.9f),
+        Light(2.5f),
+        Moderate(6.25f),
+        Heavy(25.0f)
+    }
     val precipNone = .001f
     val precipVeryLight = 0.9f
     val precipLight = 2.5f
     val precipModerate = 6.25f
     val precipHeavy = 25.0f
+    /**
+     * @property mGraphMargin The margin around the edge of the graph
+     */
     var mGraphMargin = 5
 
     /**
@@ -164,40 +175,51 @@ open class WeatherPrecipChart : Activity() {
         //	0.017 in./hr. corresponds to light precipitation,
         //	0.1 in./hr. corresponds to moderate precipitation,
         //	and 0.4 in./hr. corresponds to heavy precipitation.
-        var maxPrecip = maxPrecip
-        var descrip = ""
+        val precipLevel : PrecipLevels
+//        var maxPrecip = maxPrecip
+//        var descrip = ""
         var chartColour = Color.BLUE
-        if (maxPrecip < precipNone) {
-            descrip = precipPrefix + "None"
-            chartColour = -0x1000000 //	white
-            maxPrecip = 0.1f
-        } else if (maxPrecip <= precipVeryLight) {
+        if (maxPrecip < PrecipNone.cutoff) {
+            precipLevel = PrecipNone
+//            descrip = precipPrefix + "None"
+//            chartColour = -0x1000000 //	white
+//            maxPrecip = 0.1f
+        } else if (maxPrecip <= PrecipVeryLight.cutoff) {
+            precipLevel = PrecipVeryLight
             //	.002 inches = .0508 mm
-            descrip = precipPrefix + "Very Light"
-            chartColour = -0x3f3f40 //	light grey
-            maxPrecip = maxPrecip * 5
-        } else if (maxPrecip <= precipLight) {
+//            descrip = precipPrefix + "Very Light"
+//            chartColour = -0x3f3f40 //	light grey
+//            maxPrecip = maxPrecip * 5
+        } else if (maxPrecip <= PrecipLight.cutoff) {
+            precipLevel = PrecipLight
+
             //	0.017 inches = 0.4318 mm
-            descrip = precipPrefix + "Light"
-            chartColour = -0x663301 //	pale blue
-            maxPrecip = maxPrecip * 4
-        } else if (maxPrecip <= precipModerate) {
+//            descrip = precipPrefix + "Light"
+//            chartColour = -0x663301 //	pale blue
+//            maxPrecip = maxPrecip * 4
+        } else if (maxPrecip <= PrecipModerate.cutoff) {
+            precipLevel = PrecipModerate
+
             //	0.1 inches = 2.54 mm
-            descrip = precipPrefix + "Moderate"
-            chartColour = -0xff7f01 //	medium blue
-            maxPrecip = maxPrecip * 3
-        } else if (maxPrecip <= precipHeavy) {
+//            descrip = precipPrefix + "Moderate"
+//            chartColour = -0xff7f01 //	medium blue
+//            maxPrecip = maxPrecip * 3
+        } else if (maxPrecip <= PrecipHeavy.cutoff) {
+            precipLevel = PrecipHeavy
+
             //	0.4 inches = 10.16 mm
-            descrip = precipPrefix + "Heavy"
-            chartColour = -0xffff9a //	dark blue
-            maxPrecip = maxPrecip * 2
+//            descrip = precipPrefix + "Heavy"
+//            chartColour = -0xffff9a //	dark blue
+//            maxPrecip = maxPrecip * 2
         } else {
-            descrip = "!!! EVACUATE !!!"
-            chartColour = -0x99ff9a //	dark purple
+            precipLevel = PrecipFlood
+
+//            descrip = "!!! EVACUATE !!!"
+//            chartColour = -0x99ff9a //	dark purple
         }
-        setGraphColours(chartColour)
-        formatIntensityText(descrip)
-        return maxPrecip
+        setGraphColours(precipLevel.chartColour)
+        formatIntensityText(precipPrefix + precipLevel.name)
+        return (maxPrecip * precipLevel.yAxisMultiplier)
     }
 
     /**

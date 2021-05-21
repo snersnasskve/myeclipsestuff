@@ -69,7 +69,7 @@ class Hourly(hourlyArray: JSONArray) {
                 if (beforeNow) {
                     val hourString = dataInst.time?.subSequence(0, 2) as String
                     val hourInst = Integer.parseInt(hourString)
-                    if (hourInst >= hourNow) {
+                    if (hourInst > hourNow) {
                         beforeNow = false
                     }
                 }

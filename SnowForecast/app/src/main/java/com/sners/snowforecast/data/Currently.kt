@@ -119,13 +119,13 @@ class Currently(
      *  @property windSpeed Wind speed
      */
     val windSpeed
-        get() = currentlyData.windSpeed * WeatherConstants.KM_TO_MPH_CONVERSION
+        get() = currentlyData.windSpeed
 
     /**
      *  @property windGusts Wind gusts
      */
     val windGusts
-        get() = currentlyData.windGusts * WeatherConstants.KM_TO_MPH_CONVERSION
+        get() = currentlyData.windGusts
 
     /**
      *  @property windDir Wind direction

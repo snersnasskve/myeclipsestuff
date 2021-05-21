@@ -23,9 +23,9 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      */
     private val windSpeed: Float
         get() {
-            var wind = currently.windSpeed
+            var wind = hourlyData[0].windSpeed
             if (wind < 1) {
-                wind = hourlyData[0].windSpeed
+                 wind = currently.windSpeed
             }
             return wind.toFloat()
         }
@@ -35,8 +35,8 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      */
     private val windGusts: Float
         get() {
-            return if (currently.windGusts >= 0) currently.windGusts.toFloat()
-            else hourlyData[0].windGusts
+            return if (hourlyData[0].windGusts >= 0) hourlyData[0].windGusts
+            else currently.windGusts
         }
 
     /**
