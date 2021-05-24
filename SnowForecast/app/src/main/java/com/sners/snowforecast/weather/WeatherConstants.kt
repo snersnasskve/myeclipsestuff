@@ -1,7 +1,7 @@
 package com.sners.snowforecast.weather
 
 object WeatherConstants {
-    const val CLOUD_COVER = "cloudCover"
+    const val CLOUD_COVER = "cloudcover"
     const val DATA = "data"
     const val DEGREES_C: String = "°C"
     const val DESCRIPTION = "description"

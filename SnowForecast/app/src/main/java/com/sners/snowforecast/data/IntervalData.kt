@@ -59,6 +59,13 @@ abstract class IntervalData {
     var tempFeelsLike = 0f
         protected set
 
+    /**
+     *  @property cloudCover Feels like temperature Celcius
+     */
+    var cloudCover = -1f
+        protected set
+
+
 
     /**
      *  @property weatherWords Weather words found in the json
@@ -105,9 +112,19 @@ abstract class IntervalData {
      *  @param jsonData Json Object
      *  @return severe risk value
      */
-    fun readSeverRiskFrom(jsonData: JSONObject) : Float {
+    fun readSevereRiskFrom(jsonData: JSONObject) : Float {
         return jsonFloatValueFor(WeatherConstants.SEVERE_RISK, jsonData) ?: -1.0f
     }
+
+    /**
+     *  Read Cloud Cover
+     *  @param jsonData Json Object
+     *  @return cloud cover value
+     */
+    fun readCloudCoverFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.CLOUD_COVER, jsonData) ?: -1.0f
+    }
+
 
     /**
      *  Json value for

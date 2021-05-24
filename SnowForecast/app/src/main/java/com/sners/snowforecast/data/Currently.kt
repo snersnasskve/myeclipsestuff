@@ -50,6 +50,7 @@ class Currently(
      */
     private val currentlyData: CurrentlyData
 
+
     /*
    Constructor
     */
@@ -84,8 +85,8 @@ class Currently(
     /**
      *  @property precipIntensity Precipitatation as a formatteed string
      */
-    val precipIntensity: String
-        get() = "${currentlyData.precipIntensity}${WeatherConstants.MM_HR}"
+    val precipIntensity: Float
+        get() = currentlyData.precipIntensity
 
     /**
      *  @property precipProbability Precipitation probability
@@ -131,6 +132,11 @@ class Currently(
      *  @property windDir Wind direction
      */
     val windDir = currentlyData.windDir
+
+    /**
+     *  @property cloudCover Cloud Cover
+     */
+    val cloudCover = currentlyData.cloudCover
 
 
     /**

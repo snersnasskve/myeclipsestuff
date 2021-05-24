@@ -29,18 +29,18 @@ open class WeatherPrecipChart : Activity() {
     /**
      * The values below are the cutoff points for different graph colours
      */
-    enum class precipIntensities(max: Float) {
-        None(0.001f),
-        VeryLight(0.9f),
-        Light(2.5f),
-        Moderate(6.25f),
-        Heavy(25.0f)
-    }
-    val precipNone = .001f
-    val precipVeryLight = 0.9f
-    val precipLight = 2.5f
-    val precipModerate = 6.25f
-    val precipHeavy = 25.0f
+//    enum class precipIntensities(max: Float) {
+//        None(0.001f),
+//        VeryLight(0.9f),
+//        Light(2.5f),
+//        Moderate(6.25f),
+//        Heavy(25.0f)
+//    }
+//    val precipNone = .001f
+//    val precipVeryLight = 0.9f
+//    val precipLight = 2.5f
+//    val precipModerate = 6.25f
+//    val precipHeavy = 25.0f
     /**
      * @property mGraphMargin The margin around the edge of the graph
      */
@@ -178,7 +178,7 @@ open class WeatherPrecipChart : Activity() {
         val precipLevel : PrecipLevels
 //        var maxPrecip = maxPrecip
 //        var descrip = ""
-        var chartColour = Color.BLUE
+  //      var chartColour = Color.BLUE
         if (maxPrecip < PrecipNone.cutoff) {
             precipLevel = PrecipNone
 //            descrip = precipPrefix + "None"

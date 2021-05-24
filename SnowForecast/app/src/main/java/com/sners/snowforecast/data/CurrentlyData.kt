@@ -53,6 +53,8 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
             tempFeelsLike = currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()
             //  Precipitation
             this.precipIntensity = currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
+            cloudCover = readCloudCoverFrom(currentJson)
+
             if (this.precipIntensity > 0) {
                 //	This is null if no precipIntensity
                 this.precipProbability = currentJson.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()

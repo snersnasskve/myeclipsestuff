@@ -112,7 +112,7 @@ class WeatherCurrent : Activity() {
         //Animation animExitLeft = AnimationUtils.makeInAnimation(this, true);
         //llCurrently.startAnimation(animExitLeft);
         tvCurSummary!!.text = weatherData.headlineSummary
-        tvCurPrecipIntensity!!.text = weatherData.currently!!.precipIntensity
+        tvCurPrecipIntensity!!.text = weatherData.precipitation!!.milsPerHourString
         tvCurPrecipProbability!!.text = weatherData.currently!!.precipProbabilityString
         tvCurTemperature!!.text = weatherData.getTemperatureSummary()
         tvCurWind!!.text = weatherData.wind!!.getDetails()

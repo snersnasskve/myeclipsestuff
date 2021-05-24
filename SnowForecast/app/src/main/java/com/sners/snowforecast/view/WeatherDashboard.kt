@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import com.sners.snowforecast.ForecastMainActivity
 import com.sners.snowforecast.R
+import com.sners.snowforecast.weather.WeatherConstants
 import com.sners.snowforecast.weather.WeatherIconGallery
 import kotlin.math.roundToInt
 
@@ -142,7 +143,7 @@ class WeatherDashboard : Activity() {
      */
     private fun populatePrecipitation() {
 
-        tvDashPrecip!!.text = ForecastMainActivity.weatherData.currently!!.precipIntensity
+        tvDashPrecip!!.text = weatherData.precipitation!!.milsPerHourString
     }
 
     /**

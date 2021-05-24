@@ -23,10 +23,8 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      */
     private val windSpeed: Float
         get() {
-            var wind = hourlyData[0].windSpeed
-            if (wind < 1) {
-                 wind = currently.windSpeed
-            }
+
+            val wind = maxOf(hourlyData[0].windSpeed, currently.windSpeed)
             return wind.toFloat()
         }
 
@@ -35,8 +33,9 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
      */
     private val windGusts: Float
         get() {
-            return if (hourlyData[0].windGusts >= 0) hourlyData[0].windGusts
-            else currently.windGusts
+
+            val gusts = maxOf(hourlyData[0].windGusts, currently.windGusts)
+            return gusts.toFloat()
         }
 
     /**

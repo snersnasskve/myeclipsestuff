@@ -37,6 +37,23 @@ class Precipitation(private val daily: Daily?, private val hourly: Hourly?,
     private val minPrecipMedium = 0.017
 
     /**
+     *  @property milsPerHour Mils per hour
+     */
+    val milsPerHour : Float
+            get() {
+                val mils = maxOf(currently.precipIntensity, hourly!!.hourlyData[0].precipIntensity)
+                return mils
+            }
+
+    /**
+     *  @property milsPerHour Mils per hour String
+     */
+    val milsPerHourString : String
+        get() {
+            return "$milsPerHour ${WeatherConstants.MM_HR}"
+        }
+
+    /**
      * Time til Precipitation
      * @param toIgnoreLightPrecip boolean
      * @return Minutes til precipitation

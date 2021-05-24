@@ -25,6 +25,8 @@ class HourlyData(jsonHourly: JSONObject) : IntervalData() {
             windSpeed = jsonHourly.getDouble(WeatherConstants.WIND_SPEED)
             windGusts = jsonHourly.getDouble(WeatherConstants.WIND_GUST).toFloat()
             windDir = jsonFloatValueFor(WeatherConstants.WIND_DIRECTION, jsonHourly) ?: -1f
+            cloudCover = readCloudCoverFrom(jsonHourly)
+
 
             if (!jsonHourly.isNull(WeatherConstants.PRECIP_TYPE)) {
                 //  If it is null, then it is not an array
