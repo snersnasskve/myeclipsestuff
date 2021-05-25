@@ -3,7 +3,6 @@ package com.sners.snowforecast.data
 import com.sners.snowforecast.weather.WeatherConstants
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.*
 
 /**
  * A data class of current conditions
@@ -49,7 +48,7 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
             sunriseTime = currentJson.getString(WeatherConstants.SUNRISE_TIME)
             sunsetTime = currentJson.getString(WeatherConstants.SUNSET_TIME)
             //  Temperature
-            temperature = currentJson.getDouble(WeatherConstants.TEMPERATURE).toFloat()
+            temperature = readTemperatureFrom(currentJson)
             tempFeelsLike = currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()
             //  Precipitation
             this.precipIntensity = currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()

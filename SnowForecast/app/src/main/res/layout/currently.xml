@@ -89,14 +89,14 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
-                   android:text="@string/precip_probability" />
+                   android:text="@string/precip_moisture" />
 
                <TextView
-                   android:id="@+id/tvCurPrecipProbability"
+                   android:id="@+id/tvCurMoisture"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_weight="2"
-                   android:hint="@string/precip_probability_hint" />
+                   android:hint="@string/precip_moisture_hint" />
 
            </TableRow>
 

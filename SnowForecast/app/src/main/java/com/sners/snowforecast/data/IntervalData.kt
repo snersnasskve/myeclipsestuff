@@ -65,8 +65,6 @@ abstract class IntervalData {
     var cloudCover = -1f
         protected set
 
-
-
     /**
      *  @property weatherWords Weather words found in the json
      */
@@ -125,6 +123,14 @@ abstract class IntervalData {
         return jsonFloatValueFor(WeatherConstants.CLOUD_COVER, jsonData) ?: -1.0f
     }
 
+    /**
+     *  Read Cloud Cover
+     *  @param jsonData Json Object
+     *  @return cloud cover value
+     */
+    fun readTemperatureFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.TEMPERATURE, jsonData) ?: -99.0f
+    }
 
     /**
      *  Json value for

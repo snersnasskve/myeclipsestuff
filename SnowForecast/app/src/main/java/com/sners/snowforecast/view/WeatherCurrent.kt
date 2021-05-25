@@ -35,7 +35,7 @@ class WeatherCurrent : Activity() {
     /**
      * @property tvCurPrecipProbability Precipitation probability
      */
-    private var tvCurPrecipProbability: TextView? = null
+    private var tvCurMoisture: TextView? = null
 
     /**
      * @property tvCurTemperature Temperature
@@ -98,7 +98,7 @@ class WeatherCurrent : Activity() {
         ivCurIcon = findViewById<View>(R.id.ivCurIcon) as ImageView
         tvCurSummary = findViewById<View>(R.id.tvCurSummary) as TextView
         tvCurPrecipIntensity = findViewById<View>(R.id.tvCurPrecipIntensity) as TextView
-        tvCurPrecipProbability = findViewById<View>(R.id.tvCurPrecipProbability) as TextView
+        tvCurMoisture = findViewById<View>(R.id.tvCurMoisture) as TextView
         tvCurTemperature = findViewById<View>(R.id.tvCurTemperature) as TextView
         tvCurWind = findViewById<View>(R.id.tvCurWind) as TextView
         tvCurTimeTilSunset = findViewById<View>(R.id.tvCurTimeTilSunset) as TextView
@@ -113,7 +113,7 @@ class WeatherCurrent : Activity() {
         //llCurrently.startAnimation(animExitLeft);
         tvCurSummary!!.text = weatherData.headlineSummary
         tvCurPrecipIntensity!!.text = weatherData.precipitation!!.milsPerHourString
-        tvCurPrecipProbability!!.text = weatherData.currently!!.precipProbabilityString
+        tvCurMoisture!!.text = weatherData.currently!!.cloudCoverString
         tvCurTemperature!!.text = weatherData.getTemperatureSummary()
         tvCurWind!!.text = weatherData.wind!!.getDetails()
         tvCurTimeTilSunset!!.text = weatherData.getTimeTilSunsetString()

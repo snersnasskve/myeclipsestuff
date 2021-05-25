@@ -37,6 +37,9 @@ class WeatherIconGallery {
             if (okToSnow()) {
                 qualIcons.add("heavy_snow")
             }
+            if (okToScoot()) {
+                qualIcons.add("scooter")
+            }
             if (alertsFound()) {
                 qualIcons.add("alert")
             }
@@ -177,6 +180,23 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         val windSpeed = weatherData.wind!!.getSpeedBeaufort().toFloat()
         if (weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
             weatherData.currently!!.temperatureNum > 5
+        ) {
+            isItOK = true
+        }
+        return isItOK
+    }
+
+    //  Don't want to fly kite if it is raining
+    /**
+     * OK to scoot
+     * @return bool indicating whether it is not raining
+     */
+    private fun okToScoot(): Boolean {
+        var isItOK = false
+        if (!weatherData.dataContainsWeatherword(
+                WeatherConstants.PRECIP_TYPE_RAIN,
+                WeatherConstants.MINUTELY) &&
+            weatherData.currently!!.temperatureNum >=4
         ) {
             isItOK = true
         }
