@@ -51,8 +51,9 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
             temperature = readTemperatureFrom(currentJson)
             tempFeelsLike = currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()
             //  Precipitation
-            this.precipIntensity = currentJson.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat()
-            cloudCover = readCloudCoverFrom(currentJson)
+            this.precipIntensity = readPrecipIntensityFrom(currentJson)
+            this.cloudCover = readCloudCoverFrom(currentJson)
+            this.humidity = readHumidityFrom(currentJson)
 
             if (this.precipIntensity > 0) {
                 //	This is null if no precipIntensity

@@ -56,10 +56,9 @@ class Wind(private val hourlyData: ArrayList<IntervalData>, private val currentl
         //  eg 1.2 mph (gusts: 4 mph) NE
         //return "$windSpeed mph (gusts: $windGusts) ${windDirToString(windDir)}"
         return String.format(
-            "%.1f mph (gusts %.1f) %.0f - %s",
+            "%.1f mph (gusts %.1f) %s",
             getSpeedMph(),
             getGustsMph(),
-            windDir,
             windDirToString(windDir)
         )
     }

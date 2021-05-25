@@ -32,7 +32,7 @@ class DailyData(jsonDaily: JSONObject) : IntervalData() {
     init {
         try {
             date = jsonDaily.getString(WeatherConstants.TIME)
-            precipIntensity = jsonFloatValueFor(WeatherConstants.PRECIP_INTENSITY, jsonDaily) ?: 0f
+            this.precipIntensity = readPrecipIntensityFrom(jsonDaily)
             precipProbability = jsonDaily.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             tempMin = jsonDaily.getDouble(WeatherConstants.TEMP_MIN).toFloat()
             tempMax = jsonDaily.getDouble(WeatherConstants.TEMP_MAX).toFloat()

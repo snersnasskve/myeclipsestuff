@@ -213,4 +213,16 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
         )
     }
 
+    /**
+     * Get moisture summary
+     * @return A string containing moisture information
+     */
+    fun getMoistureSummary(): String {
+
+        return String.format(
+            "RH:%.0f / Td:-- / %s)",
+            currently!!.humidity,
+            currently!!.cloudCoverString
+        )
+    }
 }

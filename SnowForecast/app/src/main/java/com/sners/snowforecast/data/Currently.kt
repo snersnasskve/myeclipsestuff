@@ -100,10 +100,16 @@ class Currently(
         get() = weatherHelper.probabilityToPercent(precipProbability)
 
     /**
-     *  @property cloudCover Precipitation probability as a formatted string
+     *  @property cloudCover Cloud cover as a formatted string
      */
     val cloudCoverString: String
         get() = weatherHelper.probabilityToPercent(cloudCover)
+
+    /**
+     *  @property humidity Humidity
+     */
+    val humidity: Float
+        get() = currentlyData.humidity
 
 
     /**

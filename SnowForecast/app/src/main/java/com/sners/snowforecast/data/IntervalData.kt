@@ -86,14 +86,7 @@ abstract class IntervalData {
      */
     var severerisk  = -1f
 
-    /**
-     *  Read Humidity From
-     *  @param jsonData Json Object
-     *  @return humidity value
-     */
-    fun readHumidityFrom(jsonData: JSONObject) : Float {
-        return jsonFloatValueFor(WeatherConstants.HUMIDITY, jsonData) ?: -1.0f
-    }
+
 
     /**
      *  Read Solar Radiation From
@@ -105,14 +98,7 @@ abstract class IntervalData {
 }
 
 
-    /**
-     *  Read Severe Risk
-     *  @param jsonData Json Object
-     *  @return severe risk value
-     */
-    fun readSevereRiskFrom(jsonData: JSONObject) : Float {
-        return jsonFloatValueFor(WeatherConstants.SEVERE_RISK, jsonData) ?: -1.0f
-    }
+
 
     /**
      *  Read Cloud Cover
@@ -124,9 +110,36 @@ abstract class IntervalData {
     }
 
     /**
-     *  Read Cloud Cover
+     *  Read Humidity From
      *  @param jsonData Json Object
-     *  @return cloud cover value
+     *  @return humidity value
+     */
+    fun readHumidityFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.HUMIDITY, jsonData) ?: -1.0f
+    }
+
+    /**
+     *  Read Precip Intensity
+     *  @param jsonData Json Object
+     *  @return precip intensity value
+     */
+    fun readPrecipIntensityFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.PRECIP_INTENSITY, jsonData) ?: 0f
+    }
+
+    /**
+     *  Read Severe Risk
+     *  @param jsonData Json Object
+     *  @return severe risk value
+     */
+    fun readSevereRiskFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.SEVERE_RISK, jsonData) ?: -1.0f
+    }
+
+    /**
+     *  Read Temperature
+     *  @param jsonData Json Object
+     *  @return temperature value
      */
     fun readTemperatureFrom(jsonData: JSONObject) : Float {
         return jsonFloatValueFor(WeatherConstants.TEMPERATURE, jsonData) ?: -99.0f
