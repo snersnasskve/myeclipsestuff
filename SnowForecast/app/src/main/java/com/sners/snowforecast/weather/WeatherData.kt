@@ -220,9 +220,10 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     fun getMoistureSummary(): String {
 
         return String.format(
-            "RH:%.0f / Td:-- / %s)",
+            "H:%.0f / D:%.0f / %.0f",
             currently!!.humidity,
-            currently!!.cloudCoverString
+            currently!!.dewPoint,
+            currently!!.cloudCover
         )
     }
 }

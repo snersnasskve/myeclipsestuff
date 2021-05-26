@@ -77,6 +77,12 @@ abstract class IntervalData {
     var humidity = -1f
 
     /**
+     *  @property dewPoint Dewpoint temperature
+     */
+    var dewPoint = 99f
+
+
+    /**
      *  @property solarradiation Solar Radiation
      */
     var solarradiation  = -1f
@@ -107,6 +113,15 @@ abstract class IntervalData {
      */
     fun readCloudCoverFrom(jsonData: JSONObject) : Float {
         return jsonFloatValueFor(WeatherConstants.CLOUD_COVER, jsonData) ?: -1.0f
+    }
+
+    /**
+     *  Read Dew Point Temperature
+     *  @param jsonData Json Object
+     *  @return dew point value
+     */
+    fun readDewPointFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.DEW_POINT, jsonData) ?: 99f
     }
 
     /**

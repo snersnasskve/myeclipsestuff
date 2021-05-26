@@ -68,8 +68,8 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     private fun okToHangWashing(): Boolean {
         var isItOK = false
         if (weatherData.isDayTime() &&
-            weatherData.getTimeTilSunset() > 60 &&
-            weatherData.currently!!.temperatureNum > 5 &&
+            weatherData.getTimeTilSunset() > WASHING_TIME_TIL_SUNSET &&
+            weatherData.currently!!.temperatureNum > weatherData.currently!!.dewPoint &&
             !weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY
             )
@@ -90,7 +90,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
                 WeatherConstants.PRECIP_TYPE_RAIN,
                 WeatherConstants.HOURLY
             ) &&
-            weatherData.getTimeTilSunset() > 120
+            weatherData.getTimeTilSunset() > HIKING_TIME_TIL_SUNSET
         ) {
             isItOK = true
         }
@@ -149,7 +149,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         if (!weatherData.dataContainsWeatherword(
                 WeatherConstants.PRECIP_TYPE_RAIN,
                 WeatherConstants.MINUTELY
-            )
+            ) && weatherData.currently!!.timeSinceSunrise > BRAAI_TIME_SINCE_SUNRISE
         ) {
             isItOK = true
         }
@@ -164,7 +164,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     private fun okToWearHat(): Boolean {
         var isItOK = false
         val temperature = weatherData.currently!!.temperatureNum
-        if (weatherData.isDayTime() && temperature > 20) {
+        if (weatherData.isDayTime() && temperature > HAT_TEMPERATURE) {
             isItOK = true
         }
         return isItOK
@@ -214,4 +214,19 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         }
         return isItOK
     }
+
+    companion object {
+
+        const val BRAAI_TIME_SINCE_SUNRISE = 180
+
+        const val HAT_TEMPERATURE = 20
+
+        const val HIKING_TIME_TIL_SUNSET = 120
+
+
+        const val WASHING_TIME_TIL_SUNSET = 60
+
+    }
 }
+
+

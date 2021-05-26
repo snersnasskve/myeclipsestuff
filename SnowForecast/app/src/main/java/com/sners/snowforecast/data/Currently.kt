@@ -106,6 +106,12 @@ class Currently(
         get() = weatherHelper.probabilityToPercent(cloudCover)
 
     /**
+     *  @property dewPoint Dew point temperature as a number
+     */
+    val dewPoint = currentlyData.dewPoint
+
+
+    /**
      *  @property humidity Humidity
      */
     val humidity: Float
@@ -170,6 +176,15 @@ class Currently(
     val timeTilSunset: Long
         get() {
             val diffInMillies = sunsetTime!!.time - time.time
+            return TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS)
+        }
+
+    /**
+     *  @property timeSinceSunrise Time since sunrise in minutes - less than 0 means it is before sunrise
+     */
+    val timeSinceSunrise: Long
+        get() {
+            val diffInMillies = time.time - sunriseTime!!.time
             return TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS)
         }
 

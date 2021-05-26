@@ -27,8 +27,8 @@
     <string name="precip_intensity_hint">Precipitation Intensity</string>
     <string name="precip_probability">Precip %:</string>
     <string name="precip_probability_hint">Precip % probability</string>
-    <string name="precip_moisture">RH\/TD\/Cloud: </string>
-    <string name="precip_moisture_hint">RH \/ TD \/ Cloud</string>
+    <string name="precip_moisture">Hum\/Dew\/Cloud: </string>
+    <string name="precip_moisture_hint">H \/ Dt \/ Cloud</string>
     <string name="temperature">Temp:</string>
     <string name="temperature_hint">Temperature Celsius</string>
     <string name="wind">Wind:</string>

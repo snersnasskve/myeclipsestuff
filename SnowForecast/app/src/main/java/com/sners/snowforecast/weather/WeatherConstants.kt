@@ -5,7 +5,7 @@ object WeatherConstants {
     const val DATA = "data"
     const val DEGREES_C: String = "°C"
     const val DESCRIPTION = "description"
-    const val DEW_POINT = "dew_point"
+    const val DEW_POINT = "dew"
     const val NONE_FORECAST = "None forecast"
     const val NOW = "Now"
     const val PRECIP_INTENSITY = "precip"

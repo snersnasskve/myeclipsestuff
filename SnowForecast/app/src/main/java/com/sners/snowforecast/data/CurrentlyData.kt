@@ -53,6 +53,7 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
             //  Precipitation
             this.precipIntensity = readPrecipIntensityFrom(currentJson)
             this.cloudCover = readCloudCoverFrom(currentJson)
+            this.dewPoint = readDewPointFrom(currentJson)
             this.humidity = readHumidityFrom(currentJson)
 
             if (this.precipIntensity > 0) {

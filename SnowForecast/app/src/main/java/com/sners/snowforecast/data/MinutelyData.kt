@@ -25,7 +25,7 @@ class MinutelyData(jsonMinutely: JSONObject) : IntervalData() {
             val snow = jsonMinutely.getDouble(WeatherConstants.PRECIP_TYPE_SNOW).toFloat()
             if (snow > 0) {
                 weatherWords.add(WeatherConstants.PRECIP_TYPE_SNOW)
-            } else {
+            } else if (precipIntensity > 0) {
                 weatherWords.add(WeatherConstants.PRECIP_TYPE_RAIN)
             }
         } catch (e: JSONException) {
