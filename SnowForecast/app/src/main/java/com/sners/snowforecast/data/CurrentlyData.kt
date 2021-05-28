@@ -68,7 +68,7 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
                 }
             }
             //  Wind
-            this.windSpeed = currentJson.getDouble(WeatherConstants.WIND_SPEED)
+            windSpeed = readWindSpeedFrom(currentJson)
             this.windGusts = currentJson.getDouble(WeatherConstants.WIND_GUST).toFloat()
             val dir = currentJson.getString(WeatherConstants.WIND_DIRECTION)
             //  If winddir is not entered, it should not be initialised

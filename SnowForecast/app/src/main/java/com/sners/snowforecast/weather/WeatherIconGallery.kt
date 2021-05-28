@@ -70,9 +70,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         if (weatherData.isDayTime() &&
             weatherData.getTimeTilSunset() > WASHING_TIME_TIL_SUNSET &&
             weatherData.currently!!.temperatureNum > weatherData.currently!!.dewPoint &&
-            !weatherData.dataContainsWeatherword(
-                WeatherConstants.PRECIP_TYPE_RAIN, WeatherConstants.MINUTELY
-            )
+            weatherData.precipitation!!.noRainForTheHour()
         ) {
             isItOK = true
         }
@@ -105,11 +103,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToUseUmbrella(): Boolean {
         var isItOK = false
-        if (weatherData.dataContainsWeatherword(
-                WeatherConstants.PRECIP_TYPE_RAIN,
-                WeatherConstants.MINUTELY
-            )
-        ) {
+        if (weatherData.precipitation!!.noRainForTheHour() == false) {
             isItOK = true
         }
         return isItOK
@@ -146,10 +140,8 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     private fun okToBraai(): Boolean {
         var isItOK = false
         // if it is not going to rain in the next hour
-        if (!weatherData.dataContainsWeatherword(
-                WeatherConstants.PRECIP_TYPE_RAIN,
-                WeatherConstants.MINUTELY
-            ) && weatherData.currently!!.timeSinceSunrise > BRAAI_TIME_SINCE_SUNRISE
+        if (!weatherData.precipitation!!.noRainForTheHour() &&
+            weatherData.currently!!.timeSinceSunrise > BRAAI_TIME_SINCE_SUNRISE
         ) {
             isItOK = true
         }
@@ -193,10 +185,8 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToScoot(): Boolean {
         var isItOK = false
-        if (!weatherData.dataContainsWeatherword(
-                WeatherConstants.PRECIP_TYPE_RAIN,
-                WeatherConstants.MINUTELY) &&
-            weatherData.currently!!.temperatureNum >=4
+        if (!weatherData.precipitation!!.noRainForTheHour() &&
+            weatherData.currently!!.temperatureNum >= 4
         ) {
             isItOK = true
         }

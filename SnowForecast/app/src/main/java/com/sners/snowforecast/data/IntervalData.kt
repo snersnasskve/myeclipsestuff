@@ -32,7 +32,7 @@ abstract class IntervalData {
     /**
      *  @property windSpeed Wind speed in metres per second usually
      */
-    var windSpeed = 0.0
+    var windSpeed = 0.0f
         protected set
 
     /**
@@ -158,6 +158,15 @@ abstract class IntervalData {
      */
     fun readTemperatureFrom(jsonData: JSONObject) : Float {
         return jsonFloatValueFor(WeatherConstants.TEMPERATURE, jsonData) ?: -99.0f
+    }
+
+    /**
+     *  Read Wind Speed
+     *  @param jsonData Json Object
+     *  @return wind speed value
+     */
+    fun readWindSpeedFrom(jsonData: JSONObject) : Float {
+        return jsonFloatValueFor(WeatherConstants.WIND_SPEED, jsonData) ?: -1.0f
     }
 
     /**

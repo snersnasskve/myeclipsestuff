@@ -22,10 +22,12 @@ class HourlyData(jsonHourly: JSONObject) : IntervalData() {
             this.precipIntensity = readPrecipIntensityFrom(jsonHourly)
             precipProbability = jsonHourly.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             temperature = readTemperatureFrom(jsonHourly)
-            windSpeed = jsonHourly.getDouble(WeatherConstants.WIND_SPEED)
+            windSpeed = readWindSpeedFrom(jsonHourly)
             windGusts = jsonHourly.getDouble(WeatherConstants.WIND_GUST).toFloat()
             windDir = jsonFloatValueFor(WeatherConstants.WIND_DIRECTION, jsonHourly) ?: -1f
             cloudCover = readCloudCoverFrom(jsonHourly)
+            dewPoint = readDewPointFrom(jsonHourly)
+            humidity = readHumidityFrom(jsonHourly)
 
 
             if (!jsonHourly.isNull(WeatherConstants.PRECIP_TYPE)) {

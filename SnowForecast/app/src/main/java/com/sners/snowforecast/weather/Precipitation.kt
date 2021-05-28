@@ -53,6 +53,8 @@ class Precipitation(private val daily: Daily?, private val hourly: Hourly?,
             return "$milsPerHour ${WeatherConstants.MM_HR}"
         }
 
+
+
     /**
      * Time til Precipitation
      * @param toIgnoreLightPrecip boolean
@@ -182,6 +184,27 @@ class Precipitation(private val daily: Daily?, private val hourly: Hourly?,
         //  -1 means not found -> fully aligns with my needs
         val periodFound = intervalData.indexOfFirst { it.weatherWords.contains(precipType) }
         return if (periodFound == -1) -1 else periodFound * multiplier
+    }
+
+    /**
+     *  @property _noRainForTheHour A private bool so we only need to check once
+     */
+    private var _noRainForTheHour : Boolean? = null
+    /**
+     *  @property noRainForTheHour A convenience function
+     */
+    fun noRainForTheHour() : Boolean {
+        if (null == _noRainForTheHour) {
+            _noRainForTheHour = true
+            if (null != minutely) {
+                val timeTil = timeTilWeatherWordFound(this.minutely.minutelyData, WeatherConstants.PRECIP_TYPE_RAIN, 1)
+                if (timeTil >= 0) {
+                    _noRainForTheHour = false
+                }
+
+                }
+        }
+        return _noRainForTheHour!!
     }
 
 

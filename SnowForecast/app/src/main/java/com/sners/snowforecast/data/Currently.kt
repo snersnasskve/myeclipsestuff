@@ -1,3 +1,4 @@
+
 package com.sners.snowforecast.data
 
 import android.icu.text.DateFormat
