@@ -39,7 +39,7 @@ class Currently(
     /**
      *  @property time Time used for calculating time ranges throughout
      */
-    private var time: Date
+    private var time: Date = Date()
 
     /**
      *  @property weatherHelper A class for common weather functions
@@ -63,8 +63,9 @@ class Currently(
         //  Make the dates from the separate date and time fields
         val sunriseString = "$currDateString ${currentlyData.getSunriseTime()}"
         val sunsetString = "$currDateString ${currentlyData.getSunsetTime()}"
-        time = Date()
+        var timeString = "$currDateString ${currentlyData.time}"
         try {
+            time = dateFormat.parse(timeString)
             sunriseTime = dateFormat.parse(sunriseString)
             sunsetTime = dateFormat.parse(sunsetString)
         } catch (e: ParseException) {
@@ -93,12 +94,6 @@ class Currently(
      *  @property precipProbability Precipitation probability
      */
     val precipProbability = currentlyData.precipProbability
-
-    /**
-     *  @property precipProbabilityString Precipitation probability as a formatted string
-     */
-    val precipProbabilityString: String
-        get() = weatherHelper.probabilityToPercent(precipProbability)
 
     /**
      *  @property cloudCover Cloud cover as a formatted string
@@ -171,22 +166,29 @@ class Currently(
     val headline = currentlyData.headline
 
 
+    private var _timeTilSunset : Long? = null
     /**
      *  @property timeTilSunset Time till sunset in minutes - less than 0 means it is after sunset
      */
     val timeTilSunset: Long
         get() {
-            val diffInMillies = sunsetTime!!.time - time.time
-            return TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS)
+            if (null == _timeTilSunset) {
+                val diffInMillies = sunsetTime!!.time - time.time
+                _timeTilSunset = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS)
+            }
+            return _timeTilSunset!!
         }
 
-    /**
+    private var _timeSinceSunrise : Long? = null   /**
      *  @property timeSinceSunrise Time since sunrise in minutes - less than 0 means it is before sunrise
      */
     val timeSinceSunrise: Long
         get() {
-            val diffInMillies = time.time - sunriseTime!!.time
-            return TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS)
+            if (null == _timeSinceSunrise) {
+                val diffInMillies = time.time - sunriseTime!!.time
+                _timeSinceSunrise = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS)
+            }
+            return _timeSinceSunrise!!
         }
 
     /**
@@ -200,5 +202,11 @@ class Currently(
                     time.compareTo(sunsetTime) < 0)
         }
 
-
+    /**
+     *  @property timeAsHms The time string in HMS when the forecast was read
+     */
+    val timeAsHms: String
+    get() {
+        return currentlyData.time ?: ""
+    }
 }

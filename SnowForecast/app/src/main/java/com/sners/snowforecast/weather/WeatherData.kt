@@ -169,6 +169,17 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     }
 
     /**
+     * Get time to sunset with time now
+     * @return formatted time till sunset with time now in brackets
+     */
+    fun getTimeTilSunsetWithTimeNow(): String {
+
+        return String.format("%s (now: %s)",
+            weatherHelper.formatTime(getTimeTilSunset()),
+            currently!!.timeAsHms)
+    }
+
+    /**
      * Get time to sunset as number
      * @return minutes til sunset
      */

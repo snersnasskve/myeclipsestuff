@@ -202,7 +202,7 @@ class Precipitation(private val daily: Daily?, private val hourly: Hourly?,
                     _noRainForTheHour = false
                 }
 
-                }
+            }
         }
         return _noRainForTheHour!!
     }

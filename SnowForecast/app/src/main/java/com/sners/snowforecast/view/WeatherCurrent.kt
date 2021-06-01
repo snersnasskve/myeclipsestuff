@@ -116,7 +116,7 @@ class WeatherCurrent : Activity() {
         tvCurMoisture!!.text = weatherData.getMoistureSummary()
         tvCurTemperature!!.text = weatherData.getTemperatureSummary()
         tvCurWind!!.text = weatherData.wind!!.getDetails()
-        tvCurTimeTilSunset!!.text = weatherData.getTimeTilSunsetString()
+        tvCurTimeTilSunset!!.text = weatherData.getTimeTilSunsetWithTimeNow()
 
         //	timeTillPrecip
         tvCurTimeTilPrecip!!.text = ForecastMainActivity.weatherData.precipitation!!.timeTilString(false)

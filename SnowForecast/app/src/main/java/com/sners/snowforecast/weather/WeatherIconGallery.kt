@@ -187,7 +187,9 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     private fun okToScoot(): Boolean {
         var isItOK = false
         if (precipitation.noRainForTheHour() &&
-            weatherData.currently!!.temperatureNum >= 4
+            weatherData.currently!!.temperatureNum >= 4 &&
+            (weatherData.getTimeTilSunset() < 1 ||
+                    weatherData.currently!!.timeSinceSunrise < SCOOT_TIME_TOO_EARLY)
         ) {
             isItOK = true
         }
@@ -216,6 +218,8 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
 
 
         const val WASHING_TIME_TIL_SUNSET = 60
+
+        const val SCOOT_TIME_TOO_EARLY = 60
 
     }
 }
