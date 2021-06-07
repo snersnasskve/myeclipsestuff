@@ -37,6 +37,10 @@ object WeatherConstants {
     const val TIME_LOCAL = "timestamp_local"
     const val TIME = "datetime"
     const val URI = "uri"
+    const val TIMESTAMP_LOCAL = "timestamp_local"
+    const val TIMESTAMP_UTC = "timestamp_utc"
+    const val TIMESTAMP = "ts"
+    const val DATE_TIME_EPOCH = "datetimeEpoch"
 
     const val WEATHER_CODE = "weatherCode"
     const val WIND_SPEED = "windspeed"
@@ -51,8 +55,12 @@ object WeatherConstants {
     const val CONDITIONS = "conditions"
     const val ICON = "icon"
 
+    const val TIME_ZONE_OFFSET = "tzoffset"
+
     //  Graph constants
     const val HOURLY_NUM_POINTS_TO_PLOT = 48
     const val MINUTELY_NUM_POINTS_TO_PLOT = 60
+
+
 
 }

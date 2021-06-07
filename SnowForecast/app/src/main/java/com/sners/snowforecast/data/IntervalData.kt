@@ -30,6 +30,13 @@ abstract class IntervalData {
         protected set
 
     /**
+     * *  @property time Unix Time as read from the json
+     */
+    var timeUnix: Long? = null
+        protected set
+
+
+    /**
      *  @property windSpeed Wind speed in metres per second usually
      */
     var windSpeed = 0.0f

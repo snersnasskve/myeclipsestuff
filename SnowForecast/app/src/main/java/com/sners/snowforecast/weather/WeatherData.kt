@@ -71,11 +71,18 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      */
     private val weatherHelper = WeatherHelper()
 
+
     /**
      * @property headlineSummary topline weather summary
      */
     val headlineSummary: String
         get() = currently?.headline ?: "Unknown weather"
+
+    /**
+     * @property forecastSummary topline weather summary going forward
+     */
+    var forecastSummary: String =  "Unknown weather"
+        private set
 
     /**
      * @property headlineIcon name of weather icon to use
@@ -87,6 +94,25 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @property minutesTilSunset Minutes til sunset - calculate once
      */
     private var minutesTilSunset: Long = -1
+
+    /**
+     * currentDate Time for current minute
+     */
+    var currentDate : Date =  minutely?.currentDate ?: Date()
+
+    /**
+     * currentDate Unix Time for current minute
+     */
+    val currentDateUnix : Long
+    get() {
+        if (null != minutely) {
+            return minutely!!.currentDateUnix
+        } else {
+            return 0L
+        }
+    }
+
+
 
     init {
 
@@ -114,18 +140,27 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      */
     private fun setUpDataArrays(rawMinutely: String?, rawDaily: String?) {
 
+        //  Raw minutely has got timestamp_local AND timestamp_UTC
         //  Minutely is independent
         val jsonObjMinutely: JSONObject?
         try {
             jsonObjMinutely = JSONObject(rawMinutely ?: "")
             val minutelyTimelinesArray = jsonObjMinutely.getJSONArray(WeatherConstants.DATA)
             minutely = Minutely(minutelyTimelinesArray)
+
         } catch (e: JSONException) {
             //  We have no minutely data
             e.printStackTrace()
         }
         try {
             val jsonObjDaily = JSONObject(rawDaily ?: "")
+            //  These values are from the top level
+            val tz = jsonObjDaily.getInt(WeatherConstants.TIME_ZONE_OFFSET)
+            val tzDesc = jsonObjDaily.getString("timezone")
+            val weatherTimeZone = SimpleTimeZone(tz, tzDesc)
+
+            forecastSummary = jsonObjDaily.getString(WeatherConstants.DESCRIPTION)
+            //  Unpack and please refactor me
             val dailyTimelineArray = jsonObjDaily.getJSONArray(WeatherConstants.DAILY)
             //  Unpack the hourly data from the within the daily Json ana make a separate array
             val hourlyTimelineArray = JSONArray()
@@ -137,11 +172,11 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
                     hourlyTimelineArray.put(thisHour)
                 }
             }
-            hourly = Hourly(hourlyTimelineArray)
+            hourly = Hourly(hourlyTimelineArray, currentDateUnix)
             daily = Daily(dailyTimelineArray)
             currently = Currently(
                 jsonObjDaily.getJSONObject(WeatherConstants.CURRENTLY),
-                daily!!.currDateString!!
+                daily!!.currDateString!!, weatherTimeZone
             )
             //  Currently needs the sunrise and sunset, which currently is not picking up
         } catch (e: JSONException) {

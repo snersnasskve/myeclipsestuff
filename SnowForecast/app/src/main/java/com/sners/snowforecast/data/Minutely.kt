@@ -22,6 +22,43 @@ class Minutely(minutelyArray: JSONArray) {
     private var maxPrecip: Float
 
     /**
+     *  @property currentMinute The first minute available
+     */
+    private val currentMinute: MinutelyData?
+        get() {
+            if (minutelyData.count() > 0) {
+                return minutelyData[0] as MinutelyData
+            } else {
+                return null
+            }
+        }
+
+    /**
+     * localTime Time for current minute
+     */
+    var localDate : Date? = null
+        private set
+
+    /**
+     * utcDate Time for current minute
+     */
+    var utcDate : Date? = null
+        private set
+
+    /**
+     * currentDate Time for current minute
+     */
+    var currentDate : Date? = null
+        private set
+
+    /**
+     * currentDateUnix Unix Time for current minute
+     */
+    var currentDateUnix : Long = 0
+        private set
+
+
+    /**
      * Get max precip
      * @return Maximimum precip for the period
      */
@@ -52,9 +89,18 @@ class Minutely(minutelyArray: JSONArray) {
                 minutelyData.add(dataInst)
 
             }
+
+            if (null != currentMinute) {
+                currentDateUnix = currentMinute!!.unixTime ?: 0
+                currentDate = Date(currentDateUnix  * 1000L)
+            }
+
         } catch (e: JSONException) {
             // TODO Auto-generated catch block
             e.printStackTrace()
         }
     }
+
+
+
 }

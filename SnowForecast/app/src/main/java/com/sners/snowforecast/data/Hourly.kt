@@ -9,8 +9,9 @@ import java.util.*
  * A class for managing hourly weather conditions
  * It takes the raw json and converts it into a data structure
  * @param hourlyArray The raw current data coming in from the API call
+ * @param currentDate The reference date used for working out when is now
  */
-class Hourly(hourlyArray: JSONArray) {
+class Hourly(hourlyArray: JSONArray, val currentDateUnix : Long) {
 
     /**
      *  @property hourlyData Array of data objects
@@ -60,16 +61,14 @@ class Hourly(hourlyArray: JSONArray) {
             summary = "Please implement me"
             icon = "clear day"
             var beforeNow = true
-            val rightNow = Calendar.getInstance()
-            val hourNow = rightNow[Calendar.HOUR_OF_DAY]
+
             for (intervalCounter in 0..hourlyArray.length() - 1) {
                 val dataInst = HourlyData(hourlyArray.getJSONObject(intervalCounter))
                 //  This API returns hours in the past, it starts at 0am today
                 //  We only want from the current hour onwards
                 if (beforeNow) {
-                    val hourString = dataInst.time?.subSequence(0, 2) as String
-                    val hourInst = Integer.parseInt(hourString)
-                    if (hourInst > hourNow) {
+
+                    if (dataInst.timeUnix ?: Long.MAX_VALUE >= currentDateUnix) {
                         beforeNow = false
                     }
                 }

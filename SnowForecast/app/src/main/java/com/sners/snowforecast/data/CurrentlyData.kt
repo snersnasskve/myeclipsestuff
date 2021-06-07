@@ -35,6 +35,24 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
     private var sunriseTime: String? = null
         private set
 
+    /**
+     *  @property sunsetTime Sunset time as read from the json
+     */
+     var sunsetEpoch: Long? = null
+        private set
+
+    /**
+     *  @property sunriseTime Sunrise time as read from the json
+     */
+     var sunriseEpoch: Long? = null
+        private set
+
+    /**
+     *  @property sunriseTime Sunrise time as read from the json
+     */
+    private var dateTimeEpoch: Long? = null
+        private set
+
     /*
   Constructor
    */
@@ -47,6 +65,9 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
             time = currentJson.getString(WeatherConstants.TIME)
             sunriseTime = currentJson.getString(WeatherConstants.SUNRISE_TIME)
             sunsetTime = currentJson.getString(WeatherConstants.SUNSET_TIME)
+            sunriseEpoch = currentJson.getLong("sunriseEpoch")
+            sunsetEpoch = currentJson.getLong("sunsetEpoch")
+            dateTimeEpoch = currentJson.getLong("datetimeEpoch")
             //  Temperature
             temperature = readTemperatureFrom(currentJson)
             tempFeelsLike = currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()

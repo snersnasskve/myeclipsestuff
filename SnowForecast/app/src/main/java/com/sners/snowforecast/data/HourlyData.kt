@@ -18,7 +18,8 @@ class HourlyData(jsonHourly: JSONObject) : IntervalData() {
    */
     init {
         try {
-            time = jsonHourly.getString(WeatherConstants.TIME)
+            //time = jsonHourly.getString(WeatherConstants.TIME)
+            timeUnix = jsonHourly.getLong(WeatherConstants.DATE_TIME_EPOCH)
             this.precipIntensity = readPrecipIntensityFrom(jsonHourly)
             precipProbability = jsonHourly.getDouble(WeatherConstants.PRECIP_PROBABILITY).toFloat()
             temperature = readTemperatureFrom(jsonHourly)

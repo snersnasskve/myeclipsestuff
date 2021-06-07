@@ -11,18 +11,38 @@ import org.json.JSONObject
  */
 class MinutelyData(jsonMinutely: JSONObject) : IntervalData() {
 
+    /**
+     * localTime Time for this minute instance
+     */
+    var localTime = "";
+
+    /**
+     * utcTime Time for this minute instance
+     */
+    var utcTime = "";
+
+    /**
+     * unixTime Time for this minute instance
+     */
+    var unixTime = 0L;
+
+
     /*
   Constructor
    */
     init {
         try {
             time = jsonMinutely.getString(WeatherConstants.TIME_LOCAL)
+
+            localTime = jsonMinutely.getString(WeatherConstants.TIMESTAMP_LOCAL)
+            utcTime = jsonMinutely.getString(WeatherConstants.TIMESTAMP_UTC)
+            unixTime = jsonMinutely.getLong(WeatherConstants.TIMESTAMP)
             precipIntensity = jsonMinutely.getDouble(WeatherConstants.PRECIP_INTENSITY).toFloat() / 24f
-            precipProbability = jsonMinutely.getDouble(WeatherConstants.PRECIP_TYPE_SNOW).toFloat()
+            precipProbability = jsonFloatValueFor(WeatherConstants.PRECIP_TYPE_SNOW, jsonMinutely) ?: 0f
             if (precipProbability > 100) {
                 precipProbability = 100f
             }
-            val snow = jsonMinutely.getDouble(WeatherConstants.PRECIP_TYPE_SNOW).toFloat()
+            val snow = jsonFloatValueFor(WeatherConstants.PRECIP_TYPE_SNOW, jsonMinutely) ?: 0f
             if (snow > 0) {
                 weatherWords.add(WeatherConstants.PRECIP_TYPE_SNOW)
             } else if (precipIntensity > 0) {
