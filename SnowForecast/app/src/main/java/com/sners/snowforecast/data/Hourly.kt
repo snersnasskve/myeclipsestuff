@@ -1,6 +1,7 @@
 package com.sners.snowforecast.data
 
 import com.sners.snowforecast.weather.WeatherConstants
+import com.sners.snowforecast.weather.WeatherHelper
 import org.json.JSONArray
 import org.json.JSONException
 import java.util.*
@@ -9,7 +10,7 @@ import java.util.*
  * A class for managing hourly weather conditions
  * It takes the raw json and converts it into a data structure
  * @param hourlyArray The raw current data coming in from the API call
- * @param currentDate The reference date used for working out when is now
+ * @param currentDateUnix The reference date used for working out when is now
  */
 class Hourly(hourlyArray: JSONArray, val currentDateUnix : Long) {
 
@@ -34,6 +35,11 @@ class Hourly(hourlyArray: JSONArray, val currentDateUnix : Long) {
     private var maxPrecip: Float
 
     /**
+     *  @property weatherHelper A class for common weather functions
+     */
+    private val weatherHelper: WeatherHelper
+
+    /**
      * Get max precip
      * @return Maximimum precip for the period
      */
@@ -54,7 +60,7 @@ class Hourly(hourlyArray: JSONArray, val currentDateUnix : Long) {
   Constructor
    */
     init {
-
+        weatherHelper = WeatherHelper()
         maxPrecip = -1.0f
         hourlyData = ArrayList()
         try {
@@ -81,4 +87,32 @@ class Hourly(hourlyArray: JSONArray, val currentDateUnix : Long) {
             e.printStackTrace()
         }
     }
+
+    /**
+     *  @property tempFeelsLike Feels-like Temperature
+     */
+    val tempFeelsLike = hourlyData[0].tempFeelsLike
+
+    /**
+     *  @property humidity Humidity
+     */
+    val humidity: Float
+        get() = hourlyData[0].humidity
+
+    /**
+     *  @property cloudCover Cloud cover as a formatted string
+     */
+    val cloudCoverString: String
+        get() = weatherHelper.probabilityToPercent(cloudCover)
+
+    /**
+     *  @property dewPoint Dew point temperature as a number
+     */
+    val dewPoint = hourlyData[0].dewPoint
+
+    /**
+     *  @property cloudCover Cloud Cover
+     */
+    val cloudCover = hourlyData[0].cloudCover
+
 }

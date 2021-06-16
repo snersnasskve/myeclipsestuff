@@ -70,7 +70,6 @@ class CurrentlyData(currentJson: JSONObject) : IntervalData() {
             dateTimeEpoch = currentJson.getLong("datetimeEpoch")
             //  Temperature
             temperature = readTemperatureFrom(currentJson)
-            tempFeelsLike = currentJson.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()
             //  Precipitation
             this.precipIntensity = readPrecipIntensityFrom(currentJson)
             this.cloudCover = readCloudCoverFrom(currentJson)

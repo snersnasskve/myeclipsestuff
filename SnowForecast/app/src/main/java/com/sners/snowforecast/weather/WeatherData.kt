@@ -4,6 +4,8 @@ import com.sners.snowforecast.data.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -100,6 +102,8 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      */
     var currentDate : Date =  minutely?.currentDate ?: Date()
 
+    var weatherTimeZone : SimpleTimeZone? = null
+
     /**
      * currentDate Unix Time for current minute
      */
@@ -157,7 +161,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
             //  These values are from the top level
             val tz = jsonObjDaily.getInt(WeatherConstants.TIME_ZONE_OFFSET)
             val tzDesc = jsonObjDaily.getString("timezone")
-            val weatherTimeZone = SimpleTimeZone(tz, tzDesc)
+            weatherTimeZone = SimpleTimeZone(tz, tzDesc)
 
             forecastSummary = jsonObjDaily.getString(WeatherConstants.DESCRIPTION)
             //  Unpack and please refactor me
@@ -176,7 +180,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
             daily = Daily(dailyTimelineArray)
             currently = Currently(
                 jsonObjDaily.getJSONObject(WeatherConstants.CURRENTLY),
-                daily!!.currDateString!!, weatherTimeZone
+                currentDateUnix, weatherTimeZone!!
             )
             //  Currently needs the sunrise and sunset, which currently is not picking up
         } catch (e: JSONException) {
@@ -209,9 +213,11 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      */
     fun getTimeTilSunsetWithTimeNow(): String {
 
+        val dt =  Date(currentDateUnix * 1000L)
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale(weatherTimeZone!!.toString()))
         return String.format("%s (now: %s)",
             weatherHelper.formatTime(getTimeTilSunset()),
-            currently!!.timeAsHms)
+            dateFormat.format(dt))
     }
 
     /**
@@ -252,7 +258,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
 
         return String.format(
             "F/L %.1f%s ( %.1f : %.1f )",
-            currently!!.tempFeelsLike,
+            hourly!!.tempFeelsLike,
             WeatherConstants.DEGREES_C,
             daily!!.tempMin,
             daily!!.tempMax
@@ -267,9 +273,9 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
 
         return String.format(
             "H:%.0f / D:%.0f / %.0f",
-            currently!!.humidity,
-            currently!!.dewPoint,
-            currently!!.cloudCover
+            hourly!!.humidity,
+            hourly!!.dewPoint,
+            hourly!!.cloudCover
         )
     }
 }

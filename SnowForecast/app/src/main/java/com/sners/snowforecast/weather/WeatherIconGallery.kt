@@ -70,7 +70,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         var isItOK = false
         if (weatherData.isDayTime() &&
             weatherData.getTimeTilSunset() > WASHING_TIME_TIL_SUNSET &&
-            weatherData.currently!!.temperatureNum > weatherData.currently!!.dewPoint &&
+            weatherData.currently!!.temperatureNum > weatherData.hourly!!.dewPoint &&
             weatherData.precipitation!!.noRainForTheHour()
         ) {
             isItOK = true
