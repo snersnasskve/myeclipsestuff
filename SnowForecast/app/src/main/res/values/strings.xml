@@ -56,6 +56,8 @@
     <string name="alerts_issued">Alerts issued</string>
     <string name="next_snow">Next Snow</string>
     <string name="next_snow_hint">Next Snow</string>
+    <string name="uv_index">UV Index</string>
+    <string name="uv_index_hint">UV Index</string>
 
 
 </resources>

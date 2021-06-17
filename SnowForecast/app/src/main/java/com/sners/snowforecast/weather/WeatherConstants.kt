@@ -41,6 +41,7 @@ object WeatherConstants {
     const val TIMESTAMP_UTC = "timestamp_utc"
     const val TIMESTAMP = "ts"
     const val DATE_TIME_EPOCH = "datetimeEpoch"
+    const val UV_INDEX = "uvindex"
 
     const val WEATHER_CODE = "weatherCode"
     const val WIND_SPEED = "windspeed"

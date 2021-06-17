@@ -48,9 +48,9 @@ class WeatherCurrent : Activity() {
     private var tvCurWind: TextView? = null
 
     /**
-     * @property tvCurTimeTilSunset Time til sunset
+     * @property tvCurUvIndex Time til sunset
      */
-    private var tvCurTimeTilSunset: TextView? = null
+    private var tvCurUvIndex: TextView? = null
 
     /**
      * @property tvCurTimeTilPrecip Time til next precipitation
@@ -101,7 +101,7 @@ class WeatherCurrent : Activity() {
         tvCurMoisture = findViewById<View>(R.id.tvCurMoisture) as TextView
         tvCurTemperature = findViewById<View>(R.id.tvCurTemperature) as TextView
         tvCurWind = findViewById<View>(R.id.tvCurWind) as TextView
-        tvCurTimeTilSunset = findViewById<View>(R.id.tvCurTimeTilSunset) as TextView
+        tvCurUvIndex = findViewById<View>(R.id.tvCurUvIndex) as TextView
         tvCurTimeTilPrecip = findViewById<View>(R.id.tvCurTimeTilPrecip) as TextView
         tvCurTimeTilSnow = findViewById<View>(R.id.tvCurTimeTilSnow) as TextView
         tvCurAlertString = findViewById<View>(R.id.tvCurAlertString) as TextView
@@ -116,7 +116,7 @@ class WeatherCurrent : Activity() {
         tvCurMoisture!!.text = weatherData.getMoistureSummary()
         tvCurTemperature!!.text = weatherData.getTemperatureSummary()
         tvCurWind!!.text = weatherData.wind!!.getDetails()
-        tvCurTimeTilSunset!!.text = weatherData.getTimeTilSunsetWithTimeNow()
+        tvCurUvIndex!!.text = weatherData.getUvIndex().toString()
 
         //	timeTillPrecip
         tvCurTimeTilPrecip!!.text = ForecastMainActivity.weatherData.precipitation!!.timeTilString(false)

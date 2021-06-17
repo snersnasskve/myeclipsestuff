@@ -95,6 +95,25 @@
                android:textColor="#008000" />
 
            <ImageView
+                   android:id="@+id/imageView6"
+                   android:layout_width="@dimen/dash_land_cell_width"
+                   android:layout_height="@dimen/dash_land_cell_height"
+                   android:layout_gravity="center"
+                   android:contentDescription="@string/uv_index_hint"
+                   android:maxHeight="@dimen/icon_height"
+                   android:maxWidth="@dimen/icon_width"
+                   android:padding="@dimen/component_padding"
+                   android:src="@drawable/hat" />
+
+           <TextView
+                   android:id="@+id/tvDashUv"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:hint="@string/uv_index_hint"
+                   android:textAppearance="?android:attr/textAppearanceLarge"
+                   android:textColor="#008000" />
+
+           <ImageView
                android:id="@+id/imageView3"
             android:layout_width="@dimen/dash_land_cell_width"
                android:layout_height="@dimen/dash_land_cell_height"

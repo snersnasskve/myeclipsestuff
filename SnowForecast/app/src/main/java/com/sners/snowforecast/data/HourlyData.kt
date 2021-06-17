@@ -29,6 +29,7 @@ class HourlyData(jsonHourly: JSONObject) : IntervalData() {
             cloudCover = readCloudCoverFrom(jsonHourly)
             dewPoint = readDewPointFrom(jsonHourly)
             humidity = readHumidityFrom(jsonHourly)
+            uvIndex = readUvIndexFrom(jsonHourly)
             tempFeelsLike = jsonHourly.getDouble(WeatherConstants.TEMP_FEELS_LIKE).toFloat()
 
 

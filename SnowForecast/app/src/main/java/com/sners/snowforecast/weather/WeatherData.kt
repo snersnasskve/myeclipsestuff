@@ -278,4 +278,13 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
             hourly!!.cloudCover
         )
     }
+
+    /**
+     * Get UV Index
+     * @return Integer value
+     */
+    fun getUvIndex() : Int {
+        return hourly?.uvIndex ?: 0
+
+    }
 }

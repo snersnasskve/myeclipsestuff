@@ -115,4 +115,8 @@ class Hourly(hourlyArray: JSONArray, val currentDateUnix : Long) {
      */
     val cloudCover = hourlyData[0].cloudCover
 
+    /**
+     *  @property uvIndex UV Index
+     */
+    val uvIndex = hourlyData[0].uvIndex
 }

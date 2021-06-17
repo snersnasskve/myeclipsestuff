@@ -67,6 +67,12 @@ abstract class IntervalData {
         protected set
 
     /**
+     *  @property uvIndex UV Index out of 10
+     */
+    var uvIndex : Int = 0
+        protected set
+
+    /**
      *  @property cloudCover Feels like temperature Celcius
      */
     var cloudCover = -1f
@@ -156,6 +162,15 @@ abstract class IntervalData {
      */
     fun readSevereRiskFrom(jsonData: JSONObject) : Float {
         return jsonFloatValueFor(WeatherConstants.SEVERE_RISK, jsonData) ?: -1.0f
+    }
+
+    /**
+     *  Read Severe Risk
+     *  @param jsonData Json Object
+     *  @return severe risk value
+     */
+    fun readUvIndexFrom(jsonData: JSONObject) : Int {
+        return (jsonFloatValueFor(WeatherConstants.UV_INDEX, jsonData) ?: -1.0f).toInt()
     }
 
     /**

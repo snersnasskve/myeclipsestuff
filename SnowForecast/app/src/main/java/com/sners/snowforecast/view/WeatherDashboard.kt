@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import com.sners.snowforecast.ForecastMainActivity
 import com.sners.snowforecast.R
-import com.sners.snowforecast.weather.WeatherConstants
 import com.sners.snowforecast.weather.WeatherIconGallery
 import kotlin.math.roundToInt
 
@@ -56,6 +55,11 @@ class WeatherDashboard : Activity() {
     private var tvDashTimeTilPrecip: TextView? = null
 
     /**
+     * @property tvDashUvIndex UV Index
+     */
+    private var tvDashUvIndex: TextView? = null
+
+    /**
      * @property hsvDashActivityIcons Activity icons scroll view
      */
     private var hsvDashActivityIcons: HorizontalScrollView? = null
@@ -86,6 +90,7 @@ class WeatherDashboard : Activity() {
         tvDashSummary = findViewById<View>(R.id.tvDashSummary) as TextView
         tvDashPrecip = findViewById<View>(R.id.tvDashPrecip) as TextView
         tvDashTemperature = findViewById<View>(R.id.tvDashTemperature) as TextView
+        tvDashUvIndex = findViewById<View>(R.id.tvDashUv) as TextView
         tvDashWind = findViewById<View>(R.id.tvDashWind) as TextView
         tvDashTimeTilSunset = findViewById<View>(R.id.tvDashTimeTilSunset) as TextView
         tvDashTimeTilPrecip = findViewById<View>(R.id.tvDashTimeTilPrecip) as TextView
@@ -108,6 +113,7 @@ class WeatherDashboard : Activity() {
 
         populatePrecipitation()
         populateTemperature()
+        populateUVIndex()
         populateWind()
     }
 
@@ -157,13 +163,34 @@ class WeatherDashboard : Activity() {
         val tempColour = when (temperatureNum) {
             in Int.MIN_VALUE..0 -> Color.GRAY
             in 0..10 -> Color.BLUE
+            in 10..15 -> Color.BLACK
+            in 15..20 ->  0xFEDD0000  // Yellow
+            in 20..25 -> 0xFFA50000 // Orange
+            in 25..30 -> Color.MAGENTA
+            in 30..Int.MAX_VALUE -> Color.RED
+            else -> Color.YELLOW // This would indicate an error
+        }
+        tvDashTemperature!!.setTextColor(tempColour.toInt())
+    }
+
+    /**
+     * Populate UV Index
+     */
+    private fun populateUVIndex() {
+
+        val uv = weatherData.getUvIndex()
+        tvDashUvIndex!!.text = uv.toString()
+        val uvColour = when (uv) {
+            in Int.MIN_VALUE..0 -> Color.GRAY
+            in 1..2 -> Color.GREEN
+            in 3..5 -> 0xFEDD0000  // Yellow
+            in 6..7 -> 0xFFA50000 // Orange
             in 10..20 -> Color.BLACK
             in 20..Int.MAX_VALUE -> Color.RED
             else -> Color.YELLOW // This would indicate an error
         }
-        tvDashTemperature!!.setTextColor(tempColour)
+        tvDashUvIndex!!.setTextColor(uvColour.toInt())
     }
-
     /**
      * Populate Wind
      */

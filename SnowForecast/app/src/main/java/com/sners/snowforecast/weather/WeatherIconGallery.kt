@@ -156,8 +156,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
      */
     private fun okToWearHat(): Boolean {
         var isItOK = false
-        val temperature = weatherData.currently!!.temperatureNum
-        if (weatherData.isDayTime() && temperature > HAT_TEMPERATURE) {
+        if (weatherData.getUvIndex() > 5) {
             isItOK = true
         }
         return isItOK
@@ -211,8 +210,6 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     companion object {
 
         const val BRAAI_TIME_SINCE_SUNRISE = 180
-
-        const val HAT_TEMPERATURE = 20
 
         const val HIKING_TIME_TIL_SUNSET = 120
 
