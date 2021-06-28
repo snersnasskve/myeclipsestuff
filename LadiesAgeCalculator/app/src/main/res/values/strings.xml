@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Ladies Age Calculator</string>
+    <string name="calculate">Calculate</string>
+    <string name="Intro">Have you noticed that some years go faster than others? This calculator will calculate your
+        real age.
+    </string>
+    <string name="birth_date">Birth Date:</string>
+    <string name="birth_month">Birth Month:</string>
+    <string name="birth_year">Birth Year:</string>
+</resources>
