@@ -164,8 +164,8 @@ class WeatherDashboard : Activity() {
             in Int.MIN_VALUE..0 -> Color.GRAY
             in 0..10 -> Color.BLUE
             in 10..15 -> Color.BLACK
-            in 15..20 ->  0xFEDD0000  // Yellow
-            in 20..25 -> 0xFFA50000 // Orange
+            in 15..20 -> Color.rgb(254,211,0)  // Yellow
+            in 20..25 -> Color.rgb(255,165,0) // Orange
             in 25..30 -> Color.MAGENTA
             in 30..Int.MAX_VALUE -> Color.RED
             else -> Color.YELLOW // This would indicate an error
@@ -183,8 +183,8 @@ class WeatherDashboard : Activity() {
         val uvColour = when (uv) {
             in Int.MIN_VALUE..0 -> Color.GRAY
             in 1..2 -> Color.GREEN
-            in 3..5 -> 0xFEDD0000  // Yellow
-            in 6..7 -> 0xFFA50000 // Orange
+            in 3..5 -> Color.rgb(254,211,0)  // Yellow
+            in 6..7 ->Color.rgb(255,165,0) // Orange
             in 10..20 -> Color.BLACK
             in 20..Int.MAX_VALUE -> Color.RED
             else -> Color.YELLOW // This would indicate an error

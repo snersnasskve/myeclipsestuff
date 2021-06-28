@@ -8,9 +8,12 @@
     <dimen name="graph_height">60dp</dimen>
     <dimen name="icon_height">50dp</dimen>
     <dimen name="icon_width">50dp</dimen>
-     <dimen name="dash_cell_width">70dp</dimen>
-       <dimen name="dash_cell_height">70dp</dimen>
+     <dimen name="dash_cell_width">55dp</dimen>
+       <dimen name="dash_cell_height">55dp</dimen>
       <dimen name="dash_land_cell_width">40dp</dimen>
        <dimen name="dash_land_cell_height">40dp</dimen>
-       
+    <dimen name="dash_half_cell_width">30dp</dimen>
+
+
+
 </resources>

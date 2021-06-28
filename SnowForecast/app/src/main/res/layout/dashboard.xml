@@ -126,7 +126,7 @@
                android:hint="@string/wind_hint"
                android:textAppearance="?android:attr/textAppearanceLarge"
                android:textColor="#008000" />
-           
+
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="@dimen/dash_cell_width"
