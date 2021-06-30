@@ -7,4 +7,6 @@
     <string name="birth_date">Birth Date:</string>
     <string name="birth_month">Birth Month:</string>
     <string name="birth_year">Birth Year:</string>
+    <string name="fabulous">You look fabulous</string>
+    <string name="a_view_of_a_calendar">A view of a calendar</string>
 </resources>

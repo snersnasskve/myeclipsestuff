@@ -29,8 +29,13 @@ class MainActivity : AppCompatActivity() {
         ageCalculated = findViewById(R.id.age_calculated) as TextView
 
         calculateButton!!.setOnClickListener {
-            ageCalculated!!.setText("You look fabulous")
-            Toast.makeText(this, "You pressed calc", Toast.LENGTH_LONG).show()
-        }
+            calculateAge()
+           }
+    }
+
+    private fun calculateAge() {
+        ageCalculated!!.setText(getString(R.string.fabulous))
+        Toast.makeText(this, "You pressed calc", Toast.LENGTH_LONG).show()
+
     }
 }
