@@ -57,7 +57,6 @@ public class ForecastMainActivity extends FragmentActivity {
     private WeatherLocation favouriteLocation;
     ForecastLocation forecastLocation;
 
-    public static com.sners.snowforecast.ForecastReader forecastReader;        //	Data needs to be omnipresent
     public static WeatherData weatherData;        //	Data needs to be omnipresent
     public static String rawMinutely = "";
     public static String rawHourly = "";
@@ -94,7 +93,6 @@ public class ForecastMainActivity extends FragmentActivity {
         LocationManager locationMgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         forecastLocation = new ForecastLocation(locationMgr, ForecastMainActivity.this);
-        forecastReader = new com.sners.snowforecast.ForecastReader();
 
         spFavourites.setOnItemSelectedListener(favouriteItemSelected);
 
@@ -384,9 +382,6 @@ public class ForecastMainActivity extends FragmentActivity {
 
         @Override
         protected String doInBackground(Double... params) {
-           // String minutelyJson = forecastReader.readWeatherForecast(params[0], params[1], "1m");
-           // String hourlyJson = forecastReader.readWeatherForecast(params[0], params[1], "1h,1d");
-          //  VisualCrossingReader vcReader = new VisualCrossingReader();
             String errorMessage = "";
             try {
                 //  Please make a string resource file called secrets.
