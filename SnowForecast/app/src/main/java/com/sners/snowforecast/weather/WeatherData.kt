@@ -22,7 +22,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     /**
      * @property currently Info about Current weather
      */
-    var currently: Currently? = null
+    lateinit var currently: Currently
         private set
 
     /**
@@ -78,7 +78,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      * @property headlineSummary topline weather summary
      */
     val headlineSummary: String
-        get() = currently?.headline ?: "Unknown weather"
+        get() = currently.headline ?: "Unknown weather"
 
     /**
      * @property forecastSummary topline weather summary going forward
@@ -123,7 +123,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
         setUpDataArrays(rawMinutely, rawHourly)
 
         //	Replace with night time icon if available
-        headlineIcon = (currently?.icon ?: "").replace("-", "_").toLowerCase(Locale.ROOT)
+        headlineIcon = (currently.icon ?: "").replace("-", "_").toLowerCase(Locale.ROOT)
         if (headlineIcon.equals("clear") || headlineIcon.equals("partly_cloudy")) {
             headlineIcon = if (headlineIcon!!.contains("_day") && isDayTime()) {
                 headlineIcon.toString() + "_day"
@@ -131,8 +131,8 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
                 headlineIcon.toString() + "_night"
             }
         }
-        wind = Wind(hourly!!.hourlyData, currently!!)
-        precipitation = Precipitation(daily, hourly, minutely, currently!!)
+        wind = Wind(hourly!!.hourlyData, currently)
+        precipitation = Precipitation(daily, hourly, minutely, currently)
     }
 
     //  This stuff changes with every api
@@ -195,7 +195,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
      */
     fun isDayTime(): Boolean {
 
-        return currently!!.isDayTime
+        return currently.isDayTime
     }
 
     /**
@@ -227,7 +227,7 @@ class WeatherData(rawMinutely: String, rawHourly: String) {
     fun getTimeTilSunset(): Long {
 
         //	If it's night this will be negative
-        minutesTilSunset = currently!!.timeTilSunset
+        minutesTilSunset = currently.timeTilSunset
         if (minutesTilSunset < 0) {
             minutesTilSunset = 0
         }
