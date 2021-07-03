@@ -387,6 +387,7 @@ public class ForecastMainActivity extends FragmentActivity {
            // String minutelyJson = forecastReader.readWeatherForecast(params[0], params[1], "1m");
            // String hourlyJson = forecastReader.readWeatherForecast(params[0], params[1], "1h,1d");
           //  VisualCrossingReader vcReader = new VisualCrossingReader();
+            String errorMessage = "";
             try {
                 //  Please make a string resource file called secrets.
                 //  Your api key should do in there
@@ -394,6 +395,7 @@ public class ForecastMainActivity extends FragmentActivity {
                 VisualCrossingReader.timelineRequest(params[0], params[1], apiKey);
             } catch (Exception e) {
                 e.printStackTrace();
+  errorMessage = "Unable to read weather - please try later when you have internet";
             }
 
             try {
@@ -403,9 +405,12 @@ public class ForecastMainActivity extends FragmentActivity {
                 WeatherBitReader.timelineRequest(params[0], params[1], apiKey);
             } catch (Exception e) {
                 e.printStackTrace();
+                errorMessage = "Unable to read weather - please try later when you have internet";
             }
-            ForecastMainActivity.weatherData = new WeatherData(rawMinutely, rawHourly);
-            return "";
+            if ("" == errorMessage) {
+                ForecastMainActivity.weatherData = new WeatherData(rawMinutely, rawHourly);
+            }
+            return errorMessage;
         }
 
 
@@ -418,7 +423,7 @@ public class ForecastMainActivity extends FragmentActivity {
     }
 
     private void showCurrentWeather(String weatherJson) {
-        if (null != weatherJson) {
+        if (null != weatherJson && "" == weatherJson)  {
             Log.i(TAG, "showCurrentWeather - rejoined main thread");
             //Intent currentIntent = new Intent(ForecastMainActivity.this, WeatherDashboard.class);
             Intent currentIntent = new Intent();
