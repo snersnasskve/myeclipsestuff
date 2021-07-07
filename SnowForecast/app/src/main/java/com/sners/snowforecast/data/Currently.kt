@@ -1,16 +1,9 @@
 
 package com.sners.snowforecast.data
 
-import android.icu.text.DateFormat
-import android.icu.text.SimpleDateFormat
 import com.sners.snowforecast.weather.WeatherConstants
 import com.sners.snowforecast.weather.WeatherHelper
-
 import org.json.JSONObject
-
-import java.text.ParseException
-import java.time.LocalDateTime
-import java.time.ZonedDateTime
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -25,7 +18,7 @@ This class is used for managing data about the current weather
  */
 class Currently(
     currentJson: JSONObject?,
-    var currDateUnix: Long,
+    private var currDateUnix: Long,
     val weatherTimeZone: SimpleTimeZone
 ) {
 
@@ -66,7 +59,7 @@ class Currently(
         //  Make the dates from the separate date and time fields
         sunriseTime = Date((currentlyData.sunriseEpoch?: 0) * 1000L)
         sunsetTime = Date((currentlyData.sunsetEpoch?: 0) * 1000L)
-     
+
     }
 
     /**
@@ -84,11 +77,6 @@ class Currently(
      */
     val precipIntensity: Float
         get() = currentlyData.precipIntensity
-
-    /**
-     *  @property precipProbability Precipitation probability
-     */
-    val precipProbability = currentlyData.precipProbability
 
 
 
@@ -173,11 +161,5 @@ class Currently(
                     time.compareTo(sunsetTime) < 0)
         }
 
-    /**
-     *  @property timeAsHms The time string in HMS when the forecast was read
-     */
-    val timeAsHms: String
-    get() {
-        return time.toString()
-    }
+
 }
