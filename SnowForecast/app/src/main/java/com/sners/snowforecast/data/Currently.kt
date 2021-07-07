@@ -66,22 +66,7 @@ class Currently(
         //  Make the dates from the separate date and time fields
         sunriseTime = Date((currentlyData.sunriseEpoch?: 0) * 1000L)
         sunsetTime = Date((currentlyData.sunsetEpoch?: 0) * 1000L)
-        val myTime = sunriseTime.toString()
-        //val sunriseString = "$currDateString ${currentlyData.getSunriseTime()}"
-        //val sunsetString = "$currDateString ${currentlyData.getSunsetTime()}"
-        //var timeString = "$currDateString ${currentlyData.time}"
-
-        //val ldt = LocalDateTime.now()
-        //val nyDateTime: ZonedDateTime = ldt.atZone(weatherTimeZone.toZoneId())
-//        try {
-//            time = dateFormat.parse(timeString)
-//            sunriseTime = dateFormat.parse(sunriseString)
-//            val oldTime = sunriseTime.toString()
-//            sunsetTime = dateFormat.parse(sunsetString)
-//        } catch (e: ParseException) {
-//            e.printStackTrace()
-//            //	No date info;
-//        }
+     
     }
 
     /**
