@@ -8,39 +8,46 @@
               android:layout_gravity="center_vertical">
 
 
-
-        <TextView
-                android:text="@string/Intro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/introText"
-                style="@style/Roboto_general_style"/>
-        <TextView
-                android:text="@string/birth_month"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView3"
-                style="@style/Roboto_general_style"/>
-        <TextView
-                android:text="@string/birth_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView2"
-                style="@style/Roboto_general_style"/>
-        <TextView
-                android:text="@string/birth_year"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView4"
-                style="@style/Roboto_general_style"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/age_calculated"
-                style="@style/Roboto_general_style"/>
-        <Button
-                android:text="@string/calculate"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/calculate_button"
-                android:layout_weight="1"
-                style="@style/Roboto_general_style"
-        />
-    </LinearLayout>
+    <TextView
+            android:text="@string/intro_short"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/introText"
+            style="@style/Roboto_general_style"/>
+    <TextView
+            android:text="@string/birth_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView3"
+            style="@style/Roboto_general_style"/>
+    <TextView
+            android:text="@string/birth_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            style="@style/Roboto_general_style"/>
+    <TextView
+            android:text="@string/birth_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView4"
+            style="@style/Roboto_general_style"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/age_calculated"
+            style="@style/Roboto_general_style"/>
+    <Button
+            android:text="@string/calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/calculate_button"
+            android:layout_weight="1"
+    />
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/calendarfull"
+            android:id="@+id/imageView"
+            android:rotation="90"
+            android:rotationX="29" android:contentDescription="@string/calendar_desc_full"
+            android:adjustViewBounds="true" android:scaleType="fitCenter"
+            android:scaleX="0.3" android:scaleY="0.35"/>
+</LinearLayout>
 
