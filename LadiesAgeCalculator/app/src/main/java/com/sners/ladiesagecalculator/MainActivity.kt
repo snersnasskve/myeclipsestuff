@@ -21,10 +21,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
+// To auto complete the month
+        // http://saigeethamn.blogspot.com/2010/05/auto-complete-text-view-android.html
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.age_calc)
         calculateButton = findViewById(R.id.calculate_button) as Button
         ageCalculated = findViewById(R.id.age_calculated) as TextView
 

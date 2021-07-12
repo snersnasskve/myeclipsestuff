@@ -12,4 +12,5 @@
     <string name="fabulous">You look fabulous</string>
     <string name="a_view_of_a_calendar">A view of a calendar</string>
     <string name="calendar_desc_full">A photo of a calendar page</string>
+    <string name="month_name">Month Name</string>
 </resources>
