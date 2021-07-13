@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:layout_margin="@dimen/padding_small">
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/calendarfull" android:id="@+id/imageView"
@@ -17,7 +20,7 @@
             style="@style/Roboto_general_style"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            />
+    />
     <TextView
             android:text="@string/birth_month"
             android:layout_width="wrap_content"
@@ -26,38 +29,63 @@
             app:layout_constraintTop_toBottomOf="@+id/introText2"
             app:layout_constraintStart_toStartOf="parent"
     />
+
+
+    <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/edit_month" android:hint="@string/month_name"
+            app:layout_constraintTop_toTopOf="@+id/month_intro"
+            app:layout_constraintStart_toEndOf="@+id/month_intro"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <TextView
+            android:text="@string/birth_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/date_intro"
+            style="@style/Roboto_general_style"
+            app:layout_constraintTop_toBottomOf="@+id/month_intro"
+            app:layout_constraintStart_toStartOf="parent"
+    />
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:id="@+id/editMonth" android:hint="@string/month_name"
-            app:layout_constraintTop_toTopOf="@+id/month_intro"
-            app:layout_constraintStart_toEndOf="@+id/month_intro"
+            android:id="@+id/edit_day" android:hint="@string/day_number"
+            app:layout_constraintTop_toTopOf="@+id/date_intro"
+            app:layout_constraintStart_toEndOf="@+id/date_intro"
             app:layout_constraintEnd_toEndOf="parent"
-            android:inputType="text|textCapSentences|textAutoComplete"
-            android:autofillHints="AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_MONTH"/>
-    <TextView
-            android:text="@string/birth_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/date_intro"
-            style="@style/Roboto_general_style"
-            app:layout_constraintTop_toBottomOf="@+id/month_intro"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-    />
+            android:inputType="number"
+            android:importantForAutofill="no"/>
+
     <TextView
             android:text="@string/birth_year"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/year_intro"
             style="@style/Roboto_general_style"
             app:layout_constraintTop_toBottomOf="@+id/date_intro"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
     />
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/edit_year" android:hint="@string/year_number"
+            app:layout_constraintTop_toTopOf="@+id/year_intro"
+            app:layout_constraintStart_toEndOf="@+id/year_intro"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="number|numberPassword"
+            android:importantForAutofill="no"/>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/age_calculated"
             style="@style/Roboto_general_style"
             app:layout_constraintTop_toBottomOf="@+id/year_intro"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
     />
     <Button
             android:text="@string/calculate"
@@ -70,4 +98,5 @@
             app:layout_constraintTop_toBottomOf="@+id/age_calculated"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
     />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

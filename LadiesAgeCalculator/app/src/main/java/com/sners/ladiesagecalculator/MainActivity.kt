@@ -1,11 +1,9 @@
 package com.sners.ladiesagecalculator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +17,22 @@ class MainActivity : AppCompatActivity() {
      */
     private var ageCalculated: TextView? = null
 
+    /**
+     * @property birthYear Day of birthday
+     */
+    private var birthDay: EditText? = null
+
+    /**
+     * @property birthMonth Month of birthday
+     */
+    private var birthMonth: AutoCompleteTextView? = null
+
+    /**
+     * @property birthYear Year of birthday
+     */
+    private var birthYear: EditText? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 // To auto complete the month
@@ -28,6 +42,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.age_calc)
         calculateButton = findViewById(R.id.calculate_button) as Button
         ageCalculated = findViewById(R.id.age_calculated) as TextView
+        birthDay = findViewById(R.id.edit_day) as EditText
+        birthYear = findViewById(R.id.edit_year) as EditText
+
+        val monthNames =resources.getStringArray(R.array.months)
+        val adapter: ArrayAdapter<String> =
+            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthNames)
+
+        birthMonth = findViewById(R.id.edit_month) as AutoCompleteTextView
+        birthMonth!!.setThreshold(1)
+        birthMonth!!.setAdapter(adapter)
+
+
+
 
         calculateButton!!.setOnClickListener {
             calculateAge()
