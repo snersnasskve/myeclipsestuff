@@ -70,7 +70,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         var isItOK = false
         if (weatherData.isDayTime() &&
             weatherData.getTimeTilSunset() > WASHING_TIME_TIL_SUNSET &&
-            weatherData.currently!!.temperatureNum > weatherData.hourly!!.dewPoint + 1 &&
+            weatherData.currently.temperatureNum > weatherData.hourly!!.dewPoint + 1 &&
             weatherData.precipitation!!.noRainForTheHour()
         ) {
             isItOK = true
@@ -142,7 +142,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         var isItOK = false
         // if it is not going to rain in the next hour
         if (precipitation.noRainForTheHour() &&
-            weatherData.currently!!.timeSinceSunrise > BRAAI_TIME_SINCE_SUNRISE
+            weatherData.currently.timeSinceSunrise > BRAAI_TIME_SINCE_SUNRISE
         ) {
             isItOK = true
         }
@@ -171,7 +171,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         var isItOK = false
         val windSpeed = weatherData.wind!!.getSpeedBeaufort().toFloat()
         if (weatherData.isDayTime() && windSpeed > 3 && windSpeed < 8 &&
-            weatherData.currently!!.temperatureNum > 5
+            weatherData.currently.temperatureNum > 5
         ) {
             isItOK = true
         }
@@ -186,9 +186,9 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
     private fun okToScoot(): Boolean {
         var isItOK = false
         if (precipitation.noRainForTheHour() &&
-            weatherData.currently!!.temperatureNum >= 4 &&
-            (weatherData.getTimeTilSunset() < 1 ||
-                    weatherData.currently!!.timeSinceSunrise < SCOOT_TIME_TOO_EARLY)
+            weatherData.currently.temperatureNum >= 4 &&
+            (!(weatherData.getTimeTilSunset() < 1 ||
+                    weatherData.currently.timeSinceSunrise < SCOOT_TIME_TOO_EARLY))
         ) {
             isItOK = true
         }
