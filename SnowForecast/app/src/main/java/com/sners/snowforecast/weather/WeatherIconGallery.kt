@@ -188,7 +188,7 @@ Wind less than gale unless u wanna share ur bookies with the neighbours
         if (precipitation.noRainForTheHour() &&
             weatherData.currently.temperatureNum >= 4 &&
             (!(weatherData.getTimeTilSunset() < 1 ||
-                    weatherData.currently.timeSinceSunrise < SCOOT_TIME_TOO_EARLY))
+                    weatherData.currently.timeSinceSunrise < -(SCOOT_TIME_TOO_EARLY)))
         ) {
             isItOK = true
         }

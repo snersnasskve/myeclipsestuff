@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
     id "org.jetbrains.kotlin.kapt"
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -31,12 +33,9 @@ android {
         jvmTarget = '1.8'
     }
 
-    dataBinding {
-        enabled = true
-    }
-
-
 }
+
+android.buildFeatures.dataBinding true
 
 dependencies {
 
