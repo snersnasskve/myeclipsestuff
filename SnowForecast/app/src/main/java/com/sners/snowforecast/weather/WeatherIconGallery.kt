@@ -9,7 +9,7 @@ class WeatherIconGallery {
 
     //  How to path by reference
 
-    private var weatherData = ForecastMainActivity.weatherData
+    private var weatherData = ForecastMainActivity.weatherData!!
     private var precipitation = weatherData.precipitation!!
 
     //	Call Json will it rain currently if not, add Washing icon

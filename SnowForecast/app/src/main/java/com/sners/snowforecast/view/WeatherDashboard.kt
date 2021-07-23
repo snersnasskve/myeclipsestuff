@@ -72,7 +72,7 @@ class WeatherDashboard : Activity() {
     /**
      * @property weatherData Weather data object
      */
-    private var weatherData = ForecastMainActivity.weatherData
+    private var weatherData = ForecastMainActivity.weatherData!!
 
     /**
      * On Create - Override

@@ -27,8 +27,8 @@ class MinutelyPrecipChart : WeatherPrecipChart() {
         ivPcProbability = findViewById<View>(R.id.ivPcProbability) as ImageView
         tvPcIntensity = findViewById<View>(R.id.tvPcIntensity) as TextView
         precipPrefix = "Minutely Precip: "
-        val minutely = ForecastMainActivity.weatherData.minutelyData
-        var maxPrecip: Float = ForecastMainActivity.weatherData.minutely!!.getMaxPrecip()
+        val minutely = ForecastMainActivity.weatherData!!.minutelyData
+        var maxPrecip: Float = ForecastMainActivity.weatherData!!.minutely!!.getMaxPrecip()
         maxPrecip = setTitleAndColours(maxPrecip)
         drawPrecipGraph(minutely, maxPrecip, WeatherConstants.MINUTELY_NUM_POINTS_TO_PLOT)
         drawProbabilityGraph(minutely, WeatherConstants.MINUTELY_NUM_POINTS_TO_PLOT)
@@ -43,7 +43,7 @@ class MinutelyPrecipChart : WeatherPrecipChart() {
         //llCurrently.startAnimation(animExitLeft);
         val nextActivityIntent: Intent
         val toastMessage: String
-        if (null != ForecastMainActivity.weatherData.hourly && ForecastMainActivity.weatherData.hourly!!.getMaxPrecip() > 0.0f) {
+        if (null != ForecastMainActivity.weatherData!!.hourly && ForecastMainActivity.weatherData!!.hourly!!.getMaxPrecip() > 0.0f) {
             nextActivityIntent = Intent(this@MinutelyPrecipChart, HourlyPrecipChart::class.java)
             toastMessage = "Show Hourly graphs"
         } else {

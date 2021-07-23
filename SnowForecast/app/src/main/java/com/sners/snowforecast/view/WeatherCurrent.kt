@@ -85,7 +85,7 @@ class WeatherCurrent : Activity() {
     /**
      * @property weatherData Weather data object
      */
-    private var weatherData = ForecastMainActivity.weatherData
+    private var weatherData = ForecastMainActivity.weatherData!!
 
     /**
      * On Create - Override
@@ -119,12 +119,12 @@ class WeatherCurrent : Activity() {
         tvCurUvIndex!!.text = weatherData.getUvIndex().toString()
 
         //	timeTillPrecip
-        tvCurTimeTilPrecip!!.text = ForecastMainActivity.weatherData.precipitation!!.timeTilString(false)
+        tvCurTimeTilPrecip!!.text = weatherData.precipitation!!.timeTilString(false)
         tvCurTimeTilSnow!!.text =
-            ForecastMainActivity.weatherData.precipitation!!.timeTilPrecipTypeString(WeatherConstants.PRECIP_TYPE_SNOW)
+            weatherData.precipitation!!.timeTilPrecipTypeString(WeatherConstants.PRECIP_TYPE_SNOW)
         var alertHeadline: String? = "None"
-        if (null != ForecastMainActivity.weatherData.alerts) {
-            alertHeadline = ForecastMainActivity.weatherData.alerts!!.alertSummary
+        if (null != weatherData.alerts) {
+            alertHeadline = weatherData.alerts!!.alertSummary
         }
         tvCurAlertString!!.text = alertHeadline
         val iconName = weatherData.headlineIcon
@@ -172,10 +172,10 @@ class WeatherCurrent : Activity() {
         if (null != weatherData.minutely && weatherData.minutely!!.getMaxPrecip() > 0.0f) {
             nextActivityIntent = Intent(this@WeatherCurrent, MinutelyPrecipChart::class.java)
             toastMessage = "Show Minutely graphs"
-        } else if (null != ForecastMainActivity.weatherData.hourly && ForecastMainActivity.weatherData.hourly!!.getMaxPrecip() > 0.0f) {
+        } else if (null != weatherData.hourly && weatherData.hourly!!.getMaxPrecip() > 0.0f) {
             nextActivityIntent = Intent(this@WeatherCurrent, HourlyPrecipChart::class.java)
             toastMessage = "Show Hourly graphs"
-        } else if (null != ForecastMainActivity.weatherData.alerts) {
+        } else if (null != weatherData.alerts) {
             nextActivityIntent = Intent(this@WeatherCurrent, WeatherAlert::class.java)
             toastMessage = "Show Alerts"
         } else {

@@ -27,8 +27,8 @@ class HourlyPrecipChart : WeatherPrecipChart() {
         ivPcProbability = findViewById<View>(R.id.ivPcProbability) as ImageView
         tvPcIntensity = findViewById<View>(R.id.tvPcIntensity) as TextView
         precipPrefix = "Hourly Precip: "
-        val hourly = ForecastMainActivity.weatherData.hourlyData
-        var maxPrecip: Float = ForecastMainActivity.weatherData.hourly!!.getMaxPrecip()
+        val hourly = ForecastMainActivity.weatherData!!.hourlyData
+        var maxPrecip: Float = ForecastMainActivity.weatherData!!.hourly!!.getMaxPrecip()
         maxPrecip = setTitleAndColours(maxPrecip)
         drawPrecipGraph(hourly, maxPrecip, WeatherConstants.HOURLY_NUM_POINTS_TO_PLOT)
         drawProbabilityGraph(hourly, WeatherConstants.HOURLY_NUM_POINTS_TO_PLOT)
@@ -43,7 +43,7 @@ class HourlyPrecipChart : WeatherPrecipChart() {
         //llCurrently.startAnimation(animExitLeft);
         val nextActivityIntent: Intent
         val toastMessage: String
-        if (null != ForecastMainActivity.weatherData.alerts) {
+        if (null != ForecastMainActivity.weatherData!!.alerts) {
             nextActivityIntent = Intent(this@HourlyPrecipChart, WeatherAlert::class.java)
             toastMessage = "Show Alerts"
         } else {
