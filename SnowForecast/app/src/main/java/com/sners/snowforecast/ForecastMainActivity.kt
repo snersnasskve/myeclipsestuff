@@ -30,7 +30,6 @@ class ForecastMainActivity : FragmentActivity() {
     private lateinit var binding: ActivityForecastMainBinding
 
     var etLocationPlaceName: EditText? = null
-    var tvLocation: TextView? = null
     var tvStatus: TextView? = null
     var spFavourites: Spinner? = null
     var pbReadWeather: ProgressBar? = null
@@ -51,7 +50,6 @@ class ForecastMainActivity : FragmentActivity() {
 
         lastUsedInfo = getSharedPreferences("weatherinfo", MODE_PRIVATE)
         etLocationPlaceName = findViewById<View>(R.id.etLocationPlaceName) as EditText
-        tvLocation = findViewById<View>(R.id.tvLocation) as TextView
         spFavourites = findViewById<View>(R.id.spFavourites) as Spinner
         tvStatus = findViewById<View>(R.id.tvStatus) as TextView
         pbReadWeather = findViewById<View>(R.id.pbReadWeather) as ProgressBar
@@ -139,9 +137,8 @@ class ForecastMainActivity : FragmentActivity() {
         val bestLocation = forecastLocation!!.bestLastKnownLocation()
         if (null != bestLocation) {
             currentLocation = WeatherLocation("Local", "" + bestLocation.latitude, "" + bestLocation.longitude)
-            val locationString = locationFormat.format(currentLocation!!.latitude) + "  :  " +
-                    locationFormat.format(currentLocation!!.longitude)
-            tvLocation!!.text = locationString
+            val locationString = "${locationFormat.format(currentLocation!!.latitude)}  :  ${locationFormat.format(currentLocation!!.longitude)}"
+            binding.tvLocation.text = locationString
             statusString = "Current Location found"
             //	getWeatherData(currentLocation.getLatitude(), currentLocation.getLongitude());
         } else {
@@ -166,7 +163,7 @@ class ForecastMainActivity : FragmentActivity() {
                         forecastLocation!!.mLatitude
                     ) + "  :  " +
                             locationFormat.format(forecastLocation!!.mLongitude)
-                    tvLocation!!.text = locationString
+                    binding.tvLocation.text = locationString
                     statusString = "Location for address found"
                     success = true
                 } else {
@@ -261,7 +258,7 @@ class ForecastMainActivity : FragmentActivity() {
         ) {
             etLocationPlaceName!!.setText(weatherLocations!![position].name)
             if (weatherLocations!![position].name!!.length > 3) {
-                tvLocation!!.text =
+                binding.tvLocation.text =
                     "" + weatherLocations!![position].latitude + "" + "  :  " + weatherLocations!![position].longitude
                 favouriteLocation = weatherLocations!![position]
             }
@@ -293,7 +290,7 @@ class ForecastMainActivity : FragmentActivity() {
             statusString = if (favourites!!.contains(placeName)) {
                 "$placeName is already in your favourites"
             } else {
-                val newLocation = WeatherLocation(placeName, tvLocation!!.text.toString())
+                val newLocation = WeatherLocation(placeName, binding.tvLocation.text.toString())
                 if ("" !== newLocation.name) {
                     weatherLocations!!.add(newLocation)
                     favouritesAdapter!!.add(placeName)
