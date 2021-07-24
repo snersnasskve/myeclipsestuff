@@ -58,6 +58,8 @@
     <string name="next_snow_hint">Next Snow</string>
     <string name="uv_index">UV Index</string>
     <string name="uv_index_hint">UV Index</string>
+    <string name="failed_no_internet_warning">Reading weather failed - try later when you have internet.</string>
+    <string name="location_not_found_warning">Location not found. Please enable GPS.</string>
 
 
 </resources>

@@ -22,6 +22,9 @@ import com.sners.snowforecast.weather.WeatherData
 import java.text.DecimalFormat
 import java.util.*
 
+/**
+ * The primary view for the application
+ */
 class ForecastMainActivity : FragmentActivity() {
 
     /**
@@ -30,7 +33,6 @@ class ForecastMainActivity : FragmentActivity() {
     private lateinit var binding: ActivityForecastMainBinding
 
     var etLocationPlaceName: EditText? = null
-    var tvStatus: TextView? = null
     var spFavourites: Spinner? = null
     var pbReadWeather: ProgressBar? = null
     var weatherLocations: ArrayList<WeatherLocation>? = null
@@ -51,7 +53,6 @@ class ForecastMainActivity : FragmentActivity() {
         lastUsedInfo = getSharedPreferences("weatherinfo", MODE_PRIVATE)
         etLocationPlaceName = findViewById<View>(R.id.etLocationPlaceName) as EditText
         spFavourites = findViewById<View>(R.id.spFavourites) as Spinner
-        tvStatus = findViewById<View>(R.id.tvStatus) as TextView
         pbReadWeather = findViewById<View>(R.id.pbReadWeather) as ProgressBar
         pbReadWeather!!.visibility = View.INVISIBLE
         populateFavourites(lastUsedInfo?.getString("favourites", null))
@@ -131,7 +132,7 @@ class ForecastMainActivity : FragmentActivity() {
     private fun readLocationFromPhone() {
         var statusString = "Searching..."
         pbReadWeather!!.visibility = View.VISIBLE
-        tvStatus!!.text = statusString
+        binding.tvStatus.text = statusString
 
         //	Get location from phone
         val bestLocation = forecastLocation!!.bestLastKnownLocation()
@@ -144,7 +145,7 @@ class ForecastMainActivity : FragmentActivity() {
         } else {
             statusString = "Please enable GPS"
         }
-        tvStatus!!.text = statusString
+        binding.tvStatus.text = statusString
         pbReadWeather!!.visibility = View.INVISIBLE
     }//	Get location from phone
 
@@ -153,7 +154,7 @@ class ForecastMainActivity : FragmentActivity() {
         private get() {
             var statusString = "Searching..."
             pbReadWeather!!.visibility = View.VISIBLE
-            tvStatus!!.text = statusString
+            binding.tvStatus.text = statusString
             var success = false
             if (etLocationPlaceName!!.text.toString().length > 3) {
                 //	Get location from text on screen
@@ -173,7 +174,7 @@ class ForecastMainActivity : FragmentActivity() {
                 //	Get location from phone
                 statusString = "Please enter a place name !"
             }
-            tvStatus!!.text = statusString
+            binding.tvStatus.text = statusString
             pbReadWeather!!.visibility = View.INVISIBLE
             return success
         }
@@ -224,9 +225,9 @@ class ForecastMainActivity : FragmentActivity() {
             Log.i(TAG, "refreshScreen - Leaving main thread")
             getWeatherData(currentLocation!!.latitude!!, currentLocation!!.longitude!!)
         } else {
-            tvStatus!!.text = "Location not found. Please enable GPS."
+            binding.tvStatus.text = getString(R.string.location_not_found_warning)
             Toast.makeText(
-                applicationContext, "Location not found. Please enable GPS.",
+                applicationContext, getString(R.string.location_not_found_warning),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -301,7 +302,7 @@ class ForecastMainActivity : FragmentActivity() {
                 }
             }
         }
-        tvStatus!!.text = statusString
+        binding.tvStatus.text = statusString
     }
 
     private fun deleteFavourite() {
@@ -321,7 +322,7 @@ class ForecastMainActivity : FragmentActivity() {
                 spFavourites!!.setSelection(0)
             }
         }
-        tvStatus!!.text = statusString
+        binding.tvStatus.text = statusString
     }
 
     /////////////////////////////////////////////
@@ -376,7 +377,7 @@ class ForecastMainActivity : FragmentActivity() {
             currentIntent.setClassName(this@ForecastMainActivity, "com.sners.snowforecast.view.WeatherDashboard")
             startActivity(currentIntent)
         } else {
-            tvStatus!!.text = "Reading weather failed - try later when you have internet."
+            binding.tvStatus.text = getString(R.string.failed_no_internet_warning)
         }
     }
 
