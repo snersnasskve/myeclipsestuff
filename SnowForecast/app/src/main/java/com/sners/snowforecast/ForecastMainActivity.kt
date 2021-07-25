@@ -32,7 +32,6 @@ class ForecastMainActivity : FragmentActivity() {
      */
     private lateinit var binding: ActivityForecastMainBinding
 
-    var spFavourites: Spinner? = null
     var pbReadWeather: ProgressBar? = null
     var weatherLocations: ArrayList<WeatherLocation>? = null
 
@@ -50,7 +49,6 @@ class ForecastMainActivity : FragmentActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_main)
 
         lastUsedInfo = getSharedPreferences("weatherinfo", MODE_PRIVATE)
-        spFavourites = findViewById<View>(R.id.spFavourites) as Spinner
         pbReadWeather = findViewById<View>(R.id.pbReadWeather) as ProgressBar
         pbReadWeather!!.visibility = View.INVISIBLE
         populateFavourites(lastUsedInfo?.getString("favourites", null))
@@ -63,12 +61,12 @@ class ForecastMainActivity : FragmentActivity() {
             android.R.layout.simple_list_item_1, favourites!!
         )
         favouritesAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spFavourites!!.adapter = favouritesAdapter
+        binding.spFavourites.adapter = favouritesAdapter
 
         //	This needs to be called from Android class
         val locationMgr = getSystemService(LOCATION_SERVICE) as LocationManager
         forecastLocation = ForecastLocation(locationMgr, this@ForecastMainActivity)
-        spFavourites!!.onItemSelectedListener = favouriteItemSelected
+        binding.spFavourites.onItemSelectedListener = favouriteItemSelected
     }
 
     override fun onResume() {
@@ -109,7 +107,6 @@ class ForecastMainActivity : FragmentActivity() {
         } else if (id == R.id.action_remove_favourite) {
             val success = locationFromAddress
             if (success) {
-                //forecastMainFragment.spFavourites.doSomthing()
                 deleteFavourite()
             }
         }
@@ -150,7 +147,7 @@ class ForecastMainActivity : FragmentActivity() {
     //	Get location from text on screen
     private val locationFromAddress: Boolean
         private get() {
-            var statusString = R.string.searching.toString()
+            var statusString = getString(R.string.searching_status)
             pbReadWeather!!.visibility = View.VISIBLE
             binding.tvStatus.text = statusString
             var success = false
@@ -164,14 +161,14 @@ class ForecastMainActivity : FragmentActivity() {
                     ) + "  :  " +
                             locationFormat.format(forecastLocation!!.mLongitude)
                     binding.tvLocation.text = locationString
-                    statusString = R.string.location_for_address_found.toString()
+                    statusString = getString(R.string.location_for_address_found)
                     success = true
                 } else {
-                    statusString = R.string.try_later_no_internet.toString()
+                    statusString = getString(R.string.try_later_no_internet)
                 }
             } else {
                 //	Get location from phone
-                statusString = R.string.enter_place_name.toString()
+                statusString = getString(R.string.enter_place_name)
             }
             binding.tvStatus.text = statusString
             pbReadWeather!!.visibility = View.INVISIBLE
@@ -185,7 +182,7 @@ class ForecastMainActivity : FragmentActivity() {
         if (binding.etLocationPlaceName.text.toString().length > 3) {
             locationFromAddress
             Toast.makeText(
-                applicationContext, R.string.show_forecast_this_address,
+                applicationContext, getString(R.string.show_forecast_this_address),
                 Toast.LENGTH_SHORT
             ).show()
             Log.i(TAG, "forecastForAddress - Leaving main thread")
@@ -196,7 +193,7 @@ class ForecastMainActivity : FragmentActivity() {
     fun forecastForLocation(view: View?) {
         binding.etLocationPlaceName.setText("")
         Toast.makeText(
-            applicationContext, R.string.show_forecast_this_location,
+            applicationContext, getString(R.string.show_forecast_this_location),
             Toast.LENGTH_SHORT
         ).show()
         Log.i(TAG, "forecastForLocation - Leaving main thread")
@@ -294,7 +291,7 @@ class ForecastMainActivity : FragmentActivity() {
                 if ("" !== newLocation.name) {
                     weatherLocations!!.add(newLocation)
                     favouritesAdapter!!.add(placeName)
-                    spFavourites!!.setSelection(favourites!!.size - 1)
+                    binding.spFavourites.setSelection(favourites!!.size - 1)
                     "$placeName has been added"
                 } else {
                     "Get location before adding to favourites"
@@ -305,7 +302,7 @@ class ForecastMainActivity : FragmentActivity() {
     }
 
     private fun deleteFavourite() {
-        var statusString = (R.string.select_place_to_delete).toString()
+        var statusString = getString(R.string.select_place_to_delete)
         val placeName = binding.etLocationPlaceName.text.toString()
         if (placeName.length > 3) {
             var placeToDelete: WeatherLocation? = null
@@ -318,7 +315,7 @@ class ForecastMainActivity : FragmentActivity() {
                 weatherLocations!!.remove(placeToDelete)
                 favouritesAdapter!!.remove(placeName)
                 statusString = "$placeName has been deleted"
-                spFavourites!!.setSelection(0)
+               binding.spFavourites.setSelection(0)
             }
         }
         binding.tvStatus.text = statusString

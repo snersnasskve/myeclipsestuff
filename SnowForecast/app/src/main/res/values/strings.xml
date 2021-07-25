@@ -66,6 +66,6 @@
     <string name="location_for_address_found">Location for address found</string>
     <string name="try_later_no_internet">Try later when you have internet</string>
     <string name="enter_place_name">Please enter a place name !</string>
-    <string name="searching">Searching...</string>
+    <string name="searching_status">Searching...</string>
 
 </resources>
