@@ -60,6 +60,12 @@
     <string name="uv_index_hint">UV Index</string>
     <string name="failed_no_internet_warning">Reading weather failed - try later when you have internet.</string>
     <string name="location_not_found_warning">Location not found. Please enable GPS.</string>
-
+    <string name="select_place_to_delete">Please select the place you want to delete</string>
+    <string name="show_forecast_this_location">Show forecast for this location</string>
+    <string name="show_forecast_this_address">Show forecast for this address</string>
+    <string name="location_for_address_found">Location for address found</string>
+    <string name="try_later_no_internet">Try later when you have internet</string>
+    <string name="enter_place_name">Please enter a place name !</string>
+    <string name="searching">Searching...</string>
 
 </resources>

@@ -32,7 +32,6 @@ class ForecastMainActivity : FragmentActivity() {
      */
     private lateinit var binding: ActivityForecastMainBinding
 
-    var etLocationPlaceName: EditText? = null
     var spFavourites: Spinner? = null
     var pbReadWeather: ProgressBar? = null
     var weatherLocations: ArrayList<WeatherLocation>? = null
@@ -51,7 +50,6 @@ class ForecastMainActivity : FragmentActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_main)
 
         lastUsedInfo = getSharedPreferences("weatherinfo", MODE_PRIVATE)
-        etLocationPlaceName = findViewById<View>(R.id.etLocationPlaceName) as EditText
         spFavourites = findViewById<View>(R.id.spFavourites) as Spinner
         pbReadWeather = findViewById<View>(R.id.pbReadWeather) as ProgressBar
         pbReadWeather!!.visibility = View.INVISIBLE
@@ -152,27 +150,28 @@ class ForecastMainActivity : FragmentActivity() {
     //	Get location from text on screen
     private val locationFromAddress: Boolean
         private get() {
-            var statusString = "Searching..."
+            var statusString = R.string.searching.toString()
             pbReadWeather!!.visibility = View.VISIBLE
             binding.tvStatus.text = statusString
             var success = false
-            if (etLocationPlaceName!!.text.toString().length > 3) {
+            if (binding.etLocationPlaceName.text.toString().length > 3) {
                 //	Get location from text on screen
-                forecastLocation!!.locationFromPlace(etLocationPlaceName!!.text.toString(), application)
+                forecastLocation!!.locationFromPlace(binding.etLocationPlaceName.text.toString(),
+                    application)
                 if (forecastLocation!!.isValidLocation) {
                     val locationString = locationFormat.format(
                         forecastLocation!!.mLatitude
                     ) + "  :  " +
                             locationFormat.format(forecastLocation!!.mLongitude)
                     binding.tvLocation.text = locationString
-                    statusString = "Location for address found"
+                    statusString = R.string.location_for_address_found.toString()
                     success = true
                 } else {
-                    statusString = "Try later when you have internet"
+                    statusString = R.string.try_later_no_internet.toString()
                 }
             } else {
                 //	Get location from phone
-                statusString = "Please enter a place name !"
+                statusString = R.string.enter_place_name.toString()
             }
             binding.tvStatus.text = statusString
             pbReadWeather!!.visibility = View.INVISIBLE
@@ -183,10 +182,10 @@ class ForecastMainActivity : FragmentActivity() {
     //	Action on Buttons
     /////////////////////////////////////////////
     fun forecastForAddress(view: View?) {
-        if (etLocationPlaceName!!.text.toString().length > 3) {
+        if (binding.etLocationPlaceName.text.toString().length > 3) {
             locationFromAddress
             Toast.makeText(
-                applicationContext, "Show forecast for this address",
+                applicationContext, R.string.show_forecast_this_address,
                 Toast.LENGTH_SHORT
             ).show()
             Log.i(TAG, "forecastForAddress - Leaving main thread")
@@ -195,9 +194,9 @@ class ForecastMainActivity : FragmentActivity() {
     }
 
     fun forecastForLocation(view: View?) {
-        etLocationPlaceName!!.setText("")
+        binding.etLocationPlaceName.setText("")
         Toast.makeText(
-            applicationContext, "Show forecast for this location",
+            applicationContext, R.string.show_forecast_this_location,
             Toast.LENGTH_SHORT
         ).show()
         Log.i(TAG, "forecastForLocation - Leaving main thread")
@@ -257,7 +256,7 @@ class ForecastMainActivity : FragmentActivity() {
             parent: AdapterView<*>?, view: View,
             position: Int, id: Long
         ) {
-            etLocationPlaceName!!.setText(weatherLocations!![position].name)
+            binding.etLocationPlaceName.setText(weatherLocations!![position].name)
             if (weatherLocations!![position].name!!.length > 3) {
                 binding.tvLocation.text =
                     "" + weatherLocations!![position].latitude + "" + "  :  " + weatherLocations!![position].longitude
@@ -286,7 +285,7 @@ class ForecastMainActivity : FragmentActivity() {
 
     private fun addFavourite() {
         var statusString = "Please enter valid place name"
-        val placeName = etLocationPlaceName!!.text.toString()
+        val placeName = binding.etLocationPlaceName.text.toString()
         if (placeName.length > 3) {
             statusString = if (favourites!!.contains(placeName)) {
                 "$placeName is already in your favourites"
@@ -306,8 +305,8 @@ class ForecastMainActivity : FragmentActivity() {
     }
 
     private fun deleteFavourite() {
-        var statusString = "Please select the place you want to delete"
-        val placeName = etLocationPlaceName!!.text.toString()
+        var statusString = (R.string.select_place_to_delete).toString()
+        val placeName = binding.etLocationPlaceName.text.toString()
         if (placeName.length > 3) {
             var placeToDelete: WeatherLocation? = null
             for (locInst in weatherLocations!!) {
