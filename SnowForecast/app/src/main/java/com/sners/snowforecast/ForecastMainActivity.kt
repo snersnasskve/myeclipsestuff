@@ -32,7 +32,6 @@ class ForecastMainActivity : FragmentActivity() {
      */
     private lateinit var binding: ActivityForecastMainBinding
 
-    var pbReadWeather: ProgressBar? = null
     var weatherLocations: ArrayList<WeatherLocation>? = null
 
     //	For the array adaptor - names only
@@ -49,8 +48,7 @@ class ForecastMainActivity : FragmentActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_main)
 
         lastUsedInfo = getSharedPreferences("weatherinfo", MODE_PRIVATE)
-        pbReadWeather = findViewById<View>(R.id.pbReadWeather) as ProgressBar
-        pbReadWeather!!.visibility = View.INVISIBLE
+        binding.pbReadWeather.visibility = View.INVISIBLE
         populateFavourites(lastUsedInfo?.getString("favourites", null))
 
 
@@ -126,7 +124,7 @@ class ForecastMainActivity : FragmentActivity() {
     /////////////////////////////////////////////
     private fun readLocationFromPhone() {
         var statusString = "Searching..."
-        pbReadWeather!!.visibility = View.VISIBLE
+        binding.pbReadWeather.visibility = View.VISIBLE
         binding.tvStatus.text = statusString
 
         //	Get location from phone
@@ -141,14 +139,14 @@ class ForecastMainActivity : FragmentActivity() {
             statusString = "Please enable GPS"
         }
         binding.tvStatus.text = statusString
-        pbReadWeather!!.visibility = View.INVISIBLE
+        binding.pbReadWeather.visibility = View.INVISIBLE
     }//	Get location from phone
 
     //	Get location from text on screen
     private val locationFromAddress: Boolean
         private get() {
             var statusString = getString(R.string.searching_status)
-            pbReadWeather!!.visibility = View.VISIBLE
+            binding.pbReadWeather.visibility = View.VISIBLE
             binding.tvStatus.text = statusString
             var success = false
             if (binding.etLocationPlaceName.text.toString().length > 3) {
@@ -171,7 +169,7 @@ class ForecastMainActivity : FragmentActivity() {
                 statusString = getString(R.string.enter_place_name)
             }
             binding.tvStatus.text = statusString
-            pbReadWeather!!.visibility = View.INVISIBLE
+            binding.pbReadWeather.visibility = View.INVISIBLE
             return success
         }
 
@@ -325,7 +323,7 @@ class ForecastMainActivity : FragmentActivity() {
     //	Read forecast
     /////////////////////////////////////////////
     private fun getWeatherData(mLatitude: Double, mLongitude: Double) {
-        pbReadWeather!!.visibility = View.VISIBLE
+        binding.pbReadWeather.visibility = View.VISIBLE
         ReadWeatherAsyncTask().execute(mLatitude, mLongitude)
     }
 
@@ -361,7 +359,7 @@ class ForecastMainActivity : FragmentActivity() {
 
         override fun onPostExecute(result: String) {
             showCurrentWeather(result)
-            pbReadWeather!!.visibility = View.INVISIBLE
+            binding.pbReadWeather.visibility = View.INVISIBLE
         }
     }
 
