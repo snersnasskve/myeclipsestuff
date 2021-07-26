@@ -3,6 +3,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable name="birth_date"
+                  type="com.sners.ladiesagecalculator.Age"/>
+        <variable name="birth_month"
+                  type="com.sners.ladiesagecalculator.Age"/>
+        <variable name="birth_year"
+                  type="com.sners.ladiesagecalculator.Age"/>
+        <variable name="birthday"
+                  type="com.sners.ladiesagecalculator.Age"/>
+        <variable name="agedesc"
+                  type="com.sners.ladiesagecalculator.Age"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
