@@ -34,17 +34,42 @@ class ForecastMainActivity : FragmentActivity() {
 
     var weatherLocations: ArrayList<WeatherLocation>? = null
 
-    //	For the array adaptor - names only
+    /**
+     * @property favourites Array holder for favourite locations - names only
+     */
     var favourites: ArrayList<String?>? = null
+
+    /**
+     * @property favouritesAdapter Adapter for presenting the favourites
+     */
     var favouritesAdapter: ArrayAdapter<String?>? = null
+
+    /**
+     * @property currentLocation A location object representing current location
+     */
     private var currentLocation: WeatherLocation? = null
+
+    /**
+     * @property favouriteLocation A location object representing selected favourite location
+     */
     private var favouriteLocation: WeatherLocation? = null
+
+    /**
+     * @property forecastLocation The location object being used for current forecast
+     */
     var forecastLocation: ForecastLocation? = null
+
+    /**
+     * @property lastUsedInfo Shared preferences
+     */
     private var lastUsedInfo: SharedPreferences? = null
+
+    /**
+     * onCreate Override OnCreate
+     */
     public override fun onCreate(savedInstanceState: Bundle?) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forecast_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_main)
 
         lastUsedInfo = getSharedPreferences("weatherinfo", MODE_PRIVATE)
@@ -52,8 +77,6 @@ class ForecastMainActivity : FragmentActivity() {
         populateFavourites(lastUsedInfo?.getString("favourites", null))
 
 
-        //favouritesAdapter =
-        //		ArrayAdapter.createFromResource(ForecastMainActivity.this, favourites, );
         favouritesAdapter = ArrayAdapter(
             this@ForecastMainActivity,
             android.R.layout.simple_list_item_1, favourites!!
@@ -67,6 +90,9 @@ class ForecastMainActivity : FragmentActivity() {
         binding.spFavourites.onItemSelectedListener = favouriteItemSelected
     }
 
+    /**
+     * onResume Override onResume
+     */
     override fun onResume() {
         super.onResume()
         if (null == currentLocation) {
@@ -75,22 +101,34 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * onPause Override onPause
+     */
     override fun onPause() {
         saveFavourites()
         super.onPause()
     }
 
+    /**
+     * onStop Override onStop
+     */
     override fun onStop() {
         saveFavourites()
         super.onStop()
     }
 
+    /**
+     * onCreateOptionsMenu Override onCreateOptionsMenu
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.forecast_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * onOptionsItemSelected Override onOptionsItemSelected
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -111,6 +149,9 @@ class ForecastMainActivity : FragmentActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * Save favourites to prefs
+     */
     fun saveFavourites() {
         val prefsEditor = lastUsedInfo!!.edit()
         prefsEditor.clear()
@@ -119,11 +160,11 @@ class ForecastMainActivity : FragmentActivity() {
         prefsEditor.commit()
     }
 
-    /////////////////////////////////////////////
-    //	Location
-    /////////////////////////////////////////////
+    /**
+     * Read location from phone
+     */
     private fun readLocationFromPhone() {
-        var statusString = "Searching..."
+        var statusString = getString(R.string.searching_status)
         binding.pbReadWeather.visibility = View.VISIBLE
         binding.tvStatus.text = statusString
 
@@ -134,15 +175,16 @@ class ForecastMainActivity : FragmentActivity() {
             val locationString = "${locationFormat.format(currentLocation!!.latitude)}  :  ${locationFormat.format(currentLocation!!.longitude)}"
             binding.tvLocation.text = locationString
             statusString = "Current Location found"
-            //	getWeatherData(currentLocation.getLatitude(), currentLocation.getLongitude());
         } else {
             statusString = "Please enable GPS"
         }
         binding.tvStatus.text = statusString
         binding.pbReadWeather.visibility = View.INVISIBLE
-    }//	Get location from phone
+    }
 
-    //	Get location from text on screen
+    /**
+     * Read location from address
+     */
     private val locationFromAddress: Boolean
         private get() {
             var statusString = getString(R.string.searching_status)
@@ -173,9 +215,9 @@ class ForecastMainActivity : FragmentActivity() {
             return success
         }
 
-    /////////////////////////////////////////////
-    //	Action on Buttons
-    /////////////////////////////////////////////
+    /**
+     * Forecast for address - button pressed
+     */
     fun forecastForAddress(view: View?) {
         if (binding.etLocationPlaceName.text.toString().length > 3) {
             locationFromAddress
@@ -188,6 +230,9 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * Forecast for location - button pressed
+     */
     fun forecastForLocation(view: View?) {
         binding.etLocationPlaceName.setText("")
         Toast.makeText(
@@ -198,6 +243,9 @@ class ForecastMainActivity : FragmentActivity() {
         getWeatherData(currentLocation!!.latitude!!, currentLocation!!.longitude!!)
     }
 
+    /**
+     * Forecast for favourite - button pressed
+     */
     fun forecastForFavourite(view: View?) {
         if (favouriteLocation != null) {
             Toast.makeText(
@@ -209,8 +257,10 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * Forecast for favourite - button pressed
+     */
     fun refreshScreen(view: View?) {
-        //readLocationFromPhone();
         Toast.makeText(
             applicationContext, "Re-read loaction and show forecast for this location",
             Toast.LENGTH_SHORT
@@ -227,9 +277,10 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
-    /////////////////////////////////////////////
-    //	Favourites
-    /////////////////////////////////////////////
+    /**
+     * Populate Favourites
+     * @param favouritesString String with place names separated by |
+     */
     private fun populateFavourites(favouritesString: String?) {
         favourites = ArrayList()
         weatherLocations = ArrayList()
@@ -246,6 +297,10 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * Populate Favourites
+     * @param favouriteItemSelected Adapter view for favourite item selected
+     */
     var favouriteItemSelected: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(
             parent: AdapterView<*>?, view: View,
@@ -264,6 +319,10 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * Populate Convert favourites to string
+     * @return string of place names separated by |
+     */
     private fun favouritesToString(): String? {
         var favString: String? = null
         if (weatherLocations!!.size != 0) {
@@ -278,6 +337,9 @@ class ForecastMainActivity : FragmentActivity() {
         return favString
     }
 
+    /**
+     * Add favourite
+     */
     private fun addFavourite() {
         var statusString = "Please enter valid place name"
         val placeName = binding.etLocationPlaceName.text.toString()
@@ -299,6 +361,9 @@ class ForecastMainActivity : FragmentActivity() {
         binding.tvStatus.text = statusString
     }
 
+    /**
+     * Delete favourite
+     */
     private fun deleteFavourite() {
         var statusString = getString(R.string.select_place_to_delete)
         val placeName = binding.etLocationPlaceName.text.toString()
@@ -319,9 +384,11 @@ class ForecastMainActivity : FragmentActivity() {
         binding.tvStatus.text = statusString
     }
 
-    /////////////////////////////////////////////
-    //	Read forecast
-    /////////////////////////////////////////////
+    /**
+     * Get weather data
+     * @param mLatitude latitude value
+     * @param mLongitude longtitude value
+     */
     private fun getWeatherData(mLatitude: Double, mLongitude: Double) {
         binding.pbReadWeather.visibility = View.VISIBLE
         ReadWeatherAsyncTask().execute(mLatitude, mLongitude)
@@ -363,6 +430,10 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * Get weather data
+     * @param weatherJson Json string back from the api call
+     */
     private fun showCurrentWeather(weatherJson: String?) {
         if (null != weatherJson && "" === weatherJson) {
             Log.i(TAG, "showCurrentWeather - rejoined main thread")
@@ -375,6 +446,9 @@ class ForecastMainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     * Weather data - //	Data needs to be omnipresent
+     */
     companion object {
         var TAG = "ForecastMainActivity"
 
