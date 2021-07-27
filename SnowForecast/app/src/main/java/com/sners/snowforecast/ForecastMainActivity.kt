@@ -306,7 +306,7 @@ class ForecastMainActivity : FragmentActivity() {
             parent: AdapterView<*>?, view: View,
             position: Int, id: Long
         ) {
-            binding.etLocationPlaceName.setText(weatherLocations!![position].name)
+            binding.etLocationPlaceName.setText(weatherLocations!![position].name) ?: ""
             if (weatherLocations!![position].name!!.length > 3) {
                 binding.tvLocation.text =
                     "" + weatherLocations!![position].latitude + "" + "  :  " + weatherLocations!![position].longitude
