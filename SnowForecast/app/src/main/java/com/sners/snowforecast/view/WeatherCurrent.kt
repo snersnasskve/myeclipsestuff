@@ -25,67 +25,6 @@ class WeatherCurrent : Activity() {
      */
     private lateinit var binding: CurrentlyBinding
 
-    //	Please I want time until precipitation
-    /**
-     * @property ivCurIcon Current weather icon - image view
-     */
-    private var ivCurIcon: ImageView? = null
-
-    /**
-     * @property tvCurSummary Weather Summary - image view
-     */
-    private var tvCurSummary: TextView? = null
-
-    /**
-     * @property tvCurPrecipIntensity Precipitation
-     */
-    private var tvCurPrecipIntensity: TextView? = null
-
-    /**
-     * @property tvCurPrecipProbability Precipitation probability
-     */
-    private var tvCurMoisture: TextView? = null
-
-    /**
-     * @property tvCurTemperature Temperature
-     */
-    private var tvCurTemperature: TextView? = null
-
-    /**
-     * @property tvCurWind Wind speed
-     */
-    private var tvCurWind: TextView? = null
-
-    /**
-     * @property tvCurUvIndex Time til sunset
-     */
-    private var tvCurUvIndex: TextView? = null
-
-    /**
-     * @property tvCurTimeTilPrecip Time til next precipitation
-     */
-    private var tvCurTimeTilPrecip: TextView? = null
-
-    /**
-     * @property tvCurTimeTilSnow Time til next snow
-     */
-    private var tvCurTimeTilSnow: TextView? = null
-
-    /**
-     * @property tvCurAlertString Alerts
-     */
-    private var tvCurAlertString: TextView? = null
-
-    /**
-     * @property hsvCurActivityIcons Activity icons scroll view
-     */
-    private var hsvCurActivityIcons: HorizontalScrollView? = null
-
-    /**
-     * @property llCurIcontainer Linear Layout for the activity icon view
-     */
-    private var llCurIcontainer: LinearLayout? = null
-
     /**
      * @property llCurrently Linear Layout for the Current weather - needed for animations
      */
@@ -104,20 +43,6 @@ class WeatherCurrent : Activity() {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.currently)
-
-        //setContentView(R.layout.currently)
-        ivCurIcon = findViewById<View>(R.id.ivCurIcon) as ImageView
-        tvCurSummary = findViewById<View>(R.id.tvCurSummary) as TextView
-        tvCurPrecipIntensity = findViewById<View>(R.id.tvCurPrecipIntensity) as TextView
-        tvCurMoisture = findViewById<View>(R.id.tvCurMoisture) as TextView
-        tvCurTemperature = findViewById<View>(R.id.tvCurTemperature) as TextView
-        tvCurWind = findViewById<View>(R.id.tvCurWind) as TextView
-        tvCurUvIndex = findViewById<View>(R.id.tvCurUvIndex) as TextView
-        tvCurTimeTilPrecip = findViewById<View>(R.id.tvCurTimeTilPrecip) as TextView
-        tvCurTimeTilSnow = findViewById<View>(R.id.tvCurTimeTilSnow) as TextView
-        tvCurAlertString = findViewById<View>(R.id.tvCurAlertString) as TextView
-        hsvCurActivityIcons = findViewById<View>(R.id.hsvCurActivityIcons) as HorizontalScrollView
-        llCurIcontainer = findViewById<View>(R.id.llCurIcontainer) as LinearLayout
         llCurrently = findViewById<View>(R.id.llCurrently) as LinearLayout
 
         //Animation animExitLeft = AnimationUtils.makeInAnimation(this, true);
@@ -160,13 +85,13 @@ class WeatherCurrent : Activity() {
      */
     private fun inflateWeatherActivityIcons(qualIcons: ArrayList<String>) {
         val layoutInflater = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        llCurIcontainer!!.removeAllViews()
+        binding.llCurIcontainer.removeAllViews()
         for (iconName in qualIcons) {
             val iconId = resources.getIdentifier(iconName, "drawable", packageName)
             val convertView = layoutInflater.inflate(R.layout.icon_gallery, null)
             val img = convertView.findViewById<View>(R.id.ivIconGalleryItem) as ImageView
             img.setImageResource(iconId)
-            llCurIcontainer!!.addView(convertView)
+            binding.llCurIcontainer.addView(convertView)
         }
     }
 
