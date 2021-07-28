@@ -31,35 +31,10 @@ class WeatherDashboard : Activity() {
      */
     private lateinit var binding: DashboardBinding
 
-    /**
-     * @property tvDashTemperature Temperature
-     */
-    //private var tvDashTemperature: TextView? = null
-
-    /**
-     * @property tvDashWind Wind speed
-     */
-    private var tvDashWind: TextView? = null
-
-    /**
-     * @property tvDashTimeTilSunset Time til sunset
-     */
-    private var tvDashTimeTilSunset: TextView? = null
-
-    /**
-     * @property tvDashTimeTilPrecip Time til next precipitation
-     */
-    private var tvDashTimeTilPrecip: TextView? = null
-
-    /**
+     /**
      * @property hsvDashActivityIcons Activity icons scroll view
      */
     private var hsvDashActivityIcons: HorizontalScrollView? = null
-
-    /**
-     * @property llDashIcontainer Linear Layout for the activity icon view
-     */
-    private var llDashIcontainer: LinearLayout? = null
 
     /**
      * @property llDashDashboard Linear Layout for the Dashboard - needed for animations
@@ -79,21 +54,16 @@ class WeatherDashboard : Activity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.dashboard)
 
-       // tvDashTemperature = findViewById<View>(R.id.tvDashTemperature) as TextView
-        tvDashWind = findViewById<View>(R.id.tvDashWind) as TextView
-        tvDashTimeTilSunset = findViewById<View>(R.id.tvDashTimeTilSunset) as TextView
-        tvDashTimeTilPrecip = findViewById<View>(R.id.tvDashTimeTilPrecip) as TextView
-        hsvDashActivityIcons = findViewById<View>(R.id.hsvDashActivityIcons) as HorizontalScrollView
-        llDashIcontainer = findViewById<View>(R.id.llDashIcontainer) as LinearLayout
+          hsvDashActivityIcons = findViewById<View>(R.id.hsvDashActivityIcons) as HorizontalScrollView
         llDashDashboard = findViewById<View>(R.id.llDashboard) as LinearLayout
 
         //Animation animExitLeft = AnimationUtils.makeInAnimation(this, false);
         //llDashDashboard.startAnimation(animExitLeft);
         binding.tvDashSummary.text = weatherData.headlineSummary
-        tvDashTimeTilSunset!!.text = String.format("%s", weatherData.getTimeTilSunsetString())
+        binding.tvDashTimeTilSunset.text = String.format("%s", weatherData.getTimeTilSunsetString())
 
         //	timeTillPrecip
-        tvDashTimeTilPrecip!!.text = weatherData.precipitation!!.timeTilString(false)
+        binding.tvDashTimeTilPrecip.text = weatherData.precipitation!!.timeTilString(false)
         val iconName = weatherData.headlineIcon
         val iconId = resources.getIdentifier(iconName, "drawable", packageName)
         binding.ivDashSummary.setImageResource(iconId)
@@ -122,13 +92,13 @@ class WeatherDashboard : Activity() {
     private fun inflateWeatherActivityIcons(qualIcons: ArrayList<String>) {
 
         val layoutInflater = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        llDashIcontainer!!.removeAllViews()
+        binding.llDashIcontainer.removeAllViews()
         for (iconName in qualIcons) {
             val iconId = resources.getIdentifier(iconName, "drawable", packageName)
             val convertView = layoutInflater.inflate(R.layout.icon_gallery, null)
             val img = convertView.findViewById<View>(R.id.ivIconGalleryItem) as ImageView
             img.setImageResource(iconId)
-            llDashIcontainer!!.addView(convertView)
+            binding.llDashIcontainer.addView(convertView)
         }
     }
 
@@ -145,9 +115,9 @@ class WeatherDashboard : Activity() {
      */
     private fun populateTemperature() {
 
-        val tempString = weatherData.currently!!.temperature
+        val tempString = weatherData.currently.temperature
         binding.tvDashTemperature.text = tempString
-        val temperatureNum = weatherData.currently!!.temperatureNum.roundToInt()
+        val temperatureNum = weatherData.currently.temperatureNum.roundToInt()
         val tempColour = when (temperatureNum) {
             in Int.MIN_VALUE..0 -> Color.GRAY
             in 0..10 -> Color.BLUE
@@ -158,7 +128,7 @@ class WeatherDashboard : Activity() {
             in 30..Int.MAX_VALUE -> Color.RED
             else -> Color.YELLOW // This would indicate an error
         }
-        binding.tvDashTemperature.setTextColor(tempColour.toInt())
+        binding.tvDashTemperature.setTextColor(tempColour)
     }
 
 
@@ -168,13 +138,13 @@ class WeatherDashboard : Activity() {
     private fun populateWind() {
 
         val beaufortValue = weatherData.wind!!.getSpeedBeaufort()
-        tvDashWind!!.text = "$beaufortValue"
+        binding.tvDashWind.text = "$beaufortValue"
         val windColour = when (beaufortValue) {
             in 5 .. 7 -> Color.MAGENTA
             in 7 .. Int.MAX_VALUE -> Color.RED
             else -> Color.parseColor("#008000") // Green
         }
-        tvDashWind!!.setTextColor(windColour)
+        binding.tvDashWind.setTextColor(windColour)
     }
 
     ///////////////////////////////////////////
