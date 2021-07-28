@@ -32,12 +32,6 @@ class WeatherDashboard : Activity() {
     private lateinit var binding: DashboardBinding
 
     /**
-     * @property ivDashSummary Weather Summary - image view
-     */
-    private var ivDashSummary: ImageView? = null
-
-
-    /**
      * @property tvDashTemperature Temperature
      */
     private var tvDashTemperature: TextView? = null
@@ -85,8 +79,6 @@ class WeatherDashboard : Activity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.dashboard)
 
-        //setContentView(R.layout.dashboard)
-        ivDashSummary = findViewById<View>(R.id.ivDashSummary) as ImageView
         tvDashTemperature = findViewById<View>(R.id.tvDashTemperature) as TextView
         tvDashWind = findViewById<View>(R.id.tvDashWind) as TextView
         tvDashTimeTilSunset = findViewById<View>(R.id.tvDashTimeTilSunset) as TextView
@@ -104,8 +96,8 @@ class WeatherDashboard : Activity() {
         tvDashTimeTilPrecip!!.text = weatherData.precipitation!!.timeTilString(false)
         val iconName = weatherData.headlineIcon
         val iconId = resources.getIdentifier(iconName, "drawable", packageName)
-        ivDashSummary!!.setImageResource(iconId)
-        ivDashSummary!!.contentDescription = iconName
+        binding.ivDashSummary.setImageResource(iconId)
+        binding.ivDashSummary.contentDescription = iconName
         setWeatherActivityIcons()
 
         populatePrecipitation()

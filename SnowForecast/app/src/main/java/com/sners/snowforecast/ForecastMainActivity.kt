@@ -37,7 +37,7 @@ class ForecastMainActivity : FragmentActivity() {
     /**
      * @property favourites Array holder for favourite locations - names only
      */
-    var favourites: ArrayList<String?>? = null
+    private var favourites: ArrayList<String?>? = null
 
     /**
      * @property favouritesAdapter Adapter for presenting the favourites
@@ -186,7 +186,7 @@ class ForecastMainActivity : FragmentActivity() {
      * Read location from address
      */
     private val locationFromAddress: Boolean
-        private get() {
+        get() {
             var statusString = getString(R.string.searching_status)
             binding.pbReadWeather.visibility = View.VISIBLE
             binding.tvStatus.text = statusString
