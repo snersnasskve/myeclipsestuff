@@ -299,7 +299,6 @@ class ForecastMainActivity : FragmentActivity() {
 
     /**
      * Populate Favourites
-     * @param favouriteItemSelected Adapter view for favourite item selected
      */
     private var favouriteItemSelected: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(
@@ -308,6 +307,7 @@ class ForecastMainActivity : FragmentActivity() {
         ) {
             binding.etLocationPlaceName.setText(weatherLocations!![position].name) ?: ""
             if (weatherLocations!![position].name!!.length > 3) {
+
                 binding.tvLocation.text =
                     "" + weatherLocations!![position].latitude + "" + "  :  " + weatherLocations!![position].longitude
                 favouriteLocation = weatherLocations!![position]
