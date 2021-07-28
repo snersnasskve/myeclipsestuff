@@ -34,7 +34,7 @@ class WeatherDashboard : Activity() {
     /**
      * @property tvDashTemperature Temperature
      */
-    private var tvDashTemperature: TextView? = null
+    //private var tvDashTemperature: TextView? = null
 
     /**
      * @property tvDashWind Wind speed
@@ -79,7 +79,7 @@ class WeatherDashboard : Activity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.dashboard)
 
-        tvDashTemperature = findViewById<View>(R.id.tvDashTemperature) as TextView
+       // tvDashTemperature = findViewById<View>(R.id.tvDashTemperature) as TextView
         tvDashWind = findViewById<View>(R.id.tvDashWind) as TextView
         tvDashTimeTilSunset = findViewById<View>(R.id.tvDashTimeTilSunset) as TextView
         tvDashTimeTilPrecip = findViewById<View>(R.id.tvDashTimeTilPrecip) as TextView
@@ -146,7 +146,7 @@ class WeatherDashboard : Activity() {
     private fun populateTemperature() {
 
         val tempString = weatherData.currently!!.temperature
-        tvDashTemperature!!.text = tempString
+        binding.tvDashTemperature.text = tempString
         val temperatureNum = weatherData.currently!!.temperatureNum.roundToInt()
         val tempColour = when (temperatureNum) {
             in Int.MIN_VALUE..0 -> Color.GRAY
@@ -158,7 +158,7 @@ class WeatherDashboard : Activity() {
             in 30..Int.MAX_VALUE -> Color.RED
             else -> Color.YELLOW // This would indicate an error
         }
-        tvDashTemperature!!.setTextColor(tempColour.toInt())
+        binding.tvDashTemperature.setTextColor(tempColour.toInt())
     }
 
 

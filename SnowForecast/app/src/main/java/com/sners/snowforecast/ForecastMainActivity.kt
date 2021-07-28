@@ -301,7 +301,7 @@ class ForecastMainActivity : FragmentActivity() {
      * Populate Favourites
      * @param favouriteItemSelected Adapter view for favourite item selected
      */
-    var favouriteItemSelected: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+    private var favouriteItemSelected: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(
             parent: AdapterView<*>?, view: View,
             position: Int, id: Long
