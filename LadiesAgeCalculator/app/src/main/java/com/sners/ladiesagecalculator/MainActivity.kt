@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.age_calc)
         binding.age = age
-        age.birthYear = "35"
-        age.birthDate = "7"
 
         val monthNames = resources.getStringArray(R.array.months)
         val adapter: ArrayAdapter<String> =
@@ -45,16 +43,11 @@ class MainActivity : AppCompatActivity() {
         binding.calculateButton.setOnClickListener {
             calculateAge()
         }
-        age.flattery = "1"
 
     }
 
     private fun calculateAge() {
-        //binding.ageCalculated.setText(getString(R.string.fabulous))
-       // this.age.flattery = "Fred"
-        //binding.age!!.flattery = "Fred"
-      // (getString(R.string.fabulous)
-        age.flattery = "3"
+        binding.ageCalculated.setText(getString(R.string.fabulous))
         Toast.makeText(this, "You pressed calc", Toast.LENGTH_LONG).show()
         binding.invalidateAll()
     }
