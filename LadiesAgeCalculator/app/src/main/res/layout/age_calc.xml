@@ -14,14 +14,16 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/padding_small">
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:srcCompat="@drawable/calendarfull" android:id="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:rotation="90" android:alpha=".1"
-                android:scaleType="fitXY" android:contentDescription="@string/calendar_desc_full"
-                android:baselineAlignBottom="false"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:rotation="90" android:alpha=".1"
+                android:scaleType="centerCrop" android:contentDescription="@string/calendar_desc_full"
+                android:baselineAlignBottom="false" app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
                 android:text="@string/intro_short"
                 android:layout_width="match_parent"
