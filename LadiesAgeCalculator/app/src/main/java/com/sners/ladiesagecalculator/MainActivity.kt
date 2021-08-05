@@ -5,6 +5,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.sners.ladiesagecalculator.databinding.AgeCalcBinding
+import com.sners.ladiesagecalculator.databinding.AgeCalcMainBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
      * 2. add this field
      * 3. replace setContentView with DataBindingUtil.setContentView
      */
-    private lateinit var binding: AgeCalcBinding
+    private lateinit var binding: AgeCalcMainBinding
 
     /**
      * @property age Age object
@@ -30,25 +31,25 @@ class MainActivity : AppCompatActivity() {
         // http://saigeethamn.blogspot.com/2010/05/auto-complete-text-view-android.html
 
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.age_calc)
-        binding.age = age
+        binding = DataBindingUtil.setContentView(this, R.layout.age_calc_main)
+        //binding.age = age
 
         val monthNames = resources.getStringArray(R.array.months)
         val adapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthNames)
 
-        binding.editMonth.threshold = 1
-        binding.editMonth.setAdapter(adapter)
+        //binding.editMonth.threshold = 1
+        //binding.editMonth.setAdapter(adapter)
 
-        binding.calculateButton.setOnClickListener {
-            calculateAge()
-        }
+       // binding.calculateButton.setOnClickListener {
+      //      calculateAge()
+      //  }
 
     }
 
     private fun calculateAge() {
-        binding.ageCalculated.setText(getString(R.string.fabulous))
-        Toast.makeText(this, "You pressed calc", Toast.LENGTH_LONG).show()
-        binding.invalidateAll()
+        //binding.ageCalculated.setText(getString(R.string.fabulous))
+        //Toast.makeText(this, "You pressed calc", Toast.LENGTH_LONG).show()
+        //binding.invalidateAll()
     }
 }

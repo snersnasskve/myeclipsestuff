@@ -6,7 +6,8 @@
     </string>
     <string name="intro_short">This calculator will calculate your
         real age.
-    </string>   <string name="birth_date">Birth Date:</string>
+    </string>
+    <string name="birth_date">Birth Date:</string>
     <string name="birth_month">Birth Month:</string>
     <string name="birth_year">Birth Year:</string>
     <string name="fabulous">You look fabulous</string>
@@ -16,4 +17,6 @@
     <string name="day_number">Day number</string>
     <string name="year_number">Year number</string>
     <string name="lets_go">Let\'s Go</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
