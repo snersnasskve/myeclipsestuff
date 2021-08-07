@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.sners.ladiesagecalculator.databinding.AgeCalcBinding
 import com.sners.ladiesagecalculator.databinding.AgeCalcMainBinding
 
 
@@ -34,9 +33,9 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.age_calc_main)
         //binding.age = age
 
-        val monthNames = resources.getStringArray(R.array.months)
-        val adapter: ArrayAdapter<String> =
-            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthNames)
+//        val monthNames = resources.getStringArray(R.array.months)
+//        val adapter: ArrayAdapter<String> =
+//            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, monthNames)
 
         //binding.editMonth.threshold = 1
         //binding.editMonth.setAdapter(adapter)
