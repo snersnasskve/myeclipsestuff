@@ -27,5 +27,6 @@
     <string name="weekends">Weekends</string>
     <string name="everyday">Every Day</string>
     <string name="none">None</string>
+    <string name="anygroup">Any group</string>
 
 </resources>

@@ -2,16 +2,16 @@ package com.sners.ramblerswalks4
 
 
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.sners.ramblerswalks4.controller.DaysController
 import com.sners.ramblerswalks4.data.DaysViewModel
+import com.sners.ramblerswalks4.data.RamblersWalksVMFactory
 import kotlinx.android.synthetic.main.fragment_days.*
 import timber.log.Timber
 
@@ -38,7 +38,9 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     ): View? {
 
         //  Add the ViewModel for this fragment
-        viewModel = ViewModelProviders.of(this).get(DaysViewModel::class.java)
+        val application = requireNotNull(activity).application
+        val viewModelFactory = RamblersWalksVMFactory(application)
+        viewModel =  ViewModelProvider(this).get(DaysViewModel::class.java)
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_days, container, false)
@@ -62,34 +64,34 @@ class DaysFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
         viewModel.setDaysFromArray(DaysController.daysFromDescription(this.daysDescription))
 
-        viewModel.monday.observe(this, Observer{newValue ->
+        viewModel.monday.observe(this.viewLifecycleOwner, Observer{newValue ->
             monday_checkbox.isChecked = newValue
         })
-        viewModel.tuesday.observe(this, Observer{newValue ->
+        viewModel.tuesday.observe(viewLifecycleOwner, Observer{newValue ->
             tuesday_checkbox.isChecked = newValue
         })
-        viewModel.wednesday.observe(this, Observer{newValue ->
+        viewModel.wednesday.observe(this.viewLifecycleOwner, Observer{newValue ->
             wednesday_checkbox.isChecked = newValue
         })
-        viewModel.thursday.observe(this, Observer{newValue ->
+        viewModel.thursday.observe(this.viewLifecycleOwner, Observer{newValue ->
             thursday_checkbox.isChecked = newValue
         })
-        viewModel.friday.observe(this, Observer{newValue ->
+        viewModel.friday.observe(this.viewLifecycleOwner, Observer{newValue ->
             friday_checkbox.isChecked = newValue
         })
-        viewModel.saturday.observe(this, Observer{newValue ->
+        viewModel.saturday.observe(this.viewLifecycleOwner, Observer{newValue ->
             saturday_checkbox.isChecked = newValue
         })
-        viewModel.sunday.observe(this, Observer{newValue ->
+        viewModel.sunday.observe(this.viewLifecycleOwner, Observer{newValue ->
             sunday_checkbox.isChecked = newValue
         })
-        viewModel.weekdays.observe(this, Observer{newValue ->
+        viewModel.weekdays.observe(this.viewLifecycleOwner, Observer{newValue ->
             weekdays_checkbox.isChecked = newValue
         })
-        viewModel.weekend.observe(this, Observer{newValue ->
+        viewModel.weekend.observe(this.viewLifecycleOwner, Observer{newValue ->
             weekends_checkbox.isChecked = newValue
         })
-        viewModel.everyday.observe(this, Observer{newValue ->
+        viewModel.everyday.observe(this.viewLifecycleOwner, Observer{newValue ->
             everyday_checkbox.isChecked = newValue
         })
 

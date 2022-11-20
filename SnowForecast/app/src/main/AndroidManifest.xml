@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sners.snowforecast">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SnowForecast">
+        <activity android:name=".ForecastMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sners.snowforecast.view.WeatherCurrent"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.sners.snowforecast.WEATHERCURRENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sners.snowforecast.view.WeatherDashboard"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.sners.snowforecast.WEATHERDASHBOARD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sners.snowforecast.view.MinutelyPrecipChart"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.sners.snowforecast.MINUTELYPRECIPCHART" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sners.snowforecast.view.HourlyPrecipChart"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.sners.snowforecast.HOURLYPRECIPCHART" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sners.snowforecast.view.WeatherAlert"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.sners.snowforecast.WEATHERALERT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

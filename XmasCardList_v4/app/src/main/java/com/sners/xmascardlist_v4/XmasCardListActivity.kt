@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.sners.xmascardlist_v4.controller.ContactController
 import com.sners.xmascardlist_v4.data.ContactVM
@@ -69,7 +70,7 @@ class XmasCardListActivity : AppCompatActivity() {
         val dataSource = ContactDatabase.getInstance(application).contactDao
         val viewModelFactory = XmasCardListVMFactory(dataSource, application)
         val listViewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(XmasCardListVM::class.java)
+            ViewModelProvider(this).get(XmasCardListVM::class.java)
 
         recyclerView.adapter = XmasCardItemRecyclerViewAdapter(this, listViewModel.contacts, twoPane)
     }

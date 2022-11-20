@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Roboto_general_style">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:layout_marginTop">@dimen/margin_layout</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="color" >@color/black</item>
+    </style>
+</resources>

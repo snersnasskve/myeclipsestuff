@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <string name="app_name">SnowForecast</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- activity_forecast_main -->
+    <string name="refresh">Refresh</string>
+    <string name="weather_summary">Weather Summary</string>
+    <string name="location">Location:</string>
+    <string name="current_location">Current Location</string>
+    <string name="latitude_longitude">Latitude, Longitude</string>
+    <string name="place_name">Name of Town / Address / Postal Code</string>
+    <string name="go">></string>
+    <string name="status_info">Status information</string>
+    <string name="use_location">Use Current Location</string>
+    <string name="use_menu_add_favourite">Use menu to Add Favourites</string>
+    <string name="get_local_weather">Get Local Weather</string>
+    
+    <!-- current -->
+
+    <string name="currently">Current Weather</string>
+    <string name="details">More Details</string>
+    <string name="headline">Headline:</string>
+    <string name="summary_hint">Weather in a phrase</string>
+    <string name="precip_intensity">Precip.:</string>
+    <string name="precip_intensity_hint">Precipitation Intensity</string>
+    <string name="precip_probability">Precip %:</string>
+    <string name="precip_probability_hint">Precip % probability</string>
+    <string name="precip_moisture">Hum\/Dew\/Cloud: </string>
+    <string name="precip_moisture_hint">H \/ Dt \/ Cloud</string>
+    <string name="temperature">Temp:</string>
+    <string name="temperature_hint">Temperature Celsius</string>
+    <string name="wind">Wind:</string>
+    <string name="wind_hint">Wind Speed</string>
+    <string name="time_til_sunset">To Sunset:</string>
+    <string name="time_til_sunset_hint">Time Till Sunset</string>
+    <string name="time_til_precip">Next Rain:</string>
+    <string name="time_til_precip_hint">Next Rain</string>
+      
+        <!-- dashboard -->
+      <string name="dashboard">Dashboard</string>
+  
+    
+    <!-- Acknowledge -->
+
+    <string name="acknowledge1">(Weather icons by Weezle)</string>
+    <string name="acknowledge2">(Powered by VisualCrossing and WeatherBit)</string>
+    <string name="get_the_weather">Get the Weather</string>
+
+    <!-- Menu -->
+    <string name="add_to_favourites">Add to Favourites</string>
+    <string name="delete_from_favourites">Delete from Favourites</string>
+    <string name="go_to_web_page">Go To Web Page</string>
+    <string name="alerts">Alerts:</string>
+    <string name="alerts_issued">Alerts issued</string>
+    <string name="next_snow">Next Snow</string>
+    <string name="next_snow_hint">Next Snow</string>
+    <string name="uv_index">UV Index</string>
+    <string name="uv_index_hint">UV Index</string>
+    <string name="failed_no_internet_warning">Reading weather failed - try later when you have internet.</string>
+    <string name="location_not_found_warning">Location not found. Please enable GPS.</string>
+    <string name="select_place_to_delete">Please select the place you want to delete</string>
+    <string name="show_forecast_this_location">Show forecast for this location</string>
+    <string name="show_forecast_this_address">Show forecast for this address</string>
+    <string name="location_for_address_found">Location for address found</string>
+    <string name="try_later_no_internet">Try later when you have internet</string>
+    <string name="enter_place_name">Please enter a place name !</string>
+    <string name="searching_status">Searching...</string>
+
+</resources>

@@ -39,8 +39,8 @@ class ContactDetailFragment : Fragment() , LifecycleObserver{
 //                }
 
                 //  She suggested this should go in onCreateView().  Not sure the benefits / otherwise
-                val contactId = it.getInt(ARG_ITEM_ID)
-                viewModelFractory = ContactVMFactory(contactId)
+                val contactId = it.getLong(ARG_ITEM_ID)
+                viewModelFractory = ContactVMFactory(contactId, database = contactViewModel.database)
 
                 contactViewModel = ViewModelProviders.of(this, viewModelFractory).get(ContactVM::class.java)
                 //activity?.toolbar_layout?.title = contact?.firstName!!.value

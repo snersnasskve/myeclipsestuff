@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="DuplicateIds" severity="warning" />
+    <issue id="Instantiatable" severity="warning" />
+    <issue id="LocalSuppress" severity="fatal" />
+    <issue id="MissingTranslation" severity="ignore" />
+    <issue id="Override" severity="fatal" />
+</lint>
